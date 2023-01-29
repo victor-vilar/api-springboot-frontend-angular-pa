@@ -1,3 +1,12 @@
+container{
+  width:100vw;
+}
 .menu{
-  width:20%;
+  width:20vw;
+}
+
+.main{
+  margin-left: 10vw;
+  background-color: aqua;
+  width:cal(100vw - 10vw)
 }
