@@ -1,3 +1,5 @@
+
+/* CONFIGURATION */
 .container {
   padding:20px;
   background-color: rgba(15, 85, 39, 0.661);
@@ -8,14 +10,18 @@
   border: 1px solid rgba(255, 255, 255, 0.529);
   margin: 30px 0px;
 }
+/* ==================================== */
 
+/* LOGGED USER */
 .logged-user{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+/* ================================= */
 
+/* NAVEGATION MENU */
 .navegation{
 
 }
@@ -26,10 +32,12 @@
   font-size: 1.2em;
   text-align: center;
   transition:  color 0.2s ease-in-out;
+  line-height: 30px;
 }
 
 .navegation ul a:hover {
   color: rgba(255, 255, 255, 0.529);
+
 
 
 }
@@ -39,14 +47,39 @@
   border-top: 1px solid #FFF;
 }
 
+.navegation ul a li:hover{
+  background-color:#FFF; ;
+}
+/* ================================= */
+
+
+
+
+/* DEVELOPER INFORMATION */
 .developer-info{
   display: flex;
   flex-direction: column;
   margin-top: 30px;
+  justify-content: center;
+  align-items: center;
 }
 
 .developer-info-social-media{
-  margin-top: 30px;
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
 }
+
+.developer-info-social-card i{
+  font-size: 1.5em;
+  margin-right: 5px;
+}
+
+.developer-info-social-card a{
+  color: #FFF;
+  text-decoration: none;
+  font-size: 1.2em;
+  text-align: center;
+
+}
+/* =============================== */
