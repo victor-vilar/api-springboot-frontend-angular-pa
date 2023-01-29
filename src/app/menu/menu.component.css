@@ -1,8 +1,10 @@
 
 /* CONFIGURATION */
 .container {
-  padding:20px;
+  padding:10px 0px;
   background-color: rgba(15, 85, 39, 0.661);
+  position:fixed;
+  width:10%;
   height: 100vh;
   color: #FFF;
 }
@@ -33,22 +35,21 @@
   text-align: center;
   transition:  color 0.2s ease-in-out;
   line-height: 30px;
+
 }
 
 .navegation ul a:hover {
   color: rgba(255, 255, 255, 0.529);
-
-
-
 }
 
 .navegation ul a li{
   margin-top: 5px;
-  border-top: 1px solid #FFF;
+
+
 }
 
 .navegation ul a li:hover{
-  background-color:#FFF; ;
+  background-color:#FFF;
 }
 /* ================================= */
 
