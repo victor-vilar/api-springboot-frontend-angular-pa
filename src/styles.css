@@ -6,3 +6,13 @@
   font-family: 'Roboto', sans-serif;
   list-style: none;
 }
+
+:root
+{
+  --cinza:#515F78;
+  --cinza-escuro:rgba(24, 26, 25, 0.872);
+  --azul:#0341AB;
+  --azul-claro:#1BC9DE;
+  --rosa:#E6866C;
+  --vermelho:#AB0F03;
+}

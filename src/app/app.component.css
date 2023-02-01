@@ -1,12 +1,22 @@
-container{
-  width:100vw;
+.container-fluid{
+  /* width:100vw; */
+
+}
+
+.row{
+  display: flex;
+  flex-direction: row;
 }
 .menu{
-  width:20vw;
+  /* width:15vw; */
+  height: 100vh;
+  background-color: var(--cinza-escuro);
+
 }
 
 .main{
-  margin-left: 10vw;
-  background-color: aqua;
-  width:cal(100vw - 10vw)
+  padding:5px;
+  width:calc();
 }
+
+
