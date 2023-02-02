@@ -1,8 +1,18 @@
 
 <div class="container-fluid">
   <div class="row">
-    <div class= "menu col-2"><app-menu></app-menu></div>
-    <div class="main col-10">fafa<router-outlet></router-outlet></div>
+
+    <div class= "menu col-sm-3">
+      <button data-toggle="collapse" data-target="#demo" class="toggle-button btn">X</button>
+      <a href="#demo" data-bs-toggle="collapse">Fechar</a>
+      <div class="collapse show" id="demo">
+        <app-menu ></app-menu>
+      </div>
+    </div>
+
+    <div class="main col-sm-9">
+      <router-outlet></router-outlet>
+    </div>
   </div>
 </div>
 
