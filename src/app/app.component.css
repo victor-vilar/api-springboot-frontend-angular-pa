@@ -1,25 +1,59 @@
-.container-fluid{
-  /* width:100vw; */
+
+/* mobile first */
+
+.menu-button-container{
+  position:fixed;
+  background-color: var(--cinza-escuro);
+  height: 50px;
+  color: white;
+  top:0
+
+}
+.menu-button-container div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
 
 }
 .toggle-button{
-  position: absolute;
-  left:0;
-}
-.row{
-  display: flex;
-  flex-direction: row;
+  background-color: var(--azul);
+  color:white;
+  font-weight: bold;
 }
 .menu{
-  /* width:15vw; */
-  height: 100vh;
+  height: 100%;
   background-color: var(--cinza-escuro);
-
+  transition: height .3s ease-out;
+  margin-top: 50px;
+  position: fixed;
+  z-index: 1000;
+  overflow-y:scroll ;
 }
-
+.menu-small{
+  height: 0;
+  background-color: var(--cinza-escuro);
+  transition: height .3s ease-out;
+  overflow:hidden;
+  margin-top: 50px;
+}
 .main{
-  padding:5px;
-  width:calc();
+margin-top: 10px;
+box-sizing: border-box;
 }
 
+@media screen and (min-width:576px){
+  .menu-button-container{
+    display:none;
+  }
+  .menu-small{
+    height: 100vh;
+  }
+  .menu , .menu-small{
+    margin-top: 0;
+  }
+  .main{
+    margin-top: 10px;
+  }
+}
 

@@ -1,6 +1,6 @@
 
 /* CONFIGURATION */
-.container {
+.container-fluid {
   padding:10px 0px;
   color: #FFF;
 }
@@ -23,17 +23,18 @@
 /* NAVEGATION MENU */
 .navegation{
   padding-left: 0;
+
 }
 
 .navegation div a {
   color: #FFF;
   text-decoration: none;
-  padding: 10px 0px;
+  padding: 10px 25px;
   font-size: 1.2em;
   transition:  color 0.2s ease-in-out;
   display: flex;
   align-items: center;
-
+  border-radius:5px;
 }
 
 .navegation div a:hover {

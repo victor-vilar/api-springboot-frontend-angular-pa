@@ -1,16 +1,25 @@
 
-<div class="container-fluid">
-  <div class="row">
+<div class="container-fuild">
 
-    <div class= "menu col-sm-3">
-      <button data-toggle="collapse" data-target="#demo" class="toggle-button btn">X</button>
-      <a href="#demo" data-bs-toggle="collapse">Fechar</a>
-      <div class="collapse show" id="demo">
-        <app-menu ></app-menu>
+  <div class="row g-0">
+
+    <!-- menu-button -->
+    <div class="menu-button-container col">
+      <div>
+        <h3>Empresa</h3>
+        <button class="btn toggle-button" (click)="toggling()">
+          <i class="fas fa-bars"></i>
+        </button>
       </div>
     </div>
 
-    <div class="main col-sm-9">
+    <!-- menu left -->
+    <div class= "menu-small col-12 col-sm-4 col-md-3 col-xl-2" #menu>
+        <app-menu></app-menu>
+    </div>
+
+    <!-- main -->
+    <div class="main col-12 col-sm-7 col-md-10 ">
       <router-outlet></router-outlet>
     </div>
   </div>

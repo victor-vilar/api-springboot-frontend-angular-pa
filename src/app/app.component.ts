@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +6,24 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'empresa';
+
+  constructor(private renderer:Renderer2){};
+
+  @ViewChild('menu') menuContainer?:ElementRef;
+  menuSmall = false;
+
+
+
+  //template functions
+  toggling(){
+    console.log(this.menuSmall);
+    if(this.menuSmall){
+      this.menuContainer?.nativeElement.classList.remove('menu')
+      this.menuContainer?.nativeElement.classList.add('menu-small')
+    }else{
+      this.menuContainer?.nativeElement.classList.add('menu')
+      this.menuContainer?.nativeElement.classList.remove('menu-small')
+    }
+    this.menuSmall = !this.menuSmall;
+  }
 }
