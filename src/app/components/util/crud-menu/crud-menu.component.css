@@ -16,3 +16,19 @@
   align-items: center;
   justify-content: center;
 }
+
+.options-buttons a:hover {
+  cursor: pointer;
+  color: var(--azul-claro);
+}
+
+@media screen and (min-width:576px){
+  .options-buttons{
+    display: flex;
+    flex-direction: row;
+
+  }
+  .options-buttons a {
+    width:150px;
+  }
+}

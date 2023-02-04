@@ -13,7 +13,7 @@ export class EquipamentsComponent implements OnInit {
   // ------------------------------------------
   // informações para o componente itens-table
   headerForTables = [
-    'id','Equipamento','Volume','Selecionar'
+    'Id','Equipamento','Volume','Selecionar'
   ]
   EquipamentsList:string[] = [];
   // ------------------------------------------

@@ -65,5 +65,8 @@ box-sizing: border-box;
   .main{
     margin-top: 10px;
   }
+  app-footer{
+    display: none;
+  }
 }
 
