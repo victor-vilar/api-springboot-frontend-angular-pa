@@ -1,0 +1,30 @@
+.container
+{
+
+}
+.dashboard-cards {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap:5px;
+
+}
+
+.dashboard-cards-item{
+  background-color: var(--cinza-escuro);
+  border-radius: 20px ;
+  color: white;
+  padding:15px;
+  text-align: center;
+  font-size: 1.2em;
+  align-items: center;
+  justify-content: center;
+}
+.dashboard-cards-item h5 {
+  font-size: .8em;
+  color: var(--azul-claro);
+  font-weight: bold;
+}
+
+.dashboard-cards-item h5 {
+  font-size: .8em;
+}

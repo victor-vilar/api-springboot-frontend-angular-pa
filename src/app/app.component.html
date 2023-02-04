@@ -14,12 +14,12 @@
     </div>
 
     <!-- menu left -->
-    <div class= "menu-small col-12 col-sm-4 col-md-3 col-xl-2" #menu>
-        <app-menu></app-menu>
+    <div class= "menu-small col-12 col-sm-4 col-md-3 col-xl-2 " #menu>
+        <app-menu (closeMenuFromFatherEmitter) ="closeFromMenu($event)"></app-menu>
     </div>
 
     <!-- main -->
-    <div class="main col-12 col-sm-7 col-md-10 ">
+    <div class="main col-12 col-sm-7 col-md-9 " [ngStyle]="{display:menuSmall ? 'none':'block'}">
       <router-outlet></router-outlet>
     </div>
   </div>

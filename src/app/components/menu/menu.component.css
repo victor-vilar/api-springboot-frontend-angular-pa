@@ -1,13 +1,14 @@
 
 /* CONFIGURATION */
-.container-fluid {
+.container {
   padding:10px 0px;
   color: #FFF;
+  height: 100%;
 }
 
 .division{
   border: 1px solid rgba(255, 255, 255, 0.529);
-  margin: 30px 0px;
+  margin: 10px 0px;
 }
 /* ==================================== */
 
@@ -17,6 +18,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.logged-user img {
+  width: 20%;height: 20%;
+  border-radius: 50%;
+  border:1px solid #FFF;
 }
 /* ================================= */
 

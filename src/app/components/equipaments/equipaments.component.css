@@ -1,0 +1,19 @@
+.options-buttons{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 3px;
+}
+
+.options-buttons a {
+  text-align:center;
+  background-color: var(--cinza-escuro);
+  font-weight: bold;
+  border-radius: 20px ;
+  color: white;
+  padding:15px;
+  text-align: center;
+  font-size: 1.2em;
+  align-items: center;
+  justify-content: center;
+
+}

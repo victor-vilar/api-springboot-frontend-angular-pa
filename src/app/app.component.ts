@@ -10,20 +10,29 @@ export class AppComponent {
   constructor(private renderer:Renderer2){};
 
   @ViewChild('menu') menuContainer?:ElementRef;
+  @ViewChild('main') mainContainer?:ElementRef;
   menuSmall = false;
 
 
 
   //template functions
   toggling(){
-    console.log(this.menuSmall);
     if(this.menuSmall){
-      this.menuContainer?.nativeElement.classList.remove('menu')
-      this.menuContainer?.nativeElement.classList.add('menu-small')
+      this.menuContainer?.nativeElement.classList.remove('menu');
+      this.menuContainer?.nativeElement.classList.add('menu-small');
+      //this.renderer.setStyle(this.mainContainer,'display','hidden');
     }else{
-      this.menuContainer?.nativeElement.classList.add('menu')
-      this.menuContainer?.nativeElement.classList.remove('menu-small')
+      this.menuContainer?.nativeElement.classList.add('menu');
+      this.menuContainer?.nativeElement.classList.remove('menu-small');
+      //this.renderer.removeStyle(this.mainContainer,'display');
     }
+    console.log(this.menuSmall)
     this.menuSmall = !this.menuSmall;
   }
+
+  closeFromMenu(option:boolean){
+    this.menuSmall = option;
+    this.toggling();
+  }
+
 }

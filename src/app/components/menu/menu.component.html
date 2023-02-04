@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container">
   <div class="logged-user">
     <img src="assets/img-teste.jpg">
     <h3>user name</h3>
@@ -7,13 +7,12 @@
   <div class="division"></div>
   <div class="navegation">
       <div>
-        <a [routerLink]="'#'"><i class="fas fa-home"></i><span>Home</span></a>
-        <a [routerLink]="'#'"><i class="fas fa-user"></i><span>Clientes</span></a>
-        <a [routerLink]="'#'"><i class="fas fa-file-signature"></i><span>Contratos</span></a>
-        <a [routerLink]="'#'"><i class="fas fa-recycle"></i><span>Resíduos</span></a>
-        <a [routerLink]="'#'"><i class="fas fa-trash"></i><span>Equipamentos</span></a>
+        <a [routerLink]="'dashboard'" (click)="closeMenuFromFather()"><i class="fas fa-home"></i><span>Dashboard</span></a>
+        <a [routerLink]="'#'" (click)="closeMenuFromFather()"><i class="fas fa-user"></i><span>Clientes</span></a>
+        <a [routerLink]="'#'" (click)="closeMenuFromFather()"><i class="fas fa-file-signature"></i><span>Contratos</span></a>
+        <a [routerLink]="'#'" (click)="closeMenuFromFather()"><i class="fas fa-recycle"></i><span>Resíduos</span></a>
+        <a [routerLink]="'equipamentos'" (click)="closeMenuFromFather()"><i class="fas fa-trash"></i><span>Equipamentos</span></a>
       </div>
-
 
   </div>
   <div class="division"></div>

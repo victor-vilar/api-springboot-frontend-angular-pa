@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-menu',
@@ -10,6 +10,13 @@ export class MenuComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  @Output()
+  closeMenuFromFatherEmitter:EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  closeMenuFromFather(){
+    this.closeMenuFromFatherEmitter.emit(true);
   }
 
 }
