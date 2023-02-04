@@ -15,6 +15,10 @@ export class ItensTableComponent implements OnInit {
   @Input()
   tableData:string[] = [];
 
+  //model que sera utilizado
+  @Input()
+  model:string='';
+
   constructor() { }
   ngOnInit(): void {
   }

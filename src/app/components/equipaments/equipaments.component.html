@@ -4,6 +4,9 @@
   <app-crud-menu [linksListForOperations] ="pathToOperations"></app-crud-menu>
   <!--  -->
 
-  <h4>Equipamentos Cadastrados</h4>
-  <app-itens-table [tableHeaders]="headerForTables" [tableData]="EquipamentsList"></app-itens-table>
+  <app-itens-table
+    [model]='"Equipamentos"'
+    [tableHeaders]="headerForTables"
+    [tableData]="EquipamentsList">
+  </app-itens-table>
 </div>
