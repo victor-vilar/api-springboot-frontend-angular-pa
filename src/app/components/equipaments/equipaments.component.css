@@ -1,5 +1,3 @@
-
-
 h4{
   margin-top: 20px;
   font-size: 1.5em;
@@ -7,19 +5,3 @@ h4{
 }
 
 
-
-.equipaments-table th, tr{
-  padding:8px;
-  text-align: center;
-  border: 1px solid var(--cinza);
-}
-
-.equipaments-table th {
-  background-color: var(--cinza-escuro);
-  color: white;
-
-}
-.equipaments-table tr {
-  height: 50px;
-
-}

@@ -10,7 +10,7 @@ export class CrudMenuComponent implements OnInit {
 /*o componente recebera a lista dos links que devo colocar nos links <a>
   para conseguir realizar as operações */
   @Input()
-  linksListForOperations = []
+  linksListForOperations:string[] = []
 
 
   constructor() { }

@@ -10,6 +10,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { EquipamentsComponent } from './components/equipaments/equipaments.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { CrudMenuComponent } from './components/util/crud-menu/crud-menu.component';
+import { ItensTableComponent } from './components/util/itens-table/itens-table.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { CrudMenuComponent } from './components/util/crud-menu/crud-menu.compone
     DashboardComponent,
     EquipamentsComponent,
     FooterComponent,
-    CrudMenuComponent
+    CrudMenuComponent,
+    ItensTableComponent
   ],
   imports: [
     BrowserModule,

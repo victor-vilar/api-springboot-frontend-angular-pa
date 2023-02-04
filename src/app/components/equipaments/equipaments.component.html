@@ -1,36 +1,9 @@
 <div class="container">
 
   <!-- option crud menu -->
-  <app-crud-menu></app-crud-menu>
+  <app-crud-menu [linksListForOperations] ="pathToOperations"></app-crud-menu>
   <!--  -->
 
   <h4>Equipamentos Cadastrados</h4>
-  <div class="equipaments-table">
-    <table>
-      <tr>
-        <th>id</th>
-        <th>Tipo de Equipamento</th>
-        <th>Volume</th>
-        <th>Selecionar</th>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>Conteiner</td>
-        <td>1.2M³</td>
-        <td><input type="checkbox"></td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>Conteiner</td>
-        <td>240L</td>
-        <td><input type="checkbox"></td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td>Conteiner</td>
-        <td>1.2M³</td>
-        <td><input type="checkbox"></td>
-      </tr>
-    </table>
-  </div>
+  <app-itens-table [tableHeaders]="headerForTables" [tableData]="EquipamentsList"></app-itens-table>
 </div>
