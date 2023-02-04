@@ -17,9 +17,10 @@
 
 }
 .toggle-button{
-  background-color: var(--azul);
-  color:white;
-  font-weight: bold;
+  background: none;
+  color:var(--azul-claro);
+  font-weight: bolder;
+  font-size: 1.33em;
 }
 .menu{
   max-height: 800px;
@@ -44,7 +45,13 @@
 margin-top: 10px;
 box-sizing: border-box;
 }
-
+.footer{
+  position: absolute;
+  bottom: 0;
+  background-color: var(--cinza-escuro);
+  color:white;
+  width: 100%;
+}
 @media screen and (min-width:576px){
   .menu-button-container{
     display:none;

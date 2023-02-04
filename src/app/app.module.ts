@@ -8,13 +8,15 @@ import { MenuComponent } from './components/menu/menu.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { EquipamentsComponent } from './components/equipaments/equipaments.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
     DashboardComponent,
-    EquipamentsComponent
+    EquipamentsComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

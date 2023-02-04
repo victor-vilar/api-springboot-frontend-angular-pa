@@ -36,7 +36,7 @@ h4{
   color: white;
 
 }
-.equipaments-table th {
-
+.equipaments-table tr {
+  height: 50px;
 
 }

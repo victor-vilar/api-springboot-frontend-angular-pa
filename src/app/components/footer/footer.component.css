@@ -1,0 +1,17 @@
+footer .developer-info-social-media{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+
+}
+
+footer .developer-info-social-card{
+
+  text-decoration: none;
+  font-size: 2.5em;
+}
+
+footer .developer-info-social-card a {
+  text-align: center;
+  color: #FFF;
+}
