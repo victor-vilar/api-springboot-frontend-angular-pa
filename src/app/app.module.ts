@@ -9,6 +9,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { EquipamentsComponent } from './components/equipaments/equipaments.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { CrudMenuComponent } from './components/util/crud-menu/crud-menu.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { FooterComponent } from './components/footer/footer.component';
     MenuComponent,
     DashboardComponent,
     EquipamentsComponent,
-    FooterComponent
+    FooterComponent,
+    CrudMenuComponent
   ],
   imports: [
     BrowserModule,
