@@ -11,6 +11,9 @@ import { EquipamentsComponent } from './components/equipaments/equipaments.compo
 import { FooterComponent } from './components/footer/footer.component';
 import { CrudMenuComponent } from './components/util/crud-menu/crud-menu.component';
 import { ItensTableComponent } from './components/util/itens-table/itens-table.component';
+import { ResidueComponent } from './components/residue/residue.component';
+import { ContractComponent } from './components/contract/contract.component';
+import { ClientComponent } from './components/client/client.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,10 @@ import { ItensTableComponent } from './components/util/itens-table/itens-table.c
     EquipamentsComponent,
     FooterComponent,
     CrudMenuComponent,
-    ItensTableComponent
+    ItensTableComponent,
+    ResidueComponent,
+    ContractComponent,
+    ClientComponent
   ],
   imports: [
     BrowserModule,

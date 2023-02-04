@@ -1,27 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-equipaments',
-  templateUrl: './equipaments.component.html',
-  styleUrls: ['./equipaments.component.css']
+  selector: 'app-residue',
+  templateUrl: './residue.component.html',
+  styleUrls: ['./residue.component.css']
 })
-export class EquipamentsComponent implements OnInit {
+export class ResidueComponent implements OnInit {
 
-  title='Equipamentos'
+
+  title='Residuos'
 
   // informações para componente de crud-menu
     pathToOperations:string[] = [];
   // ------------------------------------------
   // informações para o componente itens-table
   headerForTables = [
-    'Id','Equipamento','Volume','Selecionar'
-  ]
-  EquipamentsList:string[] = [];
+    'Id','Residuo Tipo'
+    ]
+
+    residuesList:string[] = [];
   // ------------------------------------------
 
 
   constructor() { }
-
   ngOnInit(): void {
   }
 
