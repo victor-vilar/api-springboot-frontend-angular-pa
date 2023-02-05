@@ -15,7 +15,7 @@ export class ContractComponent implements OnInit {
 
   // informações para o componente itens-table
   headerForTables = [
-    'Id','Número','Data Inicio','Data Fim','Total $'
+    'Id','Número','Data Inicio','Data Fim','Total $', "Selecionar"
   ]
 
   ContractsList:string[] = [];

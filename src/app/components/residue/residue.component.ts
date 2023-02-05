@@ -15,7 +15,7 @@ export class ResidueComponent implements OnInit {
   // ------------------------------------------
   // informações para o componente itens-table
   headerForTables = [
-    'Id','Residuo Tipo'
+    'Id','Residuo Tipo', "Selecionar"
     ]
 
     residuesList:string[] = [];

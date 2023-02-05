@@ -16,7 +16,7 @@ export class ClientComponent implements OnInit {
 
   // informações para o componente itens-table
   headerForTables = [
-    'CPF/CNPJ','Nome/Razão Social'
+    'CPF/CNPJ','Nome/Razão Social', "Selecionar"
   ]
 
   ClientsList:string[] = [];
