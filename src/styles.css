@@ -9,6 +9,10 @@
   list-style: none;
 }
 
+.activated{
+  background-color: #515F78;
+}
+
 :root
 {
   --cinza:#515F78;
