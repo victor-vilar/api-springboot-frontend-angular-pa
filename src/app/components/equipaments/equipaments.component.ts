@@ -1,23 +1,18 @@
 import { Component, OnInit } from '@angular/core';
+import { IBaseComponent } from 'src/app/model/IBaseComponent';
 
 @Component({
   selector: 'app-equipaments',
   templateUrl: './equipaments.component.html',
   styleUrls: ['./equipaments.component.css']
 })
-export class EquipamentsComponent implements OnInit {
+export class EquipamentsComponent implements OnInit, IBaseComponent {
 
   title='Equipamentos'
+  pathToOperations = [];
+  headerForTables = ['Id','Equipamento','Volume','Selecionar']
+  listOfItens = [];
 
-  // informações para componente de crud-menu
-    pathToOperations:string[] = [];
-  // ------------------------------------------
-  // informações para o componente itens-table
-  headerForTables = [
-    'Id','Equipamento','Volume','Selecionar'
-  ]
-  EquipamentsList:string[] = [];
-  // ------------------------------------------
 
 
   constructor() { }

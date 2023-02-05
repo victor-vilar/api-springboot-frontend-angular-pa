@@ -1,3 +1,4 @@
+import { IBaseComponent } from 'src/app/model/IBaseComponent';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -5,21 +6,13 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './residue.component.html',
   styleUrls: ['./residue.component.css']
 })
-export class ResidueComponent implements OnInit {
-
+export class ResidueComponent implements OnInit, IBaseComponent {
 
   title='Residuos'
+  pathToOperations = [];
+  headerForTables = ['Id','Residuo Tipo', "Selecionar"]
+  listOfItens = [];
 
-  // informações para componente de crud-menu
-    pathToOperations:string[] = [];
-  // ------------------------------------------
-  // informações para o componente itens-table
-  headerForTables = [
-    'Id','Residuo Tipo', "Selecionar"
-    ]
-
-    residuesList:string[] = [];
-  // ------------------------------------------
 
 
   constructor() { }
