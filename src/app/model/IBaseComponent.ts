@@ -1,5 +1,7 @@
+import { Observable } from "rxjs";
+
 // interface criada para ser implementada pelos componentes que representam os modelos do projeto.
-export interface IBaseComponent{
+export interface IBaseComponent<T>{
 
   //model name representation
   title:string;
@@ -13,5 +15,6 @@ export interface IBaseComponent{
   //itens of component
   listOfItens:string[];
 
+  getAllFromApi():Promise<T | Observable<T>>;
 
 }

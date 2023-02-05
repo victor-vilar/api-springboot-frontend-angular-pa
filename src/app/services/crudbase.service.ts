@@ -4,10 +4,11 @@ import { Observable } from "rxjs";
 export class CrudBaseService<T>{
 
   static BASE_URL:string = "https://localhost:8080/";
+  private list:T[] = [];
 
+  constructor(private http:HttpClient){
 
-  constructor(private list:T[], private http:HttpClient){}
-
+  }
 
   async save(type:T,router:string):Promise<T |Observable<T>>{
     return this.http.post<T>(CrudBaseService.BASE_URL + router,type);
@@ -30,7 +31,7 @@ export class CrudBaseService<T>{
   };
 
   listSize():number{
-    return this.listSize.length;
+    return this.list.length;
   };
 
 }
