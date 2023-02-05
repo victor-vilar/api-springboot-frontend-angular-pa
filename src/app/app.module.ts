@@ -14,6 +14,7 @@ import { ItensTableComponent } from './components/util/itens-table/itens-table.c
 import { ResidueComponent } from './components/residue/residue.component';
 import { ContractComponent } from './components/contract/contract.component';
 import { ClientComponent } from './components/client/client.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { ClientComponent } from './components/client/client.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

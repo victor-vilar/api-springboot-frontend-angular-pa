@@ -1,4 +1,6 @@
+import { FindFullAddressService } from './../../services/find-full-address.service';
 import { Component, OnInit } from '@angular/core';
+import { Address } from 'src/app/model/Address';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private findCep:FindFullAddressService) { }
 
   ngOnInit(): void {
   }
+
+
 
 }
