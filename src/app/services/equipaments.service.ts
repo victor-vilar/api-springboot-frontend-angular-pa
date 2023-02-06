@@ -26,4 +26,8 @@ export class EquipamentsService extends CrudBaseService<Equipament> {
    getEquipamentById(id:number | string):Observable<Equipament>{
     return  super.getById(id,this.model);
    }
+
+   deleteEquipmentById(id:number | string):Observable<Equipament>{
+    return super.delete(id,this.model)
+   }
 }

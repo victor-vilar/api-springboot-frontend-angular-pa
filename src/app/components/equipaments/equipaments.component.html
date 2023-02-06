@@ -1,13 +1,15 @@
 <div class="container">
 
   <!-- option crud menu -->
-  <app-crud-menu [linksListForOperations] ="pathToOperations"></app-crud-menu>
+  <app-crud-menu [linksListForOperations] ="pathToOperations"
+   (deleteSelectedItensEmitter)="deleteButtonPressed()"></app-crud-menu>
   <!--  -->
 
   <app-itens-table
     [model]="title"
     [tableHeaders]="headerForTables"
-    [tableData]="listOfItens">
+    [tableData]="listOfItens"
+    (selectedItensEmitter)="addSelectTedItens($event)">
   </app-itens-table>
 
 

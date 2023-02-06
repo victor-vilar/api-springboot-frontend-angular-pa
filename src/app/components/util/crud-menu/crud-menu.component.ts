@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-crud-menu',
@@ -7,14 +7,20 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class CrudMenuComponent implements OnInit {
 
-/*o componente recebera a lista dos links que devo colocar nos links <a>
-  para conseguir realizar as operações */
+
+  //links that have the routes to operations.
   @Input()
   linksListForOperations:string[] = []
 
+  @Output()
+  deleteSelectedItensEmitter:EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor() { }
   ngOnInit(): void {
   }
 
+  //method to delete the selected itens of database
+  deleteSelectedItem(){
+    this.deleteSelectedItensEmitter.emit(true);
+  }
 }

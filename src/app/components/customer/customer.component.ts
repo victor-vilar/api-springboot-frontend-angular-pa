@@ -8,7 +8,7 @@ import { IBaseComponent } from 'src/app/model/IBaseComponent';
   templateUrl: './customer.component.html',
   styleUrls: ['./customer.component.css']
 })
-export class CustomerComponent implements OnInit, IBaseComponent<Customer> {
+export class CustomerComponent implements OnInit {
 
 
   title='Clientes';

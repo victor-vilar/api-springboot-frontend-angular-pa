@@ -7,7 +7,7 @@ import { IBaseComponent } from 'src/app/model/IBaseComponent';
   templateUrl: './contract.component.html',
   styleUrls: ['./contract.component.css']
 })
-export class ContractComponent implements OnInit, IBaseComponent<Contract>{
+export class ContractComponent implements OnInit{
 
   title='Contratos';
   pathToOperations = [];
@@ -22,7 +22,7 @@ export class ContractComponent implements OnInit, IBaseComponent<Contract>{
     throw new Error('Method not implemented.');
   }
   getById(){
-    
+
   }
   ngOnInit(): void {
   }

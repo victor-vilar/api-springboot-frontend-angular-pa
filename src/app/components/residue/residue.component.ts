@@ -7,7 +7,7 @@ import { Residue } from 'src/app/model/Residue';
   templateUrl: './residue.component.html',
   styleUrls: ['./residue.component.css']
 })
-export class ResidueComponent implements OnInit, IBaseComponent<Residue> {
+export class ResidueComponent implements OnInit{
 
   title='Residuos'
   pathToOperations = [];

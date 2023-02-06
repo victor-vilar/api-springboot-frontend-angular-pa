@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-itens-table',
@@ -12,12 +12,9 @@ export class ItensTableComponent implements OnInit {
   @Input()
   tableHeaders:string[] = [];
 
-
   // data that will fill the table
   @Input()
   tableData:any;
-
-
 
   //model to fill the header tag
   @Input()
@@ -25,6 +22,9 @@ export class ItensTableComponent implements OnInit {
 
   //array to save the selected rows
   selectedItens:any[] = [];
+  //emitter to send data to father if something get in or out the array
+  @Output()
+  selectedItensEmitter:EventEmitter<any> = new EventEmitter<any>();
 
   constructor() { }
   ngOnInit(): void {
@@ -43,6 +43,9 @@ export class ItensTableComponent implements OnInit {
     }else{
       this.selectedItens = this.selectedItens.filter(obj => obj !== object);
     }
+    this.selectedItensEmitter.emit(this.selectedItens);
   }
+
+
 
 }
