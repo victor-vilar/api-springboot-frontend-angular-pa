@@ -7,26 +7,42 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ItensTableComponent implements OnInit {
 
-  // Os dados do cabecalho virão do elemento que vai utilizar o componente.
+
+  //header of the data sended by component
   @Input()
   tableHeaders:string[] = [];
 
-  // Os dados da tabela virão do elemento que vai utiliar o compoennte.
+
+  // data that will fill the table
   @Input()
   tableData:any;
 
 
-  //model que sera utilizado
+
+  //model to fill the header tag
   @Input()
   model:string='';
+
+  //array to save the selected rows
+  selectedItens:any[] = [];
 
   constructor() { }
   ngOnInit(): void {
 
   }
 
+  //transform the objects into a array of values to fill the table rows
   transformObjectInArrayOfValues(object:any){
     return Object.values(object);
+  }
+
+  //get the selected row to do the operations of delete, update etc.
+  selectItem(event:any,object:any){
+    if(event.target.checked){
+      this.selectedItens.push(object);
+    }else{
+      this.selectedItens = this.selectedItens.filter(obj => obj !== object);
+    }
   }
 
 }

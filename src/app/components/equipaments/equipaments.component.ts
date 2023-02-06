@@ -13,7 +13,7 @@ export class EquipamentsComponent implements OnInit, IBaseComponent<Equipament> 
 
   title='Equipamentos'
   pathToOperations = [];
-  headerForTables = ['Id','Equipamento','Volume','Selecionar']
+  headerForTables = ['Id','Equipamento','Volume em M³','Selecionar']
   listOfItens:any = [];
 
 
