@@ -1,4 +1,3 @@
-import { from, Observable, of } from 'rxjs';
 import { EquipamentsService } from './../../services/equipaments.service';
 import { Component, OnInit } from '@angular/core';
 import { IBaseComponent } from 'src/app/model/IBaseComponent';
@@ -26,8 +25,6 @@ export class EquipamentsComponent implements OnInit, IBaseComponent<Equipament> 
 
   //Properties to Crud Operations
   selectedItens:any[] =[];
-
-
   //---------------------
 
   //get the itens selected from itens table
@@ -35,10 +32,6 @@ export class EquipamentsComponent implements OnInit, IBaseComponent<Equipament> 
     this.selectedItens = list;
   }
   //---------------------
-
-
-
-
 
   getAllFromApi() {
     this.service.getAllEquipaments()
@@ -54,10 +47,10 @@ export class EquipamentsComponent implements OnInit, IBaseComponent<Equipament> 
   }
 
     //delete selected itens
-    deleteButtonPressed(){
+    deleteFromApi(){
       if(this.selectedItens.length > 0){
         if(confirm('Deseja excluir esse(s) ' + this.title + ' ?')){
-          
+
           this.selectedItens.forEach(e =>{
             this.service.deleteEquipmentById(e.id)
             .subscribe(value =>{
@@ -73,6 +66,11 @@ export class EquipamentsComponent implements OnInit, IBaseComponent<Equipament> 
       else{
         console.log('É preciso selecionar um item')
       }
+    }
+
+
+    updateFromApi(){
+
     }
 
 }

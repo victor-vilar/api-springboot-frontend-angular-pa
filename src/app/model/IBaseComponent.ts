@@ -15,13 +15,17 @@ export interface IBaseComponent<T>{
 
   //get selected itens
   addSelectTedItens(list:any):void;
-  //store selected itens
+  //store selected itens of the itens-table
   selectedItens:any[];
 
 
   //Crud Methods
+  //get all objets
   getAllFromApi():void;
+  //get object by id;
   getById():void;
   //delete selected itens. Event get by crud-menu
-  deleteButtonPressed():void
+  deleteFromApi():void
+  //update in database
+  updateFromApi():void;
 }
