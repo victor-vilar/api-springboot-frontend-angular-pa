@@ -1,10 +1,10 @@
 import { ItemContract } from "./ItemContract";
-import { Client } from "./Client";
+import { Customer } from "./Customer";
 
 export interface Contract{
   id:number;
   beginDate:Date;
   endDate:Date;
   itens:ItemContract[];
-  client:Client;
+  client:Customer;
 }

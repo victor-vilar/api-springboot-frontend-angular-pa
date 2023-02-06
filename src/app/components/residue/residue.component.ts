@@ -22,5 +22,8 @@ export class ResidueComponent implements OnInit, IBaseComponent<Residue> {
   }
   ngOnInit(): void {
   }
+  getById(){
+
+  }
 
 }

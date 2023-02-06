@@ -14,7 +14,6 @@ export class AppComponent {
   menuSmall = false;
 
 
-
   //template functions
   toggling(){
     if(this.menuSmall){
@@ -26,7 +25,7 @@ export class AppComponent {
       this.menuContainer?.nativeElement.classList.remove('menu-small');
       //this.renderer.removeStyle(this.mainContainer,'display');
     }
-    console.log(this.menuSmall)
+
     this.menuSmall = !this.menuSmall;
   }
 

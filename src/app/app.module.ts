@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -13,7 +14,7 @@ import { CrudMenuComponent } from './components/util/crud-menu/crud-menu.compone
 import { ItensTableComponent } from './components/util/itens-table/itens-table.component';
 import { ResidueComponent } from './components/residue/residue.component';
 import { ContractComponent } from './components/contract/contract.component';
-import { ClientComponent } from './components/client/client.component';
+import { CustomerComponent } from './components/customer/customer.component';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -27,13 +28,14 @@ import { FormsModule } from '@angular/forms';
     ItensTableComponent,
     ResidueComponent,
     ContractComponent,
-    ClientComponent
+    CustomerComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

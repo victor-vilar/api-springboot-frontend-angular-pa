@@ -15,11 +15,15 @@ export class EquipamentsService extends CrudBaseService<Equipament> {
     super(http);
    }
 
-   async saveEquipament(equipament:Equipament):Promise<Equipament | Observable<Equipament>>{
+  saveEquipament(equipament:Equipament):Observable<Equipament>{
     return super.save(equipament,this.model)
    }
 
-   async getAllEquipaments():Promise<Equipament | Observable<Equipament>>{
-    return super.getAll(this.model);
+  getAllEquipaments():Observable<Equipament>{
+    return  super.getAll(this.model);
+   }
+
+   getEquipamentById(id:number | string):Observable<Equipament>{
+    return  super.getById(id,this.model);
    }
 }

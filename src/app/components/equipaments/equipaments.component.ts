@@ -1,3 +1,4 @@
+import { from, Observable, of } from 'rxjs';
 import { EquipamentsService } from './../../services/equipaments.service';
 import { Component, OnInit } from '@angular/core';
 import { IBaseComponent } from 'src/app/model/IBaseComponent';
@@ -13,19 +14,28 @@ export class EquipamentsComponent implements OnInit, IBaseComponent<Equipament> 
   title='Equipamentos'
   pathToOperations = [];
   headerForTables = ['Id','Equipamento','Volume','Selecionar']
-  listOfItens = [];
+  listOfItens:any = [];
 
 
 
   constructor(private equipament:EquipamentsService) { }
 
   ngOnInit(): void {
+    this.getAllFromApi();
   }
 
-  getAllFromApi(): Promise<any> {
-    throw new Error('Method not implemented.');
+  getAllFromApi() {
+    this.equipament.getAllEquipaments()
+    .subscribe(next=>{
+      this.listOfItens = next
+      console.log(this.listOfItens);
+    });
   }
 
+  getById(){
+    this.equipament.getEquipamentById(1)
+    .subscribe(next=> next.equipamentName);
+  }
 
+  }
 
-}

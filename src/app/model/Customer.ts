@@ -2,7 +2,7 @@ import type { Address } from "./Address";
 import { Contract } from "./Contract";
 import { Supervisor } from "./Supervisor";
 
-export interface Client{
+export interface Customer{
   id:number;
   nameCompanyName:string;
   contracts:Contract[];

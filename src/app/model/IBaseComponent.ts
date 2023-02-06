@@ -13,8 +13,9 @@ export interface IBaseComponent<T>{
   headerForTables:string[];
 
   //itens of component
-  listOfItens:string[];
+  listOfItens:T[];
 
-  getAllFromApi():Promise<T | Observable<T>>;
+  getAllFromApi():void;
+  getById():void;
 
 }

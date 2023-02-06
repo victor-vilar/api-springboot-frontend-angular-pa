@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Client } from 'src/app/model/Client';
+import { Customer } from 'src/app/model/Customer';
 import { IBaseComponent } from 'src/app/model/IBaseComponent';
 
 @Component({
   selector: 'app-client',
-  templateUrl: './client.component.html',
-  styleUrls: ['./client.component.css']
+  templateUrl: './customer.component.html',
+  styleUrls: ['./customer.component.css']
 })
-export class ClientComponent implements OnInit, IBaseComponent<Client> {
+export class CustomerComponent implements OnInit, IBaseComponent<Customer> {
 
 
   title='Clientes';
@@ -18,8 +18,11 @@ export class ClientComponent implements OnInit, IBaseComponent<Client> {
 
 
   constructor() { }
-  getAllFromApi(): Promise<Client | Observable<Client>> {
+  getAllFromApi():Observable<Customer> {
     throw new Error('Method not implemented.');
+  }
+  getById(){
+
   }
   ngOnInit(): void {
   }
