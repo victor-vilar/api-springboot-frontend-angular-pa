@@ -6,12 +6,11 @@
       <th *ngFor="let header of tableHeaders">{{header}}</th>
     </tr>
 
-
-    <tr *ngFor="let object of tableDataValues">
-      <!-- <ng-container *ngFor="let val of Object.values(object)">
-      </ng-container> -->
-      <td>{{object}}</td>
-    </tr>
+    <tr *ngFor="let object of tableData">
+        <ng-container *ngFor="let i of transformObjectInArrayOfValues(object)">
+          <td>{{i}}</td>
+        </ng-container>
+      </tr>
 
   </table>
 </div>

@@ -14,7 +14,7 @@ export class ItensTableComponent implements OnInit {
   // Os dados da tabela virão do elemento que vai utiliar o compoennte.
   @Input()
   tableData:any;
-  tableDataValues:any;
+
 
   //model que sera utilizado
   @Input()
@@ -22,7 +22,11 @@ export class ItensTableComponent implements OnInit {
 
   constructor() { }
   ngOnInit(): void {
-    this.tableDataValues = Object.values(this.tableData)
+
+  }
+
+  transformObjectInArrayOfValues(object:any){
+    return Object.values(object);
   }
 
 }
