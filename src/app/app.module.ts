@@ -8,13 +8,13 @@ import { AppComponent } from './app.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { EquipamentsComponent } from './components/equipaments/equipaments.component';
+import { EquipamentsComponent } from './components/crudbase/crud-components/equipaments/equipaments.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { CrudMenuComponent } from './components/util/crud-menu/crud-menu.component';
 import { ItensTableComponent } from './components/util/itens-table/itens-table.component';
-import { ResidueComponent } from './components/residue/residue.component';
-import { ContractComponent } from './components/contract/contract.component';
-import { CustomerComponent } from './components/customer/customer.component';
+import { ResidueComponent } from './components/crudbase/crud-components/residue/residue.component';
+import { ContractComponent } from './components/crudbase/crud-components/contract/contract.component';
+import { CustomerComponent } from './components/crudbase/crud-components/customer/customer.component';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({

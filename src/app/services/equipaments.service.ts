@@ -9,25 +9,8 @@ import { Observable } from 'rxjs';
 })
 export class EquipamentsService extends CrudBaseService<Equipament> {
 
-  model="equipament";
-
   constructor(http:HttpClient) {
     super(http);
    }
 
-  saveEquipament(equipament:Equipament):Observable<Equipament>{
-    return super.save(equipament,this.model)
-   }
-
-  getAllEquipaments():Observable<Equipament>{
-    return  super.getAll(this.model);
-   }
-
-   getEquipamentById(id:number | string):Observable<Equipament>{
-    return  super.getById(id,this.model);
-   }
-
-   deleteEquipmentById(id:number | string):Observable<Equipament>{
-    return super.delete(id,this.model)
-   }
 }

@@ -12,15 +12,5 @@ import { FindFullAddressService } from './find-full-address.service';
 })
 export class AddressService extends CrudBaseService<Address> {
 
-  model = 'address';
-
-  constructor(http: HttpClient, private finder:FindFullAddressService) {
-    super(http);
-  }
-
-  async saveAddress(address: Address): Promise<Address | Observable<Address>> {
-    return super.save(address, this.model);
-  }
-
 
 }
