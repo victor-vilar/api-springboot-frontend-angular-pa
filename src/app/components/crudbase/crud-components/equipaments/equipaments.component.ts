@@ -19,7 +19,7 @@ export class EquipamentsComponent extends CrudBaseComponent<EquipamentsService> 
   override ngOnInit() {
       this.getAllFromApi();
       this.headerForTables = ['Id','Equipamento','Volume em M³','Selecionar'];
-      this.title='Equipaments';
+      this.title='Equipamentos';
   }
 
 

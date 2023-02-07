@@ -9,16 +9,22 @@ import { CrudBaseService } from 'src/app/services/crudbase.service';
   providers:[]
 })
 
+/**
+ * Component base for the crud components. It has the basic properties to do all the need operations of the project
+ */
 export abstract class CrudBaseComponent<T extends CrudBaseService<any>> implements OnInit {
 
-  //IBaseComponents interface properties
+  //component that is going to be manipulated
   protected title:string=''
+  // am i gonna need it ?
   protected pathToOperations:any = [];
+  //headers for the iten-table  table view
   protected headerForTables:any = []
+  //list of itens that comes from service
   protected listOfItens:any = [];
   //---------------------
 
-  //Properties to Crud Operations
+  //selected itens form itens-table table, Need to do the delete, update operations
   protected selectedItens:any[] =[];
   //---------------------
 
@@ -33,20 +39,21 @@ export abstract class CrudBaseComponent<T extends CrudBaseService<any>> implemen
     this.service.getAll(this.rota)
     .subscribe(next=>{
       this.listOfItens = next;
-      console.log(this.listOfItens);
     });
   }
 
+  //get a item from list, need to open dialog for update the item
   protected getById(){
     this.service.getById(1,this.rota)
     .subscribe(next=> next);
   }
 
+  //delete item from API
   protected delete(){
     this.selectedItens.forEach(e =>{
-      this.service.delete(e.id,this.title.toLowerCase())
+      this.service.delete(e.id,this.rota)
       .subscribe(next => {
-        this.service.getAll(this.title.toLowerCase())
+        this.service.getAll(this.rota)
         .subscribe(next=> this.listOfItens = next);
       })
     })
