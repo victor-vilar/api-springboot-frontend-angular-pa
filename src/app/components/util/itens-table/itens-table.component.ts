@@ -20,8 +20,6 @@ export class ItensTableComponent implements OnInit {
   @Input()
   model:string='';
 
-  //array to save the selected rows
-  selectedItens:any[] = [];
   //emitter to send data to father if something get in or out the array
   @Output()
   selectedItensEmitter:EventEmitter<any> = new EventEmitter<any>();
@@ -37,13 +35,12 @@ export class ItensTableComponent implements OnInit {
   }
 
   //get the selected row to do the operations of delete, update etc.
-  selectItem(event:any,object:any){
-    if(event.target.checked){
-      this.selectedItens.push(object);
-    }else{
-      this.selectedItens = this.selectedItens.filter(obj => obj !== object);
-    }
-    this.selectedItensEmitter.emit(this.selectedItens);
+  deleteItem(event:any){
+    this.selectedItensEmitter.emit(event);
+  }
+
+  editItem(object:any){
+
   }
 
 

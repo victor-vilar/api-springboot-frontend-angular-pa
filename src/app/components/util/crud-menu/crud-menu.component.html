@@ -1,6 +1,7 @@
 
 <nav class ='options-buttons'>
-  <a type="button">Cadastrar</a>
-  <a type="button">Editar</a>
-  <a type="button" (click)="deleteSelectedItem()">Excluir</a>
+  <ng-container *ngFor="let obj of linksListForOperations">
+    <a [routerLink]="obj.path">{{obj.name}}</a>
+  </ng-container>
+
 </nav>

@@ -24,15 +24,12 @@ export abstract class CrudBaseComponent<T extends CrudBaseService<any>> implemen
   protected listOfItens:any = [];
   //---------------------
 
-  //selected itens form itens-table table, Need to do the delete, update operations
-  protected selectedItens:any[] =[];
-  //---------------------
-
   //constructor
   constructor(@Inject(String) private rota:string, @Inject(CrudBaseService)private service:T) { }
   ngOnInit() {
   }
   //----------------------
+
 
   //methods
   protected getAllFromApi() {
@@ -49,15 +46,24 @@ export abstract class CrudBaseComponent<T extends CrudBaseService<any>> implemen
   }
 
   //delete item from API
-  protected delete(){
-    this.selectedItens.forEach(e =>{
-      this.service.delete(e.id,this.rota)
+  protected delete(obj:any){
+      this.service.delete(obj.id,this.rota)
       .subscribe(next => {
         this.service.getAll(this.rota)
         .subscribe(next=> this.listOfItens = next);
       })
+  }
+
+  //save item in api
+  protected save(obj:any){
+    this.service.save(obj,this.rota)
+    .subscribe(next => {
+      this.service.getAll(this.rota)
+      .subscribe(next => this.listOfItens = next);
     })
   }
+
+
 
 
 }

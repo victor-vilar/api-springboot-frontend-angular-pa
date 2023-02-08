@@ -1,0 +1,9 @@
+<div>
+  <h4>Cadastro de Equipamentos</h4>
+
+  <form (ngSubmit)="sendDataToSave()" #singInForm = "ngForm" >
+    <input type="text" required placeholder="Equipamento" name="equipamentName" ngModel>
+    <input type="text" required placeholder="Volume" name="equipamentSize" ngModel>
+    <button type="submit">Salvar</button>
+  </form>
+</div>

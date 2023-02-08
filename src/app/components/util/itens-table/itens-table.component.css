@@ -4,23 +4,35 @@ h4{
   font-weight: bold;
 }
 
- .equipaments-table table{
+ .container-table table{
   width: 100%;
+  overflow-x: scroll;
 }
 
-.equipaments-table th, tr{
+.container-table th, tr{
   padding:8px;
   text-align: center;
   border: 1px solid var(--cinza);
 }
 
-.equipaments-table th {
+.container-table th {
   background-color: var(--cinza-escuro);
   color: white;
 
 }
-.equipaments-table tr {
+.container-table tr {
   height: 50px;
 
 }
 
+.container-table tr:nth-child(odd) {
+  background-color: #f2f2f2;
+}
+
+button{
+  color: black;
+  width:30px;
+}
+button {
+  margin-left: 5px;
+}

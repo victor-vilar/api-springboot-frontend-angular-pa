@@ -1,4 +1,4 @@
-<div class="equipaments-table">
+<div class="container-table">
   <h4>{{model}} Cadastrados</h4>
   <table class="table table-striped">
 
@@ -8,9 +8,12 @@
 
     <tr *ngFor="let object of tableData">
         <ng-container *ngFor="let value of transformObjectInArrayOfValues(object)">
-          <td>{{value}}</td>
-        </ng-container>
-        <td><input type="checkbox" name="select" id="select" (click)="selectItem($event,object)"></td>
+            <td>{{value}}</td>
+          </ng-container>
+          <td>
+            <button type="button" name="delete" id="delete" class="btn btn-danger" (click)="deleteItem(object)"><i class="fas fa-times"></i></button>
+            <button type="button" name="edit" id="edit" class="btn btn-warning" (click)="editItem(object)"><i class="fas fa-edit"></i></button>
+          </td>
     </tr>
 
   </table>

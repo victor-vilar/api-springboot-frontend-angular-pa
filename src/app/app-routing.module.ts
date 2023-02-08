@@ -5,6 +5,7 @@ import { EquipamentsComponent } from './components/crudbase/crud-components/equi
 import { ResidueComponent } from './components/crudbase/crud-components/residue/residue.component';
 import { CustomerComponent } from './components/crudbase/crud-components/customer/customer.component';
 import { ContractComponent } from './components/crudbase/crud-components/contract/contract.component';
+import { EquipamentDetailComponent } from './components/crudbase/crud-components/equipaments/equipament-detail/equipament-detail.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'dashboard', pathMatch:'full'},
@@ -12,7 +13,9 @@ const routes: Routes = [
   {path:'clientes',component:CustomerComponent},
   {path:'contratos',component:ContractComponent},
   {path:'residuos',component:ResidueComponent},
-  {path:'equipamentos',component:EquipamentsComponent},
+  {path:'equipamentos',component:EquipamentsComponent, children:[
+    {path:'equipamento/novo',component:EquipamentDetailComponent}
+  ]},
 ];
 
 @NgModule({

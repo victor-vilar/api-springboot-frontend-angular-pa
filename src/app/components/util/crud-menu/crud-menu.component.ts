@@ -10,7 +10,7 @@ export class CrudMenuComponent implements OnInit {
 
   //links that have the routes to operations.
   @Input()
-  linksListForOperations:string[] = []
+  linksListForOperations:any[] = []
 
   @Output()
   deleteSelectedItensEmitter:EventEmitter<boolean> = new EventEmitter<boolean>();
