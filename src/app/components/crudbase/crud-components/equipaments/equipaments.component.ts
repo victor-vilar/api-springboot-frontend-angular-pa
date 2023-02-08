@@ -20,12 +20,13 @@ export class EquipamentsComponent extends CrudBaseComponent<EquipamentsService> 
       this.getAllFromApi();
       this.headerForTables = ['Id','Equipamento','Volume em M³','Selecionar'];
       this.title='Equipamentos';
+      this.pathPrefix='equipamento';
       this.pathToOperations = [
-        {name:"Cadastrar", path:'equipamento/novo'},
+        {name:"Cadastrar", path: this.pathPrefix + '/novo'},
       ]
   }
 
-  
+
 
 
 

@@ -27,7 +27,7 @@ export abstract class CrudBaseService<T>{
   };
 
   update(id:number | string, router:string, type:T):Observable<T>{
-    return this.http.put<T>(CrudBaseService.BASE_URL + router  + '/' + id, type);
+    return this.http.post<T>(CrudBaseService.BASE_URL + router  + '/' + id, type);
   };
 
   delete(id:number | string,router:string):Observable<T>{

@@ -9,7 +9,8 @@
     [model]="title"
     [tableHeaders]="headerForTables"
     [tableData]="listOfItens"
-    (selectedItensEmitter)="delete($event)">
+    (selectedItensEmitter)="delete($event)"
+    [fatherPathPrefix]="pathPrefix">
   </app-itens-table>
 
 

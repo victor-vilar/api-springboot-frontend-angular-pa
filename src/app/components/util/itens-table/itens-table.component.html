@@ -11,10 +11,11 @@
             <td>{{value}}</td>
           </ng-container>
           <td>
-            <button type="button" name="delete" id="delete" class="btn btn-danger" (click)="deleteItem(object)"><i class="fas fa-times"></i></button>
-            <button type="button" name="edit" id="edit" class="btn btn-warning" (click)="editItem(object)"><i class="fas fa-edit"></i></button>
+            <button type="button" name="delete" id="delete" class="btn btn-primary" (click)="deleteItem(object)"><i class="fas fa-times"></i></button>
+            <a type="button" name="edit" id="edit" class="btn btn-warning" [routerLink]="['./'+fatherPathPrefix, object.id]" [queryParams]="{edit:true}"><i class="fas fa-edit"></i></a>
           </td>
     </tr>
 
   </table>
+
 </div>

@@ -15,7 +15,8 @@ import { CrudBaseService } from 'src/app/services/crudbase.service';
 export abstract class CrudBaseComponent<T extends CrudBaseService<any>> implements OnInit {
 
   //component that is going to be manipulated
-  protected title:string=''
+  protected title:string='';
+  protected pathPrefix:string='';
   // am i gonna need it ?
   protected pathToOperations:any = [];
   //headers for the iten-table  table view

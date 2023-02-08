@@ -14,7 +14,9 @@ const routes: Routes = [
   {path:'contratos',component:ContractComponent},
   {path:'residuos',component:ResidueComponent},
   {path:'equipamentos',component:EquipamentsComponent, children:[
-    {path:'equipamento/novo',component:EquipamentDetailComponent}
+    {path:'equipamento/:id',component:EquipamentDetailComponent},
+    {path:'equipamento/novo',component:EquipamentDetailComponent},
+
   ]},
 ];
 
