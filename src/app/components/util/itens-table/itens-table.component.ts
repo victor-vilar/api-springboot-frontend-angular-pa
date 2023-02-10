@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { CrudBaseService } from 'src/app/services/crudbase.service';
+import { Component, EventEmitter, Input, OnInit, Output, OnChanges, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,13 +7,15 @@ import { Router } from '@angular/router';
   templateUrl: './itens-table.component.html',
   styleUrls: ['./itens-table.component.css']
 })
-export class ItensTableComponent implements OnInit {
+export class ItensTableComponent implements OnInit, OnChanges{
 
 
   //header of the data sended by component
   @Input()
   tableHeaders:string[] = [];
 
+  @Input()
+  fatherUrl:string;
   // data that will fill the table
   @Input()
   tableData:any;
@@ -23,13 +26,19 @@ export class ItensTableComponent implements OnInit {
 
   @Input()
   fatherPathPrefix:any;
-  //emitter to send data to father if something get in or out the array
-  @Output()
-  selectedItensEmitter:EventEmitter<any> = new EventEmitter<any>();
+
+
+  @Input()
+  service:any;
 
   constructor(private router:Router) { }
+
   ngOnInit(): void {
 
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.getAll();
   }
 
   //transform the objects into a array of values to fill the table rows
@@ -39,12 +48,25 @@ export class ItensTableComponent implements OnInit {
 
   //get the selected row to do the operations of delete, update etc.
   deleteItem(event:any){
-    this.selectedItensEmitter.emit(event);
+    this.service.delete(event.id,this.fatherUrl)
+    .subscribe(value =>
+      this.getAll());
   }
 
-  editItem(object:any){
-    this.router.navigate(['equipamento/'])
+  getAll(){
+    console.log('on changes')
+    console.log(this.tableData);
+    this.service.getAll(this.fatherUrl)
+    .subscribe(value => {
+      this.tableData = value;
+      console.log(this.tableData);});
+
   }
+
+  // editItem(object:any){
+  //   this.router.navigate(['equipamento/'])
+  // }
+
 
 
 

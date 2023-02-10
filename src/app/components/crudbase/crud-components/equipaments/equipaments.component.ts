@@ -1,30 +1,49 @@
 import { EquipamentsService } from '../../../../services/equipaments.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, DoCheck, OnChanges, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
 import { IBaseComponent } from 'src/app/model/IBaseComponent';
 import { Equipament } from 'src/app/model/Equipament';
 import { CrudBaseComponent } from '../../crud-base.component';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-equipaments',
   templateUrl: './equipaments.component.html',
   styleUrls: ['./equipaments.component.css']
 })
-export class EquipamentsComponent extends CrudBaseComponent<EquipamentsService> implements OnInit {
+export class EquipamentsComponent implements OnInit, CrudBaseComponent, OnChanges {
 
   //Default Methods
+  headerForTables;
+  title;
+  pathPrefix;
+  apiUrl;
+  pathToOperations;
+  service:EquipamentsService;
+
   constructor(service:EquipamentsService) {
-    super('equipament',service);
+    this.service = service;
   }
 
-  override ngOnInit() {
-      this.getAllFromApi();
-      this.headerForTables = ['Id','Equipamento','Volume em M³','Selecionar'];
-      this.title='Equipamentos';
-      this.pathPrefix='equipamento';
-      this.pathToOperations = [
+  ngOnInit() {
+    this.headerForTables = ['Id','Equipamento','Volume em M³','Opções'];
+    this.title='Equipamentos';
+    this.pathPrefix='equipamento';
+    this.apiUrl='equipament';
+    this.pathToOperations = [
         {name:"Cadastrar", path: this.pathPrefix + '/novo'},
-      ]
+      ];
   }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes);
+  }
+
+
+
+
+
+
+
 
 
 

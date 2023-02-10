@@ -1,19 +1,20 @@
 
-<div class="container">
+<div class="itens-table-detail-container">
+  <div class ="wrapper">
+    <!-- option crud menu -->
+    <app-crud-menu [linksListForOperations] ="pathToOperations"></app-crud-menu>
+    <!--  -->
 
-  <!-- option crud menu -->
-  <app-crud-menu [linksListForOperations] ="pathToOperations"></app-crud-menu>
-  <!--  -->
-
-  <app-itens-table
-    [model]="title"
-    [tableHeaders]="headerForTables"
-    [tableData]="listOfItens"
-    (selectedItensEmitter)="delete($event)"
-    [fatherPathPrefix]="pathPrefix">
-  </app-itens-table>
+    <app-itens-table
+      [model]="title"
+      [tableHeaders]="headerForTables"
+      [fatherPathPrefix]="pathPrefix"
+      [service]="service"
+      [fatherUrl]="apiUrl">
+    </app-itens-table>
 
 
+  </div>
+<router-outlet class="roulet"></router-outlet>
 </div>
 
-<router-outlet></router-outlet>

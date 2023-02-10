@@ -1,7 +1,7 @@
 import { Equipament } from '../../../../../model/Equipament';
 import { Component, OnInit, ViewChild, EventEmitter, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EquipamentsService } from 'src/app/services/equipaments.service';
 
 @Component({
@@ -12,16 +12,18 @@ import { EquipamentsService } from 'src/app/services/equipaments.service';
 export class EquipamentDetailComponent implements OnInit {
 
   @ViewChild('singInForm') form:NgForm;
-
   rota='equipament'
   //id of the item that gonna be edited if the form is on edit mode
   idOfEditedItem:number;
-  constructor(private service:EquipamentsService, private activeroute:ActivatedRoute) { }
+
+  crudOperation:string = "Cadastro";
+  constructor(private service:EquipamentsService, private activeroute:ActivatedRoute, private router:Router) { }
 
   ngOnInit(): void {
 
     //checagem de parametros para entrar ou não no modo de edição do componente
     if(this.activeroute.snapshot.queryParamMap.get('edit')){
+        this.crudOperation="Atualização"
         this.activeroute.paramMap.subscribe(value =>{
           this.service.getById(value.get('id'),this.rota)
           .subscribe(val =>{
@@ -38,7 +40,7 @@ export class EquipamentDetailComponent implements OnInit {
     }
   }
 
-  sendDataToSave(){
+  save(){
 
     //criando um novo objeto
     let equipament = {
@@ -46,7 +48,6 @@ export class EquipamentDetailComponent implements OnInit {
       equipamentName:this.form.value.equipamentName,
       sizeInMeterCubic:Number(this.form.value.equipamentSize)
     }
-
     //se for um objeto com id nulo, é um novo objeto
     //se não é atualização de um objeto existente.
     if(equipament.id === undefined){
@@ -57,5 +58,7 @@ export class EquipamentDetailComponent implements OnInit {
     this.service.update(equipament.id,this.rota,equipament)
     .subscribe(result => console.log('update feito'));
     }
+
+    this.router.navigate(['equipamentos']);
   }
 }

@@ -1,2 +1,16 @@
+.wrapper{
+  padding: 20px;
+}
+
+.wrapper app-itens-table {
+
+}
+
+@Media screen and (min-width:1200px){
+  .conitens-table-detail-containertainer{
+    display: grid;
+    grid-template-columns: repeat(6);
+  }
 
 
+}

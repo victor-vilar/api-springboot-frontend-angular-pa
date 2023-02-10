@@ -1,33 +1,38 @@
+.equipament-detail-container{
+  max-width: 100%;
+}
 
-
-h4{
+.equipament-detail-title{
   margin-top: 20px;
   font-size: 1.5em;
   font-weight: bold;
   margin-left: 5%;
 }
 
-form{
+.equipament-detail-form{
   width: 100%;
   display: flex;
   flex-direction: column;
 
 }
 
-form input, button {
+.equipament-detail-form input, button {
   padding:10px;
   width: 90%;
   margin-left: 5%;
   margin-top: 5px;
+
 }
 
-form button{
+.equipament-detail-form button{
   background-color: var(--cinza-escuro);
   color: white;
   font-weight: bold;
   border: none;
+  box-shadow: 1px 1px 3px black;
 }
 
-form button:hover{
+.equipament-detail-form button:hover{
 
 }
+
