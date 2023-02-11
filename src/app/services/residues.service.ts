@@ -1,9 +1,14 @@
+import { Residue } from 'src/app/model/Residue';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { CrudBaseService } from './crudbase.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ResiduesService {
+export class ResiduesService  extends CrudBaseService<Residue> {
 
-  constructor() { }
+  constructor(http:HttpClient) {
+    super(http);
+   }
 }

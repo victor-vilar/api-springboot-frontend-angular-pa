@@ -1,9 +1,14 @@
+import { ItemContract } from './../model/ItemContract';
 import { Injectable } from '@angular/core';
+import { CrudBaseService } from './crudbase.service';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ItemContractService {
+export class ItemContractService extends CrudBaseService<ItemContract>  {
 
-  constructor() { }
+  constructor(http:HttpClient) {
+    super(http);
+   }
 }
