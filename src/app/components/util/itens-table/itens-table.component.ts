@@ -35,9 +35,9 @@ export class ItensTableComponent implements OnInit, OnChanges{
   constructor(private router:Router) { }
 
   ngOnInit(): void {
-      this.service.refreshRequiredValue()
+      this.service.refreshAllData()
       .subscribe(value =>
-        this.tableData.push(value))
+        this.tableData = value)
       this.getAll();
   }
 
@@ -60,11 +60,7 @@ export class ItensTableComponent implements OnInit, OnChanges{
   }
 
   getAll(){
-    this.service.getAll(this.fatherUrl)
-    .subscribe(value => {
-      this.tableData = value;
-    });
-
+    this.service.getAll(this.fatherUrl);
   };
 
 

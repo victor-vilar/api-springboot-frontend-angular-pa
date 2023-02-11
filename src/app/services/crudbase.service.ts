@@ -9,8 +9,15 @@ export abstract class CrudBaseService<T>{
 
 
   private refreshRequired = new Subject<any>();
+  static BASE_URL:string = "http://localhost:8080/";
+  list:T[] = [];
+  constructor(private http:HttpClient){ }
 
-  refreshRequiredValue():Observable<any>{
+
+  // refreshRequiredValue():Observable<any>{
+  //   return this.refreshRequired.asObservable();
+  // }
+  refreshAllData(){
     return this.refreshRequired.asObservable();
   }
 
@@ -18,23 +25,15 @@ export abstract class CrudBaseService<T>{
     this.refreshRequired.next(object);
   }
 
-
-
-  static BASE_URL:string = "http://localhost:8080/";
-  list:T[] = [];
-
-  constructor(private http:HttpClient){
-
-  }
-
-
-
   save(type:T,router:string):Observable<T>{
     return  this.http.post<T>(CrudBaseService.BASE_URL + router,type);
   }
 
-  getAll(router:string):Observable<T[]>{
-   return this.http.get<T[]>(CrudBaseService.BASE_URL + router);
+  getAll(router:string){
+   this.http.get<T[]>(CrudBaseService.BASE_URL + router)
+   .subscribe(value =>{
+    this.send(value);
+   })
   };
 
 
