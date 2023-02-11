@@ -19,7 +19,7 @@ export class ItensTableComponent implements OnInit, OnChanges{
   fatherUrl:string;
   // data that will fill the table
   @Input()
-  tableData:any;
+  tableData:any = [];
 
   //model to fill the header tag
   @Input()
@@ -37,8 +37,7 @@ export class ItensTableComponent implements OnInit, OnChanges{
   ngOnInit(): void {
       this.service.refreshAllData()
       .subscribe(value =>
-        this.tableData = value)
-      this.getAll();
+        this.tableData = value);
   }
 
   ngOnChanges(changes: SimpleChanges): void {

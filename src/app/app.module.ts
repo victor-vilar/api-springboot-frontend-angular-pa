@@ -19,6 +19,7 @@ import { FormsModule } from '@angular/forms';
 import { EquipamentDetailComponent } from './components/crudbase/crud-components/equipaments/equipament-detail/equipament-detail.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,6 +33,7 @@ import { EquipamentDetailComponent } from './components/crudbase/crud-components
     ContractComponent,
     CustomerComponent,
     EquipamentDetailComponent,
+
 
   ],
   imports: [

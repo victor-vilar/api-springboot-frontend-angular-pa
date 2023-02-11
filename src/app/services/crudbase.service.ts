@@ -22,7 +22,11 @@ export abstract class CrudBaseService<T>{
   }
 
   send(object:any){
-    this.refreshRequired.next(object);
+      this.refreshRequired.next(object);
+  }
+
+  sendNull(){
+    this.refreshRequired.next(this.list);
   }
 
   save(type:T,router:string):Observable<T>{
@@ -30,10 +34,8 @@ export abstract class CrudBaseService<T>{
   }
 
   getAll(router:string){
-   this.http.get<T[]>(CrudBaseService.BASE_URL + router)
-   .subscribe(value =>{
-    this.send(value);
-   })
+   return this.http.get<T[]>(CrudBaseService.BASE_URL + router)
+   .subscribe(value => this.send(value));
   };
 
 

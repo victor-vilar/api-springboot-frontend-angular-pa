@@ -58,7 +58,8 @@ export class EquipamentDetailComponent implements OnInit {
     this.service.update(equipament.id,this.rota,equipament)
     .subscribe(result => this.service.getAll(this.rota))
     }
-    this.service.send(equipament);
+    // this.service.send(equipament);
+    this.service.sendNull();
     this.router.navigate(['equipamentos']);
 
   }
