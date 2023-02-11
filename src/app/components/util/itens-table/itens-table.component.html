@@ -5,10 +5,8 @@
     <tr>
       <th *ngFor="let header of tableHeaders">{{header}}</th>
     </tr>
-
     <tr *ngFor="let object of tableData">
         <ng-container *ngFor="let value of transformObjectInArrayOfValues(object)">
-
             <td>{{value}}</td>
           </ng-container>
           <td class="options-buttons">

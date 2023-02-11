@@ -1,10 +1,11 @@
 
 <div class="itens-table-detail-container">
   <div class ="wrapper">
+
     <!-- option crud menu -->
     <app-crud-menu [linksListForOperations] ="pathToOperations"></app-crud-menu>
     <!--  -->
-
+    <router-outlet class="roulet"></router-outlet>
     <app-itens-table
       [model]="title"
       [tableHeaders]="headerForTables"
@@ -15,6 +16,6 @@
 
 
   </div>
-<router-outlet class="roulet"></router-outlet>
+
 </div>
 

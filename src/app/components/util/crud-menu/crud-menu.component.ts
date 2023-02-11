@@ -12,15 +12,9 @@ export class CrudMenuComponent implements OnInit {
   @Input()
   linksListForOperations:any[] = []
 
-  @Output()
-  deleteSelectedItensEmitter:EventEmitter<boolean> = new EventEmitter<boolean>();
-
   constructor() { }
   ngOnInit(): void {
   }
 
-  //method to delete the selected itens of database
-  deleteSelectedItem(){
-    this.deleteSelectedItensEmitter.emit(true);
-  }
+
 }

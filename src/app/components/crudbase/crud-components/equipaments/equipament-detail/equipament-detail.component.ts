@@ -52,13 +52,14 @@ export class EquipamentDetailComponent implements OnInit {
     //se não é atualização de um objeto existente.
     if(equipament.id === undefined){
     this.service.save(equipament,this.rota)
-    .subscribe(result => console.log('post feito'));
-    }else{
-      console.log(equipament.id,this.rota,equipament)
-    this.service.update(equipament.id,this.rota,equipament)
-    .subscribe(result => console.log('update feito'));
-    }
+    .subscribe(result => this.service.getAll(this.rota))
 
+    }else{
+    this.service.update(equipament.id,this.rota,equipament)
+    .subscribe(result => this.service.getAll(this.rota))
+    }
+    this.service.send(equipament);
     this.router.navigate(['equipamentos']);
+
   }
 }

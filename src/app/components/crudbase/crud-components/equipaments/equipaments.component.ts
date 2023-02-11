@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { EquipamentsService } from '../../../../services/equipaments.service';
 import { Component, DoCheck, OnChanges, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
 import { IBaseComponent } from 'src/app/model/IBaseComponent';
@@ -20,7 +21,7 @@ export class EquipamentsComponent implements OnInit, CrudBaseComponent, OnChange
   pathToOperations;
   service:EquipamentsService;
 
-  constructor(service:EquipamentsService) {
+  constructor(service:EquipamentsService, private activeRoute:ActivatedRoute) {
     this.service = service;
   }
 
@@ -35,7 +36,7 @@ export class EquipamentsComponent implements OnInit, CrudBaseComponent, OnChange
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
+    console.log("changes do equipament = " + changes);
   }
 
 

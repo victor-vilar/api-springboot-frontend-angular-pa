@@ -1,6 +1,7 @@
 import { CrudBaseService } from 'src/app/services/crudbase.service';
 import { Component, EventEmitter, Input, OnInit, Output, OnChanges, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
+import { from, of } from 'rxjs';
 
 @Component({
   selector: 'app-itens-table',
@@ -34,10 +35,14 @@ export class ItensTableComponent implements OnInit, OnChanges{
   constructor(private router:Router) { }
 
   ngOnInit(): void {
-
+      this.service.refreshRequiredValue()
+      .subscribe(value =>
+        this.tableData.push(value))
+      this.getAll();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    console.log(' mudou change')
     this.getAll();
   }
 
@@ -49,23 +54,20 @@ export class ItensTableComponent implements OnInit, OnChanges{
   //get the selected row to do the operations of delete, update etc.
   deleteItem(event:any){
     this.service.delete(event.id,this.fatherUrl)
-    .subscribe(value =>
-      this.getAll());
+    .subscribe(value =>{
+      this.getAll();
+    })
   }
 
   getAll(){
-    console.log('on changes')
-    console.log(this.tableData);
     this.service.getAll(this.fatherUrl)
     .subscribe(value => {
       this.tableData = value;
-      console.log(this.tableData);});
+    });
 
-  }
+  };
 
-  // editItem(object:any){
-  //   this.router.navigate(['equipamento/'])
-  // }
+
 
 
 
