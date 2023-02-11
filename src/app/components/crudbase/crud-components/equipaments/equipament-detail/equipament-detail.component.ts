@@ -62,4 +62,8 @@ export class EquipamentDetailComponent implements OnInit {
     this.router.navigate(['equipamentos']);
 
   }
+
+  destroy(){
+    this.router.navigate(['equipamentos']);
+  }
 }

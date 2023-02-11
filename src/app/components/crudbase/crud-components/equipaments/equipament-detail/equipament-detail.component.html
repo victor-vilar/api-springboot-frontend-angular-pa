@@ -1,6 +1,8 @@
 <div class="equipament-detail-container">
-  <h4 class="equipament-detail-title">{{crudOperation}} de Equipamentos</h4>
-
+  <div class="detail-component-header">
+    <h4 class="equipament-detail-title">{{crudOperation}} de Equipamentos</h4>
+    <a (click)="destroy()">X</a>
+  </div>
   <form (ngSubmit)="save()" #singInForm = "ngForm" class="equipament-detail-form" >
     <input type="text" name="id" placeholder="Id"  ngModel >
     <input type="text" required placeholder="Equipamento" name="equipamentName" ngModel>

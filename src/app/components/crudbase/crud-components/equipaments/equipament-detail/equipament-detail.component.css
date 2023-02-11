@@ -2,12 +2,33 @@
   max-width: 100%;
 }
 
-.equipament-detail-title{
+.detail-component-header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   margin-top: 20px;
   font-size: 1.5em;
   font-weight: bold;
-  margin-left: 5%;
+
 }
+
+.detail-component-header h4{
+  font-weight: bold;
+}
+
+.detail-component-header a{
+
+  cursor: pointer;
+  transition: all 0.3s ;
+  padding:0px 10px;
+}
+.detail-component-header a:hover{
+  background-color: var(--cinza-escuro);
+  color: white;
+}
+
+
+
 
 .equipament-detail-form{
   width: 100%;
@@ -18,8 +39,7 @@
 
 .equipament-detail-form input, button {
   padding:10px;
-  width: 90%;
-  margin-left: 5%;
+  width: 100%;
   margin-top: 5px;
 
 }
