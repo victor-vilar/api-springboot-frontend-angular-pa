@@ -9,13 +9,18 @@ import { EquipamentsService } from 'src/app/services/equipaments.service';
   templateUrl: './equipament-detail.component.html',
   styleUrls: ['./equipament-detail.component.css']
 })
+
+/**
+ * form to add new or update new elements
+ */
 export class EquipamentDetailComponent implements OnInit {
 
   @ViewChild('singInForm') form:NgForm;
   rota='equipament'
+
   //id of the item that gonna be edited if the form is on edit mode
   idOfEditedItem:number;
-
+  //operation that gonna be executed, 
   crudOperation:string = "Cadastro";
   constructor(private service:EquipamentsService, private activeroute:ActivatedRoute, private router:Router) { }
 
@@ -52,19 +57,28 @@ export class EquipamentDetailComponent implements OnInit {
     //se não é atualização de um objeto existente.
     if(equipament.id === undefined){
     this.service.save(equipament,this.rota)
-    .subscribe(result => this.service.getAll(this.rota))
+    .subscribe(result => {
+     this.service.getAll(this.rota)
+      //this.service.sendNull();
+    })
 
     }else{
     this.service.update(equipament.id,this.rota,equipament)
-    .subscribe(result => this.service.getAll(this.rota))
+    .subscribe(result => {
+      this.service.getAll(this.rota)
+     })
     }
-    // this.service.send(equipament);
-    this.service.sendNull();
+
+
     this.router.navigate(['equipamentos']);
 
   }
 
   destroy(){
     this.router.navigate(['equipamentos']);
+  }
+
+  cleanForm(){
+    this.form.reset();
   }
 }
