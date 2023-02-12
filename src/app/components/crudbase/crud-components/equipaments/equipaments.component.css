@@ -7,9 +7,9 @@
 }
 
 @Media screen and (min-width:1200px){
-  .conitens-table-detail-containertainer{
+  .itens-table-detail-container{
     display: grid;
-    grid-template-columns: repeat(6);
+
   }
 
 

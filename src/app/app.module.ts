@@ -17,6 +17,7 @@ import { ContractComponent } from './components/crudbase/crud-components/contrac
 import { CustomerComponent } from './components/crudbase/crud-components/customer/customer.component';
 import { FormsModule } from '@angular/forms';
 import { EquipamentDetailComponent } from './components/crudbase/crud-components/equipaments/equipament-detail/equipament-detail.component';
+import { ResidueDetailComponent } from './components/crudbase/crud-components/residue/residue-detail/residue-detail.component';
 
 
 
@@ -33,6 +34,7 @@ import { EquipamentDetailComponent } from './components/crudbase/crud-components
     ContractComponent,
     CustomerComponent,
     EquipamentDetailComponent,
+    ResidueDetailComponent,
 
 
   ],

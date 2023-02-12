@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Customer } from 'src/app/model/Customer';
-import { IBaseComponent } from 'src/app/model/IBaseComponent';
+
 
 @Component({
   selector: 'app-client',

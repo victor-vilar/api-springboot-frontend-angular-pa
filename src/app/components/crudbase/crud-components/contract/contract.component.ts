@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Contract } from 'src/app/model/Contract';
-import { IBaseComponent } from 'src/app/model/IBaseComponent';
+
 
 @Component({
   selector: 'app-contract',

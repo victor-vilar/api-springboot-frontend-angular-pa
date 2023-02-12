@@ -1,7 +1,6 @@
 import { ActivatedRoute } from '@angular/router';
 import { EquipamentsService } from '../../../../services/equipaments.service';
 import { Component, DoCheck, OnChanges, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
-import { IBaseComponent } from 'src/app/model/IBaseComponent';
 import { Equipament } from 'src/app/model/Equipament';
 import { CrudBaseComponent } from '../../crud-base.component';
 import { HttpClient } from '@angular/common/http';
@@ -11,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './equipaments.component.html',
   styleUrls: ['./equipaments.component.css']
 })
-export class EquipamentsComponent implements OnInit, CrudBaseComponent, OnChanges {
+export class EquipamentsComponent implements OnInit, CrudBaseComponent {
 
   //Default Methods
   headerForTables;
@@ -21,7 +20,7 @@ export class EquipamentsComponent implements OnInit, CrudBaseComponent, OnChange
   pathToOperations;
   service:EquipamentsService;
 
-  constructor(service:EquipamentsService, private activeRoute:ActivatedRoute) {
+  constructor(service:EquipamentsService) {
     this.service = service;
   }
 
@@ -35,9 +34,7 @@ export class EquipamentsComponent implements OnInit, CrudBaseComponent, OnChange
       ];
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log("changes do equipament = " + changes);
-  }
+
 
 
 
