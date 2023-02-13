@@ -49,7 +49,7 @@ export class ItensTableCustomerComponent implements OnInit {
 
   //get the selected row to do the operations of delete, update etc.
   deleteItem(event:any){
-    this.service.delete(event.id,this.fatherUrl)
+    this.service.delete(event.cpfCnpj,this.fatherUrl)
     .subscribe(value =>{
       this.getAll();
     })
