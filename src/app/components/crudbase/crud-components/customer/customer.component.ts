@@ -25,7 +25,14 @@ export class CustomerComponent implements OnInit, CrudBaseComponent {
   }
   ngOnInit(): void {
 
-    this.headerForTables = ['CPF/CNPJ','Nome/Razão Social','Tot. Contratos','Opções'];
+    this.headerForTables = [
+
+    'CPF/CNPJ',
+    'Nome/Razão Social',
+    'Tot. Contratos',
+    'Tot. Endereços',
+    'Tot. Fiscais',
+    'Opções'];
     this.title='Clientes';
     this.pathPrefix='cliente';
     this.apiUrl='customer';

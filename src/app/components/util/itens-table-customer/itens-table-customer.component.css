@@ -1,0 +1,91 @@
+.itens-table-container h4{
+  margin-top: 20px;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+ .itens-table-container table{
+
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.itens-table-container th, tr{
+  padding:8px;
+  text-align: center;
+  border: 1px solid var(--cinza);
+}
+
+.itens-table-container th {
+  background-color: var(--cinza-escuro);
+  color: white;
+
+}
+.itens-table-container tr {
+  height: 50px;
+
+}
+
+.itens-table-container tr:nth-child(odd) {
+  background-color: #f2f2f2;
+}
+
+.itens-table-container td {
+  font-weight: bold;
+
+}
+
+
+.options-buttons{
+  display:flex;
+  flex-direction: row;
+  padding:10px;
+  gap:5px;
+  align-items: center;
+  justify-content: center;
+}
+
+.options-buttons .bt{
+
+  max-width:30px;
+  max-height: 30px;
+  border: 1px solid;
+  border-radius: 5px;
+  color:white;
+  box-shadow: 1px 1px 3px black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.options-buttons .bt-edit{
+  background-color: #ffdd00;
+  border-color: rgb(196, 172, 12);
+  color: black;
+
+}
+
+.options-buttons .bt-delete{
+  background-color: red;
+  border-color: rgb(175, 20, 20);
+}
+
+.options-buttons .bt-op{
+  background-color: rgb(29, 176, 68);
+  border-color: rgb(23, 139, 54);
+}
+
+.options-buttons .bt-edit:hover{
+  background-color:rgb(196, 172, 12);
+  cursor: pointer;
+}
+.options-buttons .bt-delete:hover{
+  background-color: rgb(175, 20, 20);
+}
+
+@media screen and (min-width:576px){
+  .itens-table-container table{
+    display: table;
+  }
+}

@@ -1,0 +1,24 @@
+<div class="itens-table-container">
+  <h4>{{model}} Cadastrados</h4>
+  <table class="table">
+    <tr>
+      <th *ngFor="let header of tableHeaders">{{header}}</th>
+    </tr>
+    <tr *ngFor="let object of tableData">
+            <td>{{object.cpfCnpj}}</td>
+            <td>{{object.nameCompanyName}}</td>
+            <td>{{object.contracts.length}}</td>
+            <td>{{object.addresses.length}}</td>
+            <td>{{object.supervisors.length}}</td>
+          <td class="options-buttons">
+            <button type="button" title="contratos" name="contratos" id="contratos" class="bt bt-op " [routerLink]="['./'+fatherPathPrefix, object.id]" [queryParams]="{edit:true}"><i class="fas fa-file-signature"></i></button>
+            <button type="button" title="enderecos" name="enderecos" id="enderecos" class="bt bt-op " [routerLink]="['./'+fatherPathPrefix, object.id]" [queryParams]="{edit:true}"><i class="fas fa-edit"></i></button>
+            <button type="button" title="fiscais" name="fiscais" id="fiscais" class="bt bt-op " [routerLink]="['./'+fatherPathPrefix, object.id]" [queryParams]="{edit:true}"><i class="fas fa-user"></i></button>
+            <button type="button" title="editar" name="edit" id="edit" class="bt bt-edit " [routerLink]="['./'+fatherPathPrefix, object.cpfCnpj]" [queryParams]="{edit:true}"><i class="fas fa-edit"></i></button>
+            <button type="button" title="deletar" name="delete" id="delete" class="bt bt-delete " (click)="deleteItem(object)"><i class="fas fa-times"></i></button>
+          </td>
+    </tr>
+
+  </table>
+
+</div>

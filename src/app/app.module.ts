@@ -19,6 +19,8 @@ import { FormsModule } from '@angular/forms';
 import { EquipamentDetailComponent } from './components/crudbase/crud-components/equipaments/equipament-detail/equipament-detail.component';
 import { ResidueDetailComponent } from './components/crudbase/crud-components/residue/residue-detail/residue-detail.component';
 import { CustomerDetailComponent } from './components/crudbase/crud-components/customer/customer-detail/customer-detail.component';
+import { ItensTableCustomerComponent } from './components/util/itens-table-customer/itens-table-customer.component';
+
 
 
 
@@ -38,6 +40,7 @@ import { CustomerDetailComponent } from './components/crudbase/crud-components/c
     EquipamentDetailComponent,
     ResidueDetailComponent,
     CustomerDetailComponent,
+    ItensTableCustomerComponent,
   ],
   imports: [
     BrowserModule,
