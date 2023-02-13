@@ -5,7 +5,7 @@
       <th *ngFor="let header of tableHeaders">{{header}}</th>
     </tr>
     <tr *ngFor="let object of tableData">
-            <td>{{object.cpfCnpj}}</td>
+            <td>{{object.cpfCnpj | cpfCnpj}}</td>
             <td>{{object.nameCompanyName}}</td>
             <td>{{object.contracts.length}}</td>
             <td>{{object.addresses.length}}</td>

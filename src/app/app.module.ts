@@ -20,6 +20,7 @@ import { EquipamentDetailComponent } from './components/crudbase/crud-components
 import { ResidueDetailComponent } from './components/crudbase/crud-components/residue/residue-detail/residue-detail.component';
 import { CustomerDetailComponent } from './components/crudbase/crud-components/customer/customer-detail/customer-detail.component';
 import { ItensTableCustomerComponent } from './components/util/itens-table-customer/itens-table-customer.component';
+import { CpfCnpjPipePipe } from './pipes/cpf-cnpj-pipe.pipe';
 
 
 
@@ -41,6 +42,7 @@ import { ItensTableCustomerComponent } from './components/util/itens-table-custo
     ResidueDetailComponent,
     CustomerDetailComponent,
     ItensTableCustomerComponent,
+    CpfCnpjPipePipe,
   ],
   imports: [
     BrowserModule,
