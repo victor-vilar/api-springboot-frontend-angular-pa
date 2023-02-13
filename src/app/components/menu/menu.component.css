@@ -18,12 +18,18 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding:5px;
+  gap:5px;
 }
 
 .logged-user img {
   width: 20%;height: 20%;
   border-radius: 50%;
   border:1px solid #FFF;
+}
+.logged-user h5{
+  font-size: 0.9em;
+  text-align: center;
 }
 /* ================================= */
 

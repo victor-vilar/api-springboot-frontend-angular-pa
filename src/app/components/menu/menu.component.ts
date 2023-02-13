@@ -7,8 +7,8 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  userName="Madruguinha";
-  userRole="Manager";
+  userName="Madruga";
+  userRole="Agente especializado em compra e venda de artigos para o lar";
 
   constructor() { }
   ngOnInit(): void {
