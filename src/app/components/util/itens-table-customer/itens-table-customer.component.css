@@ -83,6 +83,9 @@
 .options-buttons .bt-delete:hover{
   background-color: rgb(175, 20, 20);
 }
+.options-buttons .bt-op:hover{
+  background-color: rgb(23, 139, 54);
+}
 
 @media screen and (min-width:576px){
   .itens-table-container table{
