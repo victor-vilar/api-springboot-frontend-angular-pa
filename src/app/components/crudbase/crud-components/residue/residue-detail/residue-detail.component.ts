@@ -18,6 +18,17 @@ export class ResidueDetailComponent implements OnInit, FormDetail {
   crudOperation = 'Cadastro';
   constructor(private service:ResiduesService, private activeroute:ActivatedRoute, private router:Router) { }
 
+
+  mountObject() {
+    let residue = {
+      id:this.idOfEditedItem,
+      type:this.form.value.type,
+      description:this.form.value.description
+    }
+
+    return residue;
+  }
+
   ngOnInit(){
     this.onLoad();
   }
@@ -45,12 +56,8 @@ export class ResidueDetailComponent implements OnInit, FormDetail {
   save(): void {
 
     //criando um novo objeto
-    let residue = {
-      id:this.idOfEditedItem,
-      type:this.form.value.type,
-      description:this.form.value.description
-    }
 
+    let residue = this.mountObject();
     //se for um objeto com id nulo, é um novo objeto
     //se não é atualização de um objeto existente.
     if(residue.id === undefined){

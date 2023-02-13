@@ -1,12 +1,18 @@
-<div class="container">
 
-  <!-- option crud menu -->
-  <app-crud-menu [linksListForOperations] ="pathToOperations"></app-crud-menu>
-  <!--  -->
+<div class="itens-table-detail-container">
+  <div class ="wrapper">
 
-  <app-itens-table
-    [model]="title"
-    [tableHeaders]="headerForTables"
-    [tableData]="listOfItens">
-  </app-itens-table>
-</div>
+    <!-- option crud menu -->
+    <app-crud-menu [linksListForOperations] ="pathToOperations"></app-crud-menu>
+    <!--  -->
+    <router-outlet class="roulet"></router-outlet>
+    <app-itens-table
+      [model]="title"
+      [tableHeaders]="headerForTables"
+      [fatherPathPrefix]="pathPrefix"
+      [service]="service"
+      [fatherUrl]="apiUrl">
+    </app-itens-table>
+
+
+  </div>

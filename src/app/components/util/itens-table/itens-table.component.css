@@ -5,8 +5,10 @@
 }
 
  .itens-table-container table{
-  width: 100%;
+
+  display: block;
   overflow-x: auto;
+  white-space: nowrap;
 }
 
 .itens-table-container th, tr{
@@ -75,4 +77,10 @@
 }
 .options-buttons .bt-delete:hover{
   background-color: rgb(175, 20, 20);
+}
+
+@media screen and (min-width:576px){
+  .itens-table-container table{
+    display: table;
+  }
 }

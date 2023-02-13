@@ -9,7 +9,7 @@ export interface FormDetail{
   rota:string;
 
   //id of the item that gonna be edited if the form is on edit mode
-  idOfEditedItem:number;
+  idOfEditedItem:number | string;
 
   //operation that gonna be executed,
   crudOperation:string;
@@ -17,9 +17,9 @@ export interface FormDetail{
 
   //methods
   //save on api
-  save():void;
+  mountObject():any;
+  save(object:any):void;
   onLoad():void;
-
   //close detail component
   destroy():void;
 

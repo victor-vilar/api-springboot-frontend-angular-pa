@@ -41,12 +41,12 @@ export class ItensTableComponent implements OnInit, OnChanges{
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(' mudou change')
     this.getAll();
   }
 
   //transform the objects into a array of values to fill the table rows
   transformObjectInArrayOfValues(object:any){
+    console.log(object);
     return Object.values(object);
   }
 

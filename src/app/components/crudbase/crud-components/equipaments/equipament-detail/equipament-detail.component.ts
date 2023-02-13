@@ -26,6 +26,16 @@ export class EquipamentDetailComponent implements OnInit, FormDetail {
 
   constructor(private service:EquipamentsService, private activeroute:ActivatedRoute, private router:Router) { }
 
+  mountObject(): any {
+
+    let equipament = {
+      id:this.idOfEditedItem,
+      equipamentName:this.form.value.equipamentName,
+      sizeInMeterCubic:Number(this.form.value.equipamentSize)
+    }
+    return equipament;
+  }
+
   ngOnInit(): void {
     this.onLoad();
   }
@@ -53,21 +63,17 @@ export class EquipamentDetailComponent implements OnInit, FormDetail {
 
   save(){
     //criando um novo objeto
-    let equipament = {
-      id:this.idOfEditedItem,
-      equipamentName:this.form.value.equipamentName,
-      sizeInMeterCubic:Number(this.form.value.equipamentSize)
-    }
+    let object = this.mountObject();
     //se for um objeto com id nulo, é um novo objeto
     //se não é atualização de um objeto existente.
-    if(equipament.id === undefined){
-    this.service.save(equipament,this.rota)
+    if(object.id === undefined){
+    this.service.save(object,this.rota)
     .subscribe(result => {
      this.service.getAll(this.rota)
       //this.service.sendNull();
     })
     }else{
-    this.service.update(equipament.id,this.rota,equipament)
+    this.service.update(object.id,this.rota,object)
     .subscribe(result => {
       this.service.getAll(this.rota)
      })

@@ -8,11 +8,15 @@ import { CustomerComponent } from './components/crudbase/crud-components/custome
 import { ContractComponent } from './components/crudbase/crud-components/contract/contract.component';
 import { EquipamentDetailComponent } from './components/crudbase/crud-components/equipaments/equipament-detail/equipament-detail.component';
 import { ResidueDetailComponent } from './components/crudbase/crud-components/residue/residue-detail/residue-detail.component';
+import { CustomerDetailComponent } from './components/crudbase/crud-components/customer/customer-detail/customer-detail.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'dashboard', pathMatch:'full'},
   {path:'dashboard',component:DashboardComponent},
-  {path:'clientes',component:CustomerComponent},
+  {path:'clientes',component:CustomerComponent, children:[
+    {path:'cliente/:id',component:CustomerDetailComponent},
+    {path:'cliente/novo',component:CustomerDetailComponent},
+  ]},
   {path:'contratos',component:ContractComponent},
   {path:'residuos',component:ResidueComponent, children:[
     {path:'residuo/:id',component:ResidueDetailComponent},
