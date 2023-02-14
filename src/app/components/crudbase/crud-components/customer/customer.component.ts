@@ -17,7 +17,6 @@ export class CustomerComponent implements OnInit, CrudBaseComponent {
   pathPrefix: string;
   pathToOperations: any;
   headerForTables: any;
-  apiUrl: string;
   service:CustomerService;
 
   constructor(service:CustomerService){
@@ -35,7 +34,6 @@ export class CustomerComponent implements OnInit, CrudBaseComponent {
     'Opções'];
     this.title='Clientes';
     this.pathPrefix='cliente';
-    this.apiUrl='customer';
     this.pathToOperations = [
         {name:"Cadastrar", path: this.pathPrefix + '/novo'},
       ];

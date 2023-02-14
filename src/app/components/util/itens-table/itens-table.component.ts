@@ -15,8 +15,6 @@ export class ItensTableComponent implements OnInit, OnChanges{
   @Input()
   tableHeaders:string[] = [];
 
-  @Input()
-  fatherUrl:string;
   // data that will fill the table
   @Input()
   tableData:any = [];
@@ -46,20 +44,19 @@ export class ItensTableComponent implements OnInit, OnChanges{
 
   //transform the objects into a array of values to fill the table rows
   transformObjectInArrayOfValues(object:any){
-    console.log(object);
     return Object.values(object);
   }
 
   //get the selected row to do the operations of delete, update etc.
   deleteItem(event:any){
-    this.service.delete(event.id,this.fatherUrl)
+    this.service.delete(event.id)
     .subscribe(value =>{
       this.getAll();
     })
   }
 
   getAll(){
-    this.service.getAll(this.fatherUrl);
+    this.service.getAll();
   };
 
 

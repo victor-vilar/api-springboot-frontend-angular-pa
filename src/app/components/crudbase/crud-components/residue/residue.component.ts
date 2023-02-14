@@ -16,7 +16,6 @@ export class ResidueComponent implements OnInit, CrudBaseComponent{
   headerForTables;
   title;
   pathPrefix;
-  apiUrl;
   pathToOperations;
   service:ResiduesService;
 
@@ -27,7 +26,6 @@ export class ResidueComponent implements OnInit, CrudBaseComponent{
     this.headerForTables = ['Id','Resíduo','Classe','Opções'];
     this.title='Resíduos';
     this.pathPrefix='residuo';
-    this.apiUrl='residue';
     this.pathToOperations = [
         {name:"Cadastrar", path: this.pathPrefix + '/novo'},
       ];

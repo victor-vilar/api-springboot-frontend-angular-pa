@@ -17,6 +17,5 @@ export interface CrudBaseComponent extends OnInit {
    pathToOperations:any;
   //headers for the iten-table  table view
    headerForTables:any;
-  //api route for selected component.
-   apiUrl:string;
+
 }

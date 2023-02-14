@@ -18,7 +18,6 @@ import { EquipamentsService } from 'src/app/services/equipaments.service';
 export class EquipamentDetailComponent implements OnInit, FormDetail {
 
   @ViewChild('singInForm') form:NgForm;
-  rota='equipament'
   //id of the item that gonna be edited if the form is on edit mode
   idOfEditedItem:number;
   //operation that gonna be executed,

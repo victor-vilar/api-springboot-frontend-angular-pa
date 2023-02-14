@@ -16,7 +16,6 @@ export class EquipamentsComponent implements OnInit, CrudBaseComponent {
   headerForTables;
   title;
   pathPrefix;
-  apiUrl;
   pathToOperations;
   service:EquipamentsService;
 
@@ -28,7 +27,6 @@ export class EquipamentsComponent implements OnInit, CrudBaseComponent {
     this.headerForTables = ['Id','Equipamento','Volume em M³','Opções'];
     this.title='Equipamentos';
     this.pathPrefix='equipamento';
-    this.apiUrl='equipament';
     this.pathToOperations = [
         {name:"Cadastrar", path: this.pathPrefix + '/novo'},
       ];
