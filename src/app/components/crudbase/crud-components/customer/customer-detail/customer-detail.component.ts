@@ -37,15 +37,15 @@ export class CustomerDetailComponent implements OnInit, FormDetail {
     //se for um objeto com id nulo, é um novo objeto
     //se não é atualização de um objeto existente.
     if(this.idOfEditedItem === undefined){
-    this.service.save(customer,this.rota)
+    this.service.save(customer)
     .subscribe(result => {
-     this.service.getAll(this.rota)
+     this.service.getAll()
       //this.service.sendNull();
     })
     }else{
-    this.service.update(customer.cpfCnpj,this.rota,customer)
+    this.service.update(customer.cpfCnpj,customer)
     .subscribe(result => {
-      this.service.getAll(this.rota)
+      this.service.getAll()
      })
     }
     this.destroy();
@@ -55,7 +55,7 @@ export class CustomerDetailComponent implements OnInit, FormDetail {
     if(this.activeroute.snapshot.queryParamMap.get('edit')){
       this.crudOperation="Atualização"
       this.activeroute.paramMap.subscribe(value =>{
-        this.service.getById(value.get('id'),this.rota)
+        this.service.getById(value.get('id'))
         .subscribe(val =>{
           if(val !== null){
               this.form.setValue({

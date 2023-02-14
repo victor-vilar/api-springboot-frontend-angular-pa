@@ -10,5 +10,6 @@ export class ResiduesService  extends CrudBaseService<Residue> {
 
   constructor(http:HttpClient) {
     super(http);
+    this.rota='residues'
    }
 }

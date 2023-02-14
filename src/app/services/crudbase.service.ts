@@ -11,6 +11,7 @@ export abstract class CrudBaseService<T>{
   private refreshRequired = new Subject<any>();
   static BASE_URL:string = "http://localhost:8080/";
   list:T[] = [];
+  rota:string;
   constructor(private http:HttpClient){ }
 
 
@@ -29,26 +30,29 @@ export abstract class CrudBaseService<T>{
     this.refreshRequired.next(this.list);
   }
 
-  save(type:T,router:string):Observable<T>{
-    return  this.http.post<T>(CrudBaseService.BASE_URL + router,type);
+  save(type:T):Observable<T>{
+    return  this.http.post<T>(CrudBaseService.BASE_URL + this.rota,type);
   }
 
-  getAll(router:string){
-   return this.http.get<T[]>(CrudBaseService.BASE_URL + router)
-   .subscribe(value => this.send(value));
+  getAll(){
+   return this.http.get<T[]>(CrudBaseService.BASE_URL + this.rota)
+   .subscribe(value => {
+    this.list = value;
+    this.send(value)
+  });
   };
 
 
-  getById(id:number | string, router:string):Observable<T>{
-    return this.http.get<T>(CrudBaseService.BASE_URL + router + '/' + id);
+  getById(id:number | string):Observable<T>{
+    return this.http.get<T>(CrudBaseService.BASE_URL + this.rota + '/' + id);
   };
 
-  update(id:number | string, router:string, type:T):Observable<T>{
-    return this.http.put<T>(CrudBaseService.BASE_URL + router  + '/' + id, type);
+  update(id:number | string, type:T):Observable<T>{
+    return this.http.put<T>(CrudBaseService.BASE_URL + this.rota  + '/' + id, type);
   };
 
-  delete(id:number | string,router:string):Observable<T>{
-    return this.http.delete<T>(CrudBaseService.BASE_URL + router + '/' + id);
+  delete(id:number | string):Observable<T>{
+    return this.http.delete<T>(CrudBaseService.BASE_URL + this.rota + '/' + id);
   };
 
   // listSize():number{

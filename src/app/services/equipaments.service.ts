@@ -11,6 +11,7 @@ export class EquipamentsService extends CrudBaseService<Equipament> {
 
   constructor(http:HttpClient) {
     super(http);
+    this.rota='equipament'
    }
 
 }

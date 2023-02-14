@@ -14,5 +14,6 @@ export class AddressService extends CrudBaseService<Address> {
 
   constructor(http:HttpClient, private fullAddressService:FullAddressService ) {
     super(http);
+    this.rota='address'
    }
 }

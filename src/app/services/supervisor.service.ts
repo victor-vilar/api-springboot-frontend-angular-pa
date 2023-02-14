@@ -10,5 +10,6 @@ export class SupervisorService extends CrudBaseService<Supervisor>  {
 
   constructor(http:HttpClient) {
     super(http);
+    this.rota='supervisor'
    }
 }

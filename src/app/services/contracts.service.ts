@@ -10,5 +10,6 @@ export class ContractsService extends CrudBaseService<Contract>  {
 
   constructor(http:HttpClient) {
     super(http);
+    this.rota = 'contracts'
    }
 }

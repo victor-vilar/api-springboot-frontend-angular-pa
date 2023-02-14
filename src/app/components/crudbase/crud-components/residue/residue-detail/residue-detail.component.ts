@@ -13,7 +13,6 @@ export class ResidueDetailComponent implements OnInit, FormDetail {
 
 
   @ViewChild('singInForm') form: NgForm;
-  rota= 'residue';
   idOfEditedItem: number;
   crudOperation = 'Cadastro';
   constructor(private service:ResiduesService, private activeroute:ActivatedRoute, private router:Router) { }
@@ -38,7 +37,7 @@ export class ResidueDetailComponent implements OnInit, FormDetail {
         if(this.activeroute.snapshot.queryParamMap.get('edit')){
           this.crudOperation="Atualização"
           this.activeroute.paramMap.subscribe(value =>{
-            this.service.getById(value.get('id'),this.rota)
+            this.service.getById(value.get('id'))
             .subscribe(val =>{
               if(val !== null){
                   this.form.setValue({
@@ -61,15 +60,15 @@ export class ResidueDetailComponent implements OnInit, FormDetail {
     //se for um objeto com id nulo, é um novo objeto
     //se não é atualização de um objeto existente.
     if(residue.id === undefined){
-        this.service.save(residue,this.rota)
+        this.service.save(residue)
         .subscribe(result => {
-        this.service.getAll(this.rota)
+        this.service.getAll()
         //this.service.sendNull();
         })
     }else{
-        this.service.update(residue.id,this.rota,residue)
+        this.service.update(residue.id,residue)
         .subscribe(result => {
-        this.service.getAll(this.rota)
+        this.service.getAll()
         })
     }
 

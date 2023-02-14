@@ -45,7 +45,7 @@ export class EquipamentDetailComponent implements OnInit, FormDetail {
     if(this.activeroute.snapshot.queryParamMap.get('edit')){
       this.crudOperation="Atualização"
       this.activeroute.paramMap.subscribe(value =>{
-        this.service.getById(value.get('id'),this.rota)
+        this.service.getById(value.get('id'))
         .subscribe(val =>{
           if(val !== null){
               this.form.setValue({
@@ -67,15 +67,15 @@ export class EquipamentDetailComponent implements OnInit, FormDetail {
     //se for um objeto com id nulo, é um novo objeto
     //se não é atualização de um objeto existente.
     if(object.id === undefined){
-    this.service.save(object,this.rota)
+    this.service.save(object)
     .subscribe(result => {
-     this.service.getAll(this.rota)
+     this.service.getAll()
       //this.service.sendNull();
     })
     }else{
-    this.service.update(object.id,this.rota,object)
+    this.service.update(object.id,object)
     .subscribe(result => {
-      this.service.getAll(this.rota)
+      this.service.getAll()
      })
     }
 
