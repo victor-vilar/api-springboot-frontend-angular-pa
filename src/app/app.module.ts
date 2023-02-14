@@ -21,6 +21,9 @@ import { ResidueDetailComponent } from './components/crudbase/crud-components/re
 import { CustomerDetailComponent } from './components/crudbase/crud-components/customer/customer-detail/customer-detail.component';
 import { ItensTableCustomerComponent } from './components/util/itens-table-customer/itens-table-customer.component';
 import { CpfCnpjPipePipe } from './pipes/cpf-cnpj-pipe.pipe';
+import { CustomerContractsComponent } from './components/crudbase/crud-components/customer/customer-contracts/customer-contracts.component';
+import { CustomerAddressesComponent } from './components/crudbase/crud-components/customer/customer-addresses/customer-addresses.component';
+import { CustomerSupervisorsComponent } from './components/crudbase/crud-components/customer/customer-supervisors/customer-supervisors.component';
 
 
 
@@ -43,6 +46,9 @@ import { CpfCnpjPipePipe } from './pipes/cpf-cnpj-pipe.pipe';
     CustomerDetailComponent,
     ItensTableCustomerComponent,
     CpfCnpjPipePipe,
+    CustomerContractsComponent,
+    CustomerAddressesComponent,
+    CustomerSupervisorsComponent,
   ],
   imports: [
     BrowserModule,

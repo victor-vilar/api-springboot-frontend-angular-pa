@@ -1,3 +1,5 @@
+import { CustomerSupervisorsComponent } from './components/crudbase/crud-components/customer/customer-supervisors/customer-supervisors.component';
+import { CustomerAddressesComponent } from './components/crudbase/crud-components/customer/customer-addresses/customer-addresses.component';
 
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NgModule } from '@angular/core';
@@ -9,6 +11,7 @@ import { ContractComponent } from './components/crudbase/crud-components/contrac
 import { EquipamentDetailComponent } from './components/crudbase/crud-components/equipaments/equipament-detail/equipament-detail.component';
 import { ResidueDetailComponent } from './components/crudbase/crud-components/residue/residue-detail/residue-detail.component';
 import { CustomerDetailComponent } from './components/crudbase/crud-components/customer/customer-detail/customer-detail.component';
+import { CustomerContractsComponent } from './components/crudbase/crud-components/customer/customer-contracts/customer-contracts.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'dashboard', pathMatch:'full'},
@@ -17,17 +20,17 @@ const routes: Routes = [
     {path:'cliente/:id',component:CustomerDetailComponent},
     {path:'cliente/novo',component:CustomerDetailComponent},
 
-    {path:'cliente/:cpfCnpj/contratos',component:CustomerDetailComponent, children:[
+    {path:'cliente/:cpfCnpj/contratos',component:CustomerContractsComponent, children:[
       {path:'contrato/:id',component:CustomerDetailComponent},
       {path:'contrato/novo',component:CustomerDetailComponent},
     ]},
 
-    {path:'cliente/:cpfCnpj/enderecos',component:CustomerDetailComponent, children:[
+    {path:'cliente/:cpfCnpj/enderecos',component:CustomerAddressesComponent, children:[
       {path:'endereco/:id',component:CustomerDetailComponent},
       {path:'endereco/novo',component:CustomerDetailComponent},
     ]},
 
-    {path:'cliente/:cpfCnpj/fiscais',component:CustomerDetailComponent, children:[
+    {path:'cliente/:cpfCnpj/fiscais',component:CustomerSupervisorsComponent, children:[
       {path:'fiscal/:id',component:CustomerDetailComponent},
       {path:'fiscal/novo',component:CustomerDetailComponent},
     ]}
