@@ -12,11 +12,22 @@ import { Customer } from 'src/app/model/Customer';
 export class CustomerContractsComponent implements OnInit {
 
   constructor(
-    private customerService:CustomerService,
-    private contractService:ContractsService,
-    private activeRoute:ActivatedRoute) { }
+    customerService:CustomerService,
+    contractService:ContractsService,
+    private activeRoute:ActivatedRoute) {
+      this.contractService = contractService;
+      this.customerService = customerService;
+     }
 
   selectedCustomer:Customer;
+  title='Contratos'
+  pathPrefix='teste';
+  headerForTables = ['Id','Número','Data Início', 'Data Fim', 'Total de Itens', 'Total em R$']
+  pathToOperations = [];
+  customerService:CustomerService;
+  contractService:ContractsService;
+
+
 
   ngOnInit(): void {
 
@@ -36,9 +47,9 @@ export class CustomerContractsComponent implements OnInit {
   }
 
 
-ngOnChanges(changes: SimpleChanges): void {
-  this.customerService.getAll();
-}
+  ngOnChanges(changes: SimpleChanges): void {
+    this.customerService.getAll();
+  }
 
 
 }

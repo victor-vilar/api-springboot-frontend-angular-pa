@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-crud-menu',
@@ -12,13 +13,12 @@ export class CrudMenuComponent implements OnInit {
   @Input()
   linksListForOperations:any[] = []
 
-  constructor() { }
+  constructor(private router:Router) { }
   ngOnInit(): void {
   }
 
   goTo(url:string){
-    console.log(url);
-    window.open(url);
+    this.router.navigateByUrl(['/',url])
   }
 
 

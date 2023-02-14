@@ -7,6 +7,15 @@
     [itemSize]="selectedCustomer.contracts.length"
   ></app-customer-info>
 
+
+  <app-itens-table
+  [model]="title"
+  [tableHeaders]="headerForTables"
+  [fatherPathPrefix]="pathPrefix"
+  [service]="contractService"
+  >
+
+  </app-itens-table>
 <!--
   <table class="contracts-table">
     <tr>
