@@ -16,5 +16,10 @@ export class CrudMenuComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  goTo(url:string){
+    console.log(url);
+    window.open(url);
+  }
+
 
 }

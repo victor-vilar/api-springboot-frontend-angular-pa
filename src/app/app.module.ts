@@ -24,6 +24,7 @@ import { CpfCnpjPipePipe } from './pipes/cpf-cnpj-pipe.pipe';
 import { CustomerContractsComponent } from './components/crudbase/crud-components/customer/customer-contracts/customer-contracts.component';
 import { CustomerAddressesComponent } from './components/crudbase/crud-components/customer/customer-addresses/customer-addresses.component';
 import { CustomerSupervisorsComponent } from './components/crudbase/crud-components/customer/customer-supervisors/customer-supervisors.component';
+import { CustomerInfoComponent } from './components/crudbase/crud-components/customer/customer-info/customer-info.component';
 
 
 
@@ -49,6 +50,7 @@ import { CustomerSupervisorsComponent } from './components/crudbase/crud-compone
     CustomerContractsComponent,
     CustomerAddressesComponent,
     CustomerSupervisorsComponent,
+    CustomerInfoComponent,
   ],
   imports: [
     BrowserModule,
