@@ -42,10 +42,10 @@ export class ItensTableComponent implements OnInit, OnChanges{
     this.getAll();
   }
 
-  //transform the objects into a array of values to fill the table rows
-  transformObjectInArrayOfValues(object:any){
-    return Object.values(object);
+  findAliasInHeaderForTableArray(key:any){
+    return this.tableHeaders[key];
   }
+
 
   //get the selected row to do the operations of delete, update etc.
   deleteItem(event:any){
@@ -58,6 +58,12 @@ export class ItensTableComponent implements OnInit, OnChanges{
   getAll(){
     this.service.getAll();
   };
+
+  returnZero() {
+    return 0;
+
+
+  }
 
 
 

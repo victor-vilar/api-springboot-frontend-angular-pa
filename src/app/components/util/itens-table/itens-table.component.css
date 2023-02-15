@@ -3,41 +3,36 @@
   font-size: 1.5em;
   font-weight: bold;
 }
-
- .itens-table-container table{
-  display: block;
-  overflow-x: auto;
-  white-space: nowrap;
-}
-
-.itens-table-container th, tr{
-  padding:8px;
-  text-align: center;
+.itens-table-container-item{
+  margin-top: 10px;
   border: 1px solid var(--cinza);
 }
 
-.itens-table-container th {
+.object-key-values, .object-options{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+
+}
+
+.key-header, .key-value, .options-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding:5px;
+  border-bottom: 1px solid var(--cinza);
+  text-align: center;
+  min-height: 50px;
+  border-collapse: collapse;
+
+}
+.options-buttons:last-child{
+  border: none;
+}
+
+.key-header {
   background-color: var(--cinza-escuro);
   color: white;
 
-}
-.itens-table-container tr {
-  height: 50px;
-
-}
-
-.itens-table-container tr:nth-child(odd) {
-  background-color: #f2f2f2;
-}
-
-.itens-table-container table tr {
-  font-weight: bold;
-  font-size: 0.85em;
-
-}
-
-.itens-table-container table tr td{
-  padding: 5px;
 }
 
 .options-buttons{
@@ -51,8 +46,8 @@
 
 .options-buttons .bt{
 
-  max-width:30px;
-  max-height: 30px;
+  min-width:30px;
+  min-height: 30px;
   border: 1px solid;
   border-radius: 5px;
   color:white;

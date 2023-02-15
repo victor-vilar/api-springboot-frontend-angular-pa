@@ -24,12 +24,18 @@ export class EquipamentsComponent implements OnInit, CrudBaseComponent {
   }
 
   ngOnInit() {
-    this.headerForTables = ['Id','Equipamento','Volume em M³','Opções'];
+
+    this.headerForTables ={
+     id:'Id',
+     equipamentName:'Equipamento',
+     sizeInMeterCubic:'Volume em M³'
+    };
+
     this.title='Equipamentos';
     this.pathPrefix='equipamento';
     this.pathToOperations = [
         {name:"Cadastrar", path: this.pathPrefix + '/novo'},
-      ];
+    ];
   }
 
 

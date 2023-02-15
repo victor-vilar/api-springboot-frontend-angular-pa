@@ -1,6 +1,22 @@
 <div class="itens-table-container">
   <h4>{{model}} Cadastrados</h4>
-  <table class="table">
+
+  <div class="itens-table-container-wrapper">
+    <div class="itens-table-container-item" *ngFor="let object of tableData" >
+        <div class="object-key-values" *ngFor="let item of object | keyvalue: returnZero ">
+            <label class="key-header"><b>{{findAliasInHeaderForTableArray(item.key)}}</b></label>
+            <b class="key-value">{{item.value}}</b>
+        </div>
+        <div class="object-options">
+          <label class="key-header"><b>Opções</b></label>
+          <div class="options-buttons">
+            <button type="button" title="editar" name="edit" id="edit" class="bt bt-edit " [routerLink]="['./'+fatherPathPrefix, object.id]" [queryParams]="{edit:true}"><i class="fas fa-edit"></i></button>
+            <button type="button" title="deletar" name="delete" id="delete" class="bt bt-delete " (click)="deleteItem(object)"><i class="fas fa-times"></i></button>
+          </div>
+       </div>
+    </div>
+  </div>
+  <!-- <table class="table">
 
     <tr>
       <th *ngFor="let header of tableHeaders">{{header}}</th>
@@ -15,6 +31,6 @@
           </td>
     </tr>
 
-  </table>
+  </table> -->
 
 </div>

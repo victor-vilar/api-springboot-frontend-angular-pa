@@ -18,7 +18,7 @@ export class CrudMenuComponent implements OnInit {
   }
 
   goTo(url:string){
-    this.router.navigateByUrl(['/',url])
+
   }
 
 
