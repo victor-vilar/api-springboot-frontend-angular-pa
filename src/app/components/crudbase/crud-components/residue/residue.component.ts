@@ -23,7 +23,15 @@ export class ResidueComponent implements OnInit, CrudBaseComponent{
     this.service = service;
   }
   ngOnInit(): void {
-    this.headerForTables = ['Id','Resíduo','Classe','Opções'];
+
+
+    this.headerForTables ={
+      id:'Id',
+      type:'Resíduo',
+      description:'Classe'
+     };
+
+
     this.title='Resíduos';
     this.pathPrefix='residuo';
     this.pathToOperations = [

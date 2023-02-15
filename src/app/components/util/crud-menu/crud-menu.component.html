@@ -1,7 +1,7 @@
 
 <nav class ='options-buttons'>
   <ng-container *ngFor="let obj of linksListForOperations">
-    <a (click)="goTo(obj.path)">{{obj.name}}</a>
+    <a [routerLink]="obj.path">{{obj.name}}</a>
   </ng-container>
 
 </nav>

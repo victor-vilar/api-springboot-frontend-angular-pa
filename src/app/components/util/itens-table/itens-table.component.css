@@ -77,8 +77,29 @@
   background-color: rgb(175, 20, 20);
 }
 
-@media screen and (min-width:576px){
-  .itens-table-container table{
-    display: table;
+@media screen and (min-width:976px){
+
+  .itens-table-container-item{
+    border: none;
+    display: grid;
+    /* DESCOBRIR COMO COLOCAR O TAMANHO VARIAVEL  */
+    grid-template-columns: repeat(4,1fr);
+    border-bottom: 1px solid black;
+  }
+  .itens-table-container-item:not(:first-child) .object-key-values .key-header {
+    display: none;
+  }
+
+  .itens-table-container-item:not(:first-child) .object-options .key-header{
+    display: none;
+  }
+
+  .object-key-values, .object-options{
+    display: block;
+
+  }
+
+  .key-header, .key-value, .options-buttons {
+    border:none;
   }
 }

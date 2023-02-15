@@ -78,7 +78,7 @@ export class EquipamentDetailComponent implements OnInit, FormDetail {
      })
     }
 
-    this.destroy();
+   // this.destroy();
   }
 
   destroy(){
