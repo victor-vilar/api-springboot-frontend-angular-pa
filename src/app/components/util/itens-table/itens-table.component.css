@@ -5,7 +5,7 @@
 }
 .itens-table-container-item{
   margin-top: 10px;
-  border: 1px solid var(--cinza);
+  /* border: 1px solid var(--cinza); */
 }
 
 .object-key-values, .object-options{

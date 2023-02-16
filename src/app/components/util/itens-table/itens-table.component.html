@@ -1,8 +1,15 @@
 <div class="itens-table-container">
-  <h4>{{model}} Cadastrados</h4>
+
+  <div class="header-wrapper">
+    <h4>{{model}} Cadastrados</h4>
+    <div class="search-wrapper">
+      <label for="">Pesquisar:</label>
+      <input type="text" [(ngModel)] ="searchedValue" (keyup)="filteredTableData()">
+    </div>
+  </div>
 
   <div class="itens-table-container-wrapper">
-    <div class="itens-table-container-item" *ngFor="let object of tableData" >
+    <div class="itens-table-container-item" *ngFor="let object of filteredTableDataList">
         <div class="object-key-values" *ngFor="let item of object | keyvalue: returnZero ">
             <label class="key-header"><b>{{findAliasInHeaderForTableArray(item.key)}}</b></label>
             <b class="key-value">{{item.value}}</b>
@@ -16,7 +23,7 @@
        </div>
     </div>
   </div>
-  
+
   <!-- <table class="table">
 
     <tr>

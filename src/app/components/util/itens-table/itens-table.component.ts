@@ -10,15 +10,17 @@ import { from, of } from 'rxjs';
 })
 export class ItensTableComponent implements OnInit, OnChanges{
 
+  searchedValue:string;
 
   //header of the data sended by component
   @Input()
   tableHeaders:string[] = [];
 
+
   // data that will fill the table
   @Input()
   tableData:any = [];
-
+  filteredTableDataList:any;
   //model to fill the header tag
   @Input()
   model:string='';
@@ -34,8 +36,9 @@ export class ItensTableComponent implements OnInit, OnChanges{
 
   ngOnInit(): void {
       this.service.refreshAllData()
-      .subscribe(value =>
-        this.tableData = value);
+      .subscribe(value =>{
+        this.tableData = value
+        this.filteredTableDataList = this.tableData.slice()});
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -61,10 +64,15 @@ export class ItensTableComponent implements OnInit, OnChanges{
 
   returnZero() {
     return 0;
-
-
   }
 
+  filteredTableData(){
+    this.filteredTableDataList = this.tableData.filter(element => {
+      if(Object.values(element).toString().toLowerCase().includes(this.searchedValue)){
+        return element;
+      }
+    });
+  }
 
 
 
