@@ -1,10 +1,19 @@
 <div class="itens-table-container">
-  <h4>{{model}} Cadastrados</h4>
+
+  <div class="header-wrapper">
+    <h4>{{model}} Cadastrados</h4>
+    <div class="search-wrapper">
+      <label for="">Pesquisar:</label>
+      <input type="text" [(ngModel)] ="searchedValue" (keyup)="filteredTableData()">
+    </div>
+  </div>
+
+
   <table class="table">
     <tr>
       <th *ngFor="let header of tableHeaders">{{header}}</th>
     </tr>
-    <tr *ngFor="let object of tableData">
+    <tr *ngFor="let object of filteredTableDataList">
             <td>{{object.cpfCnpj | cpfCnpj}}</td>
             <td>{{object.nameCompanyName}}</td>
             <td>{{object.contracts.length}}</td>

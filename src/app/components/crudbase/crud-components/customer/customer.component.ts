@@ -24,14 +24,14 @@ export class CustomerComponent implements OnInit, CrudBaseComponent {
   }
   ngOnInit(): void {
 
-    this.headerForTables = [
+    this.headerForTables ={
+      cpfCnpj:'CPF/CNPJ',
+      nameCompanyName:'Nome/Razão Social',
+      contractsSize:'Total de Contratos',
+      supervisorsSize:'Total de Fiscais',
+      adressesSize:'Total de Endereços',
+     };
 
-    'CPF/CNPJ',
-    'Nome/Razão Social',
-    'Tot. Contratos',
-    'Tot. Endereços',
-    'Tot. Fiscais',
-    'Opções'];
     this.title='Clientes';
     this.pathPrefix='cliente';
     this.pathToOperations = [

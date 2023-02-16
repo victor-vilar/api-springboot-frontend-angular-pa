@@ -17,7 +17,7 @@ export class ItensTableCustomerComponent implements OnInit {
   // data that will fill the table
   @Input()
   tableData:any = [];
-
+  filteredTableDataList:any = [];
   //model to fill the header tag
   @Input()
   model:string='';
@@ -25,6 +25,7 @@ export class ItensTableCustomerComponent implements OnInit {
   @Input()
   fatherPathPrefix:any;
 
+  searchedValue:string;
 
   @Input()
   service:any;
@@ -33,8 +34,10 @@ export class ItensTableCustomerComponent implements OnInit {
 
   ngOnInit(): void {
       this.service.refreshAllData()
-      .subscribe(value =>
-        this.tableData = value);
+      .subscribe(value =>{
+        this.tableData = value
+        this.filteredTableDataList = this.tableData.slice();
+      });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -58,6 +61,14 @@ export class ItensTableCustomerComponent implements OnInit {
   getAll(){
     this.service.getAll(this.fatherUrl);
   };
+
+  filteredTableData(){
+    this.filteredTableDataList = this.tableData.filter(element => {
+      if(Object.values(element).toString().toLowerCase().includes(this.searchedValue)){
+        return element;
+      }
+    });
+  }
 
 
 }
