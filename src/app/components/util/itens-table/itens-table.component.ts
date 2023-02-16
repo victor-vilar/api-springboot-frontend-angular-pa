@@ -16,7 +16,6 @@ export class ItensTableComponent implements OnInit, OnChanges{
   @Input()
   tableHeaders:string[] = [];
 
-
   // data that will fill the table
   @Input()
   tableData:any = [];

@@ -3,9 +3,25 @@
   font-size: 1.5em;
   font-weight: bold;
 }
+
+.search-wrapper{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+
+}
+.search-wrapper label{
+  font-weight: bold;
+  color:var(--cinza-escuro);
+  grid-area: 1/1;
+}
+.search-wrapper input{
+  grid-area: 1/2 span;
+  width: 100%;
+}
+
 .itens-table-container-item{
   margin-top: 10px;
-  /* border: 1px solid var(--cinza); */
+  border: 1px solid var(--cinza);
 }
 
 .object-key-values, .object-options{
@@ -102,4 +118,14 @@
   .key-header, .key-value, .options-buttons {
     border:none;
   }
+
+  .search-wrapper{
+    display: flex;
+    gap:5px;
+
+  }
+  .search-wrapper input{
+    width: 50%;
+  }
+
 }
