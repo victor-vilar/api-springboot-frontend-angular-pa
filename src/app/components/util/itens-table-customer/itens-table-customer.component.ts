@@ -62,12 +62,24 @@ export class ItensTableCustomerComponent implements OnInit {
     this.service.getAll(this.fatherUrl);
   };
 
+  findAliasInHeaderForTableArray(key:any){
+    let list = Object.entries(this.tableData);
+    list.filter(e =>{
+      console.log(Object.entries(e));
+    })
+
+  }
+
   filteredTableData(){
     this.filteredTableDataList = this.tableData.filter(element => {
       if(Object.values(element).toString().toLowerCase().includes(this.searchedValue)){
         return element;
       }
     });
+  }
+
+  returnZero() {
+    return 0;
   }
 
 

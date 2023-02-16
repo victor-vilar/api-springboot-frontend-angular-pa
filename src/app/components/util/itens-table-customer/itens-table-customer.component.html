@@ -8,8 +8,43 @@
     </div>
   </div>
 
+  <div class="itens-table-container-wrapper">
+    <div class="itens-table-container-item" *ngFor="let object of filteredTableDataList">
+        <div class="object-key-values">
+            <label class="key-header"><b>CPF/CNPJ</b></label>
+             <b class="key-value">{{object.cpfCnpj | cpfCnpj}}</b>
+        </div>
+        <div class="object-key-values">
+            <label class="key-header"><b>Nome/Razão Social</b></label>
+            <b class="key-value">{{object.nameCompanyName}}</b>
+        </div>
+        <div class="object-key-values">
+            <label class="key-header"><b>Total de Contratos</b></label>
+            <b class="key-value">{{object.contracts.length}}</b>
+        </div>
+        <div class="object-key-values">
+            <label class="key-header"><b>Total de Enderecos</b></label>
+            <b class="key-value">{{object.addresses.length}}</b>
+        </div>
+        <div class="object-key-values" >
+            <label class="key-header"><b>Total de Fiscais</b></label>
+            <b class="key-value">{{object.supervisors.length}}</b>
+        </div>
+        <div class="object-options">
+          <label class="key-header"><b>Opções</b></label>
+          <div class="options-buttons">
+            <button type="button" title="Exibir Contratos" name="contratos" id="contratos" class="bt bt-op " [routerLink]="['cliente',object.cpfCnpj,'contratos']"><i class="fas fa-file-signature"></i></button>
+            <button type="button" title="Exibir Enderecos" name="enderecos" id="enderecos" class="bt bt-op " [routerLink]="['cliente',object.cpfCnpj,'enderecos']" ><i class="fas fa-map-marker-alt"></i></button>
+            <button type="button" title="Exibir Fiscais" name="fiscais" id="fiscais" class="bt bt-op " [routerLink]="['cliente',object.cpfCnpj,'fiscais']"><i class="fas fa-user"></i></button>
+            <button type="button" title="editar" name="edit" id="edit" class="bt bt-edit " [routerLink]="['./'+fatherPathPrefix, object.id]" [queryParams]="{edit:true}"><i class="fas fa-edit"></i></button>
+            <button type="button" title="deletar" name="delete" id="delete" class="bt bt-delete " (click)="deleteItem(object)"><i class="fas fa-times"></i></button>
+          </div>
+       </div>
+    </div>
+  </div>
 
-  <table class="table">
+
+  <!-- <table class="table">
     <tr>
       <th *ngFor="let header of tableHeaders">{{header}}</th>
     </tr>
@@ -28,6 +63,6 @@
           </td>
     </tr>
 
-  </table>
+  </table> -->
 
 </div>

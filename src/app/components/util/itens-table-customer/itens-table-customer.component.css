@@ -4,36 +4,52 @@
   font-weight: bold;
 }
 
- .itens-table-container table{
+.search-wrapper{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
 
-  display: block;
-  overflow-x: auto;
-  white-space: nowrap;
+}
+.search-wrapper label{
+  font-weight: bold;
+  color:var(--cinza-escuro);
+  grid-area: 1/1;
+}
+.search-wrapper input{
+  grid-area: 1/2 span;
+  width: 100%;
 }
 
-.itens-table-container th, tr{
-  padding:8px;
-  text-align: center;
+
+.itens-table-container-item{
+  margin-top: 10px;
   border: 1px solid var(--cinza);
 }
 
-.itens-table-container th {
+.object-key-values, .object-options{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+
+}
+
+.key-header, .key-value, .options-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding:5px;
+  border-bottom: 1px solid var(--cinza);
+  text-align: center;
+  min-height: 50px;
+  border-collapse: collapse;
+
+}
+.options-buttons:last-child{
+  border: none;
+}
+
+.key-header {
   background-color: var(--cinza-escuro);
   color: white;
 
-}
-.itens-table-container tr {
-  height: 50px;
-
-}
-
-.itens-table-container tr:nth-child(odd) {
-  background-color: #f2f2f2;
-}
-
-.itens-table-container td {
-  font-weight: bold;
-  font-size: 0.85em;
 }
 
 
@@ -49,8 +65,8 @@
 
 .options-buttons .bt{
 
-  max-width:30px;
-  max-height: 30px;
+  min-width:25px;
+  min-height: 25px;
   border: 1px solid;
   border-radius: 5px;
   color:white;
@@ -59,6 +75,10 @@
   align-items: center;
   justify-content: center;
 }
+
+
+
+
 
 .options-buttons .bt-edit{
   background-color: #ffdd00;
@@ -88,8 +108,42 @@
   background-color: rgb(23, 139, 54);
 }
 
-@media screen and (min-width:576px){
-  .itens-table-container table{
-    display: table;
+
+@media screen and (min-width:976px){
+
+  .itens-table-container-item{
+    border: none;
+    display: grid;
+    /* DESCOBRIR COMO COLOCAR O TAMANHO VARIAVEL  */
+    grid-template-columns: repeat(6,1fr);
+    border-bottom: 1px solid black;
   }
+  .itens-table-container-item:not(:first-child) .object-key-values .key-header {
+    display: none;
+  }
+
+  .itens-table-container-item:not(:first-child) .object-options .key-header{
+    display: none;
+  }
+
+  .object-key-values, .object-options{
+    display: block;
+
+  }
+
+  .key-header, .key-value, .options-buttons {
+    border:none;
+  }
+
+  .search-wrapper{
+    display: flex;
+    gap:5px;
+
+  }
+  .search-wrapper input{
+    width: 50%;
+  }
+
 }
+
+
