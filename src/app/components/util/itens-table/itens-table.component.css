@@ -19,6 +19,12 @@
   width: 100%;
 }
 
+.empty-records h1{
+  color:red;
+  text-align: center;
+
+}
+
 .itens-table-container-item{
   margin-top: 10px;
   border: 1px solid var(--cinza);

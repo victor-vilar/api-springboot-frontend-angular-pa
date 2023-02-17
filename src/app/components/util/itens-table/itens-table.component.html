@@ -1,27 +1,32 @@
 <div class="itens-table-container">
 
-  <div class="header-wrapper">
-    <h4>{{model}} Cadastrados</h4>
-    <div class="search-wrapper">
-      <label for="">Pesquisar:</label>
-      <input type="text" [(ngModel)] ="searchedValue" (keyup)="filteredTableData()">
-    </div>
+  <div class="empty-records" *ngIf="tableData.length === 0">
+    <h1>Ainda não há registros salvos</h1>
   </div>
-
-  <div class="itens-table-container-wrapper">
-    <div class="itens-table-container-item" *ngFor="let object of filteredTableDataList">
-        <div class="object-key-values" *ngFor="let item of object | keyvalue: returnZero ">
-            <label class="key-header"><b>{{findAliasInHeaderForTableArray(item.key)}}</b></label>
-            <b class="key-value">{{item.value}}</b>
+  
+  <ng-container *ngIf="tableData.length !== 0">
+      <div class="header-wrapper">
+        <h4>{{model}} Cadastrados</h4>
+        <div class="search-wrapper">
+          <label for="">Pesquisar:</label>
+          <input type="text" [(ngModel)] ="searchedValue" (keyup)="filteredTableData()">
         </div>
-        <div class="object-options">
-          <label class="key-header"><b>Opções</b></label>
-          <div class="options-buttons">
-            <button type="button" title="editar" name="edit" id="edit" class="bt bt-edit " [routerLink]="['./'+fatherPathPrefix, object.id]" [queryParams]="{edit:true}"><i class="fas fa-edit"></i></button>
-            <button type="button" title="deletar" name="delete" id="delete" class="bt bt-delete " (click)="deleteItem(object)"><i class="fas fa-times"></i></button>
-          </div>
-       </div>
-    </div>
-  </div>
+      </div>
 
+      <div class="itens-table-container-wrapper">
+        <div class="itens-table-container-item" *ngFor="let object of filteredTableDataList">
+            <div class="object-key-values" *ngFor="let item of object | keyvalue: returnZero ">
+                <label class="key-header"><b>{{findAliasInHeaderForTableArray(item.key)}}</b></label>
+                <b class="key-value">{{item.value}}</b>
+            </div>
+            <div class="object-options">
+              <label class="key-header"><b>Opções</b></label>
+              <div class="options-buttons">
+                <button type="button" title="editar" name="edit" id="edit" class="bt bt-edit " [routerLink]="['./'+fatherPathPrefix, object.id]" [queryParams]="{edit:true}"><i class="fas fa-edit"></i></button>
+                <button type="button" title="deletar" name="delete" id="delete" class="bt bt-delete " (click)="deleteItem(object)"><i class="fas fa-times"></i></button>
+              </div>
+          </div>
+        </div>
+      </div>
+  </ng-container>
 </div>
