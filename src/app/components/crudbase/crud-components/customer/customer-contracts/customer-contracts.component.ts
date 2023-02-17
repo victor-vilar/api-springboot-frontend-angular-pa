@@ -21,9 +21,9 @@ export class CustomerContractsComponent implements OnInit {
 
   selectedCustomer:Customer;
   title='Contratos'
-  pathPrefix='teste';
-  headerForTables = ['Id','Número','Data Início', 'Data Fim', 'Total de Itens', 'Total em R$']
-  pathToOperations = [];
+  pathPrefix='contrato';
+  headerForTables:any;
+  pathToOperations = [{name:"+", path: this.pathPrefix + '/novo', title:"Novo Contrato"}];
   customerService:CustomerService;
   contractService:ContractsService;
 
@@ -31,24 +31,21 @@ export class CustomerContractsComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.headerForTables ={
+      id:'Id',
+      number:'Número',
+      beginDate:'Data Início',
+      endDate:'Data Fim',
+      totalItens:'Total de Itens',
+      totalEmRs:'Total em R$'
+     };
+    this.activeRoute.paramMap.subscribe(param =>{
+      console.log(param.get('cpfCnpj'));
+      console.log(this.customerService.list.length);
+      this.selectedCustomer = this.customerService.list.find(obj => obj.cpfCnpj === param.get('cpfCnpj'));
+    })
 
-      //===CODIGO UTILIZADO SOMENTE EM DESENVOLVIMENTO
-      this.customerService.refreshAllData()
-      .subscribe(value =>{
-        console.log(value);
-        this.activeRoute.paramMap.subscribe(e =>{
-        this.selectedCustomer = this.customerService.list.find(obj => obj.cpfCnpj === e.get('cpfCnpj'))})}
-        );
-        //============================================
 
-
-
-      //this.selectedCustomer = this.customerService.list.find(obj => obj.cpfCnpj === e.get('cpfCnpj'))})
-  }
-
-
-  ngOnChanges(changes: SimpleChanges): void {
-    this.customerService.getAll();
   }
 
 

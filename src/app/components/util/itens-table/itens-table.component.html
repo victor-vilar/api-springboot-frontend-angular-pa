@@ -1,9 +1,9 @@
 <div class="itens-table-container">
 
   <div class="empty-records" *ngIf="tableData.length === 0">
-    <h1>Ainda não há registros salvos</h1>
+    <h1>Ainda não há {{model.toLowerCase()}} cadastrados</h1>
   </div>
-  
+
   <ng-container *ngIf="tableData.length !== 0">
       <div class="header-wrapper">
         <h4>{{model}} Cadastrados</h4>

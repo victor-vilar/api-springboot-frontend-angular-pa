@@ -19,21 +19,18 @@ const routes: Routes = [
   {path:'clientes',component:CustomerComponent, children:[
     {path:'cliente/:id',component:CustomerDetailComponent},
     {path:'cliente/novo',component:CustomerDetailComponent},
-
-    {path:'cliente/:cpfCnpj/contratos',component:CustomerContractsComponent, children:[
-      {path:'contrato/:id',component:CustomerDetailComponent},
-      {path:'contrato/novo',component:CustomerDetailComponent},
-    ]},
-
-    {path:'cliente/:cpfCnpj/enderecos',component:CustomerAddressesComponent, children:[
-      {path:'endereco/:id',component:CustomerDetailComponent},
-      {path:'endereco/novo',component:CustomerDetailComponent},
-    ]},
-
-    {path:'cliente/:cpfCnpj/fiscais',component:CustomerSupervisorsComponent, children:[
-      {path:'fiscal/:id',component:CustomerDetailComponent},
-      {path:'fiscal/novo',component:CustomerDetailComponent},
-    ]}
+  ]},
+  {path:'cliente/:cpfCnpj/contratos',component:CustomerContractsComponent, children:[
+    {path:'contrato/:id',component:CustomerDetailComponent},
+    {path:'contrato/novo',component:CustomerDetailComponent},
+  ]},
+  {path:'cliente/:cpfCnpj/enderecos',component:CustomerAddressesComponent, children:[
+    {path:'endereco/:id',component:CustomerDetailComponent},
+    {path:'endereco/novo',component:CustomerDetailComponent},
+  ]},
+  {path:'cliente/:cpfCnpj/fiscais',component:CustomerSupervisorsComponent, children:[
+    {path:'fiscal/:id',component:CustomerDetailComponent},
+    {path:'fiscal/novo',component:CustomerDetailComponent},
   ]},
   {path:'contratos',component:ContractComponent},
   {path:'residuos',component:ResidueComponent, children:[
