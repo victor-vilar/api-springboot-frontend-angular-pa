@@ -1,15 +1,22 @@
 <div class="wrapper">
-  <h4>Cadastro de Contratos</h4>
+
   <form (ngSubmit)="addNewContract()" #form="ngForm">
+    <h4>Cadastro de Contratos</h4>
     <div class="basic-contract-info">
-      <label>Número</label>
-      <input type="text" placeholder="Número" name="contractNumber" ngModel>
-      <label>Data de Início</label>
-      <input type="date" placeholder="Data de Início" name="beginDate" ngModel>
-      <label>Data de Encerramento</label>
-      <input type="date" placeholder="Data de Fim" name="endDate" ngModel>
+      <div class="contract-field">
+        <label>Número</label>
+        <input type="text" placeholder="Número" name="contractNumber" ngModel>
+      </div>
+      <div class="contract-field">
+        <label>Data de Início</label>
+        <input type="date" placeholder="Data de Início" name="beginDate" ngModel>
+      </div>
+        <div class="contract-field">
+        <label>Data de Encerramento</label>
+        <input type="date" placeholder="Data de Fim" name="endDate" ngModel>
+      </div>
     </div>
-    <h4>Resíduos</h4>
+    <h4>Adicionar Resíduos</h4>
     <div class="residue-item-options">
       <div class="residue-item-options-item">
           <label for="cars">Resíduo:</label>
@@ -31,8 +38,8 @@
         <label>Valor em Reais:</label>
         <input type="currency" name="itemValue" ngModel>
       </div>
-      <button (click)="addItemToContract()">Adicionar Resíduo</button>
     </div>
+    <button (click)="addItemToContract()">Adicionar Resíduo</button>
   </form>
 
   <app-itens-table-item-contract
@@ -41,16 +48,4 @@
     [model]="'itens'">
   </app-itens-table-item-contract>
 </div>
-
-
-  <!-- <table>
-    <thead>
-      <tr>
-        <th>Resíduo</th>
-        <th>Equipamento</th>
-        <th>Quantidade</th>
-        <th>Resíduo</th>
-      </tr>
-    </thead>
-  </table> -->
 

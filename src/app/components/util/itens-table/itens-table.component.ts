@@ -68,7 +68,7 @@ export class ItensTableComponent implements OnInit, OnChanges{
 
   filteredTableData(){
     this.filteredTableDataList = this.tableData.filter(element => {
-      if(Object.values(element).toString().toLowerCase().includes(this.searchedValue)){
+      if(Object.values(element).toString().toLowerCase().includes(this.searchedValue.toLocaleLowerCase())){
         return element;
       }
     });

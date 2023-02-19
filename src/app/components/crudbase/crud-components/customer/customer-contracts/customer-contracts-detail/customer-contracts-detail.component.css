@@ -34,3 +34,21 @@
   width: 100%;
 }
 
+@media screen and (min-width:1200px){
+  .basic-contract-info, .residue-item-options{
+    display: flex;
+    gap:5px;
+  }
+  .basic-contract-info{
+    border-bottom: 1px solid var(--cinza);
+    padding-bottom: 10px;
+  }
+  .contract-field, .residue-item-options-item{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+}
+

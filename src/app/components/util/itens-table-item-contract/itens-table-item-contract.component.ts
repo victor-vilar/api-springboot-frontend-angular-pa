@@ -1,3 +1,4 @@
+import { Residue } from './../../../model/Residue';
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -51,10 +52,11 @@ export class ItensTableItemContractComponent implements OnInit {
 
   };
 
-  returnZero() {
-    return 0;
-  }
 
+
+  //O ARRAY QUE VEM DO PAI POSSUI ALGUNS OBJETOS DENTOS, ENTÃO NÃO CONSIGO BUSCAR ALGUNS DADOS,
+  // ESTA DANDO ERRO NESSE FILTRO,
+  // PRECISO CORRIGIR
   filteredTableData(){
     this.filteredTableDataList = this.tableData.filter(element => {
       if(Object.values(element).toString().toLowerCase().includes(this.searchedValue)){

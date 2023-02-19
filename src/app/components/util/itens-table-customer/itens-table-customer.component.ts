@@ -72,7 +72,7 @@ export class ItensTableCustomerComponent implements OnInit {
 
   filteredTableData(){
     this.filteredTableDataList = this.tableData.filter(element => {
-      if(Object.values(element).toString().toLowerCase().includes(this.searchedValue)){
+      if(Object.values(element).toString().toLowerCase().includes(this.searchedValue.toLocaleLowerCase())){
         return element;
       }
     });
