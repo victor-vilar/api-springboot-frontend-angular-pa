@@ -1,1 +1,56 @@
-<p>customer-contracts-detail works!</p>
+<div class="wrapper">
+  <h4>Cadastro de Contratos</h4>
+  <form (ngSubmit)="addNewContract()" #form="ngForm">
+    <div class="basic-contract-info">
+      <label>Número</label>
+      <input type="text" placeholder="Número" name="contractNumber" ngModel>
+      <label>Data de Início</label>
+      <input type="date" placeholder="Data de Início" name="beginDate" ngModel>
+      <label>Data de Encerramento</label>
+      <input type="date" placeholder="Data de Fim" name="endDate" ngModel>
+    </div>
+    <h4>Resíduos</h4>
+    <div class="residue-item-options">
+      <div class="residue-item-options-item">
+          <label for="cars">Resíduo:</label>
+          <select name="residues" id="residues" name="residue" ngModel>
+            <option value="{{residue.id}}" *ngFor="let residue of residuesList">{{residue.type}}</option>
+          </select>
+      </div>
+      <div class="residue-item-options-item">
+          <label for="cars">Equipamento:</label>
+          <select name="equipaments" id="equipaments" name="equipament" ngModel>
+            <option value="{{equipament.id}}" *ngFor="let equipament of equipamentsList">{{equipament.equipamentName}}</option>
+          </select>
+      </div>
+      <div class="residue-item-options-item" >
+          <label>Quantidade em M³:</label>
+          <input type="text" name="quantity" ngModel>
+      </div>
+      <div class="residue-item-options-item">
+        <label>Valor em Reais:</label>
+        <input type="currency" name="itemValue" ngModel>
+      </div>
+      <button (click)="addItemToContract()">Adicionar Resíduo</button>
+    </div>
+  </form>
+
+  <app-itens-table-item-contract
+    [tableHeaders]="headerForTables"
+    [tableData]="itemContractList">
+    [model]="'itens'">
+  </app-itens-table-item-contract>
+</div>
+
+
+  <!-- <table>
+    <thead>
+      <tr>
+        <th>Resíduo</th>
+        <th>Equipamento</th>
+        <th>Quantidade</th>
+        <th>Resíduo</th>
+      </tr>
+    </thead>
+  </table> -->
+

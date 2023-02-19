@@ -1,0 +1,48 @@
+<div class="itens-table-container">
+
+  <div class="empty-records" *ngIf="tableData.length === 0">
+    <h1>Ainda não há {{model.toLowerCase()}} cadastrados</h1>
+  </div>
+
+  <ng-container *ngIf="tableData.length !== 0">
+      <div class="header-wrapper">
+        <h4>{{model}} Cadastrados</h4>
+        <div class="search-wrapper">
+          <label for="">Pesquisar:</label>
+          <input type="text" [(ngModel)] ="searchedValue" (keyup)="filteredTableData()">
+        </div>
+      </div>
+
+      <div class="itens-table-container-wrapper">
+        <div class="itens-table-container-item" *ngFor="let object of filteredTableDataList">
+          <div class="object-key-values">
+                <label class="key-header"><b>Resíduo</b></label>
+                <b class="key-value">{{object.residue.type}}</b>
+          </div>
+          <div class="object-key-values">
+              <label class="key-header"><b>Equipamento</b></label>
+              <b class="key-value">{{object.equipament.equipamentName}}</b>
+          </div>
+
+          <div class="object-key-values">
+            <label class="key-header"><b>Quantidade em M³</b></label>
+            <b class="key-value">{{object.qtdOfResidue}}</b>
+          </div>
+
+          <div class="object-key-values">
+            <label class="key-header"><b>Valor em R$</b></label>
+            <b class="key-value">{{object.itemValue}}</b>
+          </div>
+
+          <div class="object-options">
+              <label class="key-header"><b>Opções</b></label>
+              <div class="options-buttons">
+                <button type="button" title="editar" name="edit" id="edit" class="bt bt-edit " (click)="editItem(object)"><i class="fas fa-edit"></i></button>
+                <button type="button" title="deletar" name="delete" id="delete" class="bt bt-delete " (click)="deleteItem(object)"><i class="fas fa-times"></i></button>
+              </div>
+          </div>
+        </div>
+      </div>
+  </ng-container>
+</div>
+

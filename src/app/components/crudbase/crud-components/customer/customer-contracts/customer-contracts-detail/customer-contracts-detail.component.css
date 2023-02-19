@@ -1,0 +1,36 @@
+.wrapper{
+  padding:5px;
+}
+
+.basic-contract-info{
+  display: grid;
+}
+.wrapper h4 {
+  margin-top: 5px;
+  font-weight: bold;
+}
+.residue-item-options-item{
+  display: grid;
+}
+
+.basic-contract-info input, select {
+  padding:10px;
+  width: 100%;
+  margin-bottom: 5px;
+}
+.residue-item-options-item input, select {
+  padding:10px;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.residue-item-options button{
+  background-color: var(--cinza-escuro);
+  color: white;
+  font-weight: bold;
+  border: none;
+  box-shadow: 1px 1px 3px black;
+  padding:10px;
+  width: 100%;
+}
+

@@ -12,6 +12,7 @@ import { EquipamentDetailComponent } from './components/crudbase/crud-components
 import { ResidueDetailComponent } from './components/crudbase/crud-components/residue/residue-detail/residue-detail.component';
 import { CustomerDetailComponent } from './components/crudbase/crud-components/customer/customer-detail/customer-detail.component';
 import { CustomerContractsComponent } from './components/crudbase/crud-components/customer/customer-contracts/customer-contracts.component';
+import { CustomerContractsDetailComponent } from './components/crudbase/crud-components/customer/customer-contracts/customer-contracts-detail/customer-contracts-detail.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'dashboard', pathMatch:'full'},
@@ -21,8 +22,8 @@ const routes: Routes = [
     {path:'cliente/novo',component:CustomerDetailComponent},
   ]},
   {path:'cliente/:cpfCnpj/contratos',component:CustomerContractsComponent, children:[
-    {path:'contrato/:id',component:CustomerDetailComponent},
-    {path:'contrato/novo',component:CustomerDetailComponent},
+    {path:'contrato/:id',component:CustomerContractsDetailComponent},
+    {path:'contrato/novo',component:CustomerContractsDetailComponent},
   ]},
   {path:'cliente/:cpfCnpj/enderecos',component:CustomerAddressesComponent, children:[
     {path:'endereco/:id',component:CustomerDetailComponent},
