@@ -61,8 +61,6 @@ export class CustomerContractsDetailComponent implements OnInit {
     this.residuesService.getAll();
   }
 
-  //TODO -> CREATES A DIV IN VIEW TO SHOW THE ITENS ADDED
-  //TODO -> CREATES A LIST TO STORE THESE ITENS
 
   mountItemContractObject():ItemContract{
     return {
@@ -74,11 +72,15 @@ export class CustomerContractsDetailComponent implements OnInit {
   }
 
   addItemToContract(){
+    this.checkIfFormIsFilled();
     let itemContract = this.mountItemContractObject();
     this.itemContractList.push(itemContract);
 
   }
 
+  checkIfFormIsFilled(){
+    
+  }
 
     addNewContract(){
       //TODO -> SAVE CONTRACT

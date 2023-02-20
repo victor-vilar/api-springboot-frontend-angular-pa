@@ -16,30 +16,36 @@
         <input type="date" placeholder="Data de Fim" name="endDate" ngModel>
       </div>
     </div>
-    <h4>Adicionar Resíduos</h4>
+
     <div class="residue-item-options">
-      <div class="residue-item-options-item">
-          <label for="cars">Resíduo:</label>
-          <select name="residues" id="residues" name="residue" ngModel>
-            <option value="{{residue.id}}" *ngFor="let residue of residuesList">{{residue.type}}</option>
-          </select>
+      <div class="residue-item-options-header">
+        <h4>Adicionar Resíduos</h4><br>
       </div>
-      <div class="residue-item-options-item">
-          <label for="cars">Equipamento:</label>
-          <select name="equipaments" id="equipaments" name="equipament" ngModel>
-            <option value="{{equipament.id}}" *ngFor="let equipament of equipamentsList">{{equipament.equipamentName}}</option>
-          </select>
-      </div>
-      <div class="residue-item-options-item" >
-          <label>Quantidade em M³:</label>
-          <input type="text" name="quantity" ngModel>
-      </div>
-      <div class="residue-item-options-item">
-        <label>Valor em Reais:</label>
-        <input type="currency" name="itemValue" ngModel>
-      </div>
+      <div class="residue-item-options-item-body">
+          <div class="residue-item-options-item">
+              <label for="cars">Resíduo:</label>
+              <select name="residues" id="residues" name="residue" ngModel required>
+                <option value="{{residue.id}}" *ngFor="let residue of residuesList">{{residue.type}}</option>
+              </select>
+          </div>
+          <div class="residue-item-options-item">
+              <label for="cars">Equipamento:</label>
+              <select name="equipaments" id="equipaments" name="equipament" ngModel required>
+                <option value="{{equipament.id}}" *ngFor="let equipament of equipamentsList">{{equipament.equipamentName}}</option>
+              </select>
+          </div>
+          <div class="residue-item-options-item" >
+              <label>Quantidade em M³:</label>
+              <input type="text" name="quantity" ngModel required>
+          </div>
+          <div class="residue-item-options-item">
+            <label>Valor em Reais:</label>
+            <input type="currency" name="itemValue" ngModel required>
+          </div>
+        </div>
+        <button (click)="addItemToContract()">Adicionar Resíduo</button>
     </div>
-    <button (click)="addItemToContract()">Adicionar Resíduo</button>
+
   </form>
 
   <app-itens-table-item-contract
