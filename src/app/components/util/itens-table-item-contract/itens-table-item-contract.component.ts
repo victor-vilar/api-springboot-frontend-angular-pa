@@ -1,5 +1,5 @@
 import { Residue } from './../../../model/Residue';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -39,9 +39,10 @@ export class ItensTableItemContractComponent implements OnInit {
     return this.tableHeaders[key];
   }
 
-  //TODO DELETE EMITTER
+  @Output()
+  deleteItemEmitter = new EventEmitter<any>();
   deleteItem(event:any){
-
+    this.deleteItemEmitter.emit(event);
   }
 
   editItem(event:any){

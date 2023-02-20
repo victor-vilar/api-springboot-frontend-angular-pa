@@ -72,24 +72,24 @@ export class CustomerContractsDetailComponent implements OnInit {
   }
 
   addItemToContract(){
-    this.checkIfFormIsFilled();
+    //this.checkIfFormIsFilled();
     let itemContract = this.mountItemContractObject();
     this.itemContractList.push(itemContract);
 
   }
 
   checkIfFormIsFilled(){
-    
+
   }
 
-    addNewContract(){
+  addNewContract(){
       //TODO -> SAVE CONTRACT
-    }
+  }
 
 
-    eraseAddResidueDiv(){
-
-    }
+  deleteItemFromList(object:ItemContract){
+    this.itemContractList = this.itemContractList.filter(obj => obj !== object);
+  }
 
 
   }

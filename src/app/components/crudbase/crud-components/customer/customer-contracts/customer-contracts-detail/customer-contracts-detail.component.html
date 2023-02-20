@@ -19,18 +19,18 @@
 
     <div class="residue-item-options">
       <div class="residue-item-options-header">
-        <h4>Adicionar Resíduos</h4><br>
+        <h4>Adicionar Resíduos</h4>
       </div>
       <div class="residue-item-options-item-body">
           <div class="residue-item-options-item">
-              <label for="cars">Resíduo:</label>
-              <select name="residues" id="residues" name="residue" ngModel required>
+              <label for="residue">Resíduo:</label>
+              <select name="residue" id="residue" ngModel required>
                 <option value="{{residue.id}}" *ngFor="let residue of residuesList">{{residue.type}}</option>
               </select>
           </div>
           <div class="residue-item-options-item">
-              <label for="cars">Equipamento:</label>
-              <select name="equipaments" id="equipaments" name="equipament" ngModel required>
+              <label for="equipament">Equipamento:</label>
+              <select name="equipament" id="equipament"  ngModel required>
                 <option value="{{equipament.id}}" *ngFor="let equipament of equipamentsList">{{equipament.equipamentName}}</option>
               </select>
           </div>
@@ -43,15 +43,16 @@
             <input type="currency" name="itemValue" ngModel required>
           </div>
         </div>
-        <button (click)="addItemToContract()">Adicionar Resíduo</button>
+        <button (click)="addItemToContract()" [disabled]="!form.valid">Adicionar Resíduo</button>
     </div>
 
   </form>
 
   <app-itens-table-item-contract
     [tableHeaders]="headerForTables"
-    [tableData]="itemContractList">
-    [model]="'itens'">
+    [tableData]="itemContractList"
+    [model]="'itens'"
+    (deleteItemEmitter)= "deleteItemFromList($event)">
   </app-itens-table-item-contract>
 </div>
 

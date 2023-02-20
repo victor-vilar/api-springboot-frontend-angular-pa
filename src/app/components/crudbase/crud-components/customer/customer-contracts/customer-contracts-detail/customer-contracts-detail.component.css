@@ -1,6 +1,6 @@
 .wrapper{
   padding:5px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 
 .basic-contract-info{
@@ -13,15 +13,13 @@
 .residue-item-options-item{
   display: grid;
 }
-
-.basic-contract-info input, select {
-  padding:10px;
-  width: 100%;
-  margin-bottom: 5px;
+.residue-item-options-item label, .contract-field label {
+  font-weight: bolder;
 }
-.residue-item-options-item input, select {
+.basic-contract-info input, .basic-contract-info select, .residue-item-options-item input,.residue-item-options-item select  {
   padding:10px;
   width: 100%;
+  height: 50px;
   margin-bottom: 5px;
 }
 
@@ -40,7 +38,7 @@
     display: flex;
     gap:5px;
   }
-  .basic-contract-info{
+  .basic-contract-info, .residue-item-options{
     border-bottom: 1px solid var(--cinza);
     padding-bottom: 10px;
   }
