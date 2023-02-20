@@ -14,7 +14,7 @@
       </div>
 
       <div class="itens-table-container-wrapper">
-        <div class="itens-table-container-item" *ngFor="let object of filteredTableDataList">
+        <div class="itens-table-container-item" *ngFor="let object of filteredTableDataList; let i = index">
           <div class="object-key-values">
                 <label class="key-header"><b>Resíduo</b></label>
                 <b class="key-value">{{object.residue.type}}</b>
@@ -37,8 +37,8 @@
           <div class="object-options">
               <label class="key-header"><b>Opções</b></label>
               <div class="options-buttons">
-                <button type="button" title="editar" name="edit" id="edit" class="bt bt-edit " (click)="editItem(object)"><i class="fas fa-edit"></i></button>
-                <button type="button" title="deletar" name="delete" id="delete" class="bt bt-delete " (click)="deleteItem(object)"><i class="fas fa-times"></i></button>
+                <button type="button" title="editar" name="edit" id="edit" class="bt bt-edit " (click)="editItem(i)"><i class="fas fa-edit"></i></button>
+                <button type="button" title="deletar" name="delete" id="delete" class="bt bt-delete " (click)="deleteItem(i)"><i class="fas fa-times"></i></button>
               </div>
           </div>
         </div>

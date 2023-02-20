@@ -42,6 +42,7 @@ export class ItensTableItemContractComponent implements OnInit {
   @Output()
   deleteItemEmitter = new EventEmitter<any>();
   deleteItem(event:any){
+    console.log(event);
     this.deleteItemEmitter.emit(event);
   }
 

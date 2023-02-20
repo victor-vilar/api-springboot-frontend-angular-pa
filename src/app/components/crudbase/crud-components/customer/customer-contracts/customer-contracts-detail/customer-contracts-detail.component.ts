@@ -74,6 +74,8 @@ export class CustomerContractsDetailComponent implements OnInit {
   addItemToContract(){
     //this.checkIfFormIsFilled();
     let itemContract = this.mountItemContractObject();
+    console.log(itemContract);
+    console.log('adicionado');
     this.itemContractList.push(itemContract);
 
   }
@@ -87,8 +89,9 @@ export class CustomerContractsDetailComponent implements OnInit {
   }
 
 
-  deleteItemFromList(object:ItemContract){
-    this.itemContractList = this.itemContractList.filter(obj => obj !== object);
+  deleteItemFromList(index:number){
+    this.itemContractList.splice(index,1);
+
   }
 
 
