@@ -11,9 +11,13 @@
         <label>Data de Início</label>
         <input type="date" placeholder="Data de Início" name="beginDate" ngModel>
       </div>
-        <div class="contract-field">
+      <div class="contract-field">
         <label>Data de Encerramento</label>
         <input type="date" placeholder="Data de Fim" name="endDate" ngModel>
+      </div>
+      <div class="contract-partial-information">
+        <label>Total de itens: {{itemContractList.length}}</label><br>
+        <label>Total em:{{totalValueOfContract | currency :'BRL'}}</label>
       </div>
     </div>
 

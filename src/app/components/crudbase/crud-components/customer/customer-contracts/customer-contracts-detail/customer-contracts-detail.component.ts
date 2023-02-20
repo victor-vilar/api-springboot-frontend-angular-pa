@@ -22,6 +22,7 @@ export class CustomerContractsDetailComponent implements OnInit {
   equipamentsList:Equipament[];
   itemContractList:ItemContract[] = [];
   headerForTables;
+  totalValueOfContract:number = 0;
 
   constructor(residuesService:ResiduesService,
               equipamentsService:EquipamentsService,
@@ -72,14 +73,16 @@ export class CustomerContractsDetailComponent implements OnInit {
   }
 
   addItemToContract(){
-    //this.checkIfFormIsFilled();
     let itemContract = this.mountItemContractObject();
-    console.log(itemContract);
-    console.log('adicionado');
     this.itemContractList.push(itemContract);
-
+    this.sumTotalOfContract();
   }
 
+  sumTotalOfContract(){
+    this.itemContractList.forEach(e =>{
+      this.totalValueOfContract += e.itemValue * e.qtdOfResidue;
+    })
+  }
   checkIfFormIsFilled(){
 
   }
@@ -91,7 +94,8 @@ export class CustomerContractsDetailComponent implements OnInit {
 
   deleteItemFromList(index:number){
     this.itemContractList.splice(index,1);
-
+    this.totalValueOfContract = 0;
+    this.sumTotalOfContract();
   }
 
 
