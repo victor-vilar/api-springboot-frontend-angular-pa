@@ -120,13 +120,58 @@ export class CustomerContractsDetailComponent implements OnInit {
   }
 
 
+  //creates a observable to manipulate response
+  //if its ok, will again try to save contracts
+  //tentado configurar o backend para aceitar uma lista de itens na mesma requisição de salvar o contrato.
+  createsContractObserver():any{
+    return{
+      next:(response) =>{
+        console.log(response);
+      },
+      error:(error)=>{
+        console.log(error);
+      }
+    }
+  }
+
+  createsItemContractObserver():any{
+    return{
+      next:(response) =>{
+        console.log(response)
+      },
+      error:(error)=>{
+        console.log(error)
+      }
+    }
+  }
+
+
   //saves contract at database
   addNewContract(){
+    //check if contract has at least one item
+    this.checkIfContractHasItens()
+
+    //create a contract object
     let contract = this.createContractObject();
+
+    //creates a contractObserver
+    let contractObserver = this.createsContractObserver();
+
+
+
+
+
     this.contractService.saveContract(contract, this.clientCpfCnpj)
-    .subscribe(value => console.log(value));
+    .subscribe(contractObserver);
 
 
+  }
+
+
+  checkIfContractHasItens(){
+    if(this.itemContractList.length === 0 ){
+      throw Error('O contrato deve possuir pelo menos um item!!')
+    }
   }
 
  //delete item from contract and recalulate the total value

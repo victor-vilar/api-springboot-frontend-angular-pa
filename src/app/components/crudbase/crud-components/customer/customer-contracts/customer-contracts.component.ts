@@ -27,7 +27,10 @@ export class CustomerContractsComponent implements OnInit {
   customerService:CustomerService;
   contractService:ContractsService;
 
-
+     /**
+      * NO MOMENTO ESTA PUXANDO TODOS OS CONTRATOS, SO QUE ESSA TELA PRECISA MOSTRAR,
+      * SOMENTE OS CONTRATOS CADASTRADOS PARA O CLIENTE SELECIONADO
+      */
 
   ngOnInit(): void {
 
