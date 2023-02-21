@@ -1,3 +1,5 @@
+import { Router, ActivatedRoute } from '@angular/router';
+import { Contract } from './../../../../../../model/Contract';
 import { DomOperationsService } from './../../../../../../services/dom-operations.service';
 import { ItemContract } from './../../../../../../model/ItemContract';
 import { EquipamentsService } from './../../../../../../services/equipaments.service';
@@ -6,6 +8,7 @@ import { ResiduesService } from './../../../../../../services/residues.service';
 import { Component, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { Residue } from 'src/app/model/Residue';
 import { NgForm } from '@angular/forms';
+import { ContractsService } from 'src/app/services/contracts.service';
 
 @Component({
   selector: 'app-customer-contracts-detail',
@@ -14,32 +17,50 @@ import { NgForm } from '@angular/forms';
 })
 export class CustomerContractsDetailComponent implements OnInit {
 
+  //form
   @ViewChild('form') form:NgForm;
+  //---
+
+  //services
   residuesService:ResiduesService;
   equipamentsService:EquipamentsService;
+  contractService:ContractsService;
+  //---
 
+  //lists
   residuesList:Residue[];
   equipamentsList:Equipament[];
   itemContractList:ItemContract[] = [];
+  //---
+
+  //CpfCnpj of selected client
+  clientCpfCnpj:string;
+
+  //headers for itemCOntract list
   headerForTables;
+  //sum of itens of contract
   totalValueOfContract:number = 0;
 
   constructor(residuesService:ResiduesService,
               equipamentsService:EquipamentsService,
-              private domOperationsService:DomOperationsService) {
+              contractService:ContractsService,
+              private activatedRoute:ActivatedRoute,
+
+              ) {
                 this.residuesService = residuesService;
                 this.equipamentsService = equipamentsService;
+                this.contractService = contractService;
                }
 
   ngOnInit(): void {
-    console.log('iniciei');
+
+    this.clientCpfCnpj =this.activatedRoute.parent.snapshot.paramMap.get('cpfCnpj')
+
     this.equipamentsService.refreshAllData().subscribe(e =>{
-      console.log(e);
       this.equipamentsList = e;
     })
 
     this.residuesService.refreshAllData().subscribe(e => {
-      console.log(e);
       this.residuesList = e;
     })
 
@@ -53,17 +74,19 @@ export class CustomerContractsDetailComponent implements OnInit {
     this.getAll();
   }
 
+
   ngOnChanges(changes: SimpleChanges): void {
     this.getAll();
   }
+
 
   getAll(){
     this.equipamentsService.getAll();
     this.residuesService.getAll();
   }
 
-
-  mountItemContractObject():ItemContract{
+  //creates an itemContract from form fields
+  createItemContractObject():ItemContract{
     return {
       residue:this.residuesService.list.find(e => e.id === Number(this.form.value.residue)),
       equipament:this.equipamentsService.list.find(e => e.id === Number(this.form.value.equipament)),
@@ -72,34 +95,48 @@ export class CustomerContractsDetailComponent implements OnInit {
     }
   }
 
+  //creates a contract from form fields
+  createContractObject():Contract{
+    return {
+      number:this.form.value.contractNumber,
+      beginDate:this.form.value.beginDate,
+      endDate:this.form.value.endDate,
+    }
+  }
+
+  //add an item to contract
   addItemToContract(){
-    let itemContract = this.mountItemContractObject();
+    let itemContract = this.createItemContractObject();
     this.itemContractList.push(itemContract);
     this.sumTotalOfContract();
   }
 
+
+  //display the total contract price
   sumTotalOfContract(){
     this.itemContractList.forEach(e =>{
       this.totalValueOfContract += e.itemValue * e.qtdOfResidue;
     })
   }
-  checkIfFormIsFilled(){
 
-  }
 
+  //saves contract at database
   addNewContract(){
-      //TODO -> SAVE CONTRACT
+    let contract = this.createContractObject();
+    this.contractService.saveContract(contract, this.clientCpfCnpj)
+    .subscribe(value => console.log(value));
+
+
   }
 
-
+ //delete item from contract and recalulate the total value
   deleteItemFromList(index:number){
     this.itemContractList.splice(index,1);
     this.totalValueOfContract = 0;
     this.sumTotalOfContract();
   }
 
-
-  }
+}
 
 
 

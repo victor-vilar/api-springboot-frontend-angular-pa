@@ -12,7 +12,7 @@ export abstract class CrudBaseService<T>{
   static BASE_URL:string = "http://localhost:8080/";
   list:T[] = [];
   rota:string;
-  constructor(private http:HttpClient){ }
+  constructor(protected http:HttpClient){ }
 
 
   // refreshRequiredValue():Observable<any>{
@@ -35,11 +35,11 @@ export abstract class CrudBaseService<T>{
   }
 
   getAll(){
-   this.http.get<T[]>(CrudBaseService.BASE_URL + this.rota)
-   .subscribe(value => {
-    this.list = value;
-    this.send(value)
-  });
+    this.http.get<T[]>(CrudBaseService.BASE_URL + this.rota)
+    .subscribe(value => {
+      this.list = value;
+      this.send(value)
+    });
   };
 
 
@@ -55,8 +55,5 @@ export abstract class CrudBaseService<T>{
     return this.http.delete<T>(CrudBaseService.BASE_URL + this.rota + '/' + id);
   };
 
-  // listSize():number{
-  //   return this.list.length;
-  // };
 
 }
