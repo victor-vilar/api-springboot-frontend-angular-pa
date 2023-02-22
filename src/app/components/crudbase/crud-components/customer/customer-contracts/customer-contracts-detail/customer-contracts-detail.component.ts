@@ -41,7 +41,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
   //
   crudOperation: string;
 
-  //headers for itemCOntract list
+  //headers for itemCOntract itens list
   headerForTables;
   //sum of itens of contract
   totalValueOfContract:number = 0;
@@ -156,6 +156,17 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
     }
   }
 
+  //transform the item contract list in a form that api could save the itens
+  itemContractListMapper(){
+    return this.itemContractList.map(e =>{
+      return {
+        residue:e.residue.id,
+        equipament:e.equipament.id,
+        qtdOfResidue:e.qtdOfResidue,
+        itemValue:e.itemValue
+      }
+    })
+  }
 
   //saves contract at database
   save(){
@@ -165,8 +176,9 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
     let contract = this.createObject();
 
     //insert itens to contract
-    //contract.itens = this.itemContractList;
-
+    contract.itens = this.itemContractListMapper();
+    console.log('cadastrando...')
+    console.log(contract);
     //creates a contractObserver
     let contractObserver = this.createsContractObserver();
     //response of save contract
