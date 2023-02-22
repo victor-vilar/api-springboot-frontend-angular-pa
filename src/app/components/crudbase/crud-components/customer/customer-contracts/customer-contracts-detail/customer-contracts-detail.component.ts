@@ -1,6 +1,5 @@
 import { Router, ActivatedRoute } from '@angular/router';
 import { Contract } from './../../../../../../model/Contract';
-import { DomOperationsService } from './../../../../../../services/dom-operations.service';
 import { ItemContract } from './../../../../../../model/ItemContract';
 import { EquipamentsService } from './../../../../../../services/equipaments.service';
 import { Equipament } from './../../../../../../model/Equipament';
@@ -9,13 +8,14 @@ import { Component, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { Residue } from 'src/app/model/Residue';
 import { NgForm } from '@angular/forms';
 import { ContractsService } from 'src/app/services/contracts.service';
+import { FormDetail } from 'src/app/model/FormDetail';
 
 @Component({
   selector: 'app-customer-contracts-detail',
   templateUrl: './customer-contracts-detail.component.html',
   styleUrls: ['./customer-contracts-detail.component.css']
 })
-export class CustomerContractsDetailComponent implements OnInit {
+export class CustomerContractsDetailComponent implements OnInit, FormDetail {
 
   //form
   @ViewChild('form') form:NgForm;
@@ -52,10 +52,13 @@ export class CustomerContractsDetailComponent implements OnInit {
                 this.contractService = contractService;
                }
 
+
   ngOnInit(): void {
 
+    //get the cpf or cnpj from costumer to add a new contract
     this.clientCpfCnpj =this.activatedRoute.parent.snapshot.paramMap.get('cpfCnpj')
 
+    //subscribing to equipament service and residue service
     this.equipamentsService.refreshAllData().subscribe(e =>{
       this.equipamentsList = e;
     })
@@ -64,6 +67,7 @@ export class CustomerContractsDetailComponent implements OnInit {
       this.residuesList = e;
     })
 
+    //initialize headers from child compoente- itens table
     this.headerForTables= {
       residue:"Residuo",
       equipament:"Equipamento",
@@ -74,12 +78,12 @@ export class CustomerContractsDetailComponent implements OnInit {
     this.getAll();
   }
 
-
+  //execute services methods to get all info from api
   ngOnChanges(changes: SimpleChanges): void {
     this.getAll();
   }
 
-
+  //execute services methods to get all info from api
   getAll(){
     this.equipamentsService.getAll();
     this.residuesService.getAll();
@@ -96,7 +100,7 @@ export class CustomerContractsDetailComponent implements OnInit {
   }
 
   //creates a contract from form fields
-  createContractObject():Contract{
+  createObject():Contract{
     return {
       number:this.form.value.contractNumber,
       beginDate:this.form.value.beginDate,
@@ -122,11 +126,10 @@ export class CustomerContractsDetailComponent implements OnInit {
 
   //creates a observable to manipulate response
   //if its ok, will again try to save contracts
-  //tentado configurar o backend para aceitar uma lista de itens na mesma requisição de salvar o contrato.
   createsContractObserver():any{
     return{
       next:(response) =>{
-        console.log(response);
+        return response;
       },
       error:(error)=>{
         console.log(error);
@@ -147,27 +150,27 @@ export class CustomerContractsDetailComponent implements OnInit {
 
 
   //saves contract at database
-  addNewContract(){
+  save(){
     //check if contract has at least one item
     this.checkIfContractHasItens()
-
     //create a contract object
-    let contract = this.createContractObject();
+    let contract = this.createObject();
+
+    //insert itens to contract
+    contract.itens = this.itemContractList;
 
     //creates a contractObserver
     let contractObserver = this.createsContractObserver();
-
-
-
-
-
-    this.contractService.saveContract(contract, this.clientCpfCnpj)
-    .subscribe(contractObserver);
+    //response of save contract
+    let observer$ = this.contractService.saveContract(contract, this.clientCpfCnpj);
+    //executing observable
+    observer$.subscribe(contractObserver);
 
 
   }
 
-
+  //check if the contract have at least one item
+  //don't creates empty contracts
   checkIfContractHasItens(){
     if(this.itemContractList.length === 0 ){
       throw Error('O contrato deve possuir pelo menos um item!!')
@@ -181,6 +184,15 @@ export class CustomerContractsDetailComponent implements OnInit {
     this.sumTotalOfContract();
   }
 
+  idOfEditedItem: string | number;
+  crudOperation: string;
+
+  onLoad(): void {
+
+  }
+  destroy(): void {
+
+  }
 }
 
 

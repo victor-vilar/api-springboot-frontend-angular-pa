@@ -1,6 +1,6 @@
 <div class="wrapper">
 
-  <form (ngSubmit)="addNewContract()" #form="ngForm">
+  <form (ngSubmit)="save()" #form="ngForm">
     <h4>Cadastro de Contratos</h4>
     <div class="basic-contract-info">
       <div class="contract-field">
@@ -47,10 +47,9 @@
             <input type="currency" name="itemValue" ngModel required>
           </div>
         </div>
-        <button (click)="addItemToContract()">Adicionar Resíduo</button><br><br>
-        <button type="submit">Salvar Contrato</button>
+        <input type="button" value="adicionar residuo" (click)="addItemToContract()"><br><br>
+        <input type="submit" value="salvar">
     </div>
-
   </form>
 
   <app-itens-table-item-contract

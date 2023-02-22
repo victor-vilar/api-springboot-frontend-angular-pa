@@ -18,7 +18,7 @@ export class ResidueDetailComponent implements OnInit, FormDetail {
   constructor(private service:ResiduesService, private activeroute:ActivatedRoute, private router:Router) { }
 
 
-  mountObject() {
+  createObject() {
     let residue = {
       id:this.idOfEditedItem,
       type:this.form.value.type,
@@ -56,7 +56,7 @@ export class ResidueDetailComponent implements OnInit, FormDetail {
 
     //criando um novo objeto
 
-    let residue = this.mountObject();
+    let residue = this.createObject();
     //se for um objeto com id nulo, é um novo objeto
     //se não é atualização de um objeto existente.
     if(residue.id === undefined){

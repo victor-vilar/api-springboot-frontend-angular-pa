@@ -25,7 +25,7 @@ export class ContractsService extends CrudBaseService<Contract>  {
   //save a item to contract
   saveItemContract(listOfItens:ItemContract[],contractId:string):Observable<Contract>{
     let routeToSaveAnItemToContract = CrudBaseService.BASE_URL + this.rota +'/additem/'+contractId;
-    return this.http.post<Contract>(routeToSaveAnItemToContract,type);
+    return this.http.post<Contract>(routeToSaveAnItemToContract,listOfItens);
   }
 
   // deleteItemContract()

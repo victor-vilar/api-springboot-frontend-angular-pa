@@ -25,7 +25,7 @@ export class EquipamentDetailComponent implements OnInit, FormDetail {
 
   constructor(private service:EquipamentsService, private activeroute:ActivatedRoute, private router:Router) { }
 
-  mountObject(): any {
+  createObject(): any {
 
     let equipament = {
       id:this.idOfEditedItem,
@@ -62,7 +62,7 @@ export class EquipamentDetailComponent implements OnInit, FormDetail {
 
   save(){
     //criando um novo objeto
-    let object = this.mountObject();
+    let object = this.createObject();
     //se for um objeto com id nulo, é um novo objeto
     //se não é atualização de um objeto existente.
     if(object.id === undefined){

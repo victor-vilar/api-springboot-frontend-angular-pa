@@ -22,18 +22,16 @@ export class CustomerDetailComponent implements OnInit, FormDetail {
     this.onLoad();
   }
 
-  mountObject(){
+  createObject(){
     let object = {
       cpfCnpj:this.form.value.cpfCnpj,
       nameCompanyName:this.form.value.razaoSocial,
     }
     return object;
-
   }
 
   save(): void {
-    console.log(this.idOfEditedItem);
-    let customer = this.mountObject();
+    let customer = this.createObject();
     //se for um objeto com id nulo, é um novo objeto
     //se não é atualização de um objeto existente.
     if(this.idOfEditedItem === undefined){
