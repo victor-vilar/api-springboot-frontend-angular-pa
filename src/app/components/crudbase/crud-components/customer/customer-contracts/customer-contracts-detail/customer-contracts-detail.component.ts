@@ -10,6 +10,7 @@ import { NgForm } from '@angular/forms';
 import { ContractsService } from 'src/app/services/contracts.service';
 import { FormDetail } from 'src/app/model/FormDetail';
 
+
 @Component({
   selector: 'app-customer-contracts-detail',
   templateUrl: './customer-contracts-detail.component.html',
@@ -35,16 +36,23 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
 
   //CpfCnpj of selected client
   clientCpfCnpj:string;
+  //form is on edit mode, here store the id of the item
+  idOfEditedItem: string | number;
+  //
+  crudOperation: string;
 
   //headers for itemCOntract list
   headerForTables;
   //sum of itens of contract
   totalValueOfContract:number = 0;
+  //---
 
   constructor(residuesService:ResiduesService,
               equipamentsService:EquipamentsService,
               contractService:ContractsService,
               private activatedRoute:ActivatedRoute,
+              private router:Router,
+
 
               ) {
                 this.residuesService = residuesService;
@@ -74,7 +82,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
       qtdOfResidue:"Quantidade",
       itemValue:"Valor",
     }
-
+    this.onLoad();
     this.getAll();
   }
 
@@ -129,7 +137,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
   createsContractObserver():any{
     return{
       next:(response) =>{
-        return response;
+        console.log(response);
       },
       error:(error)=>{
         console.log(error);
@@ -157,7 +165,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
     let contract = this.createObject();
 
     //insert itens to contract
-    contract.itens = this.itemContractList;
+    //contract.itens = this.itemContractList;
 
     //creates a contractObserver
     let contractObserver = this.createsContractObserver();
@@ -184,8 +192,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
     this.sumTotalOfContract();
   }
 
-  idOfEditedItem: string | number;
-  crudOperation: string;
+
 
 
   //onload method to know if form going to be on edit mode or new mode
@@ -202,9 +209,13 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
           //if value != null the form will be filled by value values
           if(val !== null){
               this.form.setValue({
-                contactNumber:val.number,
+                contractNumber:val.number,
                 beginDate:val.beginDate,
-                endDate:val.endDate
+                endDate:val.endDate,
+                residue:'',
+                equipament:'',
+                quantity:'',
+                itemValue:''
               })
               //the editItem variabel will be equals to val id
               this.idOfEditedItem = val.id;
@@ -213,10 +224,10 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
           }
         })
       })
-  }
+    }
   }
   destroy(): void {
-
+    this.router.navigate(['/clientes'])
   }
 }
 
