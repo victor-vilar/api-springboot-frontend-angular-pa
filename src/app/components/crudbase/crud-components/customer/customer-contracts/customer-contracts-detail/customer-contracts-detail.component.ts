@@ -187,8 +187,33 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
   idOfEditedItem: string | number;
   crudOperation: string;
 
-  onLoad(): void {
 
+  //onload method to know if form going to be on edit mode or new mode
+  onLoad(): void {
+    //try to get queryParameter edit
+    if(this.activatedRoute.snapshot.queryParamMap.get('edit')){
+      //change the variable crud Operation to 'atualização' = update
+      this.crudOperation="Atualização"
+      //observable try to get the id param
+      this.activatedRoute.paramMap.subscribe(value =>{
+        //contract service try to get the contract by id
+        this.contractService.getById(value.get('id'))
+        .subscribe(val =>{
+          //if value != null the form will be filled by value values
+          if(val !== null){
+              this.form.setValue({
+                contactNumber:val.number,
+                beginDate:val.beginDate,
+                endDate:val.endDate
+              })
+              //the editItem variabel will be equals to val id
+              this.idOfEditedItem = val.id;
+              //copy the itens of val id to the current list
+              this.itemContractList = val.itens.slice();
+          }
+        })
+      })
+  }
   }
   destroy(): void {
 
