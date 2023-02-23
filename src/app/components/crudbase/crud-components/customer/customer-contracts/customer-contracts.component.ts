@@ -33,7 +33,6 @@ export class CustomerContractsComponent implements OnInit {
       */
 
   ngOnInit(): void {
-
     this.headerForTables ={
       id:'Id',
       number:'Número',
@@ -43,8 +42,6 @@ export class CustomerContractsComponent implements OnInit {
       totalEmRs:'Total em R$'
      };
     this.activeRoute.paramMap.subscribe(param =>{
-      console.log(param.get('cpfCnpj'));
-      console.log(this.customerService.list.length);
       this.selectedCustomer = this.customerService.list.find(obj => obj.cpfCnpj === param.get('cpfCnpj'));
     })
 

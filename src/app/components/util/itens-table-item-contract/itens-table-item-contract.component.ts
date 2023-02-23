@@ -1,5 +1,5 @@
 import { Residue } from './../../../model/Residue';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -32,7 +32,7 @@ export class ItensTableItemContractComponent implements OnInit {
   constructor(private router:Router) { }
 
   ngOnInit(): void {
-    this.filteredTableDataList = this.tableData;
+    this.filteredTableData();
   }
 
   findAliasInHeaderForTableArray(key:any){
@@ -54,6 +54,11 @@ export class ItensTableItemContractComponent implements OnInit {
 
   };
 
+
+
+  showTableData(){
+    console.log(this.tableData);
+  }
 
 
   //O ARRAY QUE VEM DO PAI POSSUI ALGUNS OBJETOS DENTOS, ENTÃO NÃO CONSIGO BUSCAR ALGUNS DADOS,

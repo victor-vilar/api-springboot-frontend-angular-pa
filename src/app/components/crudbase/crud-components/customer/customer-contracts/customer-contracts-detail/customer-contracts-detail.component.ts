@@ -37,7 +37,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
   //CpfCnpj of selected client
   clientCpfCnpj:string;
   //form is on edit mode, here store the id of the item
-  idOfEditedItem: string | number;
+  idOfEditedItem: string | number = "1";
   //
   crudOperation: string;
 
@@ -168,6 +168,24 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
     })
   }
 
+  //transform list of itens get from api to itemCOntract of front
+  itemContractListFromApiMapper(list:any):ItemContract[]{
+    return list.map(e =>{
+
+      let residue = this.residuesService.list.find(r => r.type === e.residue);
+      console.log(residue);
+      let equipament = this.equipamentsService.list.find(eq => eq.equipamentName === e.equipament);
+      console.log(equipament);
+      return {
+        residue:residue,
+        equipament:equipament,
+        qtdOfResidue:e.qtdOfResidue,
+        itemValue:e.itemValue
+      }
+    })
+  }
+
+  //TODO IMPLEMENTAR O MODO PUT E O MODO POST
   //saves contract at database
   save(){
     //check if contract has at least one item
@@ -177,12 +195,19 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
 
     //insert itens to contract
     contract.itens = this.itemContractListMapper();
-    console.log('cadastrando...')
-    console.log(contract);
     //creates a contractObserver
     let contractObserver = this.createsContractObserver();
     //response of save contract
-    let observer$ = this.contractService.saveContract(contract, this.clientCpfCnpj);
+    //if the idOfEditedItem === undefined means its a new contract not a edited one
+    let observer$;
+    if(this.idOfEditedItem !== "0"){
+      observer$ = this.contractService.saveContract(contract, this.clientCpfCnpj);
+    //if it's undefined it's just updating some item or value
+    }else{
+      //TODO UPDATE CONTRACT METHOD ON SERVICE
+      //let observer$ = this.contractService.updateContract(contract,this.clientCpfCnpj);
+    }
+
     //executing observable
     observer$.subscribe(contractObserver);
 
@@ -213,12 +238,12 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
     if(this.activatedRoute.snapshot.queryParamMap.get('edit')){
       //change the variable crud Operation to 'atualização' = update
       this.crudOperation="Atualização"
-      //observable try to get the id param
+      //observable  get the id param
       this.activatedRoute.paramMap.subscribe(value =>{
         //contract service try to get the contract by id
         this.contractService.getById(value.get('id'))
         .subscribe(val =>{
-          //if value != null the form will be filled by value values
+          //if value != null the form will be filled by val values
           if(val !== null){
               this.form.setValue({
                 contractNumber:val.number,
@@ -231,8 +256,9 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
               })
               //the editItem variabel will be equals to val id
               this.idOfEditedItem = val.id;
-              //copy the itens of val id to the current list
-              this.itemContractList = val.itens.slice();
+              //copy the itens of val id to the current component list
+              this.itemContractList = this.itemContractListFromApiMapper(val.itens);
+              console.log(val.itens);
           }
         })
       })
@@ -240,6 +266,18 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
   }
   destroy(): void {
     this.router.navigate(['/clientes'])
+  }
+
+  mockingFormFiller(){
+    this.form.setValue({
+      contractNumber:'1000',
+      beginDate:'2022-02-01',
+      endDate:'2022-02-28',
+      residue:'1',
+      equipament:'1',
+      quantity:100,
+      itemValue:100
+    })
   }
 }
 
