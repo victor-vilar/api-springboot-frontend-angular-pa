@@ -10,7 +10,6 @@ import { CrudBaseService } from './crudbase.service';
 })
 export class ContractsService extends CrudBaseService<Contract>  {
 
-
   constructor(http:HttpClient) {
     super(http);
     this.rota = 'contracts'
@@ -28,5 +27,9 @@ export class ContractsService extends CrudBaseService<Contract>  {
     return this.http.post<Contract>(routeToSaveAnItemToContract,listOfItens);
   }
 
-  // deleteItemContract()
+  //update contract
+  updateContract(type:Contract,id:string|number):Observable<Contract>{
+    let routeToSaveContract = CrudBaseService.BASE_URL + this.rota +'/'+id;
+    return this.http.put<Contract>(routeToSaveContract,type);
+  };
 }

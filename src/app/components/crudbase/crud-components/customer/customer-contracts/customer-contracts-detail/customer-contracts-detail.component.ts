@@ -37,7 +37,8 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
   //CpfCnpj of selected client
   clientCpfCnpj:string;
   //form is on edit mode, here store the id of the item
-  idOfEditedItem: string | number = "1";
+  idOfEditedItem: string | number = "0";
+  contractToEdit:Contract = null;
   //
   crudOperation: string;
 
@@ -185,7 +186,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
     })
   }
 
-  //TODO IMPLEMENTAR O MODO PUT E O MODO POST
+
   //saves contract at database
   save(){
     //check if contract has at least one item
@@ -200,18 +201,21 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
     //response of save contract
     //if the idOfEditedItem === undefined means its a new contract not a edited one
     let observer$;
-    if(this.idOfEditedItem !== "0"){
+    if(this.contractToEdit === null){
       observer$ = this.contractService.saveContract(contract, this.clientCpfCnpj);
     //if it's undefined it's just updating some item or value
     }else{
-      //TODO UPDATE CONTRACT METHOD ON SERVICE
-      //let observer$ = this.contractService.updateContract(contract,this.clientCpfCnpj);
+      //TODO= UPDATE CONTRACT METHOD ON SERVICE
+      //fill empty contract fields to make the update
+      contract.id = this.contractToEdit.id;
+      console.log('id ===' + contract.id);
+      contract.client = this.contractToEdit.client
+      //put on api
+      observer$ = this.contractService.updateContract(contract,contract.id);
     }
 
     //executing observable
     observer$.subscribe(contractObserver);
-
-
   }
 
   //check if the contract have at least one item
@@ -254,11 +258,10 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
                 quantity:'',
                 itemValue:''
               })
-              //the editItem variabel will be equals to val id
-              this.idOfEditedItem = val.id;
+              //the contract that going to be edited
+              this.contractToEdit = val;
               //copy the itens of val id to the current component list
               this.itemContractList = this.itemContractListFromApiMapper(val.itens);
-              console.log(val.itens);
           }
         })
       })

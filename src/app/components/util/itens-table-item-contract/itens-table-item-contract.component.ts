@@ -54,8 +54,6 @@ export class ItensTableItemContractComponent implements OnInit {
 
   };
 
-
-
   showTableData(){
     console.log(this.tableData);
   }
