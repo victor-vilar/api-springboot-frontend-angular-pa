@@ -42,7 +42,13 @@ export class ItensTableItemContractComponent implements OnInit {
   @Output()
   deleteItemEmitter = new EventEmitter<any>();
   deleteItem(event:any){
-    this.deleteItemEmitter.emit(event);
+
+    if(event.id !== null || event.id !== undefined){
+      this.deleteItemEmitter.emit(event);
+    }else{
+      this.deleteItemEmitter.emit(event);
+    }
+
   }
 
   editItem(event:any){

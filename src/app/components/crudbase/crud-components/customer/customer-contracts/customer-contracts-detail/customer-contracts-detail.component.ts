@@ -238,13 +238,16 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
   }
 
  //delete item from contract and recalulate the total value
-  deleteItemFromList(index:number){
-    this.itemContractList.splice(index,1);
+  deleteItemFromList(item:ItemContract){
+    //this.itemContractList.splice(index,1);
 
-
-    let observable$ = this.contractService.deleteItemFromContract(item);
-    let observer = this.deleteItemFromContractObserver();
-    observable$.subscribe(observer);
+    //TODO REMOVER ITEM COM ID, MAS PRECISO REMOVER OS QUE PODEM ESTAR SENDO COLOCADOS NA EDIÇÃO
+    //DO CONTRATO MAS AINDA NÃO POSSUEM ID
+    if(item.id != null || item.id !=undefined){
+      let observable$ = this.contractService.deleteItemFromContract(item);
+      let observer = this.deleteItemFromContractObserver();
+      observable$.subscribe(observer);
+    }
 
     this.totalValueOfContract = 0;
     this.sumTotalOfContract();
