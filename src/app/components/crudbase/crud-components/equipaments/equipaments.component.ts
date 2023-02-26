@@ -1,7 +1,7 @@
 import { ActivatedRoute } from '@angular/router';
-import { EquipamentsService } from '../../../../services/equipaments.service';
+import { EquipmentsService } from '../../../../services/equipments.service';
 import { Component, DoCheck, OnChanges, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
-import { Equipament } from 'src/app/model/Equipament';
+import { Equipment } from 'src/app/model/Equipment';
 import { CrudBaseComponent } from '../../crud-base.component';
 import { HttpClient } from '@angular/common/http';
 
@@ -10,16 +10,16 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './equipaments.component.html',
   styleUrls: ['./equipaments.component.css']
 })
-export class EquipamentsComponent implements OnInit, CrudBaseComponent {
+export class EquipmentsComponent implements OnInit, CrudBaseComponent {
 
   //Default Methods
   headerForTables;
   title;
   pathPrefix;
   pathToOperations;
-  service:EquipamentsService;
+  service:EquipmentsService;
 
-  constructor(service:EquipamentsService) {
+  constructor(service:EquipmentsService) {
     this.service = service;
   }
 

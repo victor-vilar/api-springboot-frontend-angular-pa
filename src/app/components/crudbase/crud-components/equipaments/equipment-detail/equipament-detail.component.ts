@@ -1,10 +1,10 @@
 import { CrudBaseService } from 'src/app/services/crudbase.service';
-import { FormDetail } from './../../../../../model/FormDetail';
-import { Equipament } from '../../../../../model/Equipament';
+import { FormDetail } from '../../../../../model/FormDetail';
+import { Equipment } from '../../../../../model/Equipment';
 import { Component, OnInit, ViewChild, EventEmitter, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { EquipamentsService } from 'src/app/services/equipaments.service';
+import { EquipmentsService } from 'src/app/services/equipments.service';
 
 @Component({
   selector: 'app-equipament-new',
@@ -15,7 +15,7 @@ import { EquipamentsService } from 'src/app/services/equipaments.service';
 /**
  * form to add new or update new elements
  */
-export class EquipamentDetailComponent implements OnInit, FormDetail {
+export class EquipmentDetailComponent implements OnInit, FormDetail {
 
   @ViewChild('singInForm') form:NgForm;
   //id of the item that gonna be edited if the form is on edit mode
@@ -23,16 +23,16 @@ export class EquipamentDetailComponent implements OnInit, FormDetail {
   //operation that gonna be executed,
   crudOperation:string = "Cadastro";
 
-  constructor(private service:EquipamentsService, private activeroute:ActivatedRoute, private router:Router) { }
+  constructor(private service:EquipmentsService, private activeroute:ActivatedRoute, private router:Router) { }
 
   createObject(): any {
 
-    let equipament = {
+    let equipment = {
       id:this.idOfEditedItem,
-      equipamentName:this.form.value.equipamentName,
-      sizeInMeterCubic:Number(this.form.value.equipamentSize)
+      equipmentName:this.form.value.equipmentName,
+      sizeInMeterCubic:Number(this.form.value.equipmentSize)
     }
-    return equipament;
+    return equipment;
   }
 
   ngOnInit(): void {
@@ -49,8 +49,8 @@ export class EquipamentDetailComponent implements OnInit, FormDetail {
           if(val !== null){
               this.form.setValue({
                 id:'Id: ' + val.id,
-                equipamentName:val.equipamentName,
-                equipamentSize:val.sizeInMeterCubic,
+                equipmentName:val.equipmentName,
+                equipmentSize:val.sizeInMeterCubic,
               })
               this.idOfEditedItem = val.id;
           }

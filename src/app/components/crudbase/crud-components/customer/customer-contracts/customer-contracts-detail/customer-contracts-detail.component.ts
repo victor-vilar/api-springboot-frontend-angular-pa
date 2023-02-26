@@ -1,8 +1,8 @@
 import { Router, ActivatedRoute } from '@angular/router';
 import { Contract } from './../../../../../../model/Contract';
 import { ItemContract } from './../../../../../../model/ItemContract';
-import { EquipamentsService } from './../../../../../../services/equipaments.service';
-import { Equipament } from './../../../../../../model/Equipament';
+import { EquipmentsService } from '../../../../../../services/equipments.service';
+import { Equipment } from '../../../../../../model/Equipment';
 import { ResiduesService } from './../../../../../../services/residues.service';
 import { Component, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { Residue } from 'src/app/model/Residue';
@@ -24,13 +24,13 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
 
   //services
   residuesService:ResiduesService;
-  equipamentsService:EquipamentsService;
+  equipmentsService:EquipmentsService;
   contractService:ContractsService;
   //---
 
   //lists
   residuesList:Residue[];
-  equipamentsList:Equipament[];
+  equipmentsList:Equipment[];
   itemContractList:ItemContract[] = [];
   //---
 
@@ -49,15 +49,13 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
   //---
 
   constructor(residuesService:ResiduesService,
-              equipamentsService:EquipamentsService,
+              equipmentsService:EquipmentsService,
               contractService:ContractsService,
               private activatedRoute:ActivatedRoute,
               private router:Router,
-
-
               ) {
                 this.residuesService = residuesService;
-                this.equipamentsService = equipamentsService;
+                this.equipmentsService = equipmentsService;
                 this.contractService = contractService;
                }
 
@@ -68,8 +66,8 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
     this.clientCpfCnpj =this.activatedRoute.parent.snapshot.paramMap.get('cpfCnpj')
 
     //subscribing to equipament service and residue service
-    this.equipamentsService.refreshAllData().subscribe(e =>{
-      this.equipamentsList = e;
+    this.equipmentsService.refreshAllData().subscribe(e =>{
+      this.equipmentsList = e;
     })
 
     this.residuesService.refreshAllData().subscribe(e => {
@@ -79,7 +77,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
     //initialize headers from child compoente- itens table
     this.headerForTables= {
       residue:"Residuo",
-      equipament:"Equipamento",
+      equipment:"Equipamento",
       qtdOfResidue:"Quantidade",
       itemValue:"Valor",
     }
@@ -94,7 +92,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
 
   //execute services methods to get all info from api
   getAll(){
-    this.equipamentsService.getAll();
+    this.equipmentsService.getAll();
     this.residuesService.getAll();
   }
 
@@ -102,14 +100,14 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
   createItemContractObject():ItemContract{
     return {
       residue:this.residuesService.list.find(e => e.id === Number(this.form.value.residue)),
-      equipament:this.equipamentsService.list.find(e => e.id === Number(this.form.value.equipament)),
+      equipment:this.equipmentsService.list.find(e => e.id === Number(this.form.value.equipment)),
       qtdOfResidue:Number(this.form.value.quantity),
       itemValue:Number(this.form.value.itemValue)
     }
   }
 
   //creates a contract from form fields
-  createObject():Contract{
+  createObject():any{
     return {
       number:this.form.value.contractNumber,
       beginDate:this.form.value.beginDate,
@@ -161,25 +159,26 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
   itemContractListMapper(){
     return this.itemContractList.map(e =>{
       return {
+        id:e.id,
         residue:e.residue.id,
-        equipament:e.equipament.id,
+        equipment:e.equipment.id,
         qtdOfResidue:e.qtdOfResidue,
         itemValue:e.itemValue
       }
     })
   }
 
-  //transform list of itens get from api to itemCOntract of front
+  //transform list of itens get from api to itemContract of front
   itemContractListFromApiMapper(list:any):ItemContract[]{
     return list.map(e =>{
 
       let residue = this.residuesService.list.find(r => r.type === e.residue);
-      console.log(residue);
-      let equipament = this.equipamentsService.list.find(eq => eq.equipamentName === e.equipament);
-      console.log(equipament);
+      let equipment = this.equipmentsService.list.find(eq => eq.equipmentName === e.equipment);
+
       return {
+        id:e.id,
         residue:residue,
-        equipament:equipament,
+        equipment:equipment,
         qtdOfResidue:e.qtdOfResidue,
         itemValue:e.itemValue
       }
@@ -205,11 +204,11 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
       observer$ = this.contractService.saveContract(contract, this.clientCpfCnpj);
     //if it's undefined it's just updating some item or value
     }else{
-      //TODO= UPDATE CONTRACT METHOD ON SERVICE
+
       //fill empty contract fields to make the update
       contract.id = this.contractToEdit.id;
-      console.log('id ===' + contract.id);
-      contract.client = this.contractToEdit.client
+      contract.customerId = this.contractToEdit.customerId;
+
       //put on api
       observer$ = this.contractService.updateContract(contract,contract.id);
     }
@@ -233,9 +232,6 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
     this.sumTotalOfContract();
   }
 
-
-
-
   //onload method to know if form going to be on edit mode or new mode
   onLoad(): void {
     //try to get queryParameter edit
@@ -254,11 +250,13 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
                 beginDate:val.beginDate,
                 endDate:val.endDate,
                 residue:'',
-                equipament:'',
+                equipment:'',
                 quantity:'',
                 itemValue:''
               })
               //the contract that going to be edited
+
+
               this.contractToEdit = val;
               //copy the itens of val id to the current component list
               this.itemContractList = this.itemContractListFromApiMapper(val.itens);
@@ -277,7 +275,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
       beginDate:'2022-02-01',
       endDate:'2022-02-28',
       residue:'1',
-      equipament:'1',
+      equipment:'1',
       quantity:100,
       itemValue:100
     })

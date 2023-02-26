@@ -32,7 +32,7 @@ export class ItensTableItemContractComponent implements OnInit {
   constructor(private router:Router) { }
 
   ngOnInit(): void {
-    this.filteredTableData();
+    this.filteredTableDataList = this.tableData;
   }
 
   findAliasInHeaderForTableArray(key:any){
@@ -42,7 +42,6 @@ export class ItensTableItemContractComponent implements OnInit {
   @Output()
   deleteItemEmitter = new EventEmitter<any>();
   deleteItem(event:any){
-    console.log(event);
     this.deleteItemEmitter.emit(event);
   }
 

@@ -3,10 +3,10 @@
     <h4 class="equipament-detail-title">{{crudOperation}} de Equipamentos</h4>
     <a (click)="destroy()" class="close-button">X</a>
   </div>
-  <form (ngSubmit)="save()" #singInForm = "ngForm" class="equipament-detail-form" >
+  <form (ngSubmit)="save()" #singInForm = "ngForm" class="equipment-detail-form" >
     <input type="text" name="id" placeholder="Id"  ngModel >
-    <input type="text" required placeholder="Equipamento" name="equipamentName" ngModel>
-    <input type="text" required placeholder="Volume" name="equipamentSize" ngModel>
+    <input type="text" required placeholder="Equipamento" name="equipmentName" ngModel>
+    <input type="text" required placeholder="Volume" name="equipmentSize" ngModel>
     <button type="submit">Salvar</button>
     <button type="button" (click)="cleanForm()">Limpar Campos</button>
   </form>

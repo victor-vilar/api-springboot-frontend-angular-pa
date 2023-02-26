@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { EquipamentsComponent } from './components/crudbase/crud-components/equipaments/equipaments.component';
+import { EquipmentsComponent } from './components/crudbase/crud-components/equipaments/equipaments.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { CrudMenuComponent } from './components/util/crud-menu/crud-menu.component';
 import { ItensTableComponent } from './components/util/itens-table/itens-table.component';
@@ -16,7 +16,7 @@ import { ResidueComponent } from './components/crudbase/crud-components/residue/
 import { ContractComponent } from './components/crudbase/crud-components/contract/contract.component';
 import { CustomerComponent } from './components/crudbase/crud-components/customer/customer.component';
 import { FormsModule } from '@angular/forms';
-import { EquipamentDetailComponent } from './components/crudbase/crud-components/equipaments/equipament-detail/equipament-detail.component';
+import { EquipmentDetailComponent } from './components/crudbase/crud-components/equipaments/equipment-detail/equipament-detail.component';
 import { ResidueDetailComponent } from './components/crudbase/crud-components/residue/residue-detail/residue-detail.component';
 import { CustomerDetailComponent } from './components/crudbase/crud-components/customer/customer-detail/customer-detail.component';
 import { ItensTableCustomerComponent } from './components/util/itens-table-customer/itens-table-customer.component';
@@ -37,14 +37,14 @@ import { ItensTableItemContractComponent } from './components/util/itens-table-i
     AppComponent,
     MenuComponent,
     DashboardComponent,
-    EquipamentsComponent,
+    EquipmentsComponent,
     FooterComponent,
     CrudMenuComponent,
     ItensTableComponent,
     ResidueComponent,
     ContractComponent,
     CustomerComponent,
-    EquipamentDetailComponent,
+    EquipmentDetailComponent,
     ResidueDetailComponent,
     CustomerDetailComponent,
     ItensTableCustomerComponent,

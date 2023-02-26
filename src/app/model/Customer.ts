@@ -8,5 +8,6 @@ export interface Customer{
   contracts?:Contract[];
   supervisors?:Supervisor[];
   addresses?:Address[];
+  
 
 }

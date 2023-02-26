@@ -4,11 +4,11 @@ import { CustomerAddressesComponent } from './components/crudbase/crud-component
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { EquipamentsComponent } from './components/crudbase/crud-components/equipaments/equipaments.component';
+import { EquipmentsComponent } from './components/crudbase/crud-components/equipaments/equipaments.component';
 import { ResidueComponent } from './components/crudbase/crud-components/residue/residue.component';
 import { CustomerComponent } from './components/crudbase/crud-components/customer/customer.component';
 import { ContractComponent } from './components/crudbase/crud-components/contract/contract.component';
-import { EquipamentDetailComponent } from './components/crudbase/crud-components/equipaments/equipament-detail/equipament-detail.component';
+import { EquipmentDetailComponent } from './components/crudbase/crud-components/equipaments/equipment-detail/equipament-detail.component';
 import { ResidueDetailComponent } from './components/crudbase/crud-components/residue/residue-detail/residue-detail.component';
 import { CustomerDetailComponent } from './components/crudbase/crud-components/customer/customer-detail/customer-detail.component';
 import { CustomerContractsComponent } from './components/crudbase/crud-components/customer/customer-contracts/customer-contracts.component';
@@ -38,9 +38,9 @@ const routes: Routes = [
     {path:'residuo/:id',component:ResidueDetailComponent},
     {path:'residuo/novo',component:ResidueDetailComponent},
   ]},
-  {path:'equipamentos',component:EquipamentsComponent, children:[
-    {path:'equipamento/:id',component:EquipamentDetailComponent},
-    {path:'equipamento/novo',component:EquipamentDetailComponent},
+  {path:'equipamentos',component:EquipmentsComponent, children:[
+    {path:'equipamento/:id',component:EquipmentDetailComponent},
+    {path:'equipamento/novo',component:EquipmentDetailComponent},
 
   ]},
 ];

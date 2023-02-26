@@ -21,12 +21,6 @@ export class ContractsService extends CrudBaseService<Contract>  {
     return this.http.post<Contract>(routeToSaveContract,type);
   }
 
-  //save a item to contract
-  saveItemContract(listOfItens:ItemContract[],contractId:string):Observable<Contract>{
-    let routeToSaveAnItemToContract = CrudBaseService.BASE_URL + this.rota +'/additem/'+contractId;
-    return this.http.post<Contract>(routeToSaveAnItemToContract,listOfItens);
-  }
-
   //update contract
   updateContract(type:Contract,id:string|number):Observable<Contract>{
     let routeToSaveContract = CrudBaseService.BASE_URL + this.rota +'/'+id;
