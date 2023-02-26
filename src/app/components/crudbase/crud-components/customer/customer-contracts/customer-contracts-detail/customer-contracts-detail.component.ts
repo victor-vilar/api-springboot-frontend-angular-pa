@@ -155,6 +155,18 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
     }
   }
 
+  deleteItemFromContractObserver():any{
+    return{
+      next:(response) =>{
+        console.log(response);
+        this.itemContractList = response.list;
+      },
+      error:(error)=>{
+        console.log(error)
+      }
+    }
+  }
+
   //transform the item contract list in a form that api could save the itens
   itemContractListMapper(){
     return this.itemContractList.map(e =>{
@@ -228,8 +240,16 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
  //delete item from contract and recalulate the total value
   deleteItemFromList(index:number){
     this.itemContractList.splice(index,1);
+
+
+    let observable$ = this.contractService.deleteItemFromContract(item);
+    let observer = this.deleteItemFromContractObserver();
+    observable$.subscribe(observer);
+
     this.totalValueOfContract = 0;
     this.sumTotalOfContract();
+
+
   }
 
   //onload method to know if form going to be on edit mode or new mode
@@ -254,12 +274,14 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
                 quantity:'',
                 itemValue:''
               })
+
               //the contract that going to be edited
-
-
               this.contractToEdit = val;
+
               //copy the itens of val id to the current component list
               this.itemContractList = this.itemContractListFromApiMapper(val.itens);
+
+              this.sumTotalOfContract();
           }
         })
       })
