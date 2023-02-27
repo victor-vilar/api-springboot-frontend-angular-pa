@@ -38,7 +38,7 @@ export class ItensTableComponent implements OnInit, OnChanges{
       .subscribe(value =>{
         this.tableData = value
         this.filteredTableDataList = this.tableData.slice()
-      console.log(this.tableData)});
+      });
   }
 
   ngOnChanges(changes: SimpleChanges): void {

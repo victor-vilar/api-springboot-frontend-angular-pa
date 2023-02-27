@@ -263,7 +263,6 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
     //refresh total value
     this.totalValueOfContract = 0;
     this.sumTotalOfContract();
-
   }
 
   //needed to compare the itens. If the item comes from databse, it return with a id number,
@@ -355,6 +354,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
           let observer = this.deletesContractObserver();
           observevable$.subscribe(observer);
           this.itemContractList = [];
+          this.contractService.getAll();
         }else{
           this.itemContractList = response.list;
         }
