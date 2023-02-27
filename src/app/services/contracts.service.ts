@@ -29,12 +29,9 @@ export class ContractsService extends CrudBaseService<Contract>  {
     return this.http.put<Contract>(this.route,type);
   };
 
-  deleteContrat(){
-
-  }
-
+  //delete a item from contract
   deleteItemFromContract(item:ItemContract):Observable<Contract>{
-    this.route = CrudBaseService.BASE_URL + this.rota +'/'+item.id;
+    this.route = CrudBaseService.BASE_URL + this.rota +'/deleteitem/'+item.id;
     return this.http.delete<Contract>(this.route);
   }
 }

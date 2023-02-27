@@ -81,8 +81,47 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
       qtdOfResidue:"Quantidade",
       itemValue:"Valor",
     }
-    this.onLoad();
+
+    //get all services
     this.getAll();
+    this.onLoad();
+
+  }
+
+  //onload method to know if form going to be on edit mode or new mode
+  onLoad(): void {
+      //try to get queryParameter edit
+      if(this.activatedRoute.snapshot.queryParamMap.get('edit')){
+        //change the variable crud Operation to 'atualização' = update
+        this.crudOperation="Atualização"
+        //observable  get the id param
+        this.activatedRoute.paramMap.subscribe(value =>{
+          //contract service try to get the contract by id
+          this.contractService.getById(value.get('id'))
+          .subscribe(val =>{
+            //if value != null the form will be filled by val values
+            if(val !== null){
+                this.form.setValue({
+                  contractNumber:val.number,
+                  beginDate:val.beginDate,
+                  endDate:val.endDate,
+                  residue:'',
+                  equipment:'',
+                  quantity:'',
+                  itemValue:''
+                })
+
+                //the contract that going to be edited
+                this.contractToEdit = val;
+
+                //copy the itens of val id to the current component list
+                this.itemContractList = this.itemContractListFromApiMapper(val.itens);
+
+                this.sumTotalOfContract();
+            }
+          })
+        })
+      }
   }
 
   //execute services methods to get all info from api
@@ -121,6 +160,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
 
     //check if a item with the sames keys values exist, if is true, return a error
     let itemAlreadyExist = this.itemContractList.some(e => this.itemContractCompare(e, itemContract));
+
     if(itemAlreadyExist){
       throw Error('Já existe um item com os mesmos dados');
     }
@@ -130,49 +170,11 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
     this.sumTotalOfContract();
   }
 
-
   //display the total contract price
   sumTotalOfContract(){
     this.itemContractList.forEach(e =>{
       this.totalValueOfContract += e.itemValue * e.qtdOfResidue;
     })
-  }
-
-
-  //creates a observable to manipulate response
-  //if its ok, will again try to save contracts
-  createsContractObserver():any{
-    return{
-      next:(response) =>{
-        console.log(response);
-      },
-      error:(error)=>{
-        console.log(error);
-      }
-    }
-  }
-
-  createsItemContractObserver():any{
-    return{
-      next:(response) =>{
-        console.log(response)
-      },
-      error:(error)=>{
-        console.log(error)
-      }
-    }
-  }
-  //observer to do after eliminates a itemCOntract from databse;
-  deleteItemFromContractObserver():any{
-    return{
-      next:(response) =>{
-        console.log(response);
-        this.itemContractList = response.list;
-      },
-      error:(error)=>{
-        console.log(error)
-      }
-    }
   }
 
   //transform the item contract list in a form that api could save the itens
@@ -205,7 +207,6 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
     })
   }
 
-
   //saves contract at database
   save(){
     //check if contract has at least one item
@@ -224,7 +225,6 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
       observer$ = this.contractService.saveContract(contract, this.clientCpfCnpj);
     //if it's undefined it's just updating some item or value
     }else{
-
       //fill empty contract fields to make the update
       contract.id = this.contractToEdit.id;
       contract.customerId = this.contractToEdit.customerId;
@@ -256,11 +256,11 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
       let observer = this.deleteItemFromContractObserver();
       observable$.subscribe(observer);
     //if this deleted item hasn't an id, it means i only need to eliminate from this list
-    //so a need to delete from database and then update this list
     }else{
-      this.itemContractList.find(e => this.itemContractCompare(e, item));
+      this.itemContractList = this.itemContractList.filter(e =>!this.itemContractCompare(e, item));
     }
 
+    //refresh total value
     this.totalValueOfContract = 0;
     this.sumTotalOfContract();
 
@@ -289,43 +289,6 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
     return true
   }
 
-
-  //onload method to know if form going to be on edit mode or new mode
-  onLoad(): void {
-    //try to get queryParameter edit
-    if(this.activatedRoute.snapshot.queryParamMap.get('edit')){
-      //change the variable crud Operation to 'atualização' = update
-      this.crudOperation="Atualização"
-      //observable  get the id param
-      this.activatedRoute.paramMap.subscribe(value =>{
-        //contract service try to get the contract by id
-        this.contractService.getById(value.get('id'))
-        .subscribe(val =>{
-          //if value != null the form will be filled by val values
-          if(val !== null){
-              this.form.setValue({
-                contractNumber:val.number,
-                beginDate:val.beginDate,
-                endDate:val.endDate,
-                residue:'',
-                equipment:'',
-                quantity:'',
-                itemValue:''
-              })
-
-              //the contract that going to be edited
-              this.contractToEdit = val;
-
-              //copy the itens of val id to the current component list
-              this.itemContractList = this.itemContractListFromApiMapper(val.itens);
-
-              this.sumTotalOfContract();
-          }
-        })
-      })
-    }
-  }
-
   //navigates to another page
   destroy(): void {
     this.router.navigate(['/clientes'])
@@ -343,6 +306,67 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
       itemValue:100
     })
   }
+
+
+  //observer to manipulate observable subscription
+  //creates contract
+  createsContractObserver():any{
+    return{
+      next:(response) =>{
+        console.log(response);
+      },
+      error:(error)=>{
+        console.log(error);
+      }
+    }
+  }
+  //deletes contract
+  deletesContractObserver():any{
+    return{
+      next:(response) =>{
+        console.log(response);
+        console.log('Deletado com sucesso !');
+      },
+      error:(error)=>{
+        console.log(error);
+      }
+    }
+  }
+  //create itemContract
+  createsItemContractObserver():any{
+    return{
+      next:(response) =>{
+        console.log(response)
+      },
+      error:(error)=>{
+        console.log(error)
+      }
+    }
+  }
+  //observer to do after eliminates a itemCOntract from databse;
+  deleteItemFromContractObserver():any{
+    return{
+      next:(response) =>{
+        console.log(response);
+        //if the list of the itens is 0, then will delete the contract from
+        if(response.itens.length === 0){
+          console.log('O contrato ficou sem itens, por isso será deletado automaticamente');
+          let observevable$ = this.contractService.delete(response.id);
+          let observer = this.deletesContractObserver();
+          observevable$.subscribe(observer);
+          this.itemContractList = [];
+        }else{
+          this.itemContractList = response.list;
+        }
+
+      },
+      error:(error)=>{
+        console.log(error)
+      }
+    }
+  }
+  //====================
+
 }
 
 

@@ -1,5 +1,5 @@
 import { Residue } from './../../../model/Residue';
-import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges, OnChanges } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
  * COMO VI QUE IRIA SER NECESSARIO UTILIZAR O MESMO LAYOUT UTILIZADO NOS OUTROS ITENS TABLE, DECIDI UTILIZAR
  * PARA ARMAZENAR TEMPORARIAMENTE O RESIDUOS CADASTRADOS
  */
-export class ItensTableItemContractComponent implements OnInit {
+export class ItensTableItemContractComponent implements OnInit, OnChanges {
 
 
   searchedValue:string;
@@ -30,6 +30,9 @@ export class ItensTableItemContractComponent implements OnInit {
   model:string='';
 
   constructor(private router:Router) { }
+  ngOnChanges(changes: SimpleChanges): void {
+    this.filteredTableData();
+  }
 
   ngOnInit(): void {
     this.filteredTableDataList = this.tableData;
@@ -42,7 +45,7 @@ export class ItensTableItemContractComponent implements OnInit {
   @Output()
   deleteItemEmitter = new EventEmitter<any>();
   deleteItem(event:any){
-
+    console.log(event.id);
     if(event.id !== null || event.id !== undefined){
       this.deleteItemEmitter.emit(event);
     }else{
