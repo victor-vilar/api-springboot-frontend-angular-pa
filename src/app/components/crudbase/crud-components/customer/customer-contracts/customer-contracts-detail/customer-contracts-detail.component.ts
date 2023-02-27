@@ -118,7 +118,15 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
   //add an item to contract
   addItemToContract(){
     let itemContract = this.createItemContractObject();
+
+    //check if a item with the sames keys values exist, if is true, return a error
+    let itemAlreadyExist = this.itemContractList.some(e => this.itemContractCompare(e, itemContract));
+    if(itemAlreadyExist){
+      throw Error('Já existe um item com os mesmos dados');
+    }
+    //push item to list
     this.itemContractList.push(itemContract);
+    //sum total
     this.sumTotalOfContract();
   }
 
@@ -154,7 +162,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
       }
     }
   }
-
+  //observer to do after eliminates a itemCOntract from databse;
   deleteItemFromContractObserver():any{
     return{
       next:(response) =>{
@@ -241,19 +249,46 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
   deleteItemFromList(item:ItemContract){
     //this.itemContractList.splice(index,1);
 
-    //TODO REMOVER ITEM COM ID, MAS PRECISO REMOVER OS QUE PODEM ESTAR SENDO COLOCADOS NA EDIÇÃO
-    //DO CONTRATO MAS AINDA NÃO POSSUEM ID
+    //if this deleted item has an id, it means it was saved on api before
+    //so a need to delete from database and then update this list
     if(item.id != null || item.id !=undefined){
       let observable$ = this.contractService.deleteItemFromContract(item);
       let observer = this.deleteItemFromContractObserver();
       observable$.subscribe(observer);
+    //if this deleted item hasn't an id, it means i only need to eliminate from this list
+    //so a need to delete from database and then update this list
+    }else{
+      this.itemContractList.find(e => this.itemContractCompare(e, item));
     }
 
     this.totalValueOfContract = 0;
     this.sumTotalOfContract();
 
-
   }
+
+  //needed to compare the itens. If the item comes from databse, it return with a id number,
+  //and if try to save a new item it will be without id. i need to compare itens with and without id
+  itemContractCompare(item1:ItemContract,item2:ItemContract){
+
+    if(item1.equipment !== item2.equipment){
+      return false;
+    }
+
+    if(item1.residue !== item2.residue){
+      return false;
+    }
+
+    if(item1.qtdOfResidue !== item2.qtdOfResidue){
+      return false;
+    }
+
+    if(item1.itemValue !== item2.itemValue){
+      return false;
+    }
+
+    return true
+  }
+
 
   //onload method to know if form going to be on edit mode or new mode
   onLoad(): void {
@@ -290,10 +325,13 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
       })
     }
   }
+
+  //navigates to another page
   destroy(): void {
     this.router.navigate(['/clientes'])
   }
 
+  //fast filler to form(tests)
   mockingFormFiller(){
     this.form.setValue({
       contractNumber:'1000',

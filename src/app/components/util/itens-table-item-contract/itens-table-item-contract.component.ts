@@ -46,7 +46,7 @@ export class ItensTableItemContractComponent implements OnInit {
     if(event.id !== null || event.id !== undefined){
       this.deleteItemEmitter.emit(event);
     }else{
-      this.deleteItemEmitter.emit(event);
+      this.deleteItemEmitter.emit(event.id);
     }
 
   }
