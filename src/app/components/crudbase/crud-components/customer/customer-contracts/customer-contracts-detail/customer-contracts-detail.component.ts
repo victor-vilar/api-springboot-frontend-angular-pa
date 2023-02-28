@@ -168,6 +168,21 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
     this.itemContractList.push(itemContract);
     //sum total
     this.sumTotalOfContract();
+    this.clearAddItensInputFieldsAfterAdd();
+  }
+
+  //clear add itens to contract fields
+  clearAddItensInputFieldsAfterAdd(){
+
+    this.form.setValue({
+      contractNumber:this.form.value.contractNumber,
+      beginDate:this.form.value.beginDate,
+      endDate:this.form.value.endDate,
+      residue:'',
+      equipment:'',
+      quantity:'',
+      itemValue:''
+    })
   }
 
   //display the total contract price
