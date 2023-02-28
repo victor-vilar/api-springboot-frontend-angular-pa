@@ -235,6 +235,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
 
     //executing observable
     observer$.subscribe(contractObserver);
+    this.destroy();
   }
 
   //check if the contract have at least one item

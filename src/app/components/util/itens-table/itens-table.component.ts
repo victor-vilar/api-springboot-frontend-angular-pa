@@ -27,6 +27,8 @@ export class ItensTableComponent implements OnInit, OnChanges{
   @Input()
   fatherPathPrefix:any;
 
+  @Input()
+  customerId:string;
 
   @Input()
   service:any;
@@ -49,7 +51,6 @@ export class ItensTableComponent implements OnInit, OnChanges{
     return this.tableHeaders[key];
   }
 
-
   //get the selected row to do the operations of delete, update etc.
   deleteItem(event:any){
     this.service.delete(event.id)
@@ -57,9 +58,15 @@ export class ItensTableComponent implements OnInit, OnChanges{
       this.getAll();
     })
   }
-
+  //putting a option parameter to use on customer address, contracts and supervisors list
   getAll(){
-    this.service.getAll();
+    if(this.customerId !== undefined){
+      let observable$ = this.service.getContractByCustomerId(this.customerId);
+      observable$.subscribe(this.getAllContractsObserver());
+    }else{
+      this.service.getAll();
+    }
+
   };
 
   returnZero() {
@@ -72,6 +79,19 @@ export class ItensTableComponent implements OnInit, OnChanges{
         return element;
       }
     });
+  }
+
+  //observer to be used on customer address, contracts and supervisors list
+  getAllContractsObserver():any{
+    return {
+      next:(response) =>{
+        this.service.send(response);
+      },
+
+      error:(err)=>{
+        console.log(err);
+      }
+    }
   }
 
 

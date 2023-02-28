@@ -30,8 +30,6 @@ import { ItensTableItemContractComponent } from './components/util/itens-table-i
 
 
 
-
-
 @NgModule({
   declarations: [
     AppComponent,

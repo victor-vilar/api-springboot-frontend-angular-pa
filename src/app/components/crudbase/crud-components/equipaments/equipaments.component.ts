@@ -27,7 +27,7 @@ export class EquipmentsComponent implements OnInit, CrudBaseComponent {
 
     this.headerForTables ={
      id:'Id',
-     equipamentName:'Equipamento',
+     equipmentName:'Equipamento',
      sizeInMeterCubic:'Volume em M³'
     };
 

@@ -45,7 +45,7 @@ export class ItensTableItemContractComponent implements OnInit, OnChanges {
   @Output()
   deleteItemEmitter = new EventEmitter<any>();
   deleteItem(event:any){
-    
+
     if(event.id !== null || event.id !== undefined){
       this.deleteItemEmitter.emit(event);
     }else{
@@ -67,7 +67,7 @@ export class ItensTableItemContractComponent implements OnInit, OnChanges {
   }
 
 
-  //O ARRAY QUE VEM DO PAI POSSUI ALGUNS OBJETOS DENTOS, ENTÃO NÃO CONSIGO BUSCAR ALGUNS DADOS,
+  //O ARRAY QUE VEM DO PAI POSSUI ALGUNS OBJETOS DENTRO, ENTÃO NÃO CONSIGO BUSCAR ALGUNS DADOS,
   // ESTA DANDO ERRO NESSE FILTRO,
   // PRECISO CORRIGIR
   filteredTableData(){
