@@ -28,22 +28,20 @@ export class CustomerAddressesComponent implements OnInit {
   customerService:CustomerService;
   addressService:AddressService;
 
-
-
   ngOnInit(): void {
     this.headerForTables ={
       id:'Id',
-      number:'Número',
-      beginDate:'Data Início',
-      endDate:'Data Fim',
-      totalItens:'Total de Itens',
-      totalEmRs:'Total em R$'
+      addressName:'Logradouro',
+      addressNumber:'Número',
+      complement:'Complemento',
+      zipCode:'CEP',
+      city:'Cidade',
+      state:'Estado'
      };
+
     this.activeRoute.paramMap.subscribe(param =>{
       this.selectedCustomer = this.customerService.list.find(obj => obj.cpfCnpj === param.get('cpfCnpj'));
     })
-
-
   }
 
 
