@@ -1,7 +1,9 @@
+import { AddressService } from './../../../services/address.service';
 import { CrudBaseService } from 'src/app/services/crudbase.service';
 import { Component, EventEmitter, Input, OnInit, Output, OnChanges, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { from, of } from 'rxjs';
+import { ContractsService } from 'src/app/services/contracts.service';
 
 @Component({
   selector: 'app-itens-table',
@@ -60,9 +62,22 @@ export class ItensTableComponent implements OnInit, OnChanges{
   }
   //putting a option parameter to use on customer address, contracts and supervisors list
   getAll(){
+
     if(this.customerId !== undefined){
-      let observable$ = this.service.getContractByCustomerId(this.customerId);
-      observable$.subscribe(this.getAllContractsObserver());
+
+
+      if(this.fatherPathPrefix === 'contrato'){
+        let observable$ = this.service.getContractByCustomerId(this.customerId);
+        observable$.subscribe(this.getAllByCustomerIdObserver());
+      }
+
+      if(this.fatherPathPrefix === 'endereco'){
+        let observable$ = this.service.getAllAddressByCustomerId(this.customerId);
+        observable$.subscribe(this.getAllByCustomerIdObserver());
+      }
+
+
+
     }else{
       this.service.getAll();
     }
@@ -82,9 +97,10 @@ export class ItensTableComponent implements OnInit, OnChanges{
   }
 
   //observer to be used on customer address, contracts and supervisors list
-  getAllContractsObserver():any{
+  getAllByCustomerIdObserver():any{
     return {
       next:(response) =>{
+        console.log(response);
         this.service.send(response);
       },
 

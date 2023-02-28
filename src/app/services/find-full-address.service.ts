@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class FullAddressService {
+export class FullAddressFinderService {
 
   constructor() { }
 

@@ -23,14 +23,11 @@ export class CustomerContractsComponent implements OnInit {
   title='Contratos'
   pathPrefix='contrato';
   headerForTables:any;
-  pathToOperations = [{name:"+", path: this.pathPrefix + '/novo', title:"Novo Contrato"}];
+  pathToOperations = [{name:"+", path: this.pathPrefix + '/novo', title:"Novo " + this.pathPrefix}];
   customerService:CustomerService;
   contractService:ContractsService;
 
-     /**
-      * NO MOMENTO ESTA PUXANDO TODOS OS CONTRATOS, SO QUE ESSA TELA PRECISA MOSTRAR,
-      * SOMENTE OS CONTRATOS CADASTRADOS PARA O CLIENTE SELECIONADO
-      */
+
 
   ngOnInit(): void {
     this.headerForTables ={
