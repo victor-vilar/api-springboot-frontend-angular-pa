@@ -16,10 +16,19 @@ export class AddressService extends CrudBaseService<Address> {
     super(http);
     this.rota='address'
    }
+
    route:string;
 
-   getAllAddressByCustomerId(clientCpfCnpj:string):Observable<Address[]>{
+  getAllAddressByCustomerId(clientCpfCnpj:string):Observable<Address[]>{
     this.route = this.route = CrudBaseService.BASE_URL + this.rota +'/'+clientCpfCnpj;
     return this.http.get<Address[]>(this.route);
-   }
+  }
+
+  override save(address:Address):Observable<Address>{
+    this.route = this.route = CrudBaseService.BASE_URL + this.rota +'/' + address.customerId;
+    return this.http.post<Address>(this.route,address);
+  }
+
+
+
 }

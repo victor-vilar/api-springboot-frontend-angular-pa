@@ -1,0 +1,38 @@
+<div class="wrapper">
+  <form (ngSubmit)="save('teste')" #form="ngForm">
+    <h4>{{crudOperation}} de Contratos</h4>
+
+    <div class="address-info">
+
+      <div class="zipcode-field">
+        <label for="zipNumber">CEP</label>
+        <input type="text" placeholder="CEP" id='zipNumber' name="zipCode" ngModel>
+        <input type="button" value="Buscar CEP" (click)="searchFullAddressInfo()">
+      </div>
+
+      <div class="full-address-info">
+        <label for="addressName">Logradouro</label>
+        <input type="text" placeholder="Logradouro" id='addressName' name="addressName" ngModel>
+
+        <label for="addressNumber">Número</label>
+        <input type="text" placeholder="Número" id='addressNumber' name="addressNumber" ngModel>
+
+        <label for="complement">Complemento</label>
+        <input type="text" placeholder="Complemento" id='complement' name="complement" ngModel>
+
+        <label for="city">Cidade</label>
+        <input type="text" placeholder="Cidade" id='city' name="city" ngModel>
+
+        <label for="state">Estado</label>
+        <input type="text" placeholder="Estado" id='state' name="state" ngModel>
+
+        <label for="requiresCollection">Existe coleta nesse local ?</label>
+        <input type="checkbox" id="requiresCollection" name="requiresCollection" ngModel>
+
+      </div>
+      <input type="submit" value="Salvar">
+    </div>
+  </form>
+
+</div>
+

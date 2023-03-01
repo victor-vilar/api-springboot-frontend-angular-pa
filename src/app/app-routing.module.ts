@@ -13,6 +13,7 @@ import { ResidueDetailComponent } from './components/crudbase/crud-components/re
 import { CustomerDetailComponent } from './components/crudbase/crud-components/customer/customer-detail/customer-detail.component';
 import { CustomerContractsComponent } from './components/crudbase/crud-components/customer/customer-contracts/customer-contracts.component';
 import { CustomerContractsDetailComponent } from './components/crudbase/crud-components/customer/customer-contracts/customer-contracts-detail/customer-contracts-detail.component';
+import { CustomerAddressesDetailComponent } from './components/crudbase/crud-components/customer/customer-addresses/customer-addresses-detail/customer-addresses-detail.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'dashboard', pathMatch:'full'},
@@ -26,8 +27,8 @@ const routes: Routes = [
     {path:'contrato/novo',component:CustomerContractsDetailComponent},
   ]},
   {path:'cliente/:cpfCnpj/enderecos',component:CustomerAddressesComponent, children:[
-    {path:'endereco/:id',component:CustomerDetailComponent},
-    {path:'endereco/novo',component:CustomerDetailComponent},
+    {path:'endereco/:id',component:CustomerAddressesDetailComponent},
+    {path:'endereco/novo',component:CustomerAddressesDetailComponent},
   ]},
   {path:'cliente/:cpfCnpj/fiscais',component:CustomerSupervisorsComponent, children:[
     {path:'fiscal/:id',component:CustomerDetailComponent},
