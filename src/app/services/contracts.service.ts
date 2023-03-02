@@ -23,12 +23,6 @@ export class ContractsService extends CrudBaseService<Contract>  {
     return this.http.post<Contract>(this.route,contract);
   }
 
-  //update contract
-  updateContract(type:Contract,id:string|number):Observable<Contract>{
-    this.route = CrudBaseService.BASE_URL + this.rota +'/'+id;
-    return this.http.put<Contract>(this.route,type);
-  };
-
   //delete a item from contract
   deleteItemFromContract(item:ItemContract):Observable<Contract>{
     this.route = CrudBaseService.BASE_URL + this.rota +'/deleteitem/'+item.id;

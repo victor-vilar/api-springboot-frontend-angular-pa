@@ -228,7 +228,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
     this.checkIfContractHasItens()
     //create a contract object
     let contract = this.createObject();
-
+    contract.customerId = this.clientCpfCnpj;
     //insert itens to contract
     contract.itens = this.itemContractListMapper();
     //creates a contractObserver
@@ -245,7 +245,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
       contract.customerId = this.contractToEdit.customerId;
 
       //put on api
-      observer$ = this.contractService.updateContract(contract,contract.id);
+      observer$ = this.contractService.update(contract.id,contract);
     }
 
     //executing observable

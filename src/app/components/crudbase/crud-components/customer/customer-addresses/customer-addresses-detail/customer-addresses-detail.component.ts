@@ -51,12 +51,14 @@ export class CustomerAddressesDetailComponent implements OnInit, FormDetail {
 
   save(object: any): void {
 
-    let address = this.createObject();
     let observable$;
+    let address = this.createObject();
+    address.customerId = this.clientCpfCnpj;
+
 
     if(this.addressToEdit === undefined){
       observable$ = this.addressService.save(address);
-      console.log(address.customerId);
+
     }else{
       observable$ = this.addressService.update(address.id,address);
     }
