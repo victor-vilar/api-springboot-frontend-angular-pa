@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { FormDetail } from 'src/app/model/FormDetail';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Customer } from 'src/app/model/Customer';
 
 @Component({
   selector: 'app-customer-detail',
@@ -22,30 +23,26 @@ export class CustomerDetailComponent implements OnInit, FormDetail {
     this.onLoad();
   }
 
-  createObject(){
-    let object = {
+  createObject():Customer{
+    return {
       cpfCnpj:this.form.value.cpfCnpj,
       nameCompanyName:this.form.value.razaoSocial,
     }
-    return object;
+
   }
 
   save(): void {
+
     let customer = this.createObject();
-    //se for um objeto com id nulo, é um novo objeto
-    //se não é atualização de um objeto existente.
+    let obervable$;
+
     if(this.idOfEditedItem === undefined){
-    this.service.save(customer)
-    .subscribe(result => {
-     this.service.getAll()
-      //this.service.sendNull();
-    })
+      obervable$ =this.service.save(customer);
     }else{
-    this.service.update(customer.cpfCnpj,customer)
-    .subscribe(result => {
-      this.service.getAll()
-     })
+      obervable$ =this.service.update(customer.cpfCnpj,customer)
     }
+
+    obervable$.subscribe(this.customerObserver());
     this.destroy();
   }
 
@@ -75,4 +72,15 @@ export class CustomerDetailComponent implements OnInit, FormDetail {
     this.form.reset();
   }
 
+  customerObserver(){
+    return{
+      next:(response)=>{
+        console.log(response);
+        this.service.getAll();
+      },
+      error:(response)=>{
+        console.log(response)
+      }
+    }
+  }
 }

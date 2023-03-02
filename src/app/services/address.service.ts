@@ -12,15 +12,16 @@ import { FullAddressFinderService } from './find-full-address.service';
 })
 export class AddressService extends CrudBaseService<Address> {
 
-  constructor(http:HttpClient, private fullAddressFinderService:FullAddressFinderService ) {
+  constructor(http:HttpClient) {
     super(http);
     this.rota='address'
    }
 
    route:string;
 
-  getAllAddressByCustomerId(clientCpfCnpj:string):Observable<Address[]>{
-    this.route = this.route = CrudBaseService.BASE_URL + this.rota +'/'+clientCpfCnpj;
+   //get all address by customer id
+  getAllAddressByCustomerId(customerCpfCnpj:string):Observable<Address[]>{
+    this.route = this.route = CrudBaseService.BASE_URL + this.rota +'/by-customer/'+customerCpfCnpj;
     return this.http.get<Address[]>(this.route);
   }
 

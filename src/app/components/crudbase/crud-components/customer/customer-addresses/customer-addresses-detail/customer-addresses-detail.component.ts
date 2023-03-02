@@ -16,7 +16,7 @@ export class CustomerAddressesDetailComponent implements OnInit, FormDetail {
 
   @ViewChild('form') form: NgForm;
   idOfEditedItem: string | number;
-  crudOperation: string;
+  crudOperation='Cadastro';
   addressToEdit:Address;
   clientCpfCnpj:string;
 
@@ -37,6 +37,7 @@ export class CustomerAddressesDetailComponent implements OnInit, FormDetail {
 
 
   createObject():Address {
+
     return {
       addressName:this.form.value.addressName,
       addressNumber:this.form.value.addressNumber,
@@ -55,11 +56,10 @@ export class CustomerAddressesDetailComponent implements OnInit, FormDetail {
     let address = this.createObject();
     address.customerId = this.clientCpfCnpj;
 
-
     if(this.addressToEdit === undefined){
       observable$ = this.addressService.save(address);
-
     }else{
+      address.id = this.addressToEdit.id;
       observable$ = this.addressService.update(address.id,address);
     }
 
@@ -70,6 +70,7 @@ export class CustomerAddressesDetailComponent implements OnInit, FormDetail {
     return {
       next:(response) =>{
         console.log(response);
+        this.addressService.getAll();
       },
       error:(response) =>{
         console.log(response);
@@ -98,7 +99,7 @@ export class CustomerAddressesDetailComponent implements OnInit, FormDetail {
                     complement :val.complement,
                     city : val.city,
                     state : val.state,
-                    hasCollection:val.requiresCollection
+                    requiresCollection:val.requiresCollection
                     })
                     this.addressToEdit = val;
                 }
