@@ -33,6 +33,9 @@ export class ItensTableComponent implements OnInit, OnChanges{
   customerId:string;
 
   @Input()
+  columnCount:number;
+
+  @Input()
   service:any;
 
   constructor(private router:Router) { }

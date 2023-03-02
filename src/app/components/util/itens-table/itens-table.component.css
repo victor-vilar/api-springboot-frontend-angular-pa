@@ -100,12 +100,15 @@
 }
 
 @media screen and (min-width:976px){
-
+  :root {
+    --column-count: 4;
+  }
   .itens-table-container-item{
+
     border: none;
     display: grid;
     /* DESCOBRIR COMO COLOCAR O TAMANHO VARIAVEL  */
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns: repeat(var(--column-count),1fr);
     border-bottom: 1px solid black;
   }
   .itens-table-container-item:not(:first-child) .object-key-values .key-header {

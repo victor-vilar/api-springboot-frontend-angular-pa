@@ -14,7 +14,7 @@
       </div>
 
       <div class="itens-table-container-wrapper">
-        <div class="itens-table-container-item" *ngFor="let object of filteredTableDataList">
+        <div class="itens-table-container-item" *ngFor="let object of filteredTableDataList" [ngStyle]="{'--column-count': columnCount}">
             <div class="object-key-values" *ngFor="let item of object | keyvalue: returnZero ">
                 <label class="key-header"><b>{{findAliasInHeaderForTableArray(item.key)}}</b></label>
                 <b class="key-value">{{item.value}}</b>
