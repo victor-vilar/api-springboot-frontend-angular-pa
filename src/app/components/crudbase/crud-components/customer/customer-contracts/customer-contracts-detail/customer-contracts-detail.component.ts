@@ -237,7 +237,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
     //if the idOfEditedItem === undefined means its a new contract not a edited one
     let observer$;
     if(this.contractToEdit === null){
-      observer$ = this.contractService.saveContract(contract, this.clientCpfCnpj);
+      observer$ = this.contractService.save(contract);
     //if it's undefined it's just updating some item or value
     }else{
       //fill empty contract fields to make the update
