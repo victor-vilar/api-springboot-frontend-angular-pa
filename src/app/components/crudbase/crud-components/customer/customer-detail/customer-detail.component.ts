@@ -72,7 +72,7 @@ export class CustomerDetailComponent implements OnInit, FormDetail {
     this.form.reset();
   }
 
-  customerObserver(){
+  private customerObserver(){
     return{
       next:(response)=>{
         console.log(response);

@@ -64,6 +64,7 @@ export class CustomerAddressesDetailComponent implements OnInit, FormDetail {
     }
 
     observable$.subscribe(this.saveAddressObserver());
+    this.destroy();
   }
 
   saveAddressObserver(){

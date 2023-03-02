@@ -1,0 +1,44 @@
+.wrapper{
+  padding: 5px;
+}
+
+.zipcode-field, .full-address-info{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5px;
+  gap:5px;
+  padding: 5px;
+}
+
+.zipcode-field input[type=button], form input[type=submit]{
+  background-color: var(--cinza-escuro);
+  color: white;
+  font-weight: bold;
+  border: none;
+  box-shadow: 1px 1px 3px black;
+  padding: 5px;
+
+}
+.zipcode-field label, .full-address-info label{
+  font-weight: bolder;
+}
+
+.zipcode-field input, .full-address-info input{
+  padding:10px;
+  width: 100%;
+  height: 50px;
+  margin-bottom: 5px;
+}
+
+.full-address-info input[type=checkbox]{
+  width: 30px;
+  height: 30px;
+  padding:0px;
+}
+
+form input[type=submit]{
+  padding:10px;
+  width: 100%;
+  height: 50px;
+  margin-bottom: 5px;
+}

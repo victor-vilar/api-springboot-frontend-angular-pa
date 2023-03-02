@@ -36,7 +36,8 @@ export class CustomerAddressesComponent implements OnInit {
       complement:'Complemento',
       zipCode:'CEP',
       city:'Cidade',
-      state:'Estado'
+      state:'Estado',
+      requiresCollection:'Existe Coleta'
      };
 
     this.activeRoute.paramMap.subscribe(param =>{
