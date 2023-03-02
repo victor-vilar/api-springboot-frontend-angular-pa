@@ -12,7 +12,7 @@ import { ContractsService } from 'src/app/services/contracts.service';
 })
 export class ItensTableComponent implements OnInit, OnChanges{
 
-  searchedValue:string;
+  searchedValue:string ='';
 
   //header of the data sended by component
   @Input()

@@ -42,3 +42,24 @@ form input[type=submit]{
   height: 50px;
   margin-bottom: 5px;
 }
+
+@media screen and (min-width:768px){
+
+  .zipcode-field {
+    flex-direction: row;
+    align-items: center;
+  }
+  .zipcode-field input[type=text]{
+    width: 300px;
+  }
+  .zipcode-field input[type=button]{
+    width: 100px;
+  }
+  .full-address-info input{
+    width: 450px;
+  }
+  form input[type=submit]{
+    max-width: 450px;
+  }
+
+}
