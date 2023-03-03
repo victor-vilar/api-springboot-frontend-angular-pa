@@ -6,8 +6,11 @@
 
       <div class="zipcode-field">
         <label for="zipNumber">CEP</label>
-        <input type="text" placeholder="CEP" id='zipNumber' name="zipCode" ngModel>
+        <input type="text" placeholder="CEP" id='zipNumber' name="zipCode" ngModel [ngClass]="{zipcodeerror: searchedZipCodeErrorResponse}">
         <input type="button" value="Buscar CEP" (click)="searchFullAddressInfo()">
+        <div class="search-zipcode-reponse-error" *ngIf="searchedZipCodeErrorResponse">
+          <p>Não foi possivel encontrar esse endereço, por favor tente novamente</p>
+        </div>
       </div>
 
       <div class="full-address-info">

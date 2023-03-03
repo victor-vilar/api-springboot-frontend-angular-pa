@@ -1,6 +1,13 @@
 .wrapper{
   padding: 5px;
 }
+.search-zipcode-reponse-error p {
+  color: red;
+}
+
+.zipcodeerror {
+  border: 1px solid red;
+}
 
 .zipcode-field, .full-address-info{
   display: flex;

@@ -19,6 +19,7 @@ export class CustomerAddressesDetailComponent implements OnInit, FormDetail {
   crudOperation='Cadastro';
   addressToEdit:Address;
   clientCpfCnpj:string;
+  searchedZipCodeErrorResponse:boolean = false;
 
   constructor(private findFullAddress:FullAddressFinderService,
     private addressService:AddressService,
@@ -118,7 +119,12 @@ export class CustomerAddressesDetailComponent implements OnInit, FormDetail {
   searchFullAddressInfo(){
     let response = this.findFullAddress.getFullAddress(this.form.value.zipCode);
     response.then(address =>{
+      this.form.reset();
       this.fillFormInputs(address);
+      this.searchedZipCodeErrorResponse = false;
+    }).catch(response => {
+      this.searchedZipCodeErrorResponse = true;
+      console.log('Não foi possivel encontrar esse endereço !')
     })
   }
 
