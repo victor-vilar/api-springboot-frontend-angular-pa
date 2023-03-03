@@ -35,7 +35,7 @@ export class CustomerContractsComponent implements OnInit {
       number:'Número',
       beginDate:'Data Início',
       endDate:'Data Fim',
-      totalItens:'Total de Itens',
+      totItens:'Total de Itens',
       totalEmRs:'Total em R$'
      };
     this.activeRoute.paramMap.subscribe(param =>{

@@ -187,6 +187,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
 
   //display the total contract price
   sumTotalOfContract(){
+    this.totalValueOfContract = 0;
     this.itemContractList.forEach(e =>{
       this.totalValueOfContract += e.itemValue * e.qtdOfResidue;
     })

@@ -4,6 +4,7 @@ import { Component, EventEmitter, Input, OnInit, Output, OnChanges, SimpleChange
 import { Router } from '@angular/router';
 import { from, of } from 'rxjs';
 import { ContractsService } from 'src/app/services/contracts.service';
+import { MapperService } from 'src/app/services/mapper.service';
 
 @Component({
   selector: 'app-itens-table',
@@ -38,14 +39,12 @@ export class ItensTableComponent implements OnInit, OnChanges{
   @Input()
   service:any;
 
-  constructor(private router:Router) { }
+  constructor(private router:Router,
+    private mapper:MapperService) { }
 
   ngOnInit(): void {
-      this.service.refreshAllData()
-      .subscribe(value =>{
-        this.tableData = value
-        this.filteredTableDataList = this.tableData.slice()
-      });
+    let observable$ = this.service.refreshAllData();
+    observable$.subscribe(this.onInitObserver());
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -68,18 +67,21 @@ export class ItensTableComponent implements OnInit, OnChanges{
 
     if(this.customerId !== undefined){
 
+      let observable$
 
       if(this.fatherPathPrefix === 'contrato'){
-        let observable$ = this.service.getContractByCustomerId(this.customerId);
-        observable$.subscribe(this.getAllByCustomerIdObserver());
+        observable$ = this.service.getContractByCustomerId(this.customerId);
       }
 
       if(this.fatherPathPrefix === 'endereco'){
-        let observable$ = this.service.getAllAddressByCustomerId(this.customerId);
-        observable$.subscribe(this.getAllByCustomerIdObserver());
+        observable$ = this.service.getAllAddressByCustomerId(this.customerId);
       }
 
+      if(this.fatherPathPrefix === 'fiscal'){
+        observable$ = this.service.getAllSupervisorsByCustomerId(this.customerId);
+      }
 
+      observable$.subscribe(this.getAllByCustomerIdObserver());
 
     }else{
       this.service.getAll();
@@ -87,6 +89,7 @@ export class ItensTableComponent implements OnInit, OnChanges{
 
   };
 
+  //used to inform the keyvalue pipe to not sort the object
   returnZero() {
     return 0;
   }
@@ -99,20 +102,43 @@ export class ItensTableComponent implements OnInit, OnChanges{
     });
   }
 
-  //observer to be used on customer address, contracts and supervisors list
+  //observer to be used on address, contracts and supervisors list
   getAllByCustomerIdObserver():any{
     return {
       next:(response) =>{
-        console.log(response);
-        this.service.send(response);
-      },
 
+        if(this.fatherPathPrefix === 'contrato'){
+          this.tableData = this.mapper.toItensTableContractMapper(response);
+        }
+
+        if(this.fatherPathPrefix === 'endereco'){
+          this.tableData = this.mapper.toItensTableAddressMapper(response);
+        }
+
+        // if(this.fatherPathPrefix === 'fiscal'){
+        //   this.tableData = this.mapper.toItensTableSupervisorMapper(response);
+        // }
+
+        this.filteredTableDataList = this.tableData.slice();
+      },
       error:(err)=>{
         console.log(err);
       }
     }
   }
 
+  //obersver used on onInit method
+  onInitObserver():any {
+    return {
+      next:(response) =>{
+          this.tableData = response;
+          this.filteredTableDataList = this.tableData.slice();
+      },
+      error:(error) =>{
+        console.log(error);
+      }
+    }
+  }
 
 
 
