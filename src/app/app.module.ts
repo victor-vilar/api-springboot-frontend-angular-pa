@@ -28,6 +28,7 @@ import { CustomerInfoComponent } from './components/crudbase/crud-components/cus
 import { CustomerContractsDetailComponent } from './components/crudbase/crud-components/customer/customer-contracts/customer-contracts-detail/customer-contracts-detail.component';
 import { ItensTableItemContractComponent } from './components/util/itens-table-item-contract/itens-table-item-contract.component';
 import { CustomerAddressesDetailComponent } from './components/crudbase/crud-components/customer/customer-addresses/customer-addresses-detail/customer-addresses-detail.component';
+import { CustomerSupervisorsDetailComponent } from './components/crudbase/crud-components/customer/customer-supervisors/customer-supervisors-detail/customer-supervisors-detail.component';
 
 
 
@@ -55,6 +56,7 @@ import { CustomerAddressesDetailComponent } from './components/crudbase/crud-com
     CustomerContractsDetailComponent,
     ItensTableItemContractComponent,
     CustomerAddressesDetailComponent,
+    CustomerSupervisorsDetailComponent,
   ],
   imports: [
     BrowserModule,
