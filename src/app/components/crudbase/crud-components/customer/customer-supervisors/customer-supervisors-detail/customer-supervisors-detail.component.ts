@@ -90,7 +90,7 @@ export class CustomerSupervisorsDetailComponent implements OnInit, FormDetail {
   }
 
   destroy(): void {
-    throw new Error('Method not implemented.');
+    this.router.navigate(['/clientes'])
   }
 
   cleanForm(){
