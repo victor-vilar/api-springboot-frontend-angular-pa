@@ -1,0 +1,64 @@
+.detail-container{
+  max-width: 100%;
+  border-bottom: 1px solid var(--cinza-escuro);
+  padding-bottom: 15px;
+
+}
+
+.close-button{
+  cursor: pointer;
+  transition: all 0.3s ;
+  padding:0px 10px;
+  text-decoration: none;
+  color:black;
+}
+
+.close-button:hover{
+  background-color: var(--cinza-escuro);
+  color: white;
+}
+
+.detail-component-header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 20px;
+  font-size: 1.5em;
+  font-weight: bold;
+
+}
+
+.detail-component-header h4{
+  font-weight: bold;
+}
+
+
+
+
+form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5px;
+  gap:5px;
+  padding: 5px;
+}
+form label {
+  font-weight: bold;
+}
+
+.form input[type=button], form input[type=submit]{
+  background-color: var(--cinza-escuro);
+  color: white;
+  font-weight: bold;
+  border: none;
+  box-shadow: 1px 1px 3px black;
+  padding: 5px;
+
+}
+
+input {
+  padding:10px;
+  width: 100%;
+  height: 50px;
+  margin-bottom: 5px;
+}

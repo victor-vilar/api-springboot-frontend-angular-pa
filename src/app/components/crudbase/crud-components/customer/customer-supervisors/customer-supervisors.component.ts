@@ -22,7 +22,7 @@ export class CustomerSupervisorsComponent implements OnInit {
 
   selectedCustomer:Customer;
   title='Fiscais'
-  pathPrefix='fiscais';
+  pathPrefix='fiscal';
   headerForTables:any;
   pathToOperations = [{name:"+", path: this.pathPrefix + '/novo', title:"Novo " + this.pathPrefix}];
   customerService:CustomerService;

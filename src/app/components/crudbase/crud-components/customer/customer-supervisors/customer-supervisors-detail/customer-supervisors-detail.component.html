@@ -1,1 +1,24 @@
-<p>customer-supervisors-detail works!</p>
+<div class="wrapper">
+  <div class="detail-container">
+
+    <div class="detail-component-header">
+      <h4 class="detail-title">{{crudOperation}} de Clientes</h4>
+      <a (click)="destroy()" class="close-button">X</a>
+    </div>
+
+    <form #form="ngForm" (ngSubmit)="save('teste')">
+      <label for="supervisorName">Nome</label>
+      <input type="text" ngModel name="supervisorName" id="supervisorName" placeholder="Nome">
+
+      <label for="supervisorPhone">Telefone</label>
+      <input type="phone" ngModel name="supervisorPhone" placeholder="Telefone">
+
+      <label for="supervisorEmail">Email</label>
+      <input type="email" ngModel name="supervisorEmail" placeholder="Email">
+
+      <input type="button" value="limpar" (click)="cleanForm()">
+      <input type="submit" value="Salvar">
+    </form>
+
+  </div>
+</div>
