@@ -17,11 +17,7 @@ export class ContractsService extends CrudBaseService<Contract>  {
 
    private route;
 
-   // save a contract to a client
-  override save(contract:Contract):Observable<Contract>{
-    this.route = CrudBaseService.BASE_URL + this.rota +'/'+contract.customerId
-    return this.http.post<Contract>(this.route,contract);
-  }
+
 
   //delete a item from contract
   deleteItemFromContract(item:ItemContract):Observable<Contract>{

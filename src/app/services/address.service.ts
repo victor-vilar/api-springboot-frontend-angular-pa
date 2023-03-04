@@ -25,10 +25,7 @@ export class AddressService extends CrudBaseService<Address> {
     return this.http.get<Address[]>(this.route);
   }
 
-  override save(address:Address):Observable<Address>{
-    this.route = this.route = CrudBaseService.BASE_URL + this.rota +'/' + address.customerId;
-    return this.http.post<Address>(this.route,address);
-  }
+ 
 
 
 

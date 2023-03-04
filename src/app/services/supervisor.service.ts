@@ -15,9 +15,6 @@ export class SupervisorService extends CrudBaseService<Supervisor>  {
    }
 
    route:string;
-  //  override save(address:Address){
-
-  //  }
 
    getAllSupervisorsByCustomerId(customerId:string | number):Observable<Supervisor[]>{
     this.route = CrudBaseService.BASE_URL + this.rota + '/by-client/' + customerId;
