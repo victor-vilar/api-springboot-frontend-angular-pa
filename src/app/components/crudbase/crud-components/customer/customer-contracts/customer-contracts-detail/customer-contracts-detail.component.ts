@@ -293,7 +293,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
   }
 
   checkIfItemContractInputsAreNumbers(){
-    if(Number.isNaN(this.form.value.quantity) || Number.isNaN(this.form.value.itemValue)){
+    if(isNaN(this.form.value.quantity) || isNaN(this.form.value.itemValue)){
       throw Error('Os campos de quantidade e valor devem ser do tipo número');
     }
   }
