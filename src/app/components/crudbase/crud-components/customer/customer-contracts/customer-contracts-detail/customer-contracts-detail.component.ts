@@ -6,7 +6,7 @@ import { Equipment } from '../../../../../../model/Equipment';
 import { ResiduesService } from './../../../../../../services/residues.service';
 import { Component, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { Residue } from 'src/app/model/Residue';
-import { NgForm } from '@angular/forms';
+import { FormControl, NgForm } from '@angular/forms';
 import { ContractsService } from 'src/app/services/contracts.service';
 import { FormDetail } from 'src/app/model/FormDetail';
 
@@ -40,7 +40,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
   idOfEditedItem: string | number = "0";
   contractToEdit:Contract = null;
   //
-  crudOperation: string;
+  crudOperation: string = "Cadastro";
 
   //headers for itemCOntract itens list
   headerForTables;
@@ -127,7 +127,10 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
   //execute services methods to get all info from api
   ngOnChanges(changes: SimpleChanges): void {
     this.getAll();
+
   }
+
+
 
   //execute services methods to get all info from api
   getAll(){
@@ -154,8 +157,23 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
     }
   }
 
+  //TODO
+  checkIfItemContractFromInputsAreFilled(){
+    Object.values(this.form.controls).forEach(e =>{
+      if(e.value === '' || e.value === null){
+        throw Error('É necessario prencher todos os campos !')
+      }
+    })
+  }
+
+
+
   //add an item to contract
   addItemToContract(){
+
+    //check if all fields of add item its filled.
+    this.checkIfItemContractFromInputsAreFilled();
+
     let itemContract = this.createItemContractObject();
 
     //check if a item with the sames keys values exist, if is true, return a error
@@ -227,6 +245,9 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
   save(){
     //check if contract has at least one item
     this.checkIfContractHasItens()
+
+    //check if end date is bigger than begin date
+    this.checkContractDates();
     //create a contract object
     let contract = this.createObject();
     contract.customerId = this.clientCpfCnpj;
@@ -259,6 +280,15 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
   checkIfContractHasItens(){
     if(this.itemContractList.length === 0 ){
       throw Error('O contrato deve possuir pelo menos um item!!')
+    }
+  }
+  //check if begin date is small or equals to end date
+  checkContractDates(){
+
+    let beginDate = new Date(this.form.value.beginDate);
+    let endDate = new Date(this.form.value.endDate);
+    if(beginDate.getDate() > endDate.getDate() || beginDate.getDate() === endDate.getDate()){
+      throw Error('A data de encerramento não pode ser igual ou anterior a data de inicio')
     }
   }
 

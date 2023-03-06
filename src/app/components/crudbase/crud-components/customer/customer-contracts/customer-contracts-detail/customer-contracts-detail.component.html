@@ -1,5 +1,5 @@
 <div class="wrapper">
-  <button (click)="mockingFormFiller()">Fill form</button>
+
   <form (ngSubmit)="save()" #form="ngForm">
     <h4>{{crudOperation}} de Contratos</h4>
     <div class="basic-contract-info">
@@ -49,8 +49,10 @@
         </div>
         <input type="button" value="adicionar residuo" (click)="addItemToContract()"><br><br>
         <input type="submit" value="salvar">
+
     </div>
   </form>
+  <button (click)="mockingFormFiller()">Fill form</button>
 
   <app-itens-table-item-contract
     [tableHeaders]="headerForTables"

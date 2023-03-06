@@ -7,7 +7,7 @@
   display: grid;
 }
 .wrapper h4 {
-  margin-top: 5px;
+  margin-bottom: 25px;
   font-weight: bold;
 }
 .residue-item-options-item{
@@ -34,6 +34,12 @@
 }
 
 @media screen and (min-width:1200px){
+  .wrapper{
+    border: 1px solid black;
+  }
+  .basic-contract-info{
+    margin-bottom: 20px;
+  }
   .basic-contract-info, .residue-item-options-item-body{
     display: flex;
     gap:5px;
@@ -42,6 +48,11 @@
     border-bottom: 1px solid var(--cinza);
     padding-bottom: 10px;
   }
+  .basic-contract-info input, .residue-item-options input[type=text], .residue-item-options select{
+    width:200px ;
+  }
+
+
   .contract-field, .residue-item-options-item{
     display: flex;
     flex-direction: column;
