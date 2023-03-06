@@ -130,8 +130,6 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
 
   }
 
-
-
   //execute services methods to get all info from api
   getAll(){
     this.equipmentsService.getAll();
@@ -174,6 +172,9 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
     //check if all fields of add item its filled.
     this.checkIfItemContractFromInputsAreFilled();
 
+    //check if the values from qtd and value are numbers()
+    this.checkIfItemContractInputsAreNumbers();
+
     let itemContract = this.createItemContractObject();
 
     //check if a item with the sames keys values exist, if is true, return a error
@@ -191,7 +192,6 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
 
   //clear add itens to contract fields
   clearAddItensInputFieldsAfterAdd(){
-
     this.form.setValue({
       contractNumber:this.form.value.contractNumber,
       beginDate:this.form.value.beginDate,
@@ -284,11 +284,17 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
   }
   //check if begin date is small or equals to end date
   checkContractDates(){
-
     let beginDate = new Date(this.form.value.beginDate);
     let endDate = new Date(this.form.value.endDate);
-    if(beginDate.getDate() > endDate.getDate() || beginDate.getDate() === endDate.getDate()){
+
+    if(beginDate.getTime() > endDate.getTime() || beginDate.getDate() === endDate.getDate()){
       throw Error('A data de encerramento não pode ser igual ou anterior a data de inicio')
+    }
+  }
+
+  checkIfItemContractInputsAreNumbers(){
+    if(Number.isNaN(this.form.value.quantity) || Number.isNaN(this.form.value.itemValue)){
+      throw Error('Os campos de quantidade e valor devem ser do tipo número');
     }
   }
 
