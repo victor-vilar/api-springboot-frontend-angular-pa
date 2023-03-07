@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { FormDetail } from 'src/app/model/FormDetail';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Residue } from 'src/app/model/Residue';
 
 @Component({
   selector: 'app-residue-detail',
@@ -18,14 +19,12 @@ export class ResidueDetailComponent implements OnInit, FormDetail {
   constructor(private service:ResiduesService, private activeroute:ActivatedRoute, private router:Router) { }
 
 
-  createObject() {
-    let residue = {
+  createObject():Residue {
+    return {
       id:this.idOfEditedItem,
       type:this.form.value.type,
       description:this.form.value.description
     }
-
-    return residue;
   }
 
   ngOnInit(){
@@ -55,24 +54,17 @@ export class ResidueDetailComponent implements OnInit, FormDetail {
   save(): void {
 
     //criando um novo objeto
-
+    let observable$;
     let residue = this.createObject();
     //se for um objeto com id nulo, é um novo objeto
     //se não é atualização de um objeto existente.
     if(residue.id === undefined){
-        this.service.save(residue)
-        .subscribe(result => {
-        this.service.getAll()
-        //this.service.sendNull();
-        })
+        observable$ = this.service.save(residue);
     }else{
-        this.service.update(residue.id,residue)
-        .subscribe(result => {
-        this.service.getAll()
-        })
+        observable$ = this.service.update(residue.id,residue);
     }
+      observable$.subscribe(this.saveObjectObserver());
 
-    this.destroy();
   }
 
   destroy(): void {
@@ -81,6 +73,18 @@ export class ResidueDetailComponent implements OnInit, FormDetail {
 
   cleanForm(){
     this.form.reset();
+  }
+
+  saveObjectObserver(){
+    return{
+      next:(response)=>{
+        this.service.getAll();
+        this.destroy();
+      },
+      error:(response)=>{
+        console.log(response);
+      }
+    }
   }
 
 }
