@@ -40,7 +40,6 @@ export class ResidueDetailComponent implements OnInit, FormDetail {
             .subscribe(val =>{
               if(val !== null){
                   this.form.setValue({
-                    id:'Id: ' + val.id,
                     type:val.type,
                     description:val.description,
                   })
