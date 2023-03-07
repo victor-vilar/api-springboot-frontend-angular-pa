@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { CrudBaseService } from 'src/app/services/crudbase.service';
 import { FormDetail } from '../../../../../model/FormDetail';
 import { Equipment } from '../../../../../model/Equipment';
@@ -62,23 +63,18 @@ export class EquipmentDetailComponent implements OnInit, FormDetail {
 
   save(){
     //criando um novo objeto
+    let observable$;
     let object = this.createObject();
     //se for um objeto com id nulo, é um novo objeto
     //se não é atualização de um objeto existente.
     if(object.id === undefined){
-    this.service.save(object)
-    .subscribe(result => {
-     this.service.getAll()
-      //this.service.sendNull();
-    })
+      observable$ = this.service.save(object);
     }else{
-    this.service.update(object.id,object)
-    .subscribe(result => {
-      this.service.getAll()
-     })
+      observable$ = this.service.update(object.id,object);
     }
 
-   // this.destroy();
+    observable$.subscribe(this.saveObjectObserver());
+
   }
 
   destroy(){
@@ -88,4 +84,17 @@ export class EquipmentDetailComponent implements OnInit, FormDetail {
   cleanForm(){
     this.form.reset();
   }
+
+  saveObjectObserver(){
+    return{
+      next:(response)=>{
+        this.service.getAll();
+        this.destroy();
+      },
+      error:(response)=>{
+        console.log(response);
+      }
+    }
+  }
+
 }
