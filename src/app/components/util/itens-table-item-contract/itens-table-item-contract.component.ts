@@ -35,7 +35,7 @@ export class ItensTableItemContractComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    this.filteredTableDataList = this.tableData;
+    this.filteredTableData();
   }
 
   findAliasInHeaderForTableArray(key:any){
@@ -54,9 +54,7 @@ export class ItensTableItemContractComponent implements OnInit, OnChanges {
 
   }
 
-  editItem(event:any){
 
-  }
 
   getAll(){
 

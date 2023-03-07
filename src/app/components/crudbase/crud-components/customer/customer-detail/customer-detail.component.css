@@ -4,6 +4,15 @@
   padding-bottom: 15px;
 
 }
+
+.alert{
+  color:red;
+}
+
+.invalidinput {
+  border: 1px solid red;
+}
+
 .close-button{
   cursor: pointer;
   transition: all 0.3s ;

@@ -19,6 +19,10 @@ export class CustomerDetailComponent implements OnInit, FormDetail {
   idOfEditedItem: number | string;
   crudOperation: string = "Cadastrar";
 
+  //error handlers
+  invalidCpfCnpj = false;
+  invalidCpfCnpjMessage:string;
+
   ngOnInit(): void {
     this.onLoad();
   }
@@ -43,7 +47,7 @@ export class CustomerDetailComponent implements OnInit, FormDetail {
     }
 
     obervable$.subscribe(this.customerObserver());
-    this.destroy();
+
   }
 
   onLoad(): void {
@@ -77,9 +81,20 @@ export class CustomerDetailComponent implements OnInit, FormDetail {
       next:(response)=>{
         console.log(response);
         this.service.getAll();
+        this.destroy();
       },
       error:(response)=>{
-        console.log(response)
+        console.log(response);
+
+        if(response.error.message === "This CPF or CNPJ is Invalid"){
+          this.invalidCpfCnpj = true;
+          this.invalidCpfCnpjMessage = "Esse é um CPF/CNPJ invalido";
+        }
+
+        if(response.error.message === "This Cpf/Cnpj already exists in database"){
+          this.invalidCpfCnpj = true;
+          this.invalidCpfCnpjMessage = "Um cliente com esse CPF ou CNPJ ja esta cadastrado";
+        }
       }
     }
   }

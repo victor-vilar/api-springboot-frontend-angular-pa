@@ -1,19 +1,32 @@
 <div class="wrapper">
 
+  <div class="detail-component-header">
+    <h4 class="detail-title">{{crudOperation}} de Clientes</h4>
+    <a (click)="destroy()" class="close-button">X</a>
+  </div>
+
   <form (ngSubmit)="save()" #form="ngForm">
-    <h4>{{crudOperation}} de Contratos</h4>
     <div class="basic-contract-info">
       <div class="contract-field">
         <label>Número</label>
-        <input type="text" placeholder="Número" name="contractNumber" ngModel>
-      </div>
+        <input type="text"  placeholder="Número" id="contractNumber" name="contractNumber" ngModel required>
+
+        <div *ngIf="(this.form.controls['contractNumber'].dirty || this.form.controls['contractNumber'].touched)"
+        class="alert">O contrato deve possuir um número</div>
+
       <div class="contract-field">
         <label>Data de Início</label>
-        <input type="date" placeholder="Data de Início" name="beginDate" ngModel>
+        <input type="date" placeholder="Data de Início" name="beginDate" ngModel required>
+        <div *ngIf="(this.form.controls['beginDate'].dirty || this.form.controls['beginDate'].touched)"
+        class="alert">O contrato deve possuir uma data de início</div>
       </div>
       <div class="contract-field">
         <label>Data de Encerramento</label>
-        <input type="date" placeholder="Data de Fim" name="endDate" ngModel>
+        <input type="date" placeholder="Data de Encerramento" name="endDate" ngModel required (change)="checkContractDates()">
+        <div *ngIf="(this.form.controls['endDate'].dirty || this.form.controls['endDate'].touched)"
+        class="alert">O contrato deve possuir uma data de encerramento</div>
+        <div *ngIf="isInvalidContractDates"
+        class="alert">A data de encerramento não pode ser igual ou anterior a data de inicio</div>
       </div>
       <div class="contract-partial-information">
         <label>Total de itens: {{itemContractList.length}}</label><br>
@@ -49,7 +62,7 @@
         </div>
         <input type="button" value="adicionar residuo" (click)="addItemToContract()"><br><br>
         <input type="submit" value="salvar">
-
+      </div>
     </div>
   </form>
   <button (click)="mockingFormFiller()">Fill form</button>

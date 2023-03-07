@@ -46,6 +46,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
   headerForTables;
   //sum of itens of contract
   totalValueOfContract:number = 0;
+  isInvalidContractDates:boolean = false;;
   //---
 
   constructor(residuesService:ResiduesService,
@@ -247,7 +248,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
     this.checkIfContractHasItens()
 
     //check if end date is bigger than begin date
-    this.checkContractDates();
+    //this.checkContractDates();
     //create a contract object
     let contract = this.createObject();
     contract.customerId = this.clientCpfCnpj;
@@ -286,10 +287,14 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
   checkContractDates(){
     let beginDate = new Date(this.form.value.beginDate);
     let endDate = new Date(this.form.value.endDate);
+    console.log('estou sendo chamado')
 
     if(beginDate.getTime() > endDate.getTime() || beginDate.getDate() === endDate.getDate()){
-      throw Error('A data de encerramento não pode ser igual ou anterior a data de inicio')
+      this.isInvalidContractDates = true;
+    }else{
+      this.isInvalidContractDates = false;
     }
+
   }
 
   checkIfItemContractInputsAreNumbers(){
@@ -402,12 +407,13 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
         console.log(response);
         //if the list of the itens is 0, then will delete the contract from
         if(response.itens.length === 0){
-          console.log('O contrato ficou sem itens, por isso será deletado automaticamente');
+          console.log('O contrato ficou sem itens, por isso foi deletado automaticamente');
           let observevable$ = this.contractService.delete(response.id);
           let observer = this.deletesContractObserver();
           observevable$.subscribe(observer);
           this.itemContractList = [];
           this.contractService.getAll();
+          this.destroy();
         }else{
           this.itemContractList = response.list;
         }

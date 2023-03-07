@@ -49,6 +49,7 @@ export class ItensTableComponent implements OnInit, OnChanges{
 
   ngOnChanges(changes: SimpleChanges): void {
     this.getAll();
+    
   }
 
   findAliasInHeaderForTableArray(key:any){
