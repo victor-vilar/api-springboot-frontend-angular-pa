@@ -23,6 +23,8 @@ export class EquipmentDetailComponent implements OnInit, FormDetail {
   idOfEditedItem:number;
   //operation that gonna be executed,
   crudOperation:string = "Cadastro";
+  isInvalidVolume:boolean = false;
+  isInvalidVolumeMessage:string;
 
   constructor(private service:EquipmentsService, private activeroute:ActivatedRoute, private router:Router) { }
 
@@ -57,12 +59,21 @@ export class EquipmentDetailComponent implements OnInit, FormDetail {
           }
         })
       })
-  }
+    }
   }
 
+  checkIfItemContractInputsAreNumbers(){
+
+    if(isNaN(this.form.value.equipmentSize) || this.form.value.equipmentSize < 1){
+      this.isInvalidVolume=true;
+      this.isInvalidVolumeMessage = 'O valor do volume do equipamento deve ser do tipo número e ser maior que zero';
+      throw Error('O valor do volume do equipamento deve ser do tipo número  número e ser maior que zero');
+    }
+  }
 
   save(){
     //criando um novo objeto
+    this.checkIfItemContractInputsAreNumbers();
     let observable$;
     let object = this.createObject();
     //se for um objeto com id nulo, é um novo objeto
