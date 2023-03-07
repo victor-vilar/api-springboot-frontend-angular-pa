@@ -1,4 +1,4 @@
-.equipament-detail-container{
+.equipment-detail-container{
   max-width: 100%;
   border-bottom: 1px solid var(--cinza-escuro);
   padding-bottom: 15px;
@@ -39,14 +39,14 @@
 
 }
 
-.equipament-detail-form input, button {
+.equipment-detail-form input, button {
   padding:10px;
   width: 100%;
   margin-top: 5px;
 
 }
 
-.equipament-detail-form button{
+.equipment-detail-form button{
   background-color: var(--cinza-escuro);
   color: white;
   font-weight: bold;
@@ -58,28 +58,28 @@
 
 @media screen and (min-width:768px){
 
-  .equipament-detail-container{
+  .equipment-detail-container{
 
   }
 
 
-  .equipament-detail-form{
+  .equipment-detail-form{
     width:100%;
     display: grid;
     grid-template-columns: repeat(2,1fr);
     gap:5px;
   }
 
-  .equipament-detail-form input:first-child{
+  .equipment-detail-form input:first-child{
     width: 10%;
   }
-  .equipament-detail-form input {
+  .equipment-detail-form input {
 
     grid-column: 1 / 3;
   }
 
 
-  .equipament-detail-form button {
+  .equipment-detail-form button {
     width: auto;
 
   }
@@ -87,7 +87,7 @@
 
 
 @media screen and (min-width:1200px){
-  .equipament-detail-container{
+  .equipment-detail-container{
   max-width: 800px;
   margin: 0 auto;
   padding:10px;

@@ -4,7 +4,6 @@
     <a (click)="destroy()" class="close-button">X</a>
   </div>
   <form (ngSubmit)="save()" #singInForm = "ngForm" class="equipment-detail-form" >
-    <input type="text" name="id" placeholder="Id"  ngModel >
     <input type="text" required placeholder="Equipamento" name="equipmentName" ngModel>
     <input type="text" required placeholder="Volume" name="equipmentSize" ngModel>
     <button type="submit">Salvar</button>
