@@ -24,7 +24,7 @@ export class CustomerAddressesComponent implements OnInit {
   title='Enderecos'
   pathPrefix='endereco';
   headerForTables:any;
-  pathToOperations = [{name:"+", path: this.pathPrefix + '/novo', title:"Novo " + this.pathPrefix}];
+  pathToOperations = [{name:"Cadastrar novo Endereço", path: this.pathPrefix + '/novo', title:"Novo " + this.pathPrefix}];
   customerService:CustomerService;
   addressService:AddressService;
 

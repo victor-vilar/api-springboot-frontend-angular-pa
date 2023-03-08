@@ -17,7 +17,7 @@ export class CustomerDetailComponent implements OnInit, FormDetail {
   @ViewChild('singInForm')form: NgForm;
   rota: string = 'customer';
   idOfEditedItem: number | string;
-  crudOperation: string = "Cadastrar";
+  crudOperation: string = "Cadastro";
 
   //error handlers
   invalidCpfCnpj = false;

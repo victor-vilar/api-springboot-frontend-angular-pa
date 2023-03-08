@@ -24,7 +24,7 @@ export class CustomerSupervisorsComponent implements OnInit {
   title='Fiscais'
   pathPrefix='fiscal';
   headerForTables:any;
-  pathToOperations = [{name:"+", path: this.pathPrefix + '/novo', title:"Novo " + this.pathPrefix}];
+  pathToOperations = [{name:"Cadastrar novo fiscal", path: this.pathPrefix + '/novo', title:"Novo " + this.pathPrefix}];
   customerService:CustomerService;
   supervisorService:SupervisorService;
 

@@ -23,7 +23,7 @@ export class CustomerContractsComponent implements OnInit {
   title='Contratos'
   pathPrefix='contrato';
   headerForTables:any;
-  pathToOperations = [{name:"+", path: this.pathPrefix + '/novo', title:"Novo " + this.pathPrefix}];
+  pathToOperations = [{name:"Cadastrar novo Contrato", path: this.pathPrefix + '/novo', title:"Novo " + this.pathPrefix}];
   customerService:CustomerService;
   contractService:ContractsService;
 

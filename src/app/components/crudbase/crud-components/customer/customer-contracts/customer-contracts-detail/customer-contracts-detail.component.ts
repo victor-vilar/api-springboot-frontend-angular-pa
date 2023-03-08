@@ -323,7 +323,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
     this.sumTotalOfContract();
   }
 
-  //needed to compare the itens. If the item comes from databse, it return with a id number,
+  //needed to compare the itens. If the item comes from databse, it return with your id number,
   //and if try to save a new item it will be without id. i need to compare itens with and without id
   itemContractCompare(item1:ItemContract,item2:ItemContract){
 

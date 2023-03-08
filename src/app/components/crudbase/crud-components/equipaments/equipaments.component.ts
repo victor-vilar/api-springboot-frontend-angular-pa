@@ -34,7 +34,7 @@ export class EquipmentsComponent implements OnInit, CrudBaseComponent {
     this.title='Equipamentos';
     this.pathPrefix='equipamento';
     this.pathToOperations = [
-        {name:"Cadastrar", path: this.pathPrefix + '/novo'},
+        {name:"Cadastrar novo Equipamento", path: this.pathPrefix + '/novo'},
     ];
   }
 

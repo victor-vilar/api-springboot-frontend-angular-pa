@@ -35,7 +35,7 @@ export class ResidueComponent implements OnInit, CrudBaseComponent{
     this.title='Resíduos';
     this.pathPrefix='residuo';
     this.pathToOperations = [
-        {name:"Cadastrar", path: this.pathPrefix + '/novo'},
+        {name:"Cadastrar novo Resíduo", path: this.pathPrefix + '/novo'},
       ];
   }
 

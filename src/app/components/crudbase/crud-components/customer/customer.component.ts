@@ -35,7 +35,7 @@ export class CustomerComponent implements OnInit, CrudBaseComponent {
     this.title='Clientes';
     this.pathPrefix='cliente';
     this.pathToOperations = [
-        {name:"Cadastrar", path: this.pathPrefix + '/novo'},
+        {name:"Cadastrar novo Cliente ", path: this.pathPrefix + '/novo'},
       ];
   }
 
