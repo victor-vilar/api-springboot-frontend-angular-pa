@@ -22,6 +22,8 @@ export class CustomerDetailComponent implements OnInit, FormDetail {
   //error handlers
   invalidCpfCnpj = false;
   invalidCpfCnpjMessage:string;
+  invalidCustomerName = false;
+  invalidCustomerNameMessage:string;
 
   ngOnInit(): void {
     this.onLoad();
@@ -35,7 +37,22 @@ export class CustomerDetailComponent implements OnInit, FormDetail {
 
   }
 
+  checkIfRazaoSocialAreFilled(){
+    if(!this.form.value.razaoSocial.trim().length){
+      this.invalidCustomerName = true;
+      this.invalidCustomerNameMessage = 'O nome do cliente não pode ser vazio!'
+      throw Error('O nome do cliente não pode ser vazio!');
+    }
+  }
+
+  resetInvalidProperties(){
+    this.invalidCustomerName = false;
+    this.invalidCpfCnpj = false;
+  }
+
   save(): void {
+    this.resetInvalidProperties();
+    this.checkIfRazaoSocialAreFilled();
 
     let customer = this.createObject();
     let obervable$;

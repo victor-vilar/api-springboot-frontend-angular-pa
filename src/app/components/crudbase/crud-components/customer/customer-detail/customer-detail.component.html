@@ -13,6 +13,7 @@
     <div *ngIf="invalidCpfCnpj" class="alert">{{invalidCpfCnpjMessage}}</div>
 
     <input type="text" required placeholder="Nome/Razão Social" name="razaoSocial" ngModel>
+    <div *ngIf="invalidCustomerName" class="alert">{{invalidCustomerNameMessage}}</div>
     <button type="submit">Salvar</button>
     <button type="button" (click)="cleanForm()">Limpar Campos</button>
   </form>
