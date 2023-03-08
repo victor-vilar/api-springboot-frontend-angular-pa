@@ -5,6 +5,7 @@
   </div>
   <form (ngSubmit)="save()" #singInForm = "ngForm" class="equipment-detail-form" >
     <input type="text" required placeholder="Equipamento" name="equipmentName" ngModel>
+    <div *ngIf="isInvalidEquipmentName" class="alert">{{isInvalidEquipmentNameMessage}}</div>
     <input type="text" required placeholder="Volume" name="equipmentSize" ngModel
     [ngClass]="{'invalidinput': isInvalidVolume}">
     <div *ngIf="isInvalidVolume" class="alert">{{isInvalidVolumeMessage}}</div>
