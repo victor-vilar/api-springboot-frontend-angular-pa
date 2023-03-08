@@ -19,6 +19,12 @@ export class ResidueDetailComponent implements OnInit, FormDetail {
   constructor(private service:ResiduesService, private activeroute:ActivatedRoute, private router:Router) { }
 
 
+  isInvalidType = false;
+  isInvalidTypeMessage = '';
+  isInvalidDescription = false;
+  isInvalidDescriptionMessage = '';
+
+
   createObject():Residue {
     return {
       id:this.idOfEditedItem,
@@ -51,7 +57,8 @@ export class ResidueDetailComponent implements OnInit, FormDetail {
   }
 
   save(): void {
-
+    this.resetInvalidProperties();
+    this.checkIfInputFieldsAreFilled();
     //criando um novo objeto
     let observable$;
     let residue = this.createObject();
@@ -65,6 +72,26 @@ export class ResidueDetailComponent implements OnInit, FormDetail {
       observable$.subscribe(this.saveObjectObserver());
 
   }
+
+  checkIfInputFieldsAreFilled(){
+    if(!this.form.value.type.trim().length){
+      this.isInvalidType = true;
+      this.isInvalidTypeMessage = 'O tipo do residuo não pode ser vazio!'
+      throw Error('O tipo do residuo não pode ser vazio!');
+    }
+
+    if(!this.form.value.description.trim().length){
+      this.isInvalidDescription = true;
+      this.isInvalidDescriptionMessage = 'A classe do residu não pode ser vazio!'
+      throw Error('A classe do residuo não pode ser vazio!');
+    }
+  }
+
+  resetInvalidProperties(){
+    this.isInvalidType = false;
+    this.isInvalidDescription = false;
+  }
+
 
   destroy(): void {
     this.router.navigate(['residuos']);

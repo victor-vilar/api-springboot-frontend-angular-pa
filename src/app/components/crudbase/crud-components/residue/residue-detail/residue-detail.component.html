@@ -5,7 +5,9 @@
   </div>
   <form (ngSubmit)="save()" #singInForm = "ngForm" class="detail-form" >
     <input type="text" required placeholder="Resíduo" name="type" ngModel>
+    <div *ngIf="isInvalidType" class="alert">{{isInvalidTypeMessage}}</div>
     <input type="text" required placeholder="Classe" name="description" ngModel>
+    <div *ngIf="isInvalidDescription" class="alert">{{isInvalidDescriptionMessage}}</div>
     <button type="submit">Salvar</button>
     <button type="button" (click)="cleanForm()">Limpar Campos</button>
   </form>
