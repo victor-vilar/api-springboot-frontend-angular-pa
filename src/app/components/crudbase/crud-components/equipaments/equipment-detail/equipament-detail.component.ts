@@ -51,7 +51,6 @@ export class EquipmentDetailComponent implements OnInit, FormDetail {
         .subscribe(val =>{
           if(val !== null){
               this.form.setValue({
-                id:'Id: ' + val.id,
                 equipmentName:val.equipmentName,
                 equipmentSize:val.sizeInMeterCubic,
               })
