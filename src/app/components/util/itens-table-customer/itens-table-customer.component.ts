@@ -1,5 +1,7 @@
 import { Router } from '@angular/router';
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-itens-table-customer',
@@ -30,7 +32,7 @@ export class ItensTableCustomerComponent implements OnInit {
   @Input()
   service:any;
 
-  constructor(private router:Router) { }
+  constructor(private router:Router, private dialog:MatDialog) { }
 
   ngOnInit(): void {
       this.service.refreshAllData()
@@ -82,5 +84,17 @@ export class ItensTableCustomerComponent implements OnInit {
     return 0;
   }
 
+  openDialog(object:any){
+
+    let dialogRef = this.dialog.open(ConfirmationDialogComponent,
+      {data:{object:object}});
+
+    dialogRef.afterClosed().subscribe(response =>{
+      if(response) {
+        this.deleteItem(response);
+      }
+    })
+
+  }
 
 }

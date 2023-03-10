@@ -40,7 +40,7 @@
               <button type="button" title="Exibir Enderecos" name="enderecos" id="enderecos" class="bt bt-op " [routerLink]="['/cliente',object.cpfCnpj,'enderecos']" ><i class="fas fa-map-marker-alt"></i></button>
               <button type="button" title="Exibir Fiscais" name="fiscais" id="fiscais" class="bt bt-op " [routerLink]="['/cliente',object.cpfCnpj,'fiscais']"><i class="fas fa-user"></i></button>
               <button type="button" title="editar" name="edit" id="edit" class="bt bt-edit " [routerLink]="['./'+fatherPathPrefix, object.cpfCnpj]" [queryParams]="{edit:true}"><i class="fas fa-edit"></i></button>
-              <button type="button" title="deletar" name="delete" id="delete" class="bt bt-delete " (click)="deleteItem(object)"><i class="fas fa-times"></i></button>
+              <button type="button" title="deletar" name="delete" id="delete" class="bt bt-delete " (click)="openDialog(object)"><i class="fas fa-times"></i></button>
             </div>
         </div>
       </div>

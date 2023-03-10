@@ -1,6 +1,8 @@
+import { MatDialog } from '@angular/material/dialog';
 import { Residue } from './../../../model/Residue';
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges, OnChanges } from '@angular/core';
 import { Router } from '@angular/router';
+import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-itens-table-item-contract',
@@ -29,7 +31,7 @@ export class ItensTableItemContractComponent implements OnInit, OnChanges {
   @Input()
   model:string='';
 
-  constructor(private router:Router) { }
+  constructor(private router:Router, private dialog:MatDialog) { }
   ngOnChanges(changes: SimpleChanges): void {
     this.filteredTableData();
   }
@@ -74,6 +76,20 @@ export class ItensTableItemContractComponent implements OnInit, OnChanges {
         return element;
       }
     });
+  }
+
+
+  openDialog(object:any){
+
+    let dialogRef = this.dialog.open(ConfirmationDialogComponent,
+      {data:{object:object}});
+
+    dialogRef.afterClosed().subscribe(response =>{
+      if(response) {
+        this.deleteItem(response);
+      }
+    })
+
   }
 
 }
