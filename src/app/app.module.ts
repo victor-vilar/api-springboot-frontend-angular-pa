@@ -30,7 +30,8 @@ import { ItensTableItemContractComponent } from './components/util/itens-table-i
 import { CustomerAddressesDetailComponent } from './components/crudbase/crud-components/customer/customer-addresses/customer-addresses-detail/customer-addresses-detail.component';
 import { CustomerSupervisorsDetailComponent } from './components/crudbase/crud-components/customer/customer-supervisors/customer-supervisors-detail/customer-supervisors-detail.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { ConfirmationDialogComponent } from './components/util/confirmation-dialog/confirmation-dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 @NgModule({
@@ -58,6 +59,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ItensTableItemContractComponent,
     CustomerAddressesDetailComponent,
     CustomerSupervisorsDetailComponent,
+    ConfirmationDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,7 +67,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NgbModule,
     FormsModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

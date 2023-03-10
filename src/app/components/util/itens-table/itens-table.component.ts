@@ -1,3 +1,4 @@
+import { ConfirmationDialogComponent } from './../confirmation-dialog/confirmation-dialog.component';
 import { AddressService } from './../../../services/address.service';
 import { CrudBaseService } from 'src/app/services/crudbase.service';
 import { Component, EventEmitter, Input, OnInit, Output, OnChanges, SimpleChanges } from '@angular/core';
@@ -5,6 +6,7 @@ import { Router } from '@angular/router';
 import { from, of } from 'rxjs';
 import { ContractsService } from 'src/app/services/contracts.service';
 import { MapperService } from 'src/app/services/mapper.service';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-itens-table',
@@ -40,7 +42,8 @@ export class ItensTableComponent implements OnInit, OnChanges{
   service:any;
 
   constructor(private router:Router,
-    private mapper:MapperService) { }
+    private mapper:MapperService,
+    private dialog:MatDialog) { }
 
   ngOnInit(): void {
     let observable$ = this.service.refreshAllData();
@@ -49,7 +52,7 @@ export class ItensTableComponent implements OnInit, OnChanges{
 
   ngOnChanges(changes: SimpleChanges): void {
     this.getAll();
-    
+
   }
 
   findAliasInHeaderForTableArray(key:any){
@@ -139,6 +142,19 @@ export class ItensTableComponent implements OnInit, OnChanges{
         console.log(error);
       }
     }
+  }
+
+  openDialog(object:any){
+
+    let dialogRef = this.dialog.open(ConfirmationDialogComponent,
+      {data:{object:object}});
+
+    dialogRef.afterClosed().subscribe(response =>{
+      if(response) {
+        this.deleteItem(response);
+      }
+    })
+
   }
 
 
