@@ -29,6 +29,7 @@ import { CustomerContractsDetailComponent } from './components/crudbase/crud-com
 import { ItensTableItemContractComponent } from './components/util/itens-table-item-contract/itens-table-item-contract.component';
 import { CustomerAddressesDetailComponent } from './components/crudbase/crud-components/customer/customer-addresses/customer-addresses-detail/customer-addresses-detail.component';
 import { CustomerSupervisorsDetailComponent } from './components/crudbase/crud-components/customer/customer-supervisors/customer-supervisors-detail/customer-supervisors-detail.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -63,7 +64,8 @@ import { CustomerSupervisorsDetailComponent } from './components/crudbase/crud-c
     AppRoutingModule,
     NgbModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

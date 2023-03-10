@@ -22,3 +22,6 @@
   --rosa:#E6866C;
   --vermelho:#AB0F03;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
