@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { FormDetail } from 'src/app/model/FormDetail';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Residue } from 'src/app/model/Residue';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-residue-detail',
@@ -16,7 +17,10 @@ export class ResidueDetailComponent implements OnInit, FormDetail {
   @ViewChild('singInForm') form: NgForm;
   idOfEditedItem: number;
   crudOperation = 'Cadastro';
-  constructor(private service:ResiduesService, private activeroute:ActivatedRoute, private router:Router) { }
+  constructor(private service:ResiduesService,
+              private activeroute:ActivatedRoute,
+              private router:Router,
+              public dialogRef: MatDialogRef<ResidueDetailComponent>) { }
 
 
   isInvalidType = false;
