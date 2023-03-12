@@ -1,10 +1,12 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { AddressService } from 'src/app/services/address.service';
 import { FormDetail } from 'src/app/model/FormDetail';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { FullAddressFinderService } from 'src/app/services/find-full-address.service';
 import { Address } from 'src/app/model/Address';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Customer } from 'src/app/model/Customer';
 
 @Component({
   selector: 'app-customer-addresses-detail',
@@ -20,25 +22,40 @@ export class CustomerAddressesDetailComponent implements OnInit, FormDetail {
   addressToEdit:Address;
   clientCpfCnpj:string;
   searchedZipCodeErrorResponse:boolean = false;
+  objectToEdit:Address;
 
   constructor(private findFullAddress:FullAddressFinderService,
     private addressService:AddressService,
     private activatedRoute:ActivatedRoute,
-    private router:Router,) { }
+    private router:Router,
+    public dialogRef: MatDialogRef<CustomerAddressesDetailComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
 
 
 
   ngOnInit(): void {
-
     //get the cpf or cnpj from costumer to add a new contract
     this.clientCpfCnpj =this.activatedRoute.parent.snapshot.paramMap.get('cpfCnpj')
     this.onLoad();
+  }
 
+  ngAfterViewInit(): void {
+    setTimeout(() =>{
+      this.form.setValue({
+        zipCode:this.objectToEdit.zipCode,
+        addressName: this.objectToEdit.addressName,
+        addressNumber :this.objectToEdit.addressNumber,
+        complement :this.objectToEdit.complement,
+        city : this.objectToEdit.city,
+        state : this.objectToEdit.state,
+        requiresCollection:this.objectToEdit.requiresCollection
+        })
+    },100);
   }
 
 
-  createObject():Address {
 
+  createObject():Address {
     return {
       addressName:this.form.value.addressName,
       addressNumber:this.form.value.addressNumber,
@@ -80,37 +97,16 @@ export class CustomerAddressesDetailComponent implements OnInit, FormDetail {
     }
   }
 
-
-
   onLoad(): void {
-          //try to get queryParameter edit
-          if(this.activatedRoute.snapshot.queryParamMap.get('edit')){
-            //change the variable crud Operation to 'atualização' = update
-            this.crudOperation="Atualização"
-            //observable  get the id param
-            this.activatedRoute.paramMap.subscribe(value =>{
-              //contract service try to get the contract by id
-              this.addressService.getById(value.get('id'))
-              .subscribe(val =>{
-                //if value != null the form will be filled by val values
-                if(val !== null){
-                  this.form.setValue({
-                    zipCode:val.zipCode,
-                    addressName: val.addressName,
-                    addressNumber :val.addressNumber,
-                    complement :val.complement,
-                    city : val.city,
-                    state : val.state,
-                    requiresCollection:val.requiresCollection
-                    })
-                    this.addressToEdit = val;
-                }
-              })
-            })
-          }
+    this.objectToEdit = this.data.objectToEdit;
+    if(this.objectToEdit !== undefined || this.objectToEdit !== null){
+      this.crudOperation="Atualização";
+      this.idOfEditedItem = this.objectToEdit.id;
+    }
   }
 
   destroy(): void {
+    this.dialogRef.close();
     this.router.navigate(['/clientes'])
   }
 
