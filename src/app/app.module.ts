@@ -32,6 +32,7 @@ import { CustomerSupervisorsDetailComponent } from './components/crudbase/crud-c
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ConfirmationDialogComponent } from './components/util/confirmation-dialog/confirmation-dialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import {ScrollingModule} from '@angular/cdk/scrolling';
 
 
 @NgModule({
@@ -68,7 +69,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatDialogModule
+    MatDialogModule,
+    ScrollingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
