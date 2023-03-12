@@ -58,7 +58,7 @@ export class ResidueComponent implements OnInit, CrudBaseComponent{
 
   //open dialog of detail form
   openDialog(): void {
-    this.dialogService.openDialog(ResidueDetailComponent, this.objectToEdit);
+    this.dialogService.openDialog(ResidueDetailComponent, this.objectToEdit,'residuos');
   }
 
   editObject(object:any){

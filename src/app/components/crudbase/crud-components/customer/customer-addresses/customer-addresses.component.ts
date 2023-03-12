@@ -59,7 +59,7 @@ export class CustomerAddressesComponent implements OnInit {
   }
 
   openDialog(){
-    this.dialogService.openDialog(CustomerAddressesDetailComponent,this.objectToEdit);
+    this.dialogService.openDialog(CustomerAddressesDetailComponent,this.objectToEdit,'');
   }
 
   editObject(object:any){
