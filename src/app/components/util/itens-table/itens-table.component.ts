@@ -144,6 +144,8 @@ export class ItensTableComponent implements OnInit, OnChanges{
     }
   }
 
+
+  //open confirmation dialog
   openDialog(object:any){
 
     let dialogRef = this.dialog.open(ConfirmationDialogComponent,
@@ -157,7 +159,11 @@ export class ItensTableComponent implements OnInit, OnChanges{
 
   }
 
-
+  @Output()
+  editObjectEmitter = new EventEmitter<any>()
+  sendObjectToEdit(object:any){
+    this.editObjectEmitter.emit(object);
+  }
 
 
 }

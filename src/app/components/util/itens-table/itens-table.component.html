@@ -22,7 +22,7 @@
             <div class="object-options">
               <label class="key-header"><b>Opções</b></label>
               <div class="options-buttons">
-                <a type="button" title="editar" name="edit" id="edit" class="bt bt-edit " [routerLink]="['./'+fatherPathPrefix, object.id]" [queryParams]="{edit:true, dialog:true}"><i class="fas fa-edit"></i></a>
+                <a type="button" title="editar" name="edit" id="edit" class="bt bt-edit " (click)="sendObjectToEdit(object)" [routerLink]="['./'+fatherPathPrefix, object.id]" [queryParams]="{edit:true, dialog:true}"><i class="fas fa-edit"></i></a>
                 <a type="button" title="deletar" name="delete" id="delete" class="bt bt-delete " (click)="openDialog(object)"><i class="fas fa-times"></i></a>
               </div>
           </div>

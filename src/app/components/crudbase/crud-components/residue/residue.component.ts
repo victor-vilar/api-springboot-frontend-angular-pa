@@ -23,7 +23,7 @@ export class ResidueComponent implements OnInit, CrudBaseComponent{
   pathToOperations;
   service:ResiduesService;
   routeQueryParams$: Subscription;
-  editId;
+  objectToEdit;
   constructor(service:ResiduesService,private route: ActivatedRoute,public dialog: MatDialog) {
     this.service = service;
 
@@ -35,6 +35,7 @@ export class ResidueComponent implements OnInit, CrudBaseComponent{
         this.openDialog();
       }
     });
+
 
 
 
@@ -55,10 +56,14 @@ export class ResidueComponent implements OnInit, CrudBaseComponent{
 
   openDialog(): void {
 
-    const dialogRef = this.dialog.open(ResidueDetailComponent);
+    const dialogRef = this.dialog.open(ResidueDetailComponent,{ data:{objectToEdit:this.objectToEdit}});
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
+  }
+
+  editObject(object:any){
+    this.objectToEdit = object;
   }
 
 

@@ -1,17 +1,17 @@
 import { ResiduesService } from './../../../../../services/residues.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { FormDetail } from 'src/app/model/FormDetail';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Residue } from 'src/app/model/Residue';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-residue-detail',
   templateUrl: './residue-detail.component.html',
   styleUrls: ['./residue-detail.component.css']
 })
-export class ResidueDetailComponent implements OnInit, FormDetail {
+export class ResidueDetailComponent implements OnInit,AfterViewInit, FormDetail {
 
 
   @ViewChild('singInForm') form: NgForm;
@@ -20,13 +20,15 @@ export class ResidueDetailComponent implements OnInit, FormDetail {
   constructor(private service:ResiduesService,
               private activeroute:ActivatedRoute,
               private router:Router,
-              public dialogRef: MatDialogRef<ResidueDetailComponent>) { }
+              public dialogRef: MatDialogRef<ResidueDetailComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: any) { }
 
 
   isInvalidType = false;
   isInvalidTypeMessage = '';
   isInvalidDescription = false;
   isInvalidDescriptionMessage = '';
+  objectToEdit:Residue;
 
 
   createObject():Residue {
@@ -41,27 +43,23 @@ export class ResidueDetailComponent implements OnInit, FormDetail {
     this.onLoad();
   }
 
+  ngAfterViewInit(): void {
+
+    setTimeout(() =>{
+      this.form.setValue({
+        type:this.objectToEdit.type,
+        description:this.objectToEdit.description,
+      })
+    },100);
+
+  }
+
   onLoad(): void {
-        //checagem de parametros para entrar ou não no modo de edição do componente
 
-        this.activeroute.params.subscribe(para =>console.log(para))
-
-        if(this.activeroute.snapshot.queryParamMap.get('edit')){
-          this.crudOperation="Atualização"
-          console.log(this.activeroute.snapshot.params);
-
-          this.activeroute.paramMap.subscribe(value =>{
-            this.service.getById(value.get('id'))
-            .subscribe(val =>{
-              if(val !== null){
-                  this.form.setValue({
-                    type:val.type,
-                    description:val.description,
-                  })
-                  this.idOfEditedItem = val.id;
-              }
-            })
-          })
+      this.objectToEdit = this.data.objectToEdit;
+      if(this.objectToEdit !== undefined || this.objectToEdit !== null){
+        this.crudOperation="Atualização";
+        this.idOfEditedItem = this.objectToEdit.id;
       }
   }
 
