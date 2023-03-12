@@ -4,6 +4,10 @@ import { CrudBaseService } from 'src/app/services/crudbase.service';
 import { Component, OnInit } from '@angular/core';
 import { Residue } from 'src/app/model/Residue';
 import { CrudBaseComponent } from '../../crud-base.component';
+import { Subscription } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { ResidueDetailComponent } from './residue-detail/residue-detail.component';
 
 @Component({
   selector: 'app-residue',
@@ -18,11 +22,20 @@ export class ResidueComponent implements OnInit, CrudBaseComponent{
   pathPrefix;
   pathToOperations;
   service:ResiduesService;
-
-  constructor(service:ResiduesService) {
+  routeQueryParams$: Subscription;
+  editId;
+  constructor(service:ResiduesService,private route: ActivatedRoute,public dialog: MatDialog) {
     this.service = service;
+
   }
   ngOnInit(): void {
+
+    this.route.queryParams.subscribe(params => {
+      if (params['dialog']) {
+        this.openDialog();
+      }
+    });
+
 
 
     this.headerForTables ={
@@ -37,6 +50,15 @@ export class ResidueComponent implements OnInit, CrudBaseComponent{
     this.pathToOperations = [
         {name:"Cadastrar novo Resíduo", path: this.pathPrefix + '/novo'},
       ];
+  }
+
+
+  openDialog(): void {
+
+    const dialogRef = this.dialog.open(ResidueDetailComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 
 

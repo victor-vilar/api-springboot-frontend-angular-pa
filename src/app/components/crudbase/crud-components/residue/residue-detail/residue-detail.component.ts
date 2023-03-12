@@ -43,8 +43,13 @@ export class ResidueDetailComponent implements OnInit, FormDetail {
 
   onLoad(): void {
         //checagem de parametros para entrar ou não no modo de edição do componente
+
+        this.activeroute.params.subscribe(para =>console.log(para))
+
         if(this.activeroute.snapshot.queryParamMap.get('edit')){
           this.crudOperation="Atualização"
+          console.log(this.activeroute.snapshot.params);
+
           this.activeroute.paramMap.subscribe(value =>{
             this.service.getById(value.get('id'))
             .subscribe(val =>{
@@ -98,6 +103,7 @@ export class ResidueDetailComponent implements OnInit, FormDetail {
 
 
   destroy(): void {
+    this.dialogRef.close();
     this.router.navigate(['residuos']);
   }
 

@@ -1,7 +1,8 @@
 
 <nav class ='options-buttons'>
+
   <ng-container *ngFor="let obj of linksListForOperations">
-    <a title="{{obj.title}}" [routerLink]="obj.path">{{obj.name}}</a>
+    <a title="{{obj.title}}" [routerLink]="obj.path" [queryParams]="{dialog:true}">{{obj.name}}</a>
   </ng-container>
 
 </nav>
