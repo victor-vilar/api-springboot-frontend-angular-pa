@@ -2,10 +2,11 @@ import { Observable } from 'rxjs';
 import { CrudBaseService } from 'src/app/services/crudbase.service';
 import { FormDetail } from '../../../../../model/FormDetail';
 import { Equipment } from '../../../../../model/Equipment';
-import { Component, OnInit, ViewChild, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, ViewChild, EventEmitter, Output, Inject, AfterViewInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EquipmentsService } from 'src/app/services/equipments.service';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-equipament-new',
@@ -16,7 +17,7 @@ import { EquipmentsService } from 'src/app/services/equipments.service';
 /**
  * form to add new or update new elements
  */
-export class EquipmentDetailComponent implements OnInit, FormDetail {
+export class EquipmentDetailComponent implements OnInit, AfterViewInit, FormDetail {
 
   @ViewChild('singInForm') form:NgForm;
   //id of the item that gonna be edited if the form is on edit mode
@@ -27,41 +28,44 @@ export class EquipmentDetailComponent implements OnInit, FormDetail {
   isInvalidEquipmentNameMessage:string;
   isInvalidVolume:boolean = false;
   isInvalidVolumeMessage:string;
+  objectToEdit:Equipment;
 
 
-  constructor(private service:EquipmentsService, private activeroute:ActivatedRoute, private router:Router) { }
+
+  constructor(private service:EquipmentsService,
+     private activeroute:ActivatedRoute,
+      private router:Router,
+      public dialogRef: MatDialogRef<EquipmentDetailComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   createObject(): any {
-
-    let equipment = {
+    return {
       id:this.idOfEditedItem,
       equipmentName:this.form.value.equipmentName,
       sizeInMeterCubic:Number(this.form.value.equipmentSize)
     }
-    return equipment;
   }
 
   ngOnInit(): void {
     this.onLoad();
   }
 
-  onLoad(): void {
-    //checagem de parametros para entrar ou não no modo de edição do componente
-    if(this.activeroute.snapshot.queryParamMap.get('edit')){
-      this.crudOperation="Atualização"
-      this.activeroute.paramMap.subscribe(value =>{
-        this.service.getById(value.get('id'))
-        .subscribe(val =>{
-          if(val !== null){
-              this.form.setValue({
-                equipmentName:val.equipmentName,
-                equipmentSize:val.sizeInMeterCubic,
-              })
-              this.idOfEditedItem = val.id;
-          }
-        })
+  ngAfterViewInit(): void {
+    setTimeout(() =>{
+      this.form.setValue({
+        equipmentName:this.objectToEdit.equipmentName,
+        equipmentSize:this.objectToEdit.sizeInMeterCubic,
       })
-    }
+    },100);
+
+  }
+
+  onLoad(): void {
+      this.objectToEdit = this.data.objectToEdit;
+      if(this.objectToEdit !== undefined || this.objectToEdit !== null){
+        this.crudOperation="Atualização";
+        this.idOfEditedItem = this.objectToEdit.id;
+      }
   }
 
   checkIfItemContractInputsAreNumbers(){
@@ -105,6 +109,7 @@ export class EquipmentDetailComponent implements OnInit, FormDetail {
   }
 
   destroy(){
+    this.dialogRef.close();
     this.router.navigate(['equipamentos']);
   }
 
@@ -123,5 +128,7 @@ export class EquipmentDetailComponent implements OnInit, FormDetail {
       }
     }
   }
+
+
 
 }

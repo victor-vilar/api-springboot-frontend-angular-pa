@@ -1,3 +1,5 @@
+import { EquipmentDetailComponent } from './equipment-detail/equipament-detail.component';
+import { DialogServiceService } from './../../../../services/dialog-service.service';
 import { ActivatedRoute } from '@angular/router';
 import { EquipmentsService } from '../../../../services/equipments.service';
 import { Component, DoCheck, OnChanges, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
@@ -18,12 +20,22 @@ export class EquipmentsComponent implements OnInit, CrudBaseComponent {
   pathPrefix;
   pathToOperations;
   service:EquipmentsService;
+  objectToEdit:any;
 
-  constructor(service:EquipmentsService) {
+  constructor(service:EquipmentsService,
+     private route: ActivatedRoute,
+     private dialogService:DialogServiceService) {
     this.service = service;
   }
 
   ngOnInit() {
+
+    this.route.queryParams.subscribe(params => {
+      if (params['dialog']) {
+        this.openDialog();
+      }
+    });
+
 
     this.headerForTables ={
      id:'Id',
@@ -36,6 +48,15 @@ export class EquipmentsComponent implements OnInit, CrudBaseComponent {
     this.pathToOperations = [
         {name:"Cadastrar novo Equipamento", path: this.pathPrefix + '/novo'},
     ];
+  }
+
+  openDialog(): void {
+    this.dialogService.openDialog(EquipmentDetailComponent, this.objectToEdit);
+  }
+
+
+  editObject(object:any){
+    this.objectToEdit = object;
   }
 
 

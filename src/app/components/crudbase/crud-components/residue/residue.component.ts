@@ -1,3 +1,4 @@
+import { DialogServiceService } from './../../../../services/dialog-service.service';
 import { ResiduesService } from './../../../../services/residues.service';
 import { CrudBaseService } from 'src/app/services/crudbase.service';
 
@@ -24,7 +25,9 @@ export class ResidueComponent implements OnInit, CrudBaseComponent{
   service:ResiduesService;
   routeQueryParams$: Subscription;
   objectToEdit;
-  constructor(service:ResiduesService,private route: ActivatedRoute,public dialog: MatDialog) {
+
+  constructor(service:ResiduesService,private route: ActivatedRoute,
+    private dialogService:DialogServiceService) {
     this.service = service;
 
   }
@@ -53,13 +56,9 @@ export class ResidueComponent implements OnInit, CrudBaseComponent{
       ];
   }
 
-
+  //open dialog of detail form
   openDialog(): void {
-
-    const dialogRef = this.dialog.open(ResidueDetailComponent,{ data:{objectToEdit:this.objectToEdit}});
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
+    this.dialogService.openDialog(ResidueDetailComponent, this.objectToEdit);
   }
 
   editObject(object:any){
