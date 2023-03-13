@@ -33,11 +33,7 @@ export class MapperService {
     return list.map(e =>{
       let required:string;
 
-      if(e.requiresCollection){
-        required = 'sim';
-      }else{
-        required='não'
-      }
+
 
       return {
         id:e.id,
@@ -47,7 +43,7 @@ export class MapperService {
         zipCode:e.zipCode,
         city:e.city,
         state:e.state,
-        requiresCollection:required,
+        requiresCollection:e.requiresCollection,
       }
     })
   }
