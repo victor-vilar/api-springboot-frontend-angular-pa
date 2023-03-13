@@ -59,7 +59,13 @@ export class CustomerAddressesComponent implements OnInit {
   }
 
   openDialog(){
-    this.dialogService.openDialog(CustomerAddressesDetailComponent,this.objectToEdit,'');
+
+    this.dialogService.openDialogPassingCustomerId(CustomerAddressesDetailComponent,
+      this.objectToEdit,
+      this.selectedCustomer.cpfCnpj,
+      this.pathPrefix);
+
+    this.objectToEdit = null;
   }
 
   editObject(object:any){

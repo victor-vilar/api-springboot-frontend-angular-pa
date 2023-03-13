@@ -51,7 +51,8 @@ export class EquipmentsComponent implements OnInit, CrudBaseComponent {
   }
 
   openDialog(): void {
-    this.dialogService.openDialog(EquipmentDetailComponent, this.objectToEdit,'equipamentos');
+    this.dialogService.openDialog(EquipmentDetailComponent, this.objectToEdit,this.title.toLowerCase());
+    this.objectToEdit = null;
   }
 
 

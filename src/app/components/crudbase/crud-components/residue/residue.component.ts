@@ -26,7 +26,8 @@ export class ResidueComponent implements OnInit, CrudBaseComponent{
   routeQueryParams$: Subscription;
   objectToEdit;
 
-  constructor(service:ResiduesService,private route: ActivatedRoute,
+  constructor(service:ResiduesService,
+    private route: ActivatedRoute,
     private dialogService:DialogServiceService) {
     this.service = service;
 
@@ -38,9 +39,6 @@ export class ResidueComponent implements OnInit, CrudBaseComponent{
         this.openDialog();
       }
     });
-
-
-
 
     this.headerForTables ={
       id:'Id',
@@ -58,7 +56,8 @@ export class ResidueComponent implements OnInit, CrudBaseComponent{
 
   //open dialog of detail form
   openDialog(): void {
-    this.dialogService.openDialog(ResidueDetailComponent, this.objectToEdit,'residuos');
+    this.dialogService.openDialog(ResidueDetailComponent, this.objectToEdit, this.title.toLowerCase());
+    this.objectToEdit = null;
   }
 
   editObject(object:any){

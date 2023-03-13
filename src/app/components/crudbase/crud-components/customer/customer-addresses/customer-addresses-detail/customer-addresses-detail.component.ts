@@ -19,10 +19,10 @@ export class CustomerAddressesDetailComponent implements OnInit, FormDetail {
   @ViewChild('form') form: NgForm;
   idOfEditedItem: string | number;
   crudOperation='Cadastro';
-  addressToEdit:Address;
+  objectToEdit:Address;
   clientCpfCnpj:string;
   searchedZipCodeErrorResponse:boolean = false;
-  objectToEdit:Address;
+
 
   constructor(private findFullAddress:FullAddressFinderService,
     private addressService:AddressService,
@@ -34,8 +34,6 @@ export class CustomerAddressesDetailComponent implements OnInit, FormDetail {
 
 
   ngOnInit(): void {
-    //get the cpf or cnpj from costumer to add a new contract
-    this.clientCpfCnpj =this.activatedRoute.parent.snapshot.paramMap.get('cpfCnpj')
     this.onLoad();
   }
 
@@ -74,10 +72,11 @@ export class CustomerAddressesDetailComponent implements OnInit, FormDetail {
     let address = this.createObject();
     address.customerId = this.clientCpfCnpj;
 
-    if(this.addressToEdit === undefined){
+    if(this.objectToEdit === undefined){
       observable$ = this.addressService.save(address);
     }else{
-      address.id = this.addressToEdit.id;
+      address.id = this.objectToEdit.id;
+      console.log(address);
       observable$ = this.addressService.update(address.id,address);
     }
 
@@ -98,10 +97,15 @@ export class CustomerAddressesDetailComponent implements OnInit, FormDetail {
   }
 
   onLoad(): void {
+
     this.objectToEdit = this.data.objectToEdit;
+    console.log(this.objectToEdit);
+    this.clientCpfCnpj = this.data.clientCpfCnpj;
+
     if(this.objectToEdit !== undefined || this.objectToEdit !== null){
       this.crudOperation="Atualização";
       this.idOfEditedItem = this.objectToEdit.id;
+
     }
   }
 
