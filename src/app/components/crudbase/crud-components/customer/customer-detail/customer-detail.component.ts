@@ -1,23 +1,30 @@
 import { CustomerService } from './../../../../../services/customer.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { FormDetail } from 'src/app/model/FormDetail';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Customer } from 'src/app/model/Customer';
+import { ResidueDetailComponent } from '../../residue/residue-detail/residue-detail.component';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-customer-detail',
   templateUrl: './customer-detail.component.html',
   styleUrls: ['./customer-detail.component.css']
 })
-export class CustomerDetailComponent implements OnInit, FormDetail {
+export class CustomerDetailComponent implements OnInit, AfterViewInit, FormDetail {
 
-  constructor(private service:CustomerService, private activeroute:ActivatedRoute, private router:Router) { }
+  constructor(private service:CustomerService,
+     private activeroute:ActivatedRoute,
+      private router:Router,
+      public dialogRef: MatDialogRef<ResidueDetailComponent>,
+      @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   @ViewChild('singInForm')form: NgForm;
   rota: string = 'customer';
   idOfEditedItem: number | string;
   crudOperation: string = "Cadastro";
+  objectToEdit:Customer;
 
   //error handlers
   invalidCpfCnpj = false;
@@ -27,6 +34,15 @@ export class CustomerDetailComponent implements OnInit, FormDetail {
 
   ngOnInit(): void {
     this.onLoad();
+  }
+
+  ngAfterViewInit(): void {
+    setTimeout(() =>{
+      this.form.setValue({
+        cpfCnpj:this.objectToEdit.cpfCnpj,
+        razaoSocial:this.objectToEdit.nameCompanyName,
+      })},100)
+
   }
 
   createObject():Customer{
@@ -68,24 +84,15 @@ export class CustomerDetailComponent implements OnInit, FormDetail {
   }
 
   onLoad(): void {
-    if(this.activeroute.snapshot.queryParamMap.get('edit')){
-      this.crudOperation="Atualização"
-      this.activeroute.paramMap.subscribe(value =>{
-        this.service.getById(value.get('id'))
-        .subscribe(val =>{
-          if(val !== null){
-              this.form.setValue({
-                cpfCnpj:val.cpfCnpj,
-                razaoSocial:val.nameCompanyName,
-              })
-              this.idOfEditedItem = val.cpfCnpj;
-          }
-        })
-      })
+    this.objectToEdit = this.data.objectToEdit;
+    if(this.objectToEdit !== undefined || this.objectToEdit !== null){
+      this.crudOperation="Atualização";
+      this.idOfEditedItem = this.objectToEdit.cpfCnpj;
     }
 
   }
   destroy(): void {
+    this.dialogRef.close();
     this.router.navigate(['clientes']);
   }
 
