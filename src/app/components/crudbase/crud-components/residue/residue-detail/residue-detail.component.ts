@@ -56,11 +56,13 @@ export class ResidueDetailComponent implements OnInit,AfterViewInit, FormDetail 
 
   onLoad(): void {
 
-      this.objectToEdit = this.data.objectToEdit;
-      if(this.objectToEdit !== undefined || this.objectToEdit !== null){
-        this.crudOperation="Atualização";
-        this.idOfEditedItem = this.objectToEdit.id;
-      }
+    this.objectToEdit = this.data.objectToEdit;
+    console.log(this.objectToEdit);
+    if(this.objectToEdit !== undefined && this.objectToEdit !== null){
+      console.log('estou aqui');
+      this.crudOperation="Atualização";
+      this.idOfEditedItem = this.objectToEdit.id;
+    }
   }
 
   save(): void {
@@ -101,6 +103,7 @@ export class ResidueDetailComponent implements OnInit,AfterViewInit, FormDetail 
 
 
   destroy(): void {
+    this.objectToEdit =null
     this.dialogRef.close();
     this.router.navigate(['residuos']);
   }

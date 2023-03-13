@@ -62,7 +62,7 @@ export class EquipmentDetailComponent implements OnInit, AfterViewInit, FormDeta
 
   onLoad(): void {
       this.objectToEdit = this.data.objectToEdit;
-      if(this.objectToEdit !== undefined || this.objectToEdit !== null){
+      if(this.objectToEdit !== undefined && this.objectToEdit !== null){
         this.crudOperation="Atualização";
         this.idOfEditedItem = this.objectToEdit.id;
       }
@@ -109,6 +109,7 @@ export class EquipmentDetailComponent implements OnInit, AfterViewInit, FormDeta
   }
 
   destroy(){
+    this.objectToEdit = null
     this.dialogRef.close();
     this.router.navigate(['equipamentos']);
   }

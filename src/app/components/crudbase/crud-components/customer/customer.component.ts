@@ -52,14 +52,14 @@ export class CustomerComponent implements OnInit, CrudBaseComponent {
       ];
   }
 
-    //open dialog of detail form
-    openDialog(): void {
-      this.dialogService.openDialog(CustomerDetailComponent, this.objectToEdit, this.title.toLowerCase());
-      this.objectToEdit = null;
-    }
+  //open dialog of detail form
+  openDialog(): void {
+    this.dialogService.openDialog(CustomerDetailComponent, this.objectToEdit, this.title.toLowerCase());
+    this.objectToEdit = null;
+  }
 
-    editObject(object:any){
-      this.objectToEdit = object;
-    }
+  editObject(object:any){
+    this.objectToEdit = object;
+  }
 
 }
