@@ -17,6 +17,7 @@
   [service]="contractService"
   [customerId]="selectedCustomer.cpfCnpj"
   [columnCount]="7"
+  (editObjectEmitter)="editObject($event)"
   ></app-itens-table>
 
 </div>

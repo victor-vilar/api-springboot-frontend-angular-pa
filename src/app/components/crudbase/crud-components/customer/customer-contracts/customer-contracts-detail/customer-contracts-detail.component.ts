@@ -4,11 +4,12 @@ import { ItemContract } from './../../../../../../model/ItemContract';
 import { EquipmentsService } from '../../../../../../services/equipments.service';
 import { Equipment } from '../../../../../../model/Equipment';
 import { ResiduesService } from './../../../../../../services/residues.service';
-import { Component, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { Residue } from 'src/app/model/Residue';
 import { FormControl, NgForm } from '@angular/forms';
 import { ContractsService } from 'src/app/services/contracts.service';
 import { FormDetail } from 'src/app/model/FormDetail';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 
 @Component({
@@ -38,15 +39,16 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
   clientCpfCnpj:string;
   //form is on edit mode, here store the id of the item
   idOfEditedItem: string | number = "0";
-  contractToEdit:Contract = null;
+
   //
   crudOperation: string = "Cadastro";
+  objectToEdit:Contract;
 
   //headers for itemCOntract itens list
   headerForTables;
   //sum of itens of contract
   totalValueOfContract:number = 0;
-  isInvalidContractDates:boolean = false;;
+  isInvalidContractDates:boolean = false;
   //---
 
   constructor(residuesService:ResiduesService,
@@ -54,6 +56,8 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
               contractService:ContractsService,
               private activatedRoute:ActivatedRoute,
               private router:Router,
+              public dialogRef: MatDialogRef<CustomerContractsDetailComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: any
               ) {
                 this.residuesService = residuesService;
                 this.equipmentsService = equipmentsService;
@@ -61,10 +65,10 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
                }
 
 
+
   ngOnInit(): void {
 
-    //get the cpf or cnpj from costumer to add a new contract
-    this.clientCpfCnpj =this.activatedRoute.parent.snapshot.paramMap.get('cpfCnpj')
+
 
     //subscribing to equipament service and residue service
     this.equipmentsService.refreshAllData().subscribe(e =>{
@@ -91,39 +95,32 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
 
   //onload method to know if form going to be on edit mode or new mode
   onLoad(): void {
-      //try to get queryParameter edit
-      if(this.activatedRoute.snapshot.queryParamMap.get('edit')){
-        //change the variable crud Operation to 'atualização' = update
-        this.crudOperation="Atualização"
-        //observable  get the id param
-        this.activatedRoute.paramMap.subscribe(value =>{
-          //contract service try to get the contract by id
-          this.contractService.getById(value.get('id'))
-          .subscribe(val =>{
-            //if value != null the form will be filled by val values
-            if(val !== null){
-                this.form.setValue({
-                  contractNumber:val.number,
-                  beginDate:val.beginDate,
-                  endDate:val.endDate,
-                  residue:'',
-                  equipment:'',
-                  quantity:'',
-                  itemValue:''
-                })
+    this.objectToEdit = this.contractService.list.find(c => c.id === this.data.objectToEdit.id);
+    this.clientCpfCnpj = this.data.clientCpfCnpj;
 
-                //the contract that going to be edited
-                this.contractToEdit = val;
+    if(this.objectToEdit !== undefined && this.objectToEdit !== null){
+      this.crudOperation="Atualização";
+      this.idOfEditedItem = this.objectToEdit.id;
 
-                //copy the itens of val id to the current component list
-                this.itemContractList = this.itemContractListFromApiMapper(val.itens);
+    }
+    //copy the itens of val id to the current component list
+    this.itemContractList = this.itemContractListFromApiMapper(this.objectToEdit.itens);
+    this.sumTotalOfContract();
 
-                this.sumTotalOfContract();
-            }
-          })
-        })
-      }
   }
+
+  ngAfterViewInit(): void {
+    setTimeout(() =>{
+      this.form.setValue({
+        contractNumber:this.objectToEdit.number,
+        beginDate:this.objectToEdit.beginDate,
+        endDate:this.objectToEdit.endDate,
+        residue:"",
+        equipment:"",
+        quantity:"",
+        itemValue:"",
+      })},200);
+    }
 
   //execute services methods to get all info from api
   ngOnChanges(changes: SimpleChanges): void {
@@ -156,7 +153,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
     }
   }
 
-  //TODO
+
   checkIfItemContractFromInputsAreFilled(){
     Object.values(this.form.controls).forEach(e =>{
       if(e.value === '' || e.value === null){
@@ -259,13 +256,13 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
     //response of save contract
     //if the idOfEditedItem === undefined means its a new contract not a edited one
     let observer$;
-    if(this.contractToEdit === null){
+    if(this.objectToEdit === null || this.objectToEdit === undefined){
       observer$ = this.contractService.save(contract);
     //if it's undefined it's just updating some item or value
     }else{
       //fill empty contract fields to make the update
-      contract.id = this.contractToEdit.id;
-      contract.customerId = this.contractToEdit.customerId;
+      contract.id = this.objectToEdit.id;
+      contract.customerId = this.objectToEdit.customerId;
 
       //put on api
       observer$ = this.contractService.update(contract.id,contract);
@@ -348,6 +345,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
 
   //navigates to another page
   destroy(): void {
+    this.dialogRef.close();
     this.router.navigate(['/clientes'])
   }
 

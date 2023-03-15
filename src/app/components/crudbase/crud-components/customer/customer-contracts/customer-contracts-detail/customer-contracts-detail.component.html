@@ -1,5 +1,5 @@
 <div class="wrapper">
-
+  <mat-dialog-content>
   <div class="detail-component-header">
     <h4 class="detail-title">{{crudOperation}} de Clientes</h4>
     <a (click)="destroy()" class="close-button">X</a>
@@ -28,10 +28,7 @@
         <div *ngIf="isInvalidContractDates"
         class="alert">A data de encerramento não pode ser igual ou anterior a data de inicio</div>
       </div>
-      <div class="contract-partial-information">
-        <label>Total de itens: {{itemContractList.length}}</label><br>
-        <label>Total em:{{totalValueOfContract | currency :'BRL'}}</label>
-      </div>
+
     </div>
 
     <div class="residue-item-options">
@@ -65,6 +62,10 @@
       </div>
     </div>
   </form>
+  <div class="contract-partial-information">
+    <label>Total de itens: {{itemContractList.length}}</label><br>
+    <label>Total em:{{totalValueOfContract | currency :'BRL'}}</label>
+  </div>
   <button (click)="mockingFormFiller()">Fill form</button>
 
   <app-itens-table-item-contract
@@ -73,5 +74,6 @@
     [model]="'itens'"
     (deleteItemEmitter)= "deleteItemFromList($event)">
   </app-itens-table-item-contract>
+</mat-dialog-content>
 </div>
 

@@ -1,7 +1,7 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { AddressService } from 'src/app/services/address.service';
 import { FormDetail } from 'src/app/model/FormDetail';
-import { Component, OnInit, ViewChild, Inject } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject, AfterViewInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { FullAddressFinderService } from 'src/app/services/find-full-address.service';
 import { Address } from 'src/app/model/Address';
@@ -13,7 +13,7 @@ import { Customer } from 'src/app/model/Customer';
   templateUrl: './customer-addresses-detail.component.html',
   styleUrls: ['./customer-addresses-detail.component.css']
 })
-export class CustomerAddressesDetailComponent implements OnInit, FormDetail {
+export class CustomerAddressesDetailComponent implements OnInit,AfterViewInit, FormDetail {
 
 
   @ViewChild('form') form: NgForm;
@@ -102,7 +102,7 @@ export class CustomerAddressesDetailComponent implements OnInit, FormDetail {
     console.log(this.objectToEdit);
     this.clientCpfCnpj = this.data.clientCpfCnpj;
 
-    if(this.objectToEdit !== undefined || this.objectToEdit !== null){
+    if(this.objectToEdit !== undefined && this.objectToEdit !== null){
       this.crudOperation="Atualização";
       this.idOfEditedItem = this.objectToEdit.id;
 

@@ -29,7 +29,6 @@ export class DialogServiceService {
 
   afterCloseDialog(dialogRef:MatDialogRef<any>, rota:string){
     dialogRef.afterClosed().subscribe(result => {
-      this.router.navigate(['.',rota], { relativeTo: this.route });
       console.log('The dialog was closed');
     });
   }
