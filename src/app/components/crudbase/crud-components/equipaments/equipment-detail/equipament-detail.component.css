@@ -73,11 +73,7 @@
     gap:5px;
   }
 
-  .equipment-detail-form input:first-child{
-    width: 10%;
-  }
-  .equipment-detail-form input {
-
+  .equipment-detail-form input, .alert {
     grid-column: 1 / 3;
   }
 
