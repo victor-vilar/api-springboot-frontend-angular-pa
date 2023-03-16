@@ -1,33 +1,46 @@
 import { SupervisorService } from './../../../../../../services/supervisor.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject, AfterViewInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormDetail } from 'src/app/model/FormDetail';
 import { Supervisor } from 'src/app/model/Supervisor';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-customer-supervisors-detail',
   templateUrl: './customer-supervisors-detail.component.html',
   styleUrls: ['./customer-supervisors-detail.component.css']
 })
-export class CustomerSupervisorsDetailComponent implements OnInit, FormDetail {
+export class CustomerSupervisorsDetailComponent implements OnInit,AfterViewInit, FormDetail {
 
   constructor(
     private activatedRoute:ActivatedRoute,
     private router:Router,
-    private supervisorService:SupervisorService) { }
+    private supervisorService:SupervisorService,
+    public dialogRef: MatDialogRef<CustomerSupervisorsDetailComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
+
 
   @ViewChild('form')form: NgForm;
   idOfEditedItem: string | number;
   crudOperation: string = 'Cadastro';
-  supervisorToEdit:Supervisor;
+  objectToEdit:Supervisor;
   clientCpfCnpj:string;
 
   ngOnInit(): void {
-    //get the cpf or cnpj from costumer to add a new contract
-    this.clientCpfCnpj = this.activatedRoute.parent.snapshot.paramMap.get('cpfCnpj')
     this.onLoad();
   }
+
+  ngAfterViewInit(): void {
+    setTimeout(() =>{
+     this.form.setValue({
+              supervisorName:this.objectToEdit.name,
+              supervisorPhone: this.objectToEdit.phoneNumber,
+              supervisorEmail:this.objectToEdit.email,
+        })
+    },100);
+  }
+
 
   createObject():Supervisor {
     return {
@@ -43,10 +56,10 @@ export class CustomerSupervisorsDetailComponent implements OnInit, FormDetail {
     let supervisor = this.createObject();
     supervisor.customerId = this.clientCpfCnpj;
 
-    if(this.supervisorToEdit === undefined){
+    if(this.objectToEdit === undefined){
       observable$ = this.supervisorService.save(supervisor);
     }else{
-      supervisor.id = this.supervisorToEdit.id;
+      supervisor.id = this.objectToEdit.id;
       observable$ = this.supervisorService.update(supervisor.id,supervisor);
     }
 
@@ -66,30 +79,18 @@ export class CustomerSupervisorsDetailComponent implements OnInit, FormDetail {
   }
 
   onLoad(): void {
-    //try to get queryParameter edit
-    if(this.activatedRoute.snapshot.queryParamMap.get('edit')){
-      //change the variable crud Operation to 'atualização' = update
-      this.crudOperation="Atualização"
-      //observable  get the id param
-      this.activatedRoute.paramMap.subscribe(value =>{
-        //contract service try to get the contract by id
-        this.supervisorService.getById(value.get('id'))
-        .subscribe(val =>{
-          //if value != null the form will be filled by val values
-          if(val !== null){
-            this.form.setValue({
-              supervisorName:val.name,
-              supervisorPhone: val.phoneNumber,
-              supervisorEmail:val.email,
-              })
-              this.supervisorToEdit = val;
-          }
-        })
-      })
+
+    this.objectToEdit = this.data.objectToEdit;
+    this.clientCpfCnpj = this.data.clientCpfCnpj;
+    if(this.objectToEdit !== undefined && this.objectToEdit !== null){
+      this.crudOperation="Atualização";
+      this.idOfEditedItem = this.objectToEdit.id;
+
     }
   }
 
   destroy(): void {
+    this.dialogRef.close();
     this.router.navigate(['/clientes'])
   }
 

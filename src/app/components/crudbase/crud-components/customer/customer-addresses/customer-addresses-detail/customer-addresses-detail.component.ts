@@ -99,7 +99,6 @@ export class CustomerAddressesDetailComponent implements OnInit,AfterViewInit, F
   onLoad(): void {
 
     this.objectToEdit = this.data.objectToEdit;
-    console.log(this.objectToEdit);
     this.clientCpfCnpj = this.data.clientCpfCnpj;
 
     if(this.objectToEdit !== undefined && this.objectToEdit !== null){
