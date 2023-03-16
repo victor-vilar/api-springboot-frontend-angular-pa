@@ -1,0 +1,19 @@
+.buttons-fields
+{
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.bt {
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ;
+  padding:0px 10px;
+  text-decoration: none;
+  background-color: var(--cinza-escuro);
+  color: white;
+  font-weight: bold;
+  box-shadow: 1px 1px 3px black;
+}

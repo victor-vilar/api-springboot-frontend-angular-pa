@@ -1,3 +1,5 @@
+import { ErrorDialogComponent } from './../../../../../util/error-dialog/error-dialog.component';
+import { DialogServiceService } from 'src/app/services/dialog-service.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Contract } from './../../../../../../model/Contract';
 import { ItemContract } from './../../../../../../model/ItemContract';
@@ -49,12 +51,14 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
   //sum of itens of contract
   totalValueOfContract:number = 0;
   isInvalidContractDates:boolean = false;
+  allFieldsMustBeFilledError:boolean = false;
   //---
 
   constructor(residuesService:ResiduesService,
               equipmentsService:EquipmentsService,
               contractService:ContractsService,
               private activatedRoute:ActivatedRoute,
+              private dialogService:DialogServiceService,
               private router:Router,
               public dialogRef: MatDialogRef<CustomerContractsDetailComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any
@@ -277,14 +281,16 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
   //don't creates empty contracts
   checkIfContractHasItens(){
     if(this.itemContractList.length === 0 ){
-      throw Error('O contrato deve possuir pelo menos um item!!')
+      let errorMessage = 'O contrato deve possuir pelo menos um item!!'
+      this.dialogService.openErrorDialog(errorMessage);
+      throw Error(errorMessage);
     }
+
   }
   //check if begin date is small or equals to end date
   checkContractDates(){
     let beginDate = new Date(this.form.value.beginDate);
     let endDate = new Date(this.form.value.endDate);
-    console.log('estou sendo chamado')
 
     if(beginDate.getTime() > endDate.getTime() || beginDate.getDate() === endDate.getDate()){
       this.isInvalidContractDates = true;
@@ -296,7 +302,9 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
 
   checkIfItemContractInputsAreNumbers(){
     if(isNaN(this.form.value.quantity) || isNaN(this.form.value.itemValue) || this.form.value.quantity <= 0 || this.form.value.itemValue <=0){
-      throw Error('Os campos de quantidade e valor devem ser do tipo número e serem maiores do que zero');
+      let errorMessage = 'Os campos de quantidade e valor, dos campos do cadastro de resíduos, devem ser do tipo número e serem maiores do que zero'
+      this.dialogService.openErrorDialog(errorMessage);
+      throw Error(errorMessage);
     }
   }
 

@@ -1,3 +1,4 @@
+import { ErrorDialogComponent } from './../components/util/error-dialog/error-dialog.component';
 import { BlockScrollStrategy } from '@angular/cdk/overlay';
 import { Injectable } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
@@ -27,10 +28,18 @@ export class DialogServiceService {
     this.afterCloseDialog(dialogRef,rota);
   }
 
-  afterCloseDialog(dialogRef:MatDialogRef<any>, rota:string){
+  private afterCloseDialog(dialogRef:MatDialogRef<any>, rota:string){
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
+  }
+
+  openErrorDialog(message:string){
+    const dialogRef = this.dialog.open(ErrorDialogComponent,{data:{
+      error: message,
+    }});
+
+    this.afterCloseDialog(dialogRef,'');
   }
 
 

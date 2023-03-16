@@ -33,6 +33,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ConfirmationDialogComponent } from './components/util/confirmation-dialog/confirmation-dialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {ScrollingModule} from '@angular/cdk/scrolling';
+import { ErrorDialogComponent } from './components/util/error-dialog/error-dialog.component';
 
 
 @NgModule({
@@ -61,6 +62,7 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
     CustomerAddressesDetailComponent,
     CustomerSupervisorsDetailComponent,
     ConfirmationDialogComponent,
+    ErrorDialogComponent,
   ],
   imports: [
     BrowserModule,
