@@ -7,6 +7,7 @@ import { from, of } from 'rxjs';
 import { ContractsService } from 'src/app/services/contracts.service';
 import { MapperService } from 'src/app/services/mapper.service';
 import { MatDialog } from '@angular/material/dialog';
+import { DialogServiceService } from 'src/app/services/dialog-service.service';
 
 @Component({
   selector: 'app-itens-table',
@@ -43,7 +44,7 @@ export class ItensTableComponent implements OnInit, OnChanges{
 
   constructor(private router:Router,
     private mapper:MapperService,
-    private dialog:MatDialog) { }
+    private dialogService:DialogServiceService,) { }
 
   ngOnInit(): void {
     let observable$ = this.service.refreshAllData();
@@ -148,12 +149,10 @@ export class ItensTableComponent implements OnInit, OnChanges{
   //open confirmation dialog
   openDialog(object:any){
 
-    let dialogRef = this.dialog.open(ConfirmationDialogComponent,
-      {data:{object:object}});
-
-    dialogRef.afterClosed().subscribe(response =>{
-      if(response) {
-        this.deleteItem(response);
+    let observable$ = this.dialogService.openConfirmationDialog();
+    observable$.subscribe(response =>{
+      if(response){
+        this.deleteItem(object);
       }
     })
 

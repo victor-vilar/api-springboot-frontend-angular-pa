@@ -1,8 +1,10 @@
+import { ConfirmationDialogComponent } from './../components/util/confirmation-dialog/confirmation-dialog.component';
 import { ErrorDialogComponent } from './../components/util/error-dialog/error-dialog.component';
 import { BlockScrollStrategy } from '@angular/cdk/overlay';
 import { Injectable } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -40,6 +42,12 @@ export class DialogServiceService {
     }});
 
     this.afterCloseDialog(dialogRef,'');
+  }
+
+
+  openConfirmationDialog():Observable<boolean>{
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent)
+    return dialogRef.afterClosed();
   }
 
 

@@ -1,3 +1,5 @@
+import { Observable } from 'rxjs';
+import { DialogServiceService } from 'src/app/services/dialog-service.service';
 import { Router } from '@angular/router';
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
@@ -32,7 +34,9 @@ export class ItensTableCustomerComponent implements OnInit {
   @Input()
   service:any;
 
-  constructor(private router:Router, private dialog:MatDialog) { }
+  constructor(private router:Router,
+      private dialogService:DialogServiceService,
+      ) { }
 
   ngOnInit(): void {
       this.service.refreshAllData()
@@ -86,12 +90,10 @@ export class ItensTableCustomerComponent implements OnInit {
 
   openDialog(object:any){
 
-    let dialogRef = this.dialog.open(ConfirmationDialogComponent,
-      {data:{object:object}});
-
-    dialogRef.afterClosed().subscribe(response =>{
-      if(response) {
-        this.deleteItem(response);
+    let observable$ = this.dialogService.openConfirmationDialog();
+    observable$.subscribe(response =>{
+      if(response){
+        this.deleteItem(object);
       }
     })
 

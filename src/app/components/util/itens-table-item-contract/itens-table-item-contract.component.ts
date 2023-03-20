@@ -3,6 +3,7 @@ import { Residue } from './../../../model/Residue';
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges, OnChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
+import { DialogServiceService } from 'src/app/services/dialog-service.service';
 
 @Component({
   selector: 'app-itens-table-item-contract',
@@ -31,7 +32,7 @@ export class ItensTableItemContractComponent implements OnInit, OnChanges {
   @Input()
   model:string='';
 
-  constructor(private router:Router, private dialog:MatDialog) { }
+  constructor(private router:Router,private dialogService:DialogServiceService, private dialog:MatDialog) { }
   ngOnChanges(changes: SimpleChanges): void {
     this.filteredTableData();
   }
@@ -81,12 +82,10 @@ export class ItensTableItemContractComponent implements OnInit, OnChanges {
 
   openDialog(object:any){
 
-    let dialogRef = this.dialog.open(ConfirmationDialogComponent,
-      {data:{object:object}});
-
-    dialogRef.afterClosed().subscribe(response =>{
-      if(response) {
-        this.deleteItem(response);
+    let observable$ = this.dialogService.openConfirmationDialog();
+    observable$.subscribe(response =>{
+      if(response){
+        this.deleteItem(object);
       }
     })
 
