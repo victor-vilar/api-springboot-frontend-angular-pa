@@ -158,13 +158,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
   }
 
 
-  checkIfItemContractFromInputsAreFilled(){
-    Object.values(this.form.controls).forEach(e =>{
-      if(e.value === '' || e.value === null){
-        throw Error('É necessario prencher todos os campos !')
-      }
-    })
-  }
+
 
 
 
@@ -306,6 +300,16 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
       this.dialogService.openErrorDialog(errorMessage);
       throw Error(errorMessage);
     }
+  }
+  //check if the form imputs are filled
+  checkIfItemContractFromInputsAreFilled(){
+    Object.values(this.form.controls).forEach(e =>{
+      if(e.value === '' || e.value === null){
+          let errorMessage = 'É necessario prencher todos os campos !!!'
+          this.dialogService.openErrorDialog(errorMessage);
+          throw Error(errorMessage);
+      }
+    })
   }
 
  //delete item from contract and recalulate the total value
