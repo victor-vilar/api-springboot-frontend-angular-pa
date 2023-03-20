@@ -98,13 +98,12 @@ export class CustomerAddressesDetailComponent implements OnInit,AfterViewInit, F
 
   onLoad(): void {
 
-    this.objectToEdit = this.data.objectToEdit;
     this.clientCpfCnpj = this.data.clientCpfCnpj;
 
     if(this.objectToEdit !== undefined && this.objectToEdit !== null){
       this.crudOperation="Atualização";
-      this.idOfEditedItem = this.objectToEdit.id;
-
+      this.objectToEdit = this.data.objectToEdit;
+      //this.idOfEditedItem = this.objectToEdit.id;
     }
   }
 

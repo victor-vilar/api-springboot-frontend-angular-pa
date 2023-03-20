@@ -120,7 +120,7 @@ export class ItensTableComponent implements OnInit, OnChanges{
         }
 
         if(this.fatherPathPrefix === 'fiscal'){
-          this.tableData = response;
+          this.tableData = this.mapper.toSupervisorsMapper(response);
         }
 
         this.filteredTableDataList = this.tableData.slice();

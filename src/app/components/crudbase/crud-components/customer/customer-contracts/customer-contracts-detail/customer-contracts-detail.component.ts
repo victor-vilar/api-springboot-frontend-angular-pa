@@ -99,32 +99,32 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
 
   //onload method to know if form going to be on edit mode or new mode
   onLoad(): void {
-    this.objectToEdit = this.contractService.list.find(c => c.id === this.data.objectToEdit.id);
+
     this.clientCpfCnpj = this.data.clientCpfCnpj;
-
-    if(this.objectToEdit !== undefined && this.objectToEdit !== null){
+    if(this.data.objectToEdit !== undefined && this.data.objectToEdit !== null){
       this.crudOperation="Atualização";
-      this.idOfEditedItem = this.objectToEdit.id;
-
+      this.objectToEdit = this.contractService.list.find(c => c.id === this.data.objectToEdit.id);
+      this.itemContractList = this.itemContractListFromApiMapper(this.objectToEdit.itens);
+      this.sumTotalOfContract();
     }
-    //copy the itens of val id to the current component list
-    this.itemContractList = this.itemContractListFromApiMapper(this.objectToEdit.itens);
-    this.sumTotalOfContract();
 
   }
 
   ngAfterViewInit(): void {
     setTimeout(() =>{
-      this.form.setValue({
-        contractNumber:this.objectToEdit.number,
-        beginDate:this.objectToEdit.beginDate,
-        endDate:this.objectToEdit.endDate,
-        residue:"",
-        equipment:"",
-        quantity:"",
-        itemValue:"",
-      })},200);
-    }
+      if(this.objectToEdit  != null){
+        this.form.setValue({
+          contractNumber:this.objectToEdit.number,
+          beginDate:this.objectToEdit.beginDate,
+          endDate:this.objectToEdit.endDate,
+          residue:"",
+          equipment:"",
+          quantity:"",
+          itemValue:"",
+        })
+      }
+    },200);
+  }
 
   //execute services methods to get all info from api
   ngOnChanges(changes: SimpleChanges): void {
@@ -238,22 +238,23 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
     //check if contract has at least one item
     this.checkIfContractHasItens();
 
-    //check if the contract dates are ok
-    this.checkContractDatesBeforeSave();
     //check if end date is bigger than begin date
-    //this.checkContractDates();
+    this.checkContractDatesBeforeSave();
+
     //create a contract object
     let contract = this.createObject();
     contract.customerId = this.clientCpfCnpj;
     //insert itens to contract
     contract.itens = this.itemContractListMapper();
+    console.log(contract);
     //creates a contractObserver
     let contractObserver = this.createsContractObserver();
-    //response of save contract
+    //observervable$
+    let observervable$;
     //if the idOfEditedItem === undefined means its a new contract not a edited one
-    let observer$;
+
     if(this.objectToEdit === null || this.objectToEdit === undefined){
-      observer$ = this.contractService.save(contract);
+      observervable$ = this.contractService.save(contract);
     //if it's undefined it's just updating some item or value
     }else{
       //fill empty contract fields to make the update
@@ -261,11 +262,11 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
       contract.customerId = this.objectToEdit.customerId;
 
       //put on api
-      observer$ = this.contractService.update(contract.id,contract);
+      observervable$ = this.contractService.update(contract.id,contract);
     }
 
     //executing observable
-    observer$.subscribe(contractObserver);
+    observervable$.subscribe(contractObserver);
     this.destroy();
   }
 

@@ -64,7 +64,6 @@ export class CustomerContractsComponent implements OnInit {
       this.objectToEdit,
       this.selectedCustomer.cpfCnpj,
       this.pathPrefix);
-
     this.objectToEdit = null;
   }
 

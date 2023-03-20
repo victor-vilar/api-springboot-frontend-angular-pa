@@ -33,8 +33,6 @@ export class MapperService {
     return list.map(e =>{
       let required:string;
 
-
-
       return {
         id:e.id,
         addressName:e.addressName,
@@ -48,7 +46,16 @@ export class MapperService {
     })
   }
 
-  // toItensTableSupervisorMapper(list:Supervisor[]):any[]{
+  toSupervisorsMapper(list:Supervisor[]):any[]{
 
-  // }
+    return list.map(e =>{
+      return {
+        id:e.id,
+        name:e.name,
+        phoneNumber:e.phoneNumber,
+        email:e.email
+      }
+    })
+
+   }
 }
