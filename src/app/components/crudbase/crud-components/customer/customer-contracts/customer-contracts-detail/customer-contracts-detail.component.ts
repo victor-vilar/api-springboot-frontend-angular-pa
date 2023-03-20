@@ -157,11 +157,6 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
     }
   }
 
-
-
-
-
-
   //add an item to contract
   addItemToContract(){
 
@@ -181,6 +176,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
     }
     //push item to list
     this.itemContractList.push(itemContract);
+
     //sum total
     this.sumTotalOfContract();
     this.clearAddItensInputFieldsAfterAdd();
@@ -240,8 +236,10 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
   //saves contract at database
   save(){
     //check if contract has at least one item
-    this.checkIfContractHasItens()
+    this.checkIfContractHasItens();
 
+    //check if the contract dates are ok
+    this.checkContractDatesBeforeSave();
     //check if end date is bigger than begin date
     //this.checkContractDates();
     //create a contract object
@@ -285,13 +283,20 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
   checkContractDates(){
     let beginDate = new Date(this.form.value.beginDate);
     let endDate = new Date(this.form.value.endDate);
-
-    if(beginDate.getTime() > endDate.getTime() || beginDate.getDate() === endDate.getDate()){
+    if(beginDate.getTime() >= endDate.getTime()){
       this.isInvalidContractDates = true;
     }else{
       this.isInvalidContractDates = false;
     }
 
+  }
+  //show dialog error if contract dates are wrong
+  checkContractDatesBeforeSave(){
+    if(this.isInvalidContractDates){
+      let errorMessage = 'A data de encerramento não pode ser igual ou anterior a data de inicio !'
+      this.dialogService.openErrorDialog(errorMessage);
+      throw Error(errorMessage);
+    }
   }
 
   checkIfItemContractInputsAreNumbers(){
@@ -305,7 +310,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
   checkIfItemContractFromInputsAreFilled(){
     Object.values(this.form.controls).forEach(e =>{
       if(e.value === '' || e.value === null){
-          let errorMessage = 'É necessario prencher todos os campos !!!'
+          let errorMessage = 'É necessario prencher todos os campos para adicionar um resíduo !!!'
           this.dialogService.openErrorDialog(errorMessage);
           throw Error(errorMessage);
       }
