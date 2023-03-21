@@ -1,6 +1,6 @@
 import { MatDialog } from '@angular/material/dialog';
 import { Residue } from './../../../model/Residue';
-import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges, OnChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges, OnChanges, DoCheck } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 import { DialogServiceService } from 'src/app/services/dialog-service.service';
@@ -10,12 +10,10 @@ import { DialogServiceService } from 'src/app/services/dialog-service.service';
   templateUrl: './itens-table-item-contract.component.html',
   styleUrls: ['./itens-table-item-contract.component.css']
 })
-/**
- * ESSE ITENS TABLE É SOMENTE PARA ARMARZENAR OS ITENS DOS CONTRATOS CADASTRADOS NA LISTA, OU SEJA, OS QUE AINDA NÃO FORAM SALVOS NO BANCO
- * COMO VI QUE IRIA SER NECESSARIO UTILIZAR O MESMO LAYOUT UTILIZADO NOS OUTROS ITENS TABLE, DECIDI UTILIZAR
- * PARA ARMAZENAR TEMPORARIAMENTE O RESIDUOS CADASTRADOS
- */
-export class ItensTableItemContractComponent implements OnInit, OnChanges {
+
+
+
+export class ItensTableItemContractComponent implements OnInit, DoCheck {
 
 
   searchedValue:string;
@@ -28,18 +26,23 @@ export class ItensTableItemContractComponent implements OnInit, OnChanges {
   @Input()
   tableData:any = [];
   filteredTableDataList:any;
+
   //model to fill the header tag
   @Input()
   model:string='';
 
   constructor(private router:Router,private dialogService:DialogServiceService, private dialog:MatDialog) { }
-  ngOnChanges(changes: SimpleChanges): void {
+
+
+  ngOnInit(): void {
+    //this.filteredTableData();
+  }
+
+
+  ngDoCheck() {
     this.filteredTableData();
   }
 
-  ngOnInit(): void {
-    this.filteredTableData();
-  }
 
   findAliasInHeaderForTableArray(key:any){
     return this.tableHeaders[key];
@@ -58,28 +61,26 @@ export class ItensTableItemContractComponent implements OnInit, OnChanges {
   }
 
 
-
-  getAll(){
-
-  };
-
   showTableData(){
     console.log(this.tableData);
   }
 
-
-  //O ARRAY QUE VEM DO PAI POSSUI ALGUNS OBJETOS DENTRO, ENTÃO NÃO CONSIGO BUSCAR ALGUNS DADOS,
-  // ESTA DANDO ERRO NESSE FILTRO,
-  // PRECISO CORRIGIR
+  //here I needed to filter in element objects to work
   filteredTableData(){
     this.filteredTableDataList = this.tableData.filter(element => {
+      if(Object.values(element.equipment).toString().toLowerCase().includes(this.searchedValue)){
+        return element
+      }
+      if(Object.values(element.residue).toString().toLowerCase().includes(this.searchedValue)){
+        return element;
+      }
       if(Object.values(element).toString().toLowerCase().includes(this.searchedValue)){
         return element;
       }
     });
   }
 
-
+  //open delete confirmation dialog
   openDialog(object:any){
 
     let observable$ = this.dialogService.openConfirmationDialog();
