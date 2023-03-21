@@ -25,7 +25,7 @@
         <div *ngIf="this.form.controls['endDate'].value === '' && (this.form.controls['endDate'].dirty || this.form.controls['endDate'].touched)"
         class="alert">O contrato deve possuir uma data de encerramento</div>
         <div *ngIf="isInvalidContractDates"
-        class="alert">A data de encerramento não pode ser igual ou anterior a data de inicio</div>
+        class="alert">A data de encerramento não pode ser igual ou anterior a data de início</div>
       </div>
     </div>
 
@@ -59,7 +59,7 @@
   </form>
   <div class="contract-partial-information">
     <label>Total de itens: {{itemContractList.length}}</label><br>
-    <label>Total em:{{totalValueOfContract | currency :'BRL'}}</label>
+    <label>Total: {{totalValueOfContract | currency :'BRL'}}</label>
   </div>
 
   <button (click)="mockingFormFiller()">Fill form</button>
