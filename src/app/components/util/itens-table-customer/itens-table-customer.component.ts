@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 import { DialogServiceService } from 'src/app/services/dialog-service.service';
 import { Router } from '@angular/router';
-import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 
@@ -97,6 +97,12 @@ export class ItensTableCustomerComponent implements OnInit {
       }
     })
 
+  }
+
+  @Output()
+  editObjectEmitter = new EventEmitter<any>()
+  sendObjectToEdit(object:any){
+    this.editObjectEmitter.emit(object);
   }
 
 }

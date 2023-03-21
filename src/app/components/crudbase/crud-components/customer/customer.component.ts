@@ -62,4 +62,5 @@ export class CustomerComponent implements OnInit, CrudBaseComponent {
     this.objectToEdit = object;
   }
 
+
 }
