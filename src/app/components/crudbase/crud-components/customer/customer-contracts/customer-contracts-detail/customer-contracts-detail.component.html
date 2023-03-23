@@ -1,5 +1,4 @@
 <div class="wrapper">
-  <button (click)="mockingFormFiller()">Fill form</button>
   <mat-dialog-content>
   <div class="detail-component-header">
     <h4 class="detail-title">{{crudOperation}} de Contratos</h4>
@@ -54,16 +53,14 @@
           </div>
         </div>
         <input type="button" value="adicionar residuo" (click)="addItemToContract()"><br><br>
-
+        <input type="submit" value="salvar contrato">
       </div>
-      <input type="submit" value="salvar">
+
   </form>
   <div class="contract-partial-information">
     <label>Total de itens: {{itemContractList.length}}</label><br>
     <label>Total: {{totalValueOfContract | currency :'BRL'}}</label>
   </div>
-
-
 
   <app-itens-table-item-contract
     [tableHeaders]="headerForTables"

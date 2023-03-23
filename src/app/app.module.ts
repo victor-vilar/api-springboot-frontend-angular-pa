@@ -35,6 +35,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import { ErrorDialogComponent } from './components/util/error-dialog/error-dialog.component';
 import { PhonePipe } from './pipes/phone.pipe';
+import { SuccessDialogComponent } from './components/util/success-dialog/success-dialog.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { PhonePipe } from './pipes/phone.pipe';
     CustomerSupervisorsDetailComponent,
     ConfirmationDialogComponent,
     ErrorDialogComponent,
-    PhonePipe
+    PhonePipe,
+    SuccessDialogComponent
   ],
   imports: [
     BrowserModule,

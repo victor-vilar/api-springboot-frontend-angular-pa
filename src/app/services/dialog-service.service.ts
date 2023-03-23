@@ -1,3 +1,4 @@
+import { SuccessDialogComponent } from './../components/util/success-dialog/success-dialog.component';
 import { ConfirmationDialogComponent } from './../components/util/confirmation-dialog/confirmation-dialog.component';
 import { ErrorDialogComponent } from './../components/util/error-dialog/error-dialog.component';
 import { BlockScrollStrategy } from '@angular/cdk/overlay';
@@ -44,10 +45,14 @@ export class DialogServiceService {
     this.afterCloseDialog(dialogRef,'');
   }
 
-
   openConfirmationDialog():Observable<boolean>{
     const dialogRef = this.dialog.open(ConfirmationDialogComponent)
     return dialogRef.afterClosed();
+  }
+
+  openSucessDialog(message:string):void {
+    const dialogRef = this.dialog.open(SuccessDialogComponent,{data:{message:message}});
+    this.afterCloseDialog(dialogRef,'');
   }
 
 

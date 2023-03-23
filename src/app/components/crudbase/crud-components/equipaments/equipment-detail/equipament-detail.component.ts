@@ -69,7 +69,7 @@ export class EquipmentDetailComponent implements OnInit, AfterViewInit, FormDeta
   }
 
   checkIfItemContractInputsAreNumbers(){
-    if(isNaN(this.form.value.equipmentSize) || this.form.value.equipmentSize < 1){
+    if(isNaN(this.form.value.equipmentSize) || this.form.value.equipmentSize === 0){
       this.isInvalidVolume=true;
       this.isInvalidVolumeMessage = 'O valor do volume do equipamento deve ser do tipo número e ser maior que zero';
       throw Error('O valor do volume do equipamento deve ser do tipo número  número e ser maior que zero');
@@ -121,6 +121,7 @@ export class EquipmentDetailComponent implements OnInit, AfterViewInit, FormDeta
   saveObjectObserver(){
     return{
       next:(response)=>{
+        
         this.service.getAll();
         this.destroy();
       },
