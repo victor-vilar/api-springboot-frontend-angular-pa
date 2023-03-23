@@ -1,3 +1,4 @@
+import { DialogServiceService } from './../../../../../../services/dialog-service.service';
 import { SupervisorService } from './../../../../../../services/supervisor.service';
 import { Component, OnInit, ViewChild, Inject, AfterViewInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
@@ -18,7 +19,8 @@ export class CustomerSupervisorsDetailComponent implements OnInit,AfterViewInit,
     private router:Router,
     private supervisorService:SupervisorService,
     public dialogRef: MatDialogRef<CustomerSupervisorsDetailComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) { }
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private dialogService:DialogServiceService) { }
 
 
   @ViewChild('form')form: NgForm;
@@ -70,9 +72,11 @@ export class CustomerSupervisorsDetailComponent implements OnInit,AfterViewInit,
   saveSupervisorObserver(){
     return {
       next:(response) =>{
+        this.dialogService.openSucessDialog('Endereço salvo com sucesso !','/clientes');
         this.supervisorService.getAll();
       },
       error:(response) =>{
+        this.dialogService.openErrorDialog('Ocorreu algum erro !');
         console.log(response);
       }
     }
@@ -91,7 +95,7 @@ export class CustomerSupervisorsDetailComponent implements OnInit,AfterViewInit,
 
   destroy(): void {
     this.dialogRef.close();
-    this.router.navigate(['/clientes'])
+
   }
 
   cleanForm(){

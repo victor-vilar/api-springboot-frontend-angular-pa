@@ -1,3 +1,4 @@
+import { DialogServiceService } from './../../../../../services/dialog-service.service';
 import { CustomerService } from './../../../../../services/customer.service';
 import { Component, Inject, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
@@ -18,7 +19,8 @@ export class CustomerDetailComponent implements OnInit, AfterViewInit, FormDetai
      private activeroute:ActivatedRoute,
       private router:Router,
       public dialogRef: MatDialogRef<ResidueDetailComponent>,
-      @Inject(MAT_DIALOG_DATA) public data: any) { }
+      @Inject(MAT_DIALOG_DATA) public data: any,
+      private dialogService:DialogServiceService) { }
 
   @ViewChild('singInForm')form: NgForm;
   rota: string = 'customer';
@@ -95,7 +97,6 @@ export class CustomerDetailComponent implements OnInit, AfterViewInit, FormDetai
   }
   destroy(): void {
     this.dialogRef.close();
-    this.router.navigate(['clientes']);
   }
 
   cleanForm(){
@@ -103,9 +104,10 @@ export class CustomerDetailComponent implements OnInit, AfterViewInit, FormDetai
   }
 
   private customerObserver(){
+
     return{
       next:(response)=>{
-        console.log(response);
+        this.dialogService.openSucessDialog('Endereço salvo com sucesso !','/clientes');
         this.service.getAll();
         this.destroy();
       },
@@ -121,6 +123,8 @@ export class CustomerDetailComponent implements OnInit, AfterViewInit, FormDetai
           this.invalidCpfCnpj = true;
           this.invalidCpfCnpjMessage = "Um cliente com esse CPF ou CNPJ ja esta cadastrado";
         }
+
+        this.dialogService.openErrorDialog(response.error.message);
       }
     }
   }
