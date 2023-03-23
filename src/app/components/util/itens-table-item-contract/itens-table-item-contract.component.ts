@@ -16,7 +16,7 @@ import { DialogServiceService } from 'src/app/services/dialog-service.service';
 export class ItensTableItemContractComponent implements OnInit, DoCheck {
 
 
-  searchedValue:string;
+  searchedValue:string = '';
 
   //header of the data sended by component
   @Input()
@@ -40,6 +40,7 @@ export class ItensTableItemContractComponent implements OnInit, DoCheck {
 
 
   ngDoCheck() {
+    console.log('check');
     this.filteredTableData();
   }
 
