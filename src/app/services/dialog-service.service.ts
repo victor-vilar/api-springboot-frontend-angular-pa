@@ -33,7 +33,7 @@ export class DialogServiceService {
 
   private afterCloseDialog(dialogRef:MatDialogRef<any>, rota:string){
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      this.router.navigate([rota], { queryParams: {  }});
     });
   }
 
@@ -50,9 +50,9 @@ export class DialogServiceService {
     return dialogRef.afterClosed();
   }
 
-  openSucessDialog(message:string):void {
+  openSucessDialog(message:string,rota:string):void {
     const dialogRef = this.dialog.open(SuccessDialogComponent,{data:{message:message}});
-    this.afterCloseDialog(dialogRef,'');
+    this.afterCloseDialog(dialogRef,rota);
   }
 
 

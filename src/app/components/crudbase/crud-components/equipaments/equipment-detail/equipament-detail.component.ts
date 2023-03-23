@@ -1,3 +1,4 @@
+import { DialogServiceService } from './../../../../../services/dialog-service.service';
 import { Observable } from 'rxjs';
 import { CrudBaseService } from 'src/app/services/crudbase.service';
 import { FormDetail } from '../../../../../model/FormDetail';
@@ -36,7 +37,8 @@ export class EquipmentDetailComponent implements OnInit, AfterViewInit, FormDeta
      private activeroute:ActivatedRoute,
       private router:Router,
       public dialogRef: MatDialogRef<EquipmentDetailComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any) { }
+              @Inject(MAT_DIALOG_DATA) public data: any,
+              private dialogService:DialogServiceService) { }
 
   createObject(): any {
     return {
@@ -111,7 +113,7 @@ export class EquipmentDetailComponent implements OnInit, AfterViewInit, FormDeta
   destroy(){
     this.objectToEdit = null
     this.dialogRef.close();
-    this.router.navigate(['equipamentos']);
+  
   }
 
   cleanForm(){
@@ -121,11 +123,12 @@ export class EquipmentDetailComponent implements OnInit, AfterViewInit, FormDeta
   saveObjectObserver(){
     return{
       next:(response)=>{
-        
+        this.dialogService.openSucessDialog('Equipamento salvo com sucesso !','equipamentos');
         this.service.getAll();
         this.destroy();
       },
       error:(response)=>{
+        this.dialogService.openErrorDialog('Ocorreu algum erro !');
         console.log(response);
       }
     }

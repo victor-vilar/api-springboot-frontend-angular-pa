@@ -5,6 +5,7 @@ import { FormDetail } from 'src/app/model/FormDetail';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Residue } from 'src/app/model/Residue';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { DialogServiceService } from 'src/app/services/dialog-service.service';
 
 @Component({
   selector: 'app-residue-detail',
@@ -21,7 +22,8 @@ export class ResidueDetailComponent implements OnInit,AfterViewInit, FormDetail 
               private activeroute:ActivatedRoute,
               private router:Router,
               public dialogRef: MatDialogRef<ResidueDetailComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any) { }
+              @Inject(MAT_DIALOG_DATA) public data: any,
+              private dialogService:DialogServiceService) { }
 
 
   isInvalidType = false;
@@ -105,7 +107,7 @@ export class ResidueDetailComponent implements OnInit,AfterViewInit, FormDetail 
   destroy(): void {
     this.objectToEdit =null
     this.dialogRef.close();
-    this.router.navigate(['residuos']);
+    //this.router.navigate(['residuos']);
   }
 
   cleanForm(){
@@ -115,10 +117,12 @@ export class ResidueDetailComponent implements OnInit,AfterViewInit, FormDetail 
   saveObjectObserver(){
     return{
       next:(response)=>{
+        this.dialogService.openSucessDialog('Resíduo salvo com sucesso !','residuos');
         this.service.getAll();
         this.destroy();
       },
       error:(response)=>{
+        this.dialogService.openErrorDialog('Ocorreu algum erro !');
         console.log(response);
       }
     }

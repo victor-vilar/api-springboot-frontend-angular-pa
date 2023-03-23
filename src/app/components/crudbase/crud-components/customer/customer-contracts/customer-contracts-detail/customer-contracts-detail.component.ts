@@ -364,7 +364,6 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
   //navigates to another page
   destroy(): void {
     this.dialogRef.close();
-    this.router.navigate(['/clientes'])
   }
 
   //fast filler to form(tests)
@@ -386,10 +385,10 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
   createsContractObserver():any{
     return{
       next:(response) =>{
-        console.log(response);
+        this.dialogService.openSucessDialog('Contrato salvo com sucesso !','/clientes');
       },
       error:(error)=>{
-        console.log(error);
+        this.dialogService.openErrorDialog(error.message);
       }
     }
   }
@@ -397,11 +396,10 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
   deletesContractObserver():any{
     return{
       next:(response) =>{
-        console.log(response);
-        console.log('Deletado com sucesso !');
+        this.dialogService.openSucessDialog('Contrato deletado com sucesso !','/clientes');
       },
       error:(error)=>{
-        console.log(error);
+        this.dialogService.openErrorDialog(error.message);
       }
     }
   }
@@ -423,7 +421,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
         console.log(response);
         //if the list of the itens is 0, then will delete the contract from
         if(response.itens.length === 0){
-          console.log('O contrato ficou sem itens, por isso foi deletado automaticamente');
+          this.dialogService.openSucessDialog('O contrato ficou sem itens, por isso foi deletado automaticamente','/clientes');
           let observevable$ = this.contractService.delete(response.id);
           let observer = this.deletesContractObserver();
           observevable$.subscribe(observer);
@@ -436,7 +434,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
 
       },
       error:(error)=>{
-        console.log(error)
+        this.dialogService.openErrorDialog(error.message);
       }
     }
   }

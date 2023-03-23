@@ -7,6 +7,7 @@ import { FullAddressFinderService } from 'src/app/services/find-full-address.ser
 import { Address } from 'src/app/model/Address';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Customer } from 'src/app/model/Customer';
+import { DialogServiceService } from 'src/app/services/dialog-service.service';
 
 @Component({
   selector: 'app-customer-addresses-detail',
@@ -29,7 +30,8 @@ export class CustomerAddressesDetailComponent implements OnInit,AfterViewInit, F
     private activatedRoute:ActivatedRoute,
     private router:Router,
     public dialogRef: MatDialogRef<CustomerAddressesDetailComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) { }
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private dialogService:DialogServiceService) { }
 
 
 
@@ -87,11 +89,11 @@ export class CustomerAddressesDetailComponent implements OnInit,AfterViewInit, F
   saveAddressObserver(){
     return {
       next:(response) =>{
-        console.log(response);
+        this.dialogService.openSucessDialog('Endereço salvo com sucesso !','/clientes');
         this.addressService.getAll();
       },
       error:(response) =>{
-        console.log(response);
+        this.dialogService.openErrorDialog('Ocorreu algum erro !');
       }
     }
   }
@@ -103,13 +105,11 @@ export class CustomerAddressesDetailComponent implements OnInit,AfterViewInit, F
     if(this.objectToEdit !== undefined && this.objectToEdit !== null){
       this.crudOperation="Atualização";
       this.objectToEdit = this.data.objectToEdit;
-      //this.idOfEditedItem = this.objectToEdit.id;
     }
   }
 
   destroy(): void {
     this.dialogRef.close();
-    this.router.navigate(['/clientes'])
   }
 
 
@@ -117,12 +117,12 @@ export class CustomerAddressesDetailComponent implements OnInit,AfterViewInit, F
   searchFullAddressInfo(){
     let response = this.findFullAddress.getFullAddress(this.form.value.zipCode);
     response.then(address =>{
-      //this.form.reset();
+
       this.fillFormInputs(address);
       this.searchedZipCodeErrorResponse = false;
     }).catch(error => {
       this.searchedZipCodeErrorResponse = true;
-      console.log('Não foi possivel encontrar esse endereço !')
+      this.dialogService.openErrorDialog('Não foi possivel encontrar esse endereço !');
     })
   }
 

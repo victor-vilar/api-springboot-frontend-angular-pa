@@ -14,6 +14,7 @@ export class SuccessDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data) { }
 
   ngOnInit(): void {
+    this.message = this.data.message;
   }
 
 }
