@@ -18,6 +18,7 @@ export class DashboardComponent implements OnInit {
   contractRegisteredLength;
   equipmentRegisteredLength;
   residueRegisteredLength;
+  totalValue = 0;
 
   constructor(
     private customerService:CustomerService,
@@ -28,7 +29,12 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
 
   this.customerService.refreshAllData().subscribe(response =>{this.customerRegisteredLength = response.length});
-  this.contractService.refreshAllData().subscribe(response =>{this.contractRegisteredLength = response.length});
+  this.contractService.refreshAllData().subscribe(response =>{
+    this.contractRegisteredLength = response.length
+    let listOfItens = response.map(e => e.itens);
+    console.log(listOfItens)
+    listOfItens.forEach(e => this.totalValue += e.itemValue * e.qtdOfResidue);
+  });
   this.equipmentService.refreshAllData().subscribe(response =>{this.equipmentRegisteredLength = response.length});
   this.residueService.refreshAllData().subscribe(response =>{this.residueRegisteredLength = response.length});
 
