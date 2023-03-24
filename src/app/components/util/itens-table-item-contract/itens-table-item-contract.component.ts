@@ -40,7 +40,6 @@ export class ItensTableItemContractComponent implements OnInit, DoCheck {
 
 
   ngDoCheck() {
-    console.log('check');
     this.filteredTableData();
   }
 

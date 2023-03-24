@@ -72,7 +72,7 @@ export class CustomerSupervisorsDetailComponent implements OnInit,AfterViewInit,
   saveSupervisorObserver(){
     return {
       next:(response) =>{
-        this.dialogService.openSucessDialog('Endereço salvo com sucesso !','/clientes');
+        this.dialogService.openSucessDialog('Fiscal salvo com sucesso !','/clientes');
         this.supervisorService.getAll();
       },
       error:(response) =>{

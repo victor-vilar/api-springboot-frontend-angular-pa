@@ -43,7 +43,8 @@ export class CustomerDetailComponent implements OnInit, AfterViewInit, FormDetai
       this.form.setValue({
         cpfCnpj:this.objectToEdit.cpfCnpj,
         razaoSocial:this.objectToEdit.nameCompanyName,
-      })},100)
+      })},100
+    )
 
   }
 
@@ -107,23 +108,19 @@ export class CustomerDetailComponent implements OnInit, AfterViewInit, FormDetai
 
     return{
       next:(response)=>{
-        this.dialogService.openSucessDialog('Endereço salvo com sucesso !','/clientes');
+        this.dialogService.openSucessDialog('Cliente salvo com sucesso !','/clientes');
         this.service.getAll();
         this.destroy();
       },
       error:(response)=>{
-        console.log(response);
-
         if(response.error.message === "This CPF or CNPJ is Invalid"){
           this.invalidCpfCnpj = true;
           this.invalidCpfCnpjMessage = "Esse é um CPF/CNPJ invalido";
         }
-
         if(response.error.message === "This Cpf/Cnpj already exists in database"){
           this.invalidCpfCnpj = true;
           this.invalidCpfCnpjMessage = "Um cliente com esse CPF ou CNPJ ja esta cadastrado";
         }
-
         this.dialogService.openErrorDialog(response.error.message);
       }
     }

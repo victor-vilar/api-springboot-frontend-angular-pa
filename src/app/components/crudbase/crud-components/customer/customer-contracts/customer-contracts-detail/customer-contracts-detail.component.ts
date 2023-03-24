@@ -386,6 +386,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
     return{
       next:(response) =>{
         this.dialogService.openSucessDialog('Contrato salvo com sucesso !','/clientes');
+        this.contractService.getAll();
       },
       error:(error)=>{
         this.dialogService.openErrorDialog(error.message);
