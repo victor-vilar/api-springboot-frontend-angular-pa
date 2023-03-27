@@ -29,6 +29,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
 
   this.customerService.refreshAllData().subscribe(response =>{this.customerRegisteredLength = response.length});
+
   this.contractService.refreshAllData().subscribe(response =>{
     this.contractRegisteredLength = response.length
     //return a list of lists of itens
@@ -37,6 +38,7 @@ export class DashboardComponent implements OnInit {
       //loop trough each item to sum all contracts
       e.forEach(c => this.totalValue += c.itemValue * c.qtdOfResidue));
   });
+
   this.equipmentService.refreshAllData().subscribe(response =>{this.equipmentRegisteredLength = response.length});
   this.residueService.refreshAllData().subscribe(response =>{this.residueRegisteredLength = response.length});
 

@@ -20,6 +20,10 @@
   justify-content: center;
 }
 
+.totalMoney{
+  grid-column: span 2;
+}
+
 .dashboard-cards-item span, .dashboard-cards-item i {
   font-size: 1.5em;
 }
