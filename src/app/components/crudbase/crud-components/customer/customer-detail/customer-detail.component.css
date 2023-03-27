@@ -1,6 +1,5 @@
 .detail-container{
   max-width: 100%;
-  border-bottom: 1px solid var(--cinza-escuro);
   padding-bottom: 15px;
 
 }
@@ -88,7 +87,6 @@
   width: 600px;
   margin: 0 auto;
   padding:10px;
-  border:1px solid var(--cinza-escuro);
   position: relative;
   }
 
