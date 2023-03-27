@@ -31,9 +31,11 @@ export class DashboardComponent implements OnInit {
   this.customerService.refreshAllData().subscribe(response =>{this.customerRegisteredLength = response.length});
   this.contractService.refreshAllData().subscribe(response =>{
     this.contractRegisteredLength = response.length
+    //return a list of lists of itens
     let listOfItens = response.map(e => e.itens);
-    console.log(listOfItens)
-    listOfItens.forEach(e => this.totalValue += e.itemValue * e.qtdOfResidue);
+    listOfItens.forEach(e =>
+      //loop trough each item to sum all contracts
+      e.forEach(c => this.totalValue += c.itemValue * c.qtdOfResidue));
   });
   this.equipmentService.refreshAllData().subscribe(response =>{this.equipmentRegisteredLength = response.length});
   this.residueService.refreshAllData().subscribe(response =>{this.residueRegisteredLength = response.length});

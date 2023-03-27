@@ -19,15 +19,17 @@
   align-items: center;
   justify-content: center;
 }
+
+.dashboard-cards-item span, .dashboard-cards-item i {
+  font-size: 1.5em;
+}
+
 .dashboard-cards-item h5 {
   font-size: .8em;
   color: var(--azul-claro);
   font-weight: bold;
 }
 
-.dashboard-cards-item h5 {
-  font-size: .8em;
-}
 
 @media screen and (min-width:576px){
   .dashboard-cards {
