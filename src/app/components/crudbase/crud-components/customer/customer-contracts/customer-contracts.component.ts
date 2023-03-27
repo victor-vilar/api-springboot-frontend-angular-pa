@@ -41,9 +41,6 @@ export class CustomerContractsComponent implements OnInit {
       }
     });
 
-    this.contractService.getAll();
-
-
     this.headerForTables ={
       id:'Id',
       number:'Número',
@@ -52,9 +49,13 @@ export class CustomerContractsComponent implements OnInit {
       totItens:'Total de Itens',
       totalEmRs:'Total em R$'
      };
+
     this.route.paramMap.subscribe(param =>{
       this.selectedCustomer = this.customerService.list.find(obj => obj.cpfCnpj === param.get('cpfCnpj'));
     })
+
+
+
 
   }
 
