@@ -36,6 +36,7 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
 import { ErrorDialogComponent } from './components/util/error-dialog/error-dialog.component';
 import { PhonePipe } from './pipes/phone.pipe';
 import { SuccessDialogComponent } from './components/util/success-dialog/success-dialog.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import { SuccessDialogComponent } from './components/util/success-dialog/success
     HttpClientModule,
     BrowserAnimationsModule,
     MatDialogModule,
-    ScrollingModule
+    ScrollingModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
