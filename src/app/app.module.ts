@@ -37,6 +37,7 @@ import { ErrorDialogComponent } from './components/util/error-dialog/error-dialo
 import { PhonePipe } from './pipes/phone.pipe';
 import { SuccessDialogComponent } from './components/util/success-dialog/success-dialog.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { ProgressComponent } from './components/util/progress/progress.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     ConfirmationDialogComponent,
     ErrorDialogComponent,
     PhonePipe,
-    SuccessDialogComponent
+    SuccessDialogComponent,
+    ProgressComponent
   ],
   imports: [
     BrowserModule,
