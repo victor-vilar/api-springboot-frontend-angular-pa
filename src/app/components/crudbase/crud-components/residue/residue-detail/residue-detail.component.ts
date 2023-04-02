@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Residue } from 'src/app/model/Residue';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DialogServiceService } from 'src/app/services/dialog-service.service';
+import { ProgressComponent } from 'src/app/components/util/progress/progress.component';
 
 @Component({
   selector: 'app-residue-detail',
@@ -22,6 +23,7 @@ export class ResidueDetailComponent implements OnInit,AfterViewInit, FormDetail 
               private activeroute:ActivatedRoute,
               private router:Router,
               public dialogRef: MatDialogRef<ResidueDetailComponent>,
+              public progessSpinnerDialogRef:MatDialogRef<ProgressComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
               private dialogService:DialogServiceService) { }
 
@@ -68,6 +70,7 @@ export class ResidueDetailComponent implements OnInit,AfterViewInit, FormDetail 
   }
 
   save(): void {
+    this.progessSpinnerDialogRef = this.dialogService.openProgressDialog();
     this.resetInvalidProperties();
     this.checkIfInputFieldsAreFilled();
     //criando um novo objeto
@@ -117,6 +120,8 @@ export class ResidueDetailComponent implements OnInit,AfterViewInit, FormDetail 
   saveObjectObserver(){
     return{
       next:(response)=>{
+        this.progessSpinnerDialogRef.close();
+        this.progessSpinnerDialogRef = null;
         this.dialogService.openSucessDialog('Resíduo salvo com sucesso !','residuos');
         this.service.getAll();
         this.destroy();
@@ -127,5 +132,7 @@ export class ResidueDetailComponent implements OnInit,AfterViewInit, FormDetail 
       }
     }
   }
+
+  
 
 }

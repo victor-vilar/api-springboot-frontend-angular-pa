@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-progress',
@@ -9,7 +10,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 export class ProgressComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<ProgressComponent> ) { }
-
+  mode: ProgressSpinnerMode = 'indeterminate';
   ngOnInit(): void {
   }
 

@@ -1,3 +1,4 @@
+import { ProgressComponent } from './../components/util/progress/progress.component';
 import { SuccessDialogComponent } from './../components/util/success-dialog/success-dialog.component';
 import { ConfirmationDialogComponent } from './../components/util/confirmation-dialog/confirmation-dialog.component';
 import { ErrorDialogComponent } from './../components/util/error-dialog/error-dialog.component';
@@ -48,6 +49,12 @@ export class DialogServiceService {
   openConfirmationDialog():Observable<boolean>{
     const dialogRef = this.dialog.open(ConfirmationDialogComponent)
     return dialogRef.afterClosed();
+  }
+
+  openProgressDialog():MatDialogRef<ProgressComponent> {
+    const dialogRef = this.dialog.open(ProgressComponent);
+    this.afterCloseDialog(dialogRef,'');
+    return dialogRef;
   }
 
   openSucessDialog(message:string,rota:string):void {
