@@ -69,6 +69,7 @@ export class CustomerAddressesDetailComponent implements OnInit,AfterViewInit, F
   }
 
   save(object: any): void {
+    this.checkIfHasErros();
     this.dialogService.openProgressDialog();
     let observable$;
     let address = this.createObject();
@@ -138,6 +139,26 @@ export class CustomerAddressesDetailComponent implements OnInit,AfterViewInit, F
     state : address.uf,
     requiresCollection:this.form.value.requiresCollection
     })
+  }
+
+  cleanFormFields(){
+    this.form.setValue({
+      zipCode:'',
+      addressName: '',
+      addressNumber :'',
+      complement :'',
+      city : '',
+      state : '',
+      requiresCollection:false
+      })
+  }
+
+  checkIfHasErros(){
+    if(this.searchedZipCodeErrorResponse){
+      this.dialogService.openErrorDialog('Não foi possivel encontrar esse endereço, insira um endereço valido !');
+      this.cleanFormFields();
+      throw Error('Não foi possivel encontrar esse endereço, insira um endereço valido !');
+    }
   }
 
 }
