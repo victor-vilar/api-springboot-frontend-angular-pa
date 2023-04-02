@@ -52,6 +52,9 @@ export class CustomerSupervisorsComponent implements OnInit {
     this.route.paramMap.subscribe(param =>{
       this.selectedCustomer = this.customerService.list.find(obj => obj.cpfCnpj === param.get('cpfCnpj'));
     })
+
+    this.supervisorService.getAll();
+
   }
 
   openDialog(){

@@ -56,6 +56,7 @@ export class CustomerAddressesComponent implements OnInit {
       this.selectedCustomer = this.customerService.list.find(obj => obj.cpfCnpj === param.get('cpfCnpj'));
     })
 
+    this.addressService.getAll();
   }
 
   openDialog(){

@@ -88,10 +88,10 @@ export class CustomerSupervisorsDetailComponent implements OnInit,AfterViewInit,
 
 
     this.clientCpfCnpj = this.data.clientCpfCnpj;
-    if(this.objectToEdit !== undefined && this.objectToEdit !== null){
+    if(this.data.objectToEdit !== undefined && this.data.objectToEdit !== null){
       this.crudOperation="Atualização";
       this.objectToEdit = this.data.objectToEdit;
-      //this.idOfEditedItem = this.objectToEdit.id;
+      this.idOfEditedItem = this.objectToEdit.id;
     }
   }
 

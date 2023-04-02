@@ -17,6 +17,7 @@
   [service]="supervisorService"
   [customerId]="selectedCustomer.cpfCnpj"
   [columnCount]="5"
+  (editObjectEmitter)="editObject($event)"
   ></app-itens-table>
 
 </div>
