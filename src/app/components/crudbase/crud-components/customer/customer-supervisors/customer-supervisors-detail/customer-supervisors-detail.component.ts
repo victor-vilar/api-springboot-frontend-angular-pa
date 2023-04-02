@@ -53,7 +53,7 @@ export class CustomerSupervisorsDetailComponent implements OnInit,AfterViewInit,
   }
 
   save(object: any): void {
-
+    this.dialogService.openProgressDialog();
     let observable$;
     let supervisor = this.createObject();
     supervisor.customerId = this.clientCpfCnpj;
@@ -72,10 +72,12 @@ export class CustomerSupervisorsDetailComponent implements OnInit,AfterViewInit,
   saveSupervisorObserver(){
     return {
       next:(response) =>{
+        this.dialogService.closeProgressSpinnerDialog();
         this.dialogService.openSucessDialog('Fiscal salvo com sucesso !','/clientes');
         this.supervisorService.getAll();
       },
       error:(response) =>{
+        this.dialogService.closeProgressSpinnerDialog();
         this.dialogService.openErrorDialog('Ocorreu algum erro !');
         console.log(response);
       }

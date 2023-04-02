@@ -59,9 +59,6 @@ export class CustomerContractsComponent implements OnInit {
 
   }
 
- showInside(){
-  console.log(this.contractService.list);
- }
 
 
   openDialog(){

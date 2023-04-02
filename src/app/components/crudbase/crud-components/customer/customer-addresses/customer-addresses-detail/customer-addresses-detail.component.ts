@@ -69,7 +69,7 @@ export class CustomerAddressesDetailComponent implements OnInit,AfterViewInit, F
   }
 
   save(object: any): void {
-
+    this.dialogService.openProgressDialog();
     let observable$;
     let address = this.createObject();
     address.customerId = this.clientCpfCnpj;
@@ -89,10 +89,12 @@ export class CustomerAddressesDetailComponent implements OnInit,AfterViewInit, F
   saveAddressObserver(){
     return {
       next:(response) =>{
+        this.dialogService.closeProgressSpinnerDialog();
         this.dialogService.openSucessDialog('Endereço salvo com sucesso !','/clientes');
         this.addressService.getAll();
       },
       error:(response) =>{
+        this.dialogService.closeProgressSpinnerDialog();
         this.dialogService.openErrorDialog('Ocorreu algum erro !');
       }
     }
