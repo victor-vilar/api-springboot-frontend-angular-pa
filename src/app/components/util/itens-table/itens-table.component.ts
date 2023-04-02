@@ -62,9 +62,11 @@ export class ItensTableComponent implements OnInit, OnChanges{
 
   //get the selected row to do the operations of delete, update etc.
   deleteItem(event:any){
+    this.dialogService.openProgressDialog();
     this.service.delete(event.id)
     .subscribe(value =>{
       this.getAll();
+      this.dialogService.closeProgressSpinnerDialog();
     })
   }
   //putting a option parameter to use on customer address, contracts and supervisors list
@@ -150,6 +152,7 @@ export class ItensTableComponent implements OnInit, OnChanges{
   openDialog(object:any){
 
     let observable$ = this.dialogService.openConfirmationDialog();
+
     observable$.subscribe(response =>{
       if(response){
         this.deleteItem(object);
