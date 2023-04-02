@@ -13,17 +13,19 @@ import { Observable } from 'rxjs';
 })
 export class DialogServiceService {
 
-  constructor(private dialog:MatDialog,  private route: ActivatedRoute,
-    private router: Router){}
+  public progessSpinnerDialogRef:MatDialogRef<ProgressComponent>;
+  constructor(private dialog:MatDialog,
+    private route: ActivatedRoute,
+    private router: Router,
+  ){}
+
 
   openDialog(component:any, objectToEdit:any, rota:string): void {
-
     const dialogRef = this.dialog.open(component,{data:{objectToEdit: objectToEdit}});
     this.afterCloseDialog(dialogRef,rota);
   }
 
   openDialogPassingCustomerId(component:any,objectToEdit:any,customerId:string,rota:string):void{
-
     const dialogRef = this.dialog.open(component,{data:{
       objectToEdit: objectToEdit,
       clientCpfCnpj:customerId,
@@ -51,15 +53,21 @@ export class DialogServiceService {
     return dialogRef.afterClosed();
   }
 
-  openProgressDialog():MatDialogRef<ProgressComponent> {
-    const dialogRef = this.dialog.open(ProgressComponent);
-    this.afterCloseDialog(dialogRef,'');
-    return dialogRef;
-  }
-
   openSucessDialog(message:string,rota:string):void {
     const dialogRef = this.dialog.open(SuccessDialogComponent,{data:{message:message}});
     this.afterCloseDialog(dialogRef,rota);
+  }
+
+
+  closeProgressSpinnerDialog(){
+    if(this.progessSpinnerDialogRef != null){
+      this.progessSpinnerDialogRef.close();
+      this.progessSpinnerDialogRef = null;
+    }
+  }
+
+  openProgressDialog(){
+    this.progessSpinnerDialogRef = this.dialog.open(ProgressComponent);
   }
 
 
