@@ -70,6 +70,7 @@ export class CustomerDetailComponent implements OnInit, AfterViewInit, FormDetai
   }
 
   save(): void {
+    this.dialogService.openProgressDialog();
     this.resetInvalidProperties();
     this.checkIfRazaoSocialAreFilled();
 
@@ -108,11 +109,14 @@ export class CustomerDetailComponent implements OnInit, AfterViewInit, FormDetai
 
     return{
       next:(response)=>{
+        this.dialogService.closeProgressSpinnerDialog();
         this.dialogService.openSucessDialog('Cliente salvo com sucesso !','/clientes');
         this.service.getAll();
         this.destroy();
       },
       error:(response)=>{
+        this.dialogService.closeProgressSpinnerDialog();
+
         if(response.error.message === "This CPF or CNPJ is Invalid"){
           this.invalidCpfCnpj = true;
           this.invalidCpfCnpjMessage = "Esse é um CPF/CNPJ invalido";
@@ -121,7 +125,8 @@ export class CustomerDetailComponent implements OnInit, AfterViewInit, FormDetai
           this.invalidCpfCnpj = true;
           this.invalidCpfCnpjMessage = "Um cliente com esse CPF ou CNPJ ja esta cadastrado";
         }
-        this.dialogService.openErrorDialog(response.error.message);
+
+        this.dialogService.openErrorDialog(this.invalidCpfCnpjMessage);
       }
     }
   }

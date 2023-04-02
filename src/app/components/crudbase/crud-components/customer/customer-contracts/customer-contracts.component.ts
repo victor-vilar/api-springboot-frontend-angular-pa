@@ -54,10 +54,15 @@ export class CustomerContractsComponent implements OnInit {
       this.selectedCustomer = this.customerService.list.find(obj => obj.cpfCnpj === param.get('cpfCnpj'));
     })
 
-
+    this.contractService.getAll();
 
 
   }
+
+ showInside(){
+  console.log(this.contractService.list);
+ }
+
 
   openDialog(){
 
@@ -69,6 +74,8 @@ export class CustomerContractsComponent implements OnInit {
   }
 
   editObject(object:any){
+    console.log('to aqui');
+    console.log(object);
     this.objectToEdit = object;
   }
 

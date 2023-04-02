@@ -70,6 +70,7 @@ export class ResidueDetailComponent implements OnInit,AfterViewInit, FormDetail 
 
   save(): void {
     this.dialogService.openProgressDialog();
+
     this.resetInvalidProperties();
     this.checkIfInputFieldsAreFilled();
     //criando um novo objeto
@@ -125,6 +126,7 @@ export class ResidueDetailComponent implements OnInit,AfterViewInit, FormDetail 
         this.destroy();
       },
       error:(response)=>{
+        this.dialogService.closeProgressSpinnerDialog();
         this.dialogService.openErrorDialog('Ocorreu algum erro !');
         console.log(response);
       }

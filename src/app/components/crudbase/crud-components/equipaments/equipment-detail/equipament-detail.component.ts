@@ -91,15 +91,16 @@ export class EquipmentDetailComponent implements OnInit, AfterViewInit, FormDeta
   }
 
   save(){
-    //criando um novo objeto
+    this.dialogService.openProgressDialog();
+
     this.resetInvalidProperties();
     this.checkIfEquipamentNameAreFilled();
     this.checkIfItemContractInputsAreNumbers();
 
     let observable$;
     let object = this.createObject();
-    //se for um objeto com id nulo, é um novo objeto
-    //se não é atualização de um objeto existente.
+    //se null object it is a new object
+    //else it is a already exist one and it is a update
     if(object.id === undefined){
       observable$ = this.service.save(object);
     }else{
@@ -113,7 +114,7 @@ export class EquipmentDetailComponent implements OnInit, AfterViewInit, FormDeta
   destroy(){
     this.objectToEdit = null
     this.dialogRef.close();
-  
+
   }
 
   cleanForm(){
@@ -123,11 +124,13 @@ export class EquipmentDetailComponent implements OnInit, AfterViewInit, FormDeta
   saveObjectObserver(){
     return{
       next:(response)=>{
+        this.dialogService.closeProgressSpinnerDialog();
         this.dialogService.openSucessDialog('Equipamento salvo com sucesso !','equipamentos');
         this.service.getAll();
         this.destroy();
       },
       error:(response)=>{
+        this.dialogService.closeProgressSpinnerDialog();
         this.dialogService.openErrorDialog('Ocorreu algum erro !');
         console.log(response);
       }

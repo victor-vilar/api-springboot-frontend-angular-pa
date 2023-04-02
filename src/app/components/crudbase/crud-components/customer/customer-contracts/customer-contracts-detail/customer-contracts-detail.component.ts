@@ -103,7 +103,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
     this.clientCpfCnpj = this.data.clientCpfCnpj;
     if(this.data.objectToEdit !== undefined && this.data.objectToEdit !== null){
       this.crudOperation="Atualização";
-      this.objectToEdit = this.contractService.list.find(c => c.id === this.data.objectToEdit.id);
+      this.objectToEdit = this.contractService.list.find(c =>c.id === this.data.objectToEdit.id);
       this.itemContractList = this.itemContractListFromApiMapper(this.objectToEdit.itens);
       this.sumTotalOfContract();
     }
@@ -235,6 +235,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
 
   //saves contract at database
   save(){
+    this.dialogService.openProgressDialog();
     //check if contract has at least one item
     this.checkIfContractHasItens();
 
@@ -385,10 +386,13 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
   createsContractObserver():any{
     return{
       next:(response) =>{
+        this.dialogService.closeProgressSpinnerDialog();
         this.dialogService.openSucessDialog('Contrato salvo com sucesso !','/clientes');
         this.contractService.getAll();
+
       },
       error:(error)=>{
+        this.dialogService.closeProgressSpinnerDialog();
         this.dialogService.openErrorDialog(error.message);
       }
     }
@@ -397,9 +401,11 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
   deletesContractObserver():any{
     return{
       next:(response) =>{
+        this.dialogService.closeProgressSpinnerDialog();
         this.dialogService.openSucessDialog('Contrato deletado com sucesso !','/clientes');
       },
       error:(error)=>{
+        this.dialogService.closeProgressSpinnerDialog();
         this.dialogService.openErrorDialog(error.message);
       }
     }
@@ -408,9 +414,11 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
   createsItemContractObserver():any{
     return{
       next:(response) =>{
+        this.dialogService.closeProgressSpinnerDialog();
         console.log(response)
       },
       error:(error)=>{
+        this.dialogService.closeProgressSpinnerDialog();
         console.log(error)
       }
     }
@@ -419,7 +427,8 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
   deleteItemFromContractObserver():any{
     return{
       next:(response) =>{
-        console.log(response);
+        this.dialogService.closeProgressSpinnerDialog();
+
         //if the list of the itens is 0, then will delete the contract from
         if(response.itens.length === 0){
           this.dialogService.openSucessDialog('O contrato ficou sem itens, por isso foi deletado automaticamente','/clientes');
@@ -435,6 +444,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
 
       },
       error:(error)=>{
+        this.dialogService.closeProgressSpinnerDialog();
         this.dialogService.openErrorDialog(error.message);
       }
     }
