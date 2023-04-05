@@ -38,6 +38,9 @@ import { PhonePipe } from './pipes/phone.pipe';
 import { SuccessDialogComponent } from './components/util/success-dialog/success-dialog.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { ProgressComponent } from './components/util/progress/progress.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -79,7 +82,10 @@ import { ProgressComponent } from './components/util/progress/progress.component
     BrowserAnimationsModule,
     MatDialogModule,
     ScrollingModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]
