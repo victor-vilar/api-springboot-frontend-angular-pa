@@ -53,7 +53,7 @@
           </div>
         </div>
         <input type="button" value="adicionar residuo" (click)="addItemToContract()"><br><br>
-        <input type="submit" value="salvar contrato">
+
       </div>
 
   </form>
@@ -68,6 +68,8 @@
     [model]="'itens'"
     (deleteItemEmitter)= "deleteItemFromList($event)">
   </app-itens-table-item-contract>
+
+  <input (click)="save()" value="salvar contrato">
 </mat-dialog-content>
 </div>
 
