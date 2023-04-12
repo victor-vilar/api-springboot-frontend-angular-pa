@@ -8,6 +8,9 @@ import { Customer } from 'src/app/model/Customer';
 import { ResidueDetailComponent } from '../../residue/residue-detail/residue-detail.component';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
+
+
+
 @Component({
   selector: 'app-customer-detail',
   templateUrl: './customer-detail.component.html',

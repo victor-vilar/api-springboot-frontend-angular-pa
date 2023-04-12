@@ -8,7 +8,7 @@
   <form (ngSubmit)="save()" #singInForm = "ngForm" class="detail-form" >
     <mat-form-field appearance="outline">
       <mat-label>CPF/CNPJ</mat-label>
-      <input matInput type="text" required name="cpfCnpj" ngModel>
+      <input matInput type="text" required name="cpfCnpj" ngModel CpfCnpjPipePipe>
       <mat-error *ngIf="invalidCpfCnpj" class="alert">{{invalidCpfCnpjMessage}}</mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline">

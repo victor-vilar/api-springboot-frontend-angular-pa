@@ -14,7 +14,7 @@ import { ErrorStateMatcher } from '@angular/material/core';
 
 
 //myerror class to volumeSize input display error messages
-export class MyErrorStateMatcher implements ErrorStateMatcher {
+export class volumeErrorMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
     const isSubmitted = form && form.submitted;
     if((isNaN(control.value) || control.value <= 0 || control.value === '') && (control.dirty || control.touched || isSubmitted) ){
@@ -44,7 +44,7 @@ export class EquipmentDetailComponent implements OnInit, AfterViewInit, FormDeta
   objectToEdit:Equipment;
 
   volumeFormControl = new FormControl('',[Validators.pattern(/^\d+$/)]);
-  volumeErrorMatcher = new MyErrorStateMatcher();
+  volumeErrorMatcher = new volumeErrorMatcher();
 
 
 
@@ -52,8 +52,9 @@ export class EquipmentDetailComponent implements OnInit, AfterViewInit, FormDeta
      private activeroute:ActivatedRoute,
       private router:Router,
       public dialogRef: MatDialogRef<EquipmentDetailComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any,
-              private dialogService:DialogServiceService) { }
+      @Inject(MAT_DIALOG_DATA) public data: any,
+      private dialogService:DialogServiceService) {
+    }
 
   createObject(): any {
     return {
