@@ -6,14 +6,16 @@
     <a (click)="destroy()" class="close-button">X</a>
   </div>
   <form (ngSubmit)="save()" #singInForm = "ngForm" class="detail-form" >
-
-    <input type="text" required placeholder="CPF/CNPJ" name="cpfCnpj" ngModel
-    [ngClass]="{'invalidinput': invalidCpfCnpj}">
-
-    <div *ngIf="invalidCpfCnpj" class="alert">{{invalidCpfCnpjMessage}}</div>
-
-    <input type="text" required placeholder="Nome/Razão Social" name="razaoSocial" ngModel>
-    <div *ngIf="invalidCustomerName" class="alert">{{invalidCustomerNameMessage}}</div>
+    <mat-form-field appearance="outline">
+      <mat-label>CPF/CNPJ</mat-label>
+      <input matInput type="text" required name="cpfCnpj" ngModel>
+      <mat-error *ngIf="invalidCpfCnpj" class="alert">{{invalidCpfCnpjMessage}}</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Nome/Razão Social</mat-label>
+      <input matInput type="text" required  name="razaoSocial" ngModel>
+      <mat-error *ngIf="invalidCustomerName" class="alert">{{invalidCustomerNameMessage}}</mat-error>
+    </mat-form-field>
     <button type="submit">Salvar</button>
     <button type="button" (click)="cleanForm()">Limpar Campos</button>
   </form>

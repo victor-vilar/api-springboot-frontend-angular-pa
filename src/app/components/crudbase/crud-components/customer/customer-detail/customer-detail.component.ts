@@ -70,10 +70,11 @@ export class CustomerDetailComponent implements OnInit, AfterViewInit, FormDetai
   }
 
   save(): void {
-    this.dialogService.openProgressDialog();
+
     this.resetInvalidProperties();
     this.checkIfRazaoSocialAreFilled();
 
+    this.dialogService.openProgressDialog();
     let customer = this.createObject();
     let obervable$;
 
@@ -89,8 +90,6 @@ export class CustomerDetailComponent implements OnInit, AfterViewInit, FormDetai
 
   onLoad(): void {
     this.objectToEdit = this.data.objectToEdit;
-    console.log(this.data.objectToEdit);
-    console.log(this.objectToEdit)
     if(this.objectToEdit !== undefined && this.objectToEdit !== null){
       this.crudOperation="Atualização";
       this.idOfEditedItem = this.objectToEdit.cpfCnpj;

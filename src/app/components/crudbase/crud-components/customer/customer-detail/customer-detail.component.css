@@ -4,6 +4,14 @@
 
 }
 
+mat-form-field{
+  width: 100%;
+  /* margin-bottom: 5px; */
+}
+
+mat-error{
+  padding:0;
+}
 .alert{
   color:red;
 }
@@ -46,7 +54,7 @@
 
 }
 
-.detail-form input, button {
+.detail-form  button {
   padding:10px;
   width: 100%;
   margin-top: 5px;
