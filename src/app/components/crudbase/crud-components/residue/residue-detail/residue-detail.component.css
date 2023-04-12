@@ -1,17 +1,14 @@
 .detail-container{
   max-width: 100%;
-
   padding-bottom: 15px;
 
 }
+
 
 .alert{
   color:red;
 }
 
-.invalidinput {
-  border: 1px solid red;
-}
 
 .close-button{
   cursor: pointer;
@@ -46,12 +43,13 @@
   flex-direction: column;
 
 }
+mat-error{
+  padding:0;
+}
 
 .detail-form input, button {
-  padding:10px;
   width: 100%;
   margin-top: 5px;
-
 }
 
 .detail-form button{
@@ -60,6 +58,7 @@
   font-weight: bold;
   border: none;
   box-shadow: 1px 1px 3px black;
+  padding: 10px;
 }
 
 

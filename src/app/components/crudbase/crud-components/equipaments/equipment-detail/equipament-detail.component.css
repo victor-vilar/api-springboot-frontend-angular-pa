@@ -3,14 +3,20 @@
   padding-bottom: 15px;
 
 }
+mat-form-field{
+  width: 100%;
+  /* margin-bottom: 5px; */
+}
+
+mat-error{
+  padding:0;
+}
 
 .alert{
   color:red;
 }
 
-.invalidinput {
-  border: 1px solid red;
-}
+
 
 .close-button{
   cursor: pointer;
@@ -46,12 +52,15 @@
 
 }
 
-.equipment-detail-form input, button {
+.equipment-detail-form button {
   padding:10px;
   width: 100%;
   margin-top: 5px;
-
 }
+
+/* .equipment-detail-form input{
+  width: 100%;
+} */
 
 .equipment-detail-form button{
   background-color: var(--cinza-escuro);

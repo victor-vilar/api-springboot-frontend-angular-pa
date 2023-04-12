@@ -68,11 +68,15 @@ export class ResidueDetailComponent implements OnInit,AfterViewInit, FormDetail 
     }
   }
 
+
+
+
   save(): void {
-    this.dialogService.openProgressDialog();
+
 
     this.resetInvalidProperties();
     this.checkIfInputFieldsAreFilled();
+    this.dialogService.openProgressDialog();
     //criando um novo objeto
     let observable$;
     let residue = this.createObject();
@@ -96,7 +100,7 @@ export class ResidueDetailComponent implements OnInit,AfterViewInit, FormDetail 
 
     if(!this.form.value.description.trim().length){
       this.isInvalidDescription = true;
-      this.isInvalidDescriptionMessage = 'A classe do residu não pode ser vazio!'
+      this.isInvalidDescriptionMessage = 'A classe do residuo não pode ser vazio!'
       throw Error('A classe do residuo não pode ser vazio!');
     }
   }
@@ -115,6 +119,7 @@ export class ResidueDetailComponent implements OnInit,AfterViewInit, FormDetail 
 
   cleanForm(){
     this.form.reset();
+    this.resetInvalidProperties();
   }
 
   saveObjectObserver(){

@@ -15,7 +15,7 @@ import { ItensTableComponent } from './components/util/itens-table/itens-table.c
 import { ResidueComponent } from './components/crudbase/crud-components/residue/residue.component';
 import { ContractComponent } from './components/crudbase/crud-components/contract/contract.component';
 import { CustomerComponent } from './components/crudbase/crud-components/customer/customer.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule  } from '@angular/forms';
 import { EquipmentDetailComponent } from './components/crudbase/crud-components/equipaments/equipment-detail/equipament-detail.component';
 import { ResidueDetailComponent } from './components/crudbase/crud-components/residue/residue-detail/residue-detail.component';
 import { CustomerDetailComponent } from './components/crudbase/crud-components/customer/customer-detail/customer-detail.component';
@@ -78,6 +78,7 @@ import {MatSelectModule} from '@angular/material/select';
     AppRoutingModule,
     NgbModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     MatDialogModule,

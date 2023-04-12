@@ -4,20 +4,32 @@ import { CrudBaseService } from 'src/app/services/crudbase.service';
 import { FormDetail } from '../../../../../model/FormDetail';
 import { Equipment } from '../../../../../model/Equipment';
 import { Component, OnInit, ViewChild, EventEmitter, Output, Inject, AfterViewInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EquipmentsService } from 'src/app/services/equipments.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ErrorStateMatcher } from '@angular/material/core';
+
+
+
+
+//myerror class to volumeSize input display error messages
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    if((isNaN(control.value) || control.value <= 0 || control.value === '') && (control.dirty || control.touched || isSubmitted) ){
+      return true;
+    }
+    return false;
+  }
+}
+
 
 @Component({
   selector: 'app-equipament-new',
   templateUrl: './equipament-detail.component.html',
   styleUrls: ['./equipament-detail.component.css']
 })
-
-/**
- * form to add new or update new elements
- */
 export class EquipmentDetailComponent implements OnInit, AfterViewInit, FormDetail {
 
   @ViewChild('singInForm') form:NgForm;
@@ -30,6 +42,9 @@ export class EquipmentDetailComponent implements OnInit, AfterViewInit, FormDeta
   isInvalidVolume:boolean = false;
   isInvalidVolumeMessage:string;
   objectToEdit:Equipment;
+
+  volumeFormControl = new FormControl('',[Validators.pattern(/^\d+$/)]);
+  volumeErrorMatcher = new MyErrorStateMatcher();
 
 
 
@@ -44,7 +59,7 @@ export class EquipmentDetailComponent implements OnInit, AfterViewInit, FormDeta
     return {
       id:this.idOfEditedItem,
       equipmentName:this.form.value.equipmentName,
-      sizeInMeterCubic:Number(this.form.value.equipmentSize)
+      sizeInMeterCubic:Number(this.volumeFormControl.value)
     }
   }
 
@@ -56,8 +71,8 @@ export class EquipmentDetailComponent implements OnInit, AfterViewInit, FormDeta
     setTimeout(() =>{
       this.form.setValue({
         equipmentName:this.objectToEdit.equipmentName,
-        equipmentSize:this.objectToEdit.sizeInMeterCubic,
       })
+      this.volumeFormControl.setValue(this.objectToEdit.sizeInMeterCubic.toString());
     },100);
 
   }
@@ -70,17 +85,21 @@ export class EquipmentDetailComponent implements OnInit, AfterViewInit, FormDeta
       }
   }
 
-  checkIfItemContractInputsAreNumbers(){
-    if(isNaN(this.form.value.equipmentSize) || this.form.value.equipmentSize === 0){
+  checkIfVolumeInputIsNumber(){
+    if(isNaN(Number(this.volumeFormControl.value)) || Number(this.volumeFormControl.value) <= 0 || this.volumeFormControl.value === '' ){
+      console.log(this.form.value.equipmentSize)
       this.isInvalidVolume=true;
       this.isInvalidVolumeMessage = 'O valor do volume do equipamento deve ser do tipo número e ser maior que zero';
       throw Error('O valor do volume do equipamento deve ser do tipo número  número e ser maior que zero');
     }
   }
-  checkIfEquipamentNameAreFilled(){
+
+
+
+  checkIfEquipmentNameAreFilled(){
     if(!this.form.value.equipmentName.trim().length){
       this.isInvalidEquipmentName = true;
-      this.isInvalidEquipmentNameMessage = 'O nome do equipamento não pode ser vazio!'
+      this.isInvalidEquipmentNameMessage = 'O nome do não pode ser vazio!'
       throw Error('O nome do equipamento não pode ser vazio!');
     }
   }
@@ -91,12 +110,13 @@ export class EquipmentDetailComponent implements OnInit, AfterViewInit, FormDeta
   }
 
   save(){
-    this.dialogService.openProgressDialog();
 
     this.resetInvalidProperties();
-    this.checkIfEquipamentNameAreFilled();
-    this.checkIfItemContractInputsAreNumbers();
+    this.checkIfEquipmentNameAreFilled();
+    this.checkIfVolumeInputIsNumber();
 
+
+    this.dialogService.openProgressDialog();
     let observable$;
     let object = this.createObject();
     //se null object it is a new object
@@ -138,5 +158,6 @@ export class EquipmentDetailComponent implements OnInit, AfterViewInit, FormDeta
   }
 
 
+  //
 
 }

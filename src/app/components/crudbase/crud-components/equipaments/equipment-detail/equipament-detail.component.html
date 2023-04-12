@@ -4,12 +4,17 @@
       <h4 class="equipment-detail-title">{{crudOperation}} de Equipamentos</h4>
       <a (click)="destroy()" class="close-button">X</a>
     </div>
-    <form (ngSubmit)="save()" #singInForm = "ngForm" class="equipment-detail-form" >
-      <input type="text" required placeholder="Equipamento" name="equipmentName" ngModel>
-      <div *ngIf="isInvalidEquipmentName" class="alert">{{isInvalidEquipmentNameMessage}}</div>
-      <input type="text" required placeholder="Volume" name="equipmentSize" ngModel
-      [ngClass]="{'invalidinput': isInvalidVolume}">
-      <div *ngIf="isInvalidVolume" class="alert">{{isInvalidVolumeMessage}}</div>
+    <form (ngSubmit)="save()" #singInForm="ngForm" class="equipment-detail-form" >
+      <mat-form-field appearance="outline">
+        <mat-label>Equipamento</mat-label>
+        <input matInput  type="text" required name="equipmentName" ngModel>
+        <mat-error *ngIf="isInvalidEquipmentName" class="alert">{{isInvalidEquipmentNameMessage}}</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Volume</mat-label>
+        <input [formControl]="volumeFormControl" [errorStateMatcher]="volumeErrorMatcher" matInput  type="text" required name="equipmentSize" ngModel>
+        <mat-error  *ngIf="isInvalidVolume" class="alert">{{isInvalidVolumeMessage}}</mat-error>
+      </mat-form-field>
       <button type="submit">Salvar</button>
       <button type="button" (click)="cleanForm()">Limpar Campos</button>
     </form>
