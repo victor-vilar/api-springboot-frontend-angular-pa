@@ -4,9 +4,39 @@
 .search-zipcode-reponse-error p {
   color: red;
 }
+.close-button{
+  cursor: pointer;
+  transition: all 0.3s ;
+  padding:0px 10px;
+  text-decoration: none;
+  color:black;
+}
 
+.close-button:hover{
+  background-color: var(--cinza-escuro);
+  color: white;
+}
+
+.detail-component-header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 20px;
+  font-size: 1.5em;
+  font-weight: bold;
+
+}
 .zipcodeerror {
   border: 1px solid red;
+}
+
+mat-form-field{
+  width: 100%;
+  /* margin-bottom: 5px; */
+}
+
+mat-error{
+  padding:0;
 }
 
 .zipcode-field, .full-address-info{
@@ -31,10 +61,10 @@
 }
 
 .zipcode-field input, .full-address-info input{
-  padding:10px;
+  /* padding:10px;
   width: 100%;
   height: 50px;
-  margin-bottom: 5px;
+  margin-bottom: 5px; */
 }
 
 .full-address-info input[type=checkbox]{
@@ -48,6 +78,13 @@ form input[type=submit]{
   width: 100%;
   height: 50px;
   margin-bottom: 5px;
+}
+
+.options{
+  display: flex;
+  align-items: center;
+  gap:5px;
+
 }
 
 @media screen and (min-width:768px){

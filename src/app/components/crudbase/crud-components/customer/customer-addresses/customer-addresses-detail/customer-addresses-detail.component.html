@@ -1,39 +1,59 @@
 <div class="wrapper">
+  <div class="detail-component-header">
+    <h4 class="detail-title">{{crudOperation}} de Endereços</h4>
+    <a (click)="destroy()" class="close-button">X</a>
+  </div>
   <mat-dialog-content>
   <form (ngSubmit)="save('teste')" #form="ngForm">
-    <h4>{{crudOperation}} de Contratos</h4>
+
 
     <div class="address-info">
 
       <div class="zipcode-field">
-        <label for="zipNumber">CEP</label>
-        <input type="text" placeholder="CEP" id='zipNumber' name="zipCode" ngModel [ngClass]="{zipcodeerror: searchedZipCodeErrorResponse}">
+        <mat-form-field appearance="outline">
+          <mat-label>CEP</mat-label>
+          <input matInput type="text" placeholder="CEP" id='zipNumber' name="zipCode" ngModel>
+          <mat-error class="search-zipcode-reponse-error" *ngIf="searchedZipCodeErrorResponse">
+            <p>Não foi possivel encontrar esse endereço, por favor tente novamente</p>
+          </mat-error>
+        </mat-form-field>
         <input type="button" value="Buscar CEP" (click)="searchFullAddressInfo()">
-        <div class="search-zipcode-reponse-error" *ngIf="searchedZipCodeErrorResponse">
-          <p>Não foi possivel encontrar esse endereço, por favor tente novamente</p>
-        </div>
       </div>
 
       <div class="full-address-info">
-        <label for="addressName">Logradouro</label>
-        <input type="text" placeholder="Logradouro" id='addressName' name="addressName" ngModel>
 
-        <label for="addressNumber">Número</label>
-        <input type="text" class="small-field" placeholder="Número" id='addressNumber' name="addressNumber" ngModel>
+        <mat-form-field appearance="outline">
+          <mat-label for="addressName">Logradouro</mat-label>
+          <input matInput type="text" placeholder="Logradouro" id='addressName' name="addressName" ngModel>
+        </mat-form-field>
 
-        <label for="complement">Complemento</label>
-        <input type="text" placeholder="Complemento" id='complement' name="complement" ngModel>
+        <mat-form-field appearance="outline">
+          <mat-label for="addressNumber">Número</mat-label>
+          <input matInput type="text" class="small-field" placeholder="Número" id='addressNumber' name="addressNumber" ngModel>
+        </mat-form-field>
 
-        <label for="city">Cidade</label>
-        <input type="text" placeholder="Cidade" id='city' name="city" ngModel>
+        <mat-form-field appearance="outline">
+          <mat-label for="complement">Complemento</mat-label>
+          <input matInput type="text" placeholder="Complemento" id='complement' name="complement" ngModel>
+        </mat-form-field>
 
-        <label for="state">Estado</label>
-        <input type="text" placeholder="Estado" id='state' name="state" ngModel>
+        <mat-form-field appearance="outline">
+          <mat-label for="city">Cidade</mat-label>
+          <input matInput type="text" placeholder="Cidade" id='city' name="city" ngModel>
+        </mat-form-field>
 
-        <label for="requiresCollection">Existe coleta nesse local ?</label>
-        <input  type="checkbox" id="requiresCollection" name="requiresCollection" ngModel>
+        <mat-form-field appearance="outline">
+          <mat-label for="state">Estado</mat-label>
+          <input matInput type="text" placeholder="Estado" id='state' name="state" ngModel>
+        </mat-form-field>
+
+        <div class="options">
+          <label for="requiresCollection">Existe coleta : </label>
+          <input type="checkbox" id="requiresCollection" name="requiresCollection" ngModel>
+        </div>
 
       </div>
+
       <input type="submit" value="Salvar">
     </div>
   </form>
