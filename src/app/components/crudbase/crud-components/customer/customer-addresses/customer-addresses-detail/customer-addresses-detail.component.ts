@@ -23,7 +23,7 @@ export class CustomerAddressesDetailComponent implements OnInit,AfterViewInit, F
   objectToEdit:Address;
   clientCpfCnpj:string;
   searchedZipCodeErrorResponse:boolean = false;
-
+  searchedZipCode="";
 
   constructor(private findFullAddress:FullAddressFinderService,
     private addressService:AddressService,
@@ -71,6 +71,7 @@ export class CustomerAddressesDetailComponent implements OnInit,AfterViewInit, F
   save(object: any): void {
     this.checkIfHasErros();
     this.dialogService.openProgressDialog();
+
     let observable$;
     let address = this.createObject();
     address.customerId = this.clientCpfCnpj;
@@ -117,12 +118,15 @@ export class CustomerAddressesDetailComponent implements OnInit,AfterViewInit, F
 
 
   //find the address information
-  searchFullAddressInfo(){
-    let response = this.findFullAddress.getFullAddress(this.form.value.zipCode);
+   searchFullAddressInfo(){
+    let response =  this.findFullAddress.getFullAddress(this.form.value.zipCode);
     response.then(address =>{
 
       this.fillFormInputs(address);
       this.searchedZipCodeErrorResponse = false;
+      this.searchedZipCode = address.cep;
+      this.searchedZipCode = this.searchedZipCode.replace("-","");
+
     }).catch(error => {
       this.searchedZipCodeErrorResponse = true;
       this.dialogService.openErrorDialog('Não foi possivel encontrar esse endereço !');
@@ -154,11 +158,22 @@ export class CustomerAddressesDetailComponent implements OnInit,AfterViewInit, F
   }
 
   checkIfHasErros(){
-    if(this.searchedZipCodeErrorResponse){
-      this.dialogService.openErrorDialog('Não foi possivel encontrar esse endereço, insira um endereço valido !');
+    let errorMessage;
+    if(this.searchedZipCodeErrorResponse || this.searchedZipCode ===""){
+      errorMessage ='Não foi possivel encontrar esse endereço, insira um endereço valido !'
+      this.dialogService.openErrorDialog(errorMessage);
       this.cleanFormFields();
-      throw Error('Não foi possivel encontrar esse endereço, insira um endereço valido !');
+      throw Error(errorMessage);
     }
+
+    if(this.form.value.zipCode !== this.searchedZipCode){
+      errorMessage ='O cep digitado é diferente do cep anteriormente pesquisado'
+      this.dialogService.openErrorDialog(errorMessage);
+      this.cleanFormFields();
+      throw Error(errorMessage);
+    }
+
+
   }
 
 }
