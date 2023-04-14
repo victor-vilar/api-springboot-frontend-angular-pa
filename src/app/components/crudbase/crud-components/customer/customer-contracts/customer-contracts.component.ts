@@ -71,8 +71,6 @@ export class CustomerContractsComponent implements OnInit {
   }
 
   editObject(object:any){
-    console.log('to aqui');
-    console.log(object);
     this.objectToEdit = object;
   }
 

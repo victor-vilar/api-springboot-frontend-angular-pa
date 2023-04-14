@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-customer-info',
@@ -16,11 +17,17 @@ export class CustomerInfoComponent implements OnInit {
   item
   @Input()
   itemSize
+  @Input()
+  fatherUrl
 
 
-  constructor() { }
+  constructor(private router:Router, private activeRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
+  }
+
+  backToLastPage(){
+    this.router.navigate(['./','clientes'])
   }
 
 }
