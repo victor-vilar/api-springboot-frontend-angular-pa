@@ -45,7 +45,7 @@
           <div class="residue-item-options-item">
             <mat-form-field appearance="outline">
               <mat-label for="residue">Resíduo:</mat-label>
-              <mat-select name="residue" id="residue" ngModel required>
+              <mat-select name="residue" id="residue" ngModel >
                 <mat-option value="{{residue.id}}" *ngFor="let residue of residuesList">{{residue.type}}</mat-option>
               </mat-select>
             </mat-form-field>
@@ -53,7 +53,7 @@
           <div class="residue-item-options-item">
             <mat-form-field appearance="outline">
               <mat-label for="equipment">Equipamento:</mat-label>
-                <mat-select name="equipment" id="equipment"  ngModel required>
+                <mat-select name="equipment" id="equipment"  ngModel >
                   <mat-option value="{{equipment.id}}" *ngFor="let equipment of equipmentsList">{{equipment.equipmentName}}</mat-option>
                 </mat-select>
               </mat-form-field>
@@ -61,13 +61,13 @@
           <div class="residue-item-options-item">
             <mat-form-field appearance="outline">
               <mat-label>Quantidade em M³:</mat-label>
-              <input matInput type="text" name="quantity" ngModel required>
+              <input matInput type="text" name="quantity" ngModel >
             </mat-form-field>
           </div>
           <div class="residue-item-options-item">
             <mat-form-field appearance="outline">
               <mat-label>Valor em Reais:</mat-label>
-              <input matInput type="currency" name="itemValue" ngModel required>
+              <input matInput type="currency" name="itemValue" ngModel >
             </mat-form-field>
           </div>
         </div>
