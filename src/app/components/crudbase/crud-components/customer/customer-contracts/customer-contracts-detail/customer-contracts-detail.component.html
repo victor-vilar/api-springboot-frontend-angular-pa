@@ -8,48 +8,67 @@
   <form (ngSubmit)="save()" #form="ngForm">
     <div class="basic-contract-info">
       <div class="contract-field">
-        <label>Número</label>
-        <input type="text"  placeholder="Número" id="contractNumber" name="contractNumber" ngModel required>
-        <div *ngIf="this.form.controls['contractNumber'].value === '' && (this.form.controls['contractNumber'].dirty || this.form.controls['contractNumber'].touched)"
-        class="alert">O contrato deve possuir um número</div>
+        <mat-form-field appearance="outline">
+          <mat-label>Número</mat-label>
+          <input matInput type="text"  placeholder="Número" id="contractNumber" name="contractNumber" ngModel required>
+          <mat-error *ngIf="this.form.controls['contractNumber'].value === '' && (this.form.controls['contractNumber'].dirty || this.form.controls['contractNumber'].touched)"
+          class="alert">O contrato deve possuir um número</mat-error>
+        </mat-form-field>
       </div>
       <div class="contract-field">
-        <label>Data de Início</label>
-        <input type="date" placeholder="Data de Início" name="beginDate" ngModel required>
-        <div *ngIf="this.form.controls['beginDate'].value === '' && (this.form.controls['beginDate'].dirty || this.form.controls['beginDate'].touched)"
-        class="alert">O contrato deve possuir uma data de início</div>
+        <mat-form-field appearance="outline">
+          <mat-label>Data de Início</mat-label>
+          <input matInput [matDatepicker]="beginDatePicker" name="beginDate" ngModel required>
+          <mat-datepicker-toggle matSuffix [for]="beginDatePicker"></mat-datepicker-toggle>
+          <mat-datepicker #beginDatePicker></mat-datepicker>
+          <mat-error *ngIf="this.form.controls['beginDate'].value === '' && (this.form.controls['beginDate'].dirty || this.form.controls['beginDate'].touched)"
+          class="alert">O contrato deve possuir uma data de início</mat-error>
+        </mat-form-field>
       </div>
+
       <div class="contract-field">
-        <label>Data de Encerramento</label>
-        <input type="date" placeholder="Data de Encerramento" name="endDate" ngModel required (change)="checkContractDates()">
-        <div *ngIf="this.form.controls['endDate'].value === '' && (this.form.controls['endDate'].dirty || this.form.controls['endDate'].touched)"
-        class="alert">O contrato deve possuir uma data de encerramento</div>
-        <div *ngIf="isInvalidContractDates"
-        class="alert">A data de encerramento não pode ser igual ou anterior a data de início</div>
+        <mat-form-field appearance="outline">
+          <mat-label>Data de Encerramento</mat-label>
+          <input matInput [matDatepicker]="endDatePicker" name="endDate" ngModel required [matDatepickerFilter]="endDateFilter">
+          <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+          <mat-datepicker #endDatePicker></mat-datepicker>
+          <mat-error *ngIf="this.form.controls['endDate'].value === '' && (this.form.controls['endDate'].dirty || this.form.controls['endDate'].touched)"
+          class="alert">O contrato deve possuir uma data de encerramento</mat-error>
+          <mat-error *ngIf="isInvalidContractDates"
+          class="alert">A data de encerramento não pode ser igual ou anterior a data de início</mat-error>
+        </mat-form-field>
       </div>
     </div>
 
     <div class="residue-item-options">
       <div class="residue-item-options-item-body">
           <div class="residue-item-options-item">
-              <label for="residue">Resíduo:</label>
-              <select name="residue" id="residue" ngModel required>
-                <option value="{{residue.id}}" *ngFor="let residue of residuesList">{{residue.type}}</option>
-              </select>
+            <mat-form-field appearance="outline">
+              <mat-label for="residue">Resíduo:</mat-label>
+              <mat-select name="residue" id="residue" ngModel required>
+                <mat-option value="{{residue.id}}" *ngFor="let residue of residuesList">{{residue.type}}</mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
           <div class="residue-item-options-item">
-              <label for="equipment">Equipamento:</label>
-              <select name="equipment" id="equipment"  ngModel required>
-                <option value="{{equipment.id}}" *ngFor="let equipment of equipmentsList">{{equipment.equipmentName}}</option>
-              </select>
-          </div>
-          <div class="residue-item-options-item" >
-              <label>Quantidade em M³:</label>
-              <input type="text" name="quantity" ngModel required>
+            <mat-form-field appearance="outline">
+              <mat-label for="equipment">Equipamento:</mat-label>
+                <mat-select name="equipment" id="equipment"  ngModel required>
+                  <mat-option value="{{equipment.id}}" *ngFor="let equipment of equipmentsList">{{equipment.equipmentName}}</mat-option>
+                </mat-select>
+              </mat-form-field>
           </div>
           <div class="residue-item-options-item">
-            <label>Valor em Reais:</label>
-            <input type="currency" name="itemValue" ngModel required>
+            <mat-form-field appearance="outline">
+              <mat-label>Quantidade em M³:</mat-label>
+              <input matInput type="text" name="quantity" ngModel required>
+            </mat-form-field>
+          </div>
+          <div class="residue-item-options-item">
+            <mat-form-field appearance="outline">
+              <mat-label>Valor em Reais:</mat-label>
+              <input matInput type="currency" name="itemValue" ngModel required>
+            </mat-form-field>
           </div>
         </div>
         <input type="button" value="adicionar residuo" (click)="addItemToContract()"><br><br>

@@ -287,11 +287,23 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
     let endDate = new Date(this.form.value.endDate);
     if(beginDate.getTime() >= endDate.getTime()){
       this.isInvalidContractDates = true;
+      return true;
     }else{
       this.isInvalidContractDates = false;
+      return false;
     }
 
   }
+
+  //function to check if endDate is bigger than beginDate in matDatepickerFilter
+  endDateFilter = (date: Date | null): boolean => {
+    if (date && this.form.value.beginDate) {
+      return date >= this.form.value.beginDate;
+    }
+    return true;
+  }
+
+
   //show dialog error if contract dates are wrong
   checkContractDatesBeforeSave(){
     if(this.isInvalidContractDates){
