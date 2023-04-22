@@ -34,6 +34,7 @@ export class DialogServiceService {
     this.afterCloseDialog(dialogRef,rota);
   }
 
+  //after close a dialog window
   private afterCloseDialog(dialogRef:MatDialogRef<any>, rota:string){
     dialogRef.afterClosed().subscribe(result => {
       this.router.navigate([rota], { queryParams: {  }});
@@ -48,17 +49,19 @@ export class DialogServiceService {
     this.afterCloseDialog(dialogRef,'');
   }
 
+  //returns the dialog agter close observable to execute some action
   openConfirmationDialog():Observable<boolean>{
     const dialogRef = this.dialog.open(ConfirmationDialogComponent)
     return dialogRef.afterClosed();
   }
 
+  //open success dialog passing a message
   openSucessDialog(message:string,rota:string):void {
     const dialogRef = this.dialog.open(SuccessDialogComponent,{data:{message:message}});
     this.afterCloseDialog(dialogRef,rota);
   }
 
-
+  //close this progress spinner dialog
   closeProgressSpinnerDialog(){
     if(this.progessSpinnerDialogRef != null){
       this.progessSpinnerDialogRef.close();
@@ -66,6 +69,7 @@ export class DialogServiceService {
     }
   }
 
+  //open progress spinner dialog
   openProgressDialog(){
     this.progessSpinnerDialogRef = this.dialog.open(ProgressComponent);
   }

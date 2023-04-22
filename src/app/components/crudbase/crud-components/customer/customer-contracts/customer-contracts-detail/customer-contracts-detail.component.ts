@@ -441,8 +441,8 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
       next:(response) =>{
         this.dialogService.closeProgressSpinnerDialog();
 
-        //if the list of the itens is 0, then will delete the contract from
-        if(response.itens.length === 0){
+        //if the list of the itens is 0, then will delete the contract from api
+        if(response.itens.length === 0 && this.itemContractList.length === 0){
           this.dialogService.openSucessDialog('O contrato ficou sem itens, por isso foi deletado automaticamente','/clientes');
           let observevable$ = this.contractService.delete(response.id);
           let observer = this.deletesContractObserver();
