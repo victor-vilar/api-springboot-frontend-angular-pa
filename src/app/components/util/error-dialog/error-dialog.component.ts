@@ -14,7 +14,6 @@ export class ErrorDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data) { }
 
   ngOnInit(): void {
-    console.log('abri');
     this.errorMessage = this.data.error;
   }
 

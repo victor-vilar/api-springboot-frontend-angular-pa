@@ -96,7 +96,7 @@ export class ItensTableComponent implements OnInit, OnChanges{
 
   };
 
-  //used to inform the keyvalue pipe to not sort the object
+  //used to inform the keyvalue pipe to not sort the object properties
   returnZero() {
     return 0;
   }
@@ -116,6 +116,7 @@ export class ItensTableComponent implements OnInit, OnChanges{
 
         if(this.fatherPathPrefix === 'contrato'){
           this.tableData = this.mapper.toItensTableContractMapper(response);
+          
         }
 
         if(this.fatherPathPrefix === 'endereco'){
