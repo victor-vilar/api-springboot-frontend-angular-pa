@@ -43,6 +43,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule, MAT_DATE_LOCALE} from '@angular/material/core';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -90,7 +91,8 @@ import {MatNativeDateModule, MAT_DATE_LOCALE} from '@angular/material/core';
     MatInputModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatExpansionModule
   ],
   providers: [{provide: MAT_DATE_LOCALE, useValue: 'pt-BR'}],
   bootstrap: [AppComponent]
