@@ -71,24 +71,31 @@
             </mat-form-field>
           </div>
         </div>
-        <input type="button" value="adicionar residuo" (click)="addItemToContract()"><br><br>
-
+        <input type="button" value="Adicionar residuo" (click)="addItemToContract()"><br><br>
       </div>
 
   </form>
-  <div class="contract-partial-information">
-    <label>Total de itens: {{itemContractList.length}}</label><br>
-    <label>Total: {{totalValueOfContract | currency :'BRL'}}</label>
-  </div>
 
-  <app-itens-table-item-contract
-    [tableHeaders]="headerForTables"
-    [tableData]="itemContractList"
-    [model]="'itens'"
-    (deleteItemEmitter)= "deleteItemFromList($event)">
-  </app-itens-table-item-contract>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header class="expansion">
+        <mat-panel-title>
+          <div class="contract-partial-information">
+            <label>Adicionados: {{itemContractList.length}}</label><br>
+          </div>
+        </mat-panel-title>
+        <mat-panel-description>
+          <label>{{totalValueOfContract | currency :'BRL'}}</label>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+        <app-itens-table-item-contract
+          [tableHeaders]="headerForTables"
+          [tableData]="itemContractList"
+          [model]="'itens'"
+          (deleteItemEmitter)= "deleteItemFromList($event)">
+        </app-itens-table-item-contract>
+    </mat-expansion-panel>
 
-  <input (click)="save()" value="salvar contrato">
+  <input type="submit" (click)="save()" value="Salvar Contrato">
 </mat-dialog-content>
 </div>
 

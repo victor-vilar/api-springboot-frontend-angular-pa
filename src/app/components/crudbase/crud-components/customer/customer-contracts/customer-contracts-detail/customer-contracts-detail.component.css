@@ -1,3 +1,5 @@
+
+
 .wrapper{
   padding:5px;
   /* border: 1px solid black; */
@@ -60,7 +62,7 @@ mat-error{
   font-size: .8rem;
 }
 
-.residue-item-options input[type=button],.residue-item-options input[type=submit]{
+.residue-item-options input[type=button],.residue-item-options input[type=submit], .wrapper input[type=submit]{
   background-color: var(--cinza-escuro);
   color: white;
   font-weight: bold;
@@ -68,6 +70,14 @@ mat-error{
   box-shadow: 1px 1px 3px black;
   padding:10px;
   width: 100%;
+}
+
+.expansion{
+  background-color: #ccc;
+}
+
+mat-expansion-panel {
+  padding-bottom: 10px;
 }
 
 @media screen and (min-width:1200px){
@@ -80,9 +90,10 @@ mat-error{
     flex-direction: row;
     gap:5px;
   }
-  .basic-contract-info, .residue-item-options{
+  .basic-contract-info{
     border-bottom: 1px solid var(--cinza);
     padding-bottom: 10px;
+    justify-content: space-around;
   }
   .basic-contract-info input, .residue-item-options input[type=text], .residue-item-options select, .alert{
     width:200px ;
