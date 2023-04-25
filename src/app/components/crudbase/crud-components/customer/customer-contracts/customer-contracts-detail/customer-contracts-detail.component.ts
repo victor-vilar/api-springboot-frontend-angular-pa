@@ -12,6 +12,7 @@ import { FormControl, NgForm } from '@angular/forms';
 import { ContractsService } from 'src/app/services/contracts.service';
 import { FormDetail } from 'src/app/model/FormDetail';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -61,7 +62,8 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
               private dialogService:DialogServiceService,
               private router:Router,
               public dialogRef: MatDialogRef<CustomerContractsDetailComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any
+              @Inject(MAT_DIALOG_DATA) public data: any,
+              private _snackBar: MatSnackBar
               ) {
                 this.residuesService = residuesService;
                 this.equipmentsService = equipmentsService;
@@ -180,6 +182,8 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
     //sum total
     this.sumTotalOfContract();
     this.clearAddItensInputFieldsAfterAdd();
+
+    this.openSnackBar("Resíduo inserido com sucesso","Cadastro");
   }
 
   //clear add itens to contract fields
@@ -393,6 +397,16 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
       itemValue:100
     })
   }
+
+  //open snackbar angular material
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action,{
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+      duration: 1000
+    });
+  }
+
 
 
   //observer to manipulate observable subscription
