@@ -76,9 +76,7 @@ mat-error{
   background-color: #ccc;
 }
 
-mat-expansion-panel {
-  padding-bottom: 10px;
-}
+
 
 @media screen and (min-width:1200px){
 

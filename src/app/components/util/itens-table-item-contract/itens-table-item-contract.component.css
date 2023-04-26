@@ -68,35 +68,26 @@
 
 .options-buttons .bt{
 
-  min-width:30px;
+  /* min-width:30px;
   min-height: 30px;
   border: 1px solid;
   border-radius: 5px;
   color:white;
-  box-shadow: 1px 1px 3px black;
+  box-shadow: 1px 1px 3px black; */
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.options-buttons .bt-edit{
-  background-color: #ffdd00;
-  border-color: rgb(196, 172, 12);
-  color: black;
 
-}
-
-.options-buttons .bt-delete{
-  background-color: red;
-  border-color: rgb(175, 20, 20);
-}
 
 .options-buttons .bt-edit:hover{
-  background-color:rgb(196, 172, 12);
-  cursor: pointer;
+  background-color: #ffdd00;
+
 }
+
 .options-buttons .bt-delete:hover{
-  background-color: rgb(175, 20, 20);
+  background-color: rgb(255, 77, 77);
 }
 
 @media screen and (min-width:976px){

@@ -45,6 +45,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule, MAT_DATE_LOCALE} from '@angular/material/core';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatButtonModule} from '@angular/material/button';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -94,7 +96,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatDatepickerModule,
     MatNativeDateModule,
     MatExpansionModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatButtonModule,
+    MatTooltipModule
   ],
   providers: [{provide: MAT_DATE_LOCALE, useValue: 'pt-BR'}],
   bootstrap: [AppComponent]

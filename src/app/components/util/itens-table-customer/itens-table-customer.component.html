@@ -36,11 +36,11 @@
           <div class="object-options">
             <label class="key-header"><b>Opções</b></label>
             <div class="options-buttons">
-              <button type="button" title="Exibir Contratos" name="contratos" id="contratos" class="bt bt-op " [routerLink]="['/cliente',object.cpfCnpj,'contratos']"><i class="fas fa-file-signature"></i></button>
-              <button type="button" title="Exibir Enderecos" name="enderecos" id="enderecos" class="bt bt-op " [routerLink]="['/cliente',object.cpfCnpj,'enderecos']" ><i class="fas fa-map-marker-alt"></i></button>
-              <button type="button" title="Exibir Fiscais" name="fiscais" id="fiscais" class="bt bt-op " [routerLink]="['/cliente',object.cpfCnpj,'fiscais']"><i class="fas fa-user"></i></button>
-              <button type="button" title="editar" name="edit" id="edit" class="bt bt-edit " (click)="sendObjectToEdit(object)" [routerLink]="['./'+fatherPathPrefix, object.cpfCnpj]" [queryParams]="{edit:true,dialog:true}"><i class="fas fa-edit"></i></button>
-              <button type="button" title="deletar" name="delete" id="delete" class="bt bt-delete " (click)="openDialog(object)"><i class="fas fa-times"></i></button>
+              <button mat-stroked-button type="button" matTooltip="Exibir Contratos" name="contratos" id="contratos" class="bt bt-op " [routerLink]="['/cliente',object.cpfCnpj,'contratos']"><i class="fas fa-file-signature"></i></button>
+              <button mat-stroked-button type="button" matTooltip="Exibir Enderecos" name="enderecos" id="enderecos" class="bt bt-op " [routerLink]="['/cliente',object.cpfCnpj,'enderecos']" ><i class="fas fa-map-marker-alt"></i></button>
+              <button mat-stroked-button type="button" matTooltip="Exibir Fiscais" name="fiscais" id="fiscais" class="bt bt-op " [routerLink]="['/cliente',object.cpfCnpj,'fiscais']"><i class="fas fa-user"></i></button>
+              <button mat-stroked-button type="button" matTooltip="Editar Cliente" name="edit" id="edit" class="bt bt-edit " (click)="sendObjectToEdit(object)" [routerLink]="['./'+fatherPathPrefix, object.cpfCnpj]" [queryParams]="{edit:true,dialog:true}"><i class="fas fa-edit"></i></button>
+              <button mat-stroked-button type="button" matTooltip="Deletar Cliente" name="delete" id="delete" class="bt bt-delete " (click)="openDialog(object)"><i class="fas fa-times"></i></button>
             </div>
         </div>
       </div>
