@@ -33,7 +33,7 @@
 .object-key-values, .object-options{
   display: grid;
   grid-template-columns: repeat(2,1fr);
-  
+
 
 }
 
@@ -47,6 +47,7 @@
   text-align: center;
   min-height: 50px;
   border-collapse: collapse;
+  
 
 }
 .options-buttons:last-child{

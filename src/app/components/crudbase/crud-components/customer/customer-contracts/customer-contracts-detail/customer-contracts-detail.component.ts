@@ -402,7 +402,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action,{
       horizontalPosition: 'center',
-      verticalPosition: 'top',
+      verticalPosition: 'bottom',
       duration: 1000
     });
   }

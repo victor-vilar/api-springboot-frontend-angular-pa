@@ -6,6 +6,7 @@
   </div>
 
   <form (ngSubmit)="save()" #form="ngForm">
+    <h5>Dados do Contrato</h5>
     <div class="basic-contract-info">
       <div class="contract-field">
         <mat-form-field appearance="outline">
@@ -40,62 +41,66 @@
       </div>
     </div>
 
-    <div class="residue-item-options">
-      <div class="residue-item-options-item-body">
-          <div class="residue-item-options-item">
-            <mat-form-field appearance="outline">
-              <mat-label for="residue">Resíduo:</mat-label>
-              <mat-select name="residue" id="residue" ngModel >
-                <mat-option value="{{residue.id}}" *ngFor="let residue of residuesList">{{residue.type}}</mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-          <div class="residue-item-options-item">
-            <mat-form-field appearance="outline">
-              <mat-label for="equipment">Equipamento:</mat-label>
-                <mat-select name="equipment" id="equipment"  ngModel >
-                  <mat-option value="{{equipment.id}}" *ngFor="let equipment of equipmentsList">{{equipment.equipmentName}}</mat-option>
-                </mat-select>
-              </mat-form-field>
-          </div>
-          <div class="residue-item-options-item">
-            <mat-form-field appearance="outline">
-              <mat-label>Quantidade em M³:</mat-label>
-              <input matInput type="text" name="quantity" ngModel >
-            </mat-form-field>
-          </div>
-          <div class="residue-item-options-item">
-            <mat-form-field appearance="outline">
-              <mat-label>Valor em Reais:</mat-label>
-              <input matInput type="currency" name="itemValue" ngModel >
-            </mat-form-field>
-          </div>
-        </div>
-        <input type="button" value="Adicionar residuo" (click)="addItemToContract()"><br><br>
-      </div>
-
-  </form>
-
-    <mat-expansion-panel>
-      <mat-expansion-panel-header class="expansion">
-        <mat-panel-title>
-          <div class="contract-partial-information">
-            <label>Adicionados: {{itemContractList.length}}</label><br>
-          </div>
-        </mat-panel-title>
-        <mat-panel-description>
-          <label>{{totalValueOfContract | currency :'BRL'}}</label>
-        </mat-panel-description>
-      </mat-expansion-panel-header>
+    <h5>Resíduos</h5>
+    <div class="residues-field">
+      <mat-expansion-panel>
+        <mat-expansion-panel-header class="expansion">
+          <mat-panel-title>
+            <div class="contract-partial-information">
+              <label>Adicionados: {{itemContractList.length}}</label><br>
+            </div>
+          </mat-panel-title>
+          <mat-panel-description>
+            <label>{{totalValueOfContract | currency :'BRL'}}</label>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
         <app-itens-table-item-contract
           [tableHeaders]="headerForTables"
           [tableData]="itemContractList"
           [model]="'itens'"
           (deleteItemEmitter)= "deleteItemFromList($event)">
         </app-itens-table-item-contract>
-    </mat-expansion-panel>
+      </mat-expansion-panel>
 
-  <input type="submit" (click)="save()" value="Salvar Contrato">
+      <div class="residue-item-options">
+        <div class="residue-item-options-item-body">
+            <div class="residue-item-options-item">
+              <mat-form-field appearance="outline">
+                <mat-label for="residue">Resíduo:</mat-label>
+                <mat-select name="residue" id="residue" ngModel >
+                  <mat-option value="{{residue.id}}" *ngFor="let residue of residuesList">{{residue.type}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="residue-item-options-item">
+              <mat-form-field appearance="outline">
+                <mat-label for="equipment">Equipamento:</mat-label>
+                  <mat-select name="equipment" id="equipment"  ngModel >
+                    <mat-option value="{{equipment.id}}" *ngFor="let equipment of equipmentsList">{{equipment.equipmentName}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="residue-item-options-item">
+              <mat-form-field appearance="outline">
+                <mat-label>Quantidade em M³:</mat-label>
+                <input matInput type="text" name="quantity" ngModel >
+              </mat-form-field>
+            </div>
+            <div class="residue-item-options-item">
+              <mat-form-field appearance="outline">
+                <mat-label>Valor em Reais:</mat-label>
+                <input matInput type="currency" name="itemValue" ngModel >
+              </mat-form-field>
+            </div>
+          </div>
+          <input type="button" value="Adicionar residuo" (click)="addItemToContract()"><br><br>
+      </div>
+    </div>
+  </form>
+
+
+
+  <input class="save-contract" type="submit" (click)="save()" value="Salvar Contrato">
 </mat-dialog-content>
 </div>
 
