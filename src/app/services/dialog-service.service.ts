@@ -72,6 +72,12 @@ export class DialogServiceService {
     return dialogRef.afterClosed();
   }
 
+  //open a dialog to confirm close a form without saving its data
+  openConfirmCloseDialog(message:string):Observable<boolean> | boolean{
+    return confirm(message);
+  }
+
+
   //Método para abrir o dialogo de erro.
   //@message = menssagem de erro que será exibida dentro do dialog.
   //@rota = local para onde será redirecionado apos o fechamento do dialog
