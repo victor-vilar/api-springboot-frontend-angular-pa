@@ -335,31 +335,35 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
     })
   }
 
+  
  //delete item from contract and recalulate the total value
   deleteItemFromList(item:ItemContract){
-    //this.itemContractList.splice(index,1);
 
-    //if this deleted item has an id, it means it was saved on api before
-    //so a need to delete from database and then update this list
-    if(item.id != null || item.id !=undefined){
-
-      let observable$ = this.contractService.deleteItemFromContract(item);
-      let observer = this.deleteItemFromContractObserver();
-      observable$.subscribe(observer);
-
-    //if this deleted item hasn't an id, it means i only need to delete from this list
-    }else{
-      this.itemContractList = this.itemContractList.filter(e =>!this.itemContractCompare(e, item));
-    }
+    //deletes a item from item contract
+    this.itemContractList = this.itemContractList.filter(e =>!this.itemContractCompare(e, item));
 
     //refresh total value
     this.totalValueOfContract = 0;
     this.sumTotalOfContract();
   }
 
+
+  //delete a item from contract in api
+  deleteItemFromApi(item:ItemContract){
+
+    let observable$ = this.contractService.deleteItemFromContract(item);
+    let observer = this.deleteItemFromContractObserver();
+    observable$.subscribe(observer);
+  }
+
+
   //needed to compare the itens. If the item comes from databse, it return with your id number,
   //and if try to save a new item it will be without id. i need to compare itens with and without id
   itemContractCompare(item1:ItemContract,item2:ItemContract){
+
+    if(item1.id !== item2.id){
+      return false;
+    }
 
     if(item1.equipment !== item2.equipment){
       return false;
