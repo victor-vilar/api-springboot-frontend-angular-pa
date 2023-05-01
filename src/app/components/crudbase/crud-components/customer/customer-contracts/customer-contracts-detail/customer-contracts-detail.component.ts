@@ -1,6 +1,6 @@
 import { ErrorDialogComponent } from './../../../../../util/error-dialog/error-dialog.component';
 import { DialogServiceService } from 'src/app/services/dialog-service.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, UrlTree } from '@angular/router';
 import { Contract } from './../../../../../../model/Contract';
 import { ItemContract } from './../../../../../../model/ItemContract';
 import { EquipmentsService } from '../../../../../../services/equipments.service';
@@ -13,6 +13,8 @@ import { ContractsService } from 'src/app/services/contracts.service';
 import { FormDetail } from 'src/app/model/FormDetail';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { OnComponentDeactivate } from 'src/app/services/can-deactive.service';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -20,7 +22,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './customer-contracts-detail.component.html',
   styleUrls: ['./customer-contracts-detail.component.css']
 })
-export class CustomerContractsDetailComponent implements OnInit, FormDetail {
+export class CustomerContractsDetailComponent implements OnInit, FormDetail, OnComponentDeactivate {
 
   //form
   @ViewChild('form') form:NgForm;
@@ -335,7 +337,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
     })
   }
 
-  
+
  //delete item from contract and recalulate the total value
   deleteItemFromList(item:ItemContract){
 
@@ -513,6 +515,16 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
   }
   //====================
 
+  //override
+  canDeactivate():Observable<boolean> | Promise<boolean> | boolean | UrlTree{
+
+    if(this.form.dirty){
+      return this.dialogService.openConfirmCloseDialog("Deseja sair sem salvar ?");
+
+    }
+    return true;
+
+  }
 }
 
 
