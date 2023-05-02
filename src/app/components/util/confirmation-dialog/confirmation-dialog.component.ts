@@ -6,13 +6,26 @@ import { Component, Inject, OnInit } from '@angular/core';
   templateUrl: './confirmation-dialog.component.html',
   styleUrls: ['./confirmation-dialog.component.css']
 })
-export class ConfirmationDialogComponent {
+export class ConfirmationDialogComponent implements OnInit {
 
   confirmation:boolean = false;
   object:any;
+  message:string = "";
 
   constructor(public dialogRef: MatDialogRef<ConfirmationDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data) { }
+    @Inject(MAT_DIALOG_DATA) public data: any) {
+
+  }
+
+
+  ngOnInit(){
+    console.log(this.data);
+    if(this.data !== null && this.data !== undefined){
+      this.message = this.data.text;
+    }else{
+      this.message = "Gostaria de deletar ?"
+    }
+  }
 
 
 }
