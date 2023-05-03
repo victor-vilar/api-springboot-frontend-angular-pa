@@ -66,7 +66,7 @@ export class CustomerContractsComponent implements OnInit {
     this.dialogService.openDialogPassingCustomerId(CustomerContractsDetailComponent,
       this.objectToEdit,
       this.selectedCustomer.cpfCnpj,
-      this.pathPrefix);
+      '/dashboard');
     this.objectToEdit = null;
   }
 

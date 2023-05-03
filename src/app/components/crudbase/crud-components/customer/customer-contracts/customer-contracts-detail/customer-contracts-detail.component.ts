@@ -1,6 +1,6 @@
 import { ErrorDialogComponent } from './../../../../../util/error-dialog/error-dialog.component';
 import { DialogServiceService } from 'src/app/services/dialog-service.service';
-import { Router, ActivatedRoute, UrlTree } from '@angular/router';
+import { Router, ActivatedRoute, UrlTree, RouterStateSnapshot } from '@angular/router';
 import { Contract } from './../../../../../../model/Contract';
 import { ItemContract } from './../../../../../../model/ItemContract';
 import { EquipmentsService } from '../../../../../../services/equipments.service';
@@ -13,7 +13,6 @@ import { ContractsService } from 'src/app/services/contracts.service';
 import { FormDetail } from 'src/app/model/FormDetail';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { OnComponentDeactivate } from 'src/app/services/can-deactive.service';
 import { Observable } from 'rxjs';
 
 
@@ -22,7 +21,7 @@ import { Observable } from 'rxjs';
   templateUrl: './customer-contracts-detail.component.html',
   styleUrls: ['./customer-contracts-detail.component.css']
 })
-export class CustomerContractsDetailComponent implements OnInit, FormDetail, OnComponentDeactivate {
+export class CustomerContractsDetailComponent implements OnInit, FormDetail {
 
   //form
   @ViewChild('form') form:NgForm;
@@ -99,18 +98,21 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail, OnC
     this.getAll();
     this.onLoad();
 
+
+
+
   }
 
   //onload method to know if form going to be on edit mode or new mode
   onLoad(): void {
 
-    this.clientCpfCnpj = this.data.clientCpfCnpj;
-    if(this.data.objectToEdit !== undefined && this.data.objectToEdit !== null){
-      this.crudOperation="Atualização";
-      this.objectToEdit = this.contractService.list.find(c =>c.id === this.data.objectToEdit.id);
-      this.itemContractList = this.itemContractListFromApiMapper(this.objectToEdit.itens);
-      this.sumTotalOfContract();
-    }
+    // this.clientCpfCnpj = this.data.clientCpfCnpj;
+    // if(this.data.objectToEdit !== undefined && this.data.objectToEdit !== null){
+    //   this.crudOperation="Atualização";
+    //   this.objectToEdit = this.contractService.list.find(c =>c.id === this.data.objectToEdit.id);
+    //   this.itemContractList = this.itemContractListFromApiMapper(this.objectToEdit.itens);
+    //   this.sumTotalOfContract();
+    // }
 
   }
 
@@ -389,6 +391,8 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail, OnC
   //navigates to another page
   destroy(): void {
     this.dialogRef.close();
+    console.log(this.activatedRoute.snapshot.toString);
+    this.router.navigate(['/dashboard'])
   }
 
   //fast filler to form(tests)
@@ -516,13 +520,20 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail, OnC
   //====================
 
   //override
-  canDeactivate():Observable<boolean> | Promise<boolean> | boolean | UrlTree{
+  canDeactivate(){
 
     if(this.form.dirty){
-      return this.dialogService.openConfirmCloseDialog("Deseja sair sem salvar ?");
-
+        this.dialogService.openConfirmCloseDialog("Deseja sair sem salvar ?").subscribe(response =>{
+          if(response){
+            this.destroy();
+          }
+        })
+    }else{
+      this.destroy();
     }
-    return true;
+
+
+
 
   }
 }

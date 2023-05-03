@@ -2,7 +2,7 @@
   <mat-dialog-content>
   <div class="detail-component-header">
     <h4 class="detail-title">{{crudOperation}} de Contratos</h4>
-    <a (click)="destroy()" class="close-button">X</a>
+    <a (click)="canDeactivate()" class="close-button">X</a>
   </div>
 
   <form (ngSubmit)="save()" #form="ngForm">

@@ -41,20 +41,37 @@ export class DialogServiceService {
   //@customerId= id do cliente que possui os dados que serão editados
   //@rota = local para onde será redirecionado após o dialog ser fechado.
   openDialogPassingCustomerId(component:any,objectToEdit:any,customerId:string,rota:string):void{
-    const dialogRef = this.dialog.open(component,{data:{
+    const dialogRef = this.dialog.open(component,{disableClose: true,data:{
       objectToEdit: objectToEdit,
       clientCpfCnpj:customerId,
     }});
 
-    this.afterCloseDialog(dialogRef,rota);
+    //this.afterCloseDialog(dialogRef,rota);
   }
+
+  // openDialogPassingCustomerIdAndReturnCloseObservable(component:any,objectToEdit:any,customerId:string,rota:string):Observable<boolean>{
+  //   const dialogRef = this.dialog.open(component,{disableClose: true,data:{
+  //     objectToEdit: objectToEdit,
+  //     clientCpfCnpj:customerId,
+  //   }});
+  //   return dialogRef.afterClosed();
+  // }
 
   //Metodo que será executado após os dialogs serem fechados, redirecionando para alguma rota especifica.
   private afterCloseDialog(dialogRef:MatDialogRef<any>, rota:string){
     dialogRef.afterClosed().subscribe(result => {
       this.router.navigate([rota], { queryParams: {  }});
     });
+
   }
+
+  //metodo para realizar alguma ação antes do dialog fechar
+  private beforCloseDialog(dialogRef:MatDialogRef<any>, rota:string){
+    dialogRef.beforeClosed().subscribe(result => {
+      this.router.navigate([rota], { queryParams: {  }});
+    })
+  }
+
 
   //Método para abrir o dialogo de erro.
   //@message = menssagem de erro que será exibida dentro do dialog.
@@ -72,9 +89,10 @@ export class DialogServiceService {
     return dialogRef.afterClosed();
   }
 
-  //open a dialog to confirm close a form without saving its data
-  openConfirmCloseDialog(message:string):Observable<boolean> | boolean{
-    return confirm(message);
+  //open a dialog to confirm the closing of a form without saving its data
+  openConfirmCloseDialog(message:string):Observable<boolean>{
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent,{data:{text:message}})
+    return dialogRef.afterClosed();
   }
 
 
