@@ -365,9 +365,11 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
     if(this.deletedItensFromContractList.length > 0){
 
       this.deletedItensFromContractList.forEach(e => {
-        let observable$ = this.contractService.deleteItemFromContract(e);
-        let observer = this.deleteItemFromContractObserver();
-        observable$.subscribe(observer);
+        if(e.id !== null && e.id !== undefined){
+          let observable$ = this.contractService.deleteItemFromContract(e);
+          let observer = this.deleteItemFromContractObserver();
+          observable$.subscribe(observer);
+        }
       })
 
     }

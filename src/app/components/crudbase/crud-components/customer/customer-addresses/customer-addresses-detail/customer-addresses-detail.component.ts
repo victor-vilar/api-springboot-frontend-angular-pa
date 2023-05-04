@@ -8,6 +8,7 @@ import { Address } from 'src/app/model/Address';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Customer } from 'src/app/model/Customer';
 import { DialogServiceService } from 'src/app/services/dialog-service.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-customer-addresses-detail',
@@ -31,7 +32,8 @@ export class CustomerAddressesDetailComponent implements OnInit,AfterViewInit, F
     private router:Router,
     public dialogRef: MatDialogRef<CustomerAddressesDetailComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogService:DialogServiceService) { }
+    private dialogService:DialogServiceService,
+    private _snackBar: MatSnackBar) { }
 
 
 
@@ -126,6 +128,7 @@ export class CustomerAddressesDetailComponent implements OnInit,AfterViewInit, F
       this.searchedZipCodeErrorResponse = false;
       this.searchedZipCode = address.cep;
       this.searchedZipCode = this.searchedZipCode.replace("-","");
+      this.openSnackBar("Endereço encontrado com sucesso","Encontrado");
 
     }).catch(error => {
       this.searchedZipCodeErrorResponse = true;
@@ -175,5 +178,15 @@ export class CustomerAddressesDetailComponent implements OnInit,AfterViewInit, F
 
 
   }
+
+    //open snackbar angular material
+    openSnackBar(message: string, action: string) {
+      this._snackBar.open(message, action,{
+        horizontalPosition: 'center',
+        verticalPosition: 'bottom',
+        duration: 1000
+      });
+    }
+
 
 }
