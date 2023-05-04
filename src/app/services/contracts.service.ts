@@ -25,6 +25,7 @@ export class ContractsService extends CrudBaseService<Contract>  {
     return this.http.delete<Contract>(this.route);
   }
 
+
   //get all contracts by customer id
   getContractByCustomerId(clientCpfCnpj:string):Observable<Contract[]>{
     this.route = CrudBaseService.BASE_URL + this.rota +'/all/'+clientCpfCnpj;

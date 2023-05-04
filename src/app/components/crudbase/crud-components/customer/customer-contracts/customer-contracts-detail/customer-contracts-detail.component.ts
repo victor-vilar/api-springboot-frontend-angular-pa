@@ -36,7 +36,10 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
   //lists
   residuesList:Residue[];
   equipmentsList:Equipment[];
+  //list of itens of a contract
   itemContractList:ItemContract[] = [];
+  //saves temporaly deleted itens from contract list to delete later
+  deletedItensFromContractList:ItemContract[] =[]
   //---
 
   //CpfCnpj of selected client
@@ -106,13 +109,13 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
   //onload method to know if form going to be on edit mode or new mode
   onLoad(): void {
 
-    // this.clientCpfCnpj = this.data.clientCpfCnpj;
-    // if(this.data.objectToEdit !== undefined && this.data.objectToEdit !== null){
-    //   this.crudOperation="Atualização";
-    //   this.objectToEdit = this.contractService.list.find(c =>c.id === this.data.objectToEdit.id);
-    //   this.itemContractList = this.itemContractListFromApiMapper(this.objectToEdit.itens);
-    //   this.sumTotalOfContract();
-    // }
+    this.clientCpfCnpj = this.data.clientCpfCnpj;
+    if(this.data.objectToEdit !== undefined && this.data.objectToEdit !== null){
+      this.crudOperation="Atualização";
+      this.objectToEdit = this.contractService.list.find(c =>c.id === this.data.objectToEdit.id);
+      this.itemContractList = this.itemContractListFromApiMapper(this.objectToEdit.itens);
+      this.sumTotalOfContract();
+    }
 
   }
 
@@ -276,6 +279,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
 
     //executing observable
     observervable$.subscribe(contractObserver);
+    this.deleteItemsFromApi();
     this.destroy();
   }
 
@@ -346,6 +350,10 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
     //deletes a item from item contract
     this.itemContractList = this.itemContractList.filter(e =>!this.itemContractCompare(e, item));
 
+
+    //save deleted itens from list to delete from api later
+    this.deletedItensFromContractList.push(item);
+
     //refresh total value
     this.totalValueOfContract = 0;
     this.sumTotalOfContract();
@@ -353,11 +361,17 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
 
 
   //delete a item from contract in api
-  deleteItemFromApi(item:ItemContract){
+  deleteItemsFromApi(){
+    if(this.deletedItensFromContractList.length > 0){
 
-    let observable$ = this.contractService.deleteItemFromContract(item);
-    let observer = this.deleteItemFromContractObserver();
-    observable$.subscribe(observer);
+      this.deletedItensFromContractList.forEach(e => {
+        let observable$ = this.contractService.deleteItemFromContract(e);
+        let observer = this.deleteItemFromContractObserver();
+        observable$.subscribe(observer);
+      })
+
+    }
+
   }
 
 
@@ -392,7 +406,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
   destroy(): void {
     this.dialogRef.close();
     console.log(this.activatedRoute.snapshot.toString);
-    this.router.navigate(['/dashboard'])
+
   }
 
   //fast filler to form(tests)
@@ -465,50 +479,8 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
   deleteItemFromContractObserver():any{
     return{
       next:(response) =>{
-
         //close progress spinner dialog
         this.dialogService.closeProgressSpinnerDialog();
-
-        //variable that store itemContract itens that have been included in itemContractList but
-        //still not saved in database yet.
-        let notSavedItens = [];
-
-        //get all itens that don't have an id to fill the itemContractList
-        notSavedItens = this.itemContractList.filter(e => e.id===null || e.id === undefined);
-
-        //if the list of the itens length is 0, then will delete the contract from api
-        if(response.itens.length === 0 && notSavedItens.length === 0){
-
-
-          //open success dialog
-          this.dialogService.openSucessDialog('O contrato ficou sem itens, por isso foi deletado automaticamente','/clientes');
-
-          //creating a delete contract observable
-          let observevable$ = this.contractService.delete(response.id);
-
-          //creating a delete contract observer object
-          let observer = this.deletesContractObserver();
-
-          //subscribing to the observable
-          observevable$.subscribe(observer);
-
-          //cleaning the local itemContractList
-          this.itemContractList = [];
-
-          //updating the contract list from api
-          this.contractService.getAll();
-
-          //closing the contract detail window
-          this.destroy();
-
-
-        }
-
-        //updating the list of itens
-        this.itemContractList = response.itens
-
-        //inserting the itens that aren't save on api
-        notSavedItens.forEach(e => this.itemContractList.push(e));
 
       },
       error:(error)=>{

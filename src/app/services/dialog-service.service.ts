@@ -46,16 +46,16 @@ export class DialogServiceService {
       clientCpfCnpj:customerId,
     }});
 
-    //this.afterCloseDialog(dialogRef,rota);
+    this.afterCloseDialog(dialogRef,rota);
   }
 
-  // openDialogPassingCustomerIdAndReturnCloseObservable(component:any,objectToEdit:any,customerId:string,rota:string):Observable<boolean>{
-  //   const dialogRef = this.dialog.open(component,{disableClose: true,data:{
-  //     objectToEdit: objectToEdit,
-  //     clientCpfCnpj:customerId,
-  //   }});
-  //   return dialogRef.afterClosed();
-  // }
+  openDialogPassingCustomerIdAndReturnCloseObservable(component:any,objectToEdit:any,customerId:string,rota:string):Observable<boolean>{
+    const dialogRef = this.dialog.open(component,{disableClose: true,data:{
+      objectToEdit: objectToEdit,
+      clientCpfCnpj:customerId,
+    }});
+    return dialogRef.afterClosed();
+  }
 
   //Metodo que será executado após os dialogs serem fechados, redirecionando para alguma rota especifica.
   private afterCloseDialog(dialogRef:MatDialogRef<any>, rota:string){
