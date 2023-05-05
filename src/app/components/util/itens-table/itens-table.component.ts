@@ -52,6 +52,7 @@ export class ItensTableComponent implements OnInit, OnChanges{
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+
     this.getAll();
 
   }
@@ -76,11 +77,24 @@ export class ItensTableComponent implements OnInit, OnChanges{
 
     if(this.customerId !== undefined){
 
+      this.tableData = [];
+      this.filteredTableDataList = [];
+
       let observable$;
       observable$ = this.service.getAllByCustomerId(this.customerId);
       observable$.subscribe(response =>{
-        this.tableData = this.service.mapItens();
+
+        this.tableData = this.service.mapItens(response);
+
+        console.log('table data')
+        console.log(this.tableData);
+
+
         this.filteredTableDataList = this.tableData.slice();
+        console.log('filtered data')
+        console.log(this.filteredTableDataList);
+
+
       });
 
     }else{

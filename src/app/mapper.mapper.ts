@@ -1,4 +1,6 @@
+import { Observable } from "rxjs";
+
 export interface Mapper {
 
-  mapItens():any[];
+  mapItens(list:any[]):any[];
 }

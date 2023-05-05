@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Supervisor } from '../model/Supervisor';
 import { CrudBaseService } from './crudbase.service';
 import { Mapper } from '../mapper.mapper';
@@ -22,8 +22,8 @@ export class SupervisorService extends CrudBaseService<Supervisor> implements Ma
     return this.http.get<Supervisor[]>(this.route);
   }
 
-  mapItens(){
-    return this.list.map(e =>{
+  mapItens(list:any[]):any[]{
+    return list.map(e =>{
       return {
         id:e.id,
         name:e.name,
