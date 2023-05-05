@@ -20,9 +20,27 @@ export class AddressService extends CrudBaseService<Address> {
    route:string;
 
    //get all address by customer id
-   getAllByCustomerId(customerCpfCnpj:string):Observable<Address[]>{
+  getAllByCustomerId(customerCpfCnpj:string):Observable<Address[]>{
     this.route = this.route = CrudBaseService.BASE_URL + this.rota +'/by-customer/'+customerCpfCnpj;
     return this.http.get<Address[]>(this.route);
+  }
+
+  
+  mapItens(){
+    return this.list.map(e =>{
+      let required:string;
+
+      return {
+        id:e.id,
+        addressName:e.addressName,
+        addressNumber:e.addressNumber,
+        complement:e.complement,
+        zipCode:e.zipCode,
+        city:e.city,
+        state:e.state,
+        requiresCollection:e.requiresCollection,
+      }
+  })
   }
 
 

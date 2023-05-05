@@ -1,6 +1,6 @@
+import { Contract } from './../model/Contract';
 import { Injectable } from '@angular/core';
 import { Address } from '../model/Address';
-import { Contract } from '../model/Contract';
 import { Supervisor } from '../model/Supervisor';
 import { Observable, of } from 'rxjs';
 
@@ -12,7 +12,7 @@ export class MapperService {
   constructor() { }
 
 
-  toItensTableContractMapper(list:Contract[]):any[]{
+  private toItensTableContractMapper(list:Contract[]):any[]{
     return list.map(e => {
 
       let total = 0;
@@ -29,7 +29,7 @@ export class MapperService {
     })
   }
 
-  toItensTableAddressMapper(list:Address[]):any[]{
+  private toItensTableAddressMapper(list:Address[]):any[]{
 
     return list.map(e =>{
       let required:string;
@@ -47,7 +47,7 @@ export class MapperService {
     })
   }
 
-  toSupervisorsMapper(list:Supervisor[]):any[]{
+  private toSupervisorsMapper(list:Supervisor[]):any[]{
 
     return list.map(e =>{
       return {

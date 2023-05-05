@@ -31,4 +31,22 @@ export class ContractsService extends CrudBaseService<Contract>  {
     this.route = CrudBaseService.BASE_URL + this.rota +'/all/'+clientCpfCnpj;
     return this.http.get<Contract[]>(this.route);
   }
+
+  mapItens(){
+
+    return this.list.map(e => {
+
+      let total = 0;
+      e.itens.forEach(item=>total += item.itemValue * item.qtdOfResidue);
+
+      return {
+        id:e.id,
+        number:e.number,
+        beginDate:e.beginDate,
+        endDate:e.endDate,
+        totItens:e.itens.length,
+        totalEmRs:total
+      }
+    })
+  }
 }

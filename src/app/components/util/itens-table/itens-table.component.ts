@@ -79,7 +79,7 @@ export class ItensTableComponent implements OnInit, OnChanges{
       let observable$;
       observable$ = this.service.getAllByCustomerId(this.customerId);
       observable$.subscribe(response =>{
-        this.tableData = this.mapper.toItensTableContractMapper(response)
+        this.tableData = this.service.mapItens();
         this.filteredTableDataList = this.tableData.slice();
       });
 
