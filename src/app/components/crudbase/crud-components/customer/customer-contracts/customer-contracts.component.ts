@@ -1,6 +1,6 @@
 import { CustomerContractsDetailComponent } from './customer-contracts-detail/customer-contracts-detail.component';
 import { CustomerService } from './../../../../../services/customer.service';
-import { Component, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit, SimpleChanges, OnChanges } from '@angular/core';
 import { ContractsService } from 'src/app/services/contracts.service';
 import { ActivationEnd, ActivatedRoute } from '@angular/router';
 import { Customer } from 'src/app/model/Customer';
@@ -11,7 +11,7 @@ import { DialogServiceService } from 'src/app/services/dialog-service.service';
   templateUrl: './customer-contracts.component.html',
   styleUrls: ['./customer-contracts.component.css']
 })
-export class CustomerContractsComponent implements OnInit {
+export class CustomerContractsComponent implements OnInit, OnChanges {
 
   constructor(
     customerService:CustomerService,
@@ -51,12 +51,16 @@ export class CustomerContractsComponent implements OnInit {
      };
 
     this.route.paramMap.subscribe(param =>{
-      this.selectedCustomer = this.customerService.list.find(obj => obj.cpfCnpj === param.get('cpfCnpj'));
+      this.selectedCustomer = this.customerService.list.find(obj =>obj.cpfCnpj === param.get('cpfCnpj'))
     })
 
     this.contractService.getAll();
 
 
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes)
   }
 
 

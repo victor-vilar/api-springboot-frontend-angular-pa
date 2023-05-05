@@ -69,32 +69,25 @@ export class ItensTableComponent implements OnInit, OnChanges{
       this.dialogService.closeProgressSpinnerDialog();
     })
   }
+
+
   //putting a option parameter to use on customer address, contracts and supervisors list
   getAll(){
 
     if(this.customerId !== undefined){
 
-      let observable$
-
-      if(this.fatherPathPrefix === 'contrato'){
-        observable$ = this.service.getContractByCustomerId(this.customerId);
-      }
-
-      if(this.fatherPathPrefix === 'endereco'){
-        observable$ = this.service.getAllAddressByCustomerId(this.customerId);
-      }
-
-      if(this.fatherPathPrefix === 'fiscal'){
-        observable$ = this.service.getAllSupervisorsByCustomerId(this.customerId);
-      }
-
-      observable$.subscribe(this.getAllByCustomerIdObserver());
+      let observable$;
+      observable$ = this.service.getAllByCustomerId(this.customerId);
+      observable$.subscribe(response =>{
+        this.tableData = this.mapper.toItensTableContractMapper(response)
+        this.filteredTableDataList = this.tableData.slice();
+      });
 
     }else{
       this.service.getAll();
     }
-
   };
+
 
   //used to inform the keyvalue pipe to not sort the object properties
   returnZero() {
@@ -107,32 +100,6 @@ export class ItensTableComponent implements OnInit, OnChanges{
         return element;
       }
     });
-  }
-
-  //observer to be used on address, contracts and supervisors list
-  getAllByCustomerIdObserver():any{
-    return {
-      next:(response) =>{
-
-        if(this.fatherPathPrefix === 'contrato'){
-          this.tableData = this.mapper.toItensTableContractMapper(response);
-          
-        }
-
-        if(this.fatherPathPrefix === 'endereco'){
-          this.tableData = this.mapper.toItensTableAddressMapper(response);
-        }
-
-        if(this.fatherPathPrefix === 'fiscal'){
-          this.tableData = this.mapper.toSupervisorsMapper(response);
-        }
-
-        this.filteredTableDataList = this.tableData.slice();
-      },
-      error:(err)=>{
-        console.log(err);
-      }
-    }
   }
 
   //obersver used on onInit method
@@ -153,7 +120,6 @@ export class ItensTableComponent implements OnInit, OnChanges{
   openDialog(object:any){
 
     let observable$ = this.dialogService.openConfirmationDialog();
-
     observable$.subscribe(response =>{
       if(response){
         this.deleteItem(object);

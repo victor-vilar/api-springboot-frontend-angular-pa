@@ -27,7 +27,7 @@ export class ContractsService extends CrudBaseService<Contract>  {
 
 
   //get all contracts by customer id
-  getContractByCustomerId(clientCpfCnpj:string):Observable<Contract[]>{
+  getAllByCustomerId(clientCpfCnpj:string):Observable<Contract[]>{
     this.route = CrudBaseService.BASE_URL + this.rota +'/all/'+clientCpfCnpj;
     return this.http.get<Contract[]>(this.route);
   }

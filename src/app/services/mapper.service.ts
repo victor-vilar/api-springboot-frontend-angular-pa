@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Address } from '../model/Address';
 import { Contract } from '../model/Contract';
 import { Supervisor } from '../model/Supervisor';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
