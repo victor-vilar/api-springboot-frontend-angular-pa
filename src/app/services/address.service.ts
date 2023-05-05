@@ -5,12 +5,14 @@ import { Observable } from 'rxjs';
 import { Address } from '../model/Address';
 import { CrudBaseService } from './crudbase.service';
 import { FullAddressFinderService } from './find-full-address.service';
+import { MapperService } from './mapper.service';
+import { Mapper } from '../mapper.mapper';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class AddressService extends CrudBaseService<Address> {
+export class AddressService extends CrudBaseService<Address> implements Mapper  {
 
   constructor(http:HttpClient) {
     super(http);
@@ -25,7 +27,7 @@ export class AddressService extends CrudBaseService<Address> {
     return this.http.get<Address[]>(this.route);
   }
 
-  
+
   mapItens(){
     return this.list.map(e =>{
       let required:string;

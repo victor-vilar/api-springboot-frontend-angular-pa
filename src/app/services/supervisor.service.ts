@@ -3,11 +3,12 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Supervisor } from '../model/Supervisor';
 import { CrudBaseService } from './crudbase.service';
+import { Mapper } from '../mapper.mapper';
 
 @Injectable({
   providedIn: 'root'
 })
-export class SupervisorService extends CrudBaseService<Supervisor>  {
+export class SupervisorService extends CrudBaseService<Supervisor> implements Mapper   {
 
   constructor(http:HttpClient) {
     super(http);

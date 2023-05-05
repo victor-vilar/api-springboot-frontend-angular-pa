@@ -4,11 +4,12 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Contract } from '../model/Contract';
 import { CrudBaseService } from './crudbase.service';
+import { Mapper } from '../mapper.mapper';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ContractsService extends CrudBaseService<Contract>  {
+export class ContractsService extends CrudBaseService<Contract> implements Mapper  {
 
   constructor(http:HttpClient) {
     super(http);
