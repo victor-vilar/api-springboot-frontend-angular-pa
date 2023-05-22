@@ -1,7 +1,7 @@
 import { DialogServiceService } from 'src/app/services/dialog-service.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Customer } from 'src/app/model/Customer';
+import { Customer } from 'src/app/util/entities/Customer';
 import { AddressService } from 'src/app/services/address.service';
 import { CustomerService } from 'src/app/services/customer.service';
 import { SupervisorService } from 'src/app/services/supervisor.service';

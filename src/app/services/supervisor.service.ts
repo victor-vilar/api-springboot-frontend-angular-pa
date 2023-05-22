@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Supervisor } from '../model/Supervisor';
+import { Supervisor } from '../util/entities/Supervisor';
 import { CrudBaseService } from './crudbase.service';
-import { Mapper } from '../mapper.mapper';
+import { Mapper } from '../util/interfaces/mapper.mapper';
 
 @Injectable({
   providedIn: 'root'

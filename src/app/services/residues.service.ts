@@ -1,4 +1,4 @@
-import { Residue } from 'src/app/model/Residue';
+import { Residue } from 'src/app/util/entities/Residue';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CrudBaseService } from './crudbase.service';

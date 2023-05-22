@@ -1,8 +1,8 @@
 import { DialogServiceService } from 'src/app/services/dialog-service.service';
 import { Observable } from 'rxjs';
 import { CrudBaseService } from 'src/app/services/crudbase.service';
-import { FormDetail } from 'src/app/model/FormDetail';
-import { Equipment } from 'src/app/model/Equipment';
+import { FormDetail } from 'src/app/util/entities/FormDetail';
+import { Equipment } from 'src/app/util/entities/Equipment';
 import { Component, OnInit, ViewChild, EventEmitter, Output, Inject, AfterViewInit } from '@angular/core';
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';

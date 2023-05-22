@@ -3,7 +3,7 @@ import { CustomerService } from 'src/app/services/customer.service';
 import { Component, OnInit, SimpleChanges, OnChanges } from '@angular/core';
 import { ContractsService } from 'src/app/services/contracts.service';
 import { ActivationEnd, ActivatedRoute } from '@angular/router';
-import { Customer } from 'src/app/model/Customer';
+import { Customer } from 'src/app/util/entities/Customer';
 import { DialogServiceService } from 'src/app/services/dialog-service.service';
 
 @Component({

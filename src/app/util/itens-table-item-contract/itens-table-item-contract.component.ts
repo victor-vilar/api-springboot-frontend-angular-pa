@@ -1,5 +1,5 @@
 import { MatDialog } from '@angular/material/dialog';
-import { Residue } from 'src/app/model/Residue';
+import { Residue } from 'src/app/util/entities/Residue';
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges, OnChanges, DoCheck } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';

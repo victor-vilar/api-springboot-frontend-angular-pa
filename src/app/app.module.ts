@@ -20,11 +20,11 @@ import { CustomerSupervisorsDetailComponent } from './components/crudbase/custom
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MenuComponent } from './components/menu/menu.component';
+import { MenuComponent } from './template/menu/menu.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { FooterComponent } from './components/footer/footer.component';
+import { DashboardComponent } from './template/dashboard/dashboard.component';
+import { FooterComponent } from './template/footer/footer.component';
 
 
 import { FormsModule,ReactiveFormsModule  } from '@angular/forms';
@@ -48,15 +48,13 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { UtilModule } from './util/util.module';
 import { RouterModule } from '@angular/router';
+import { TemplateModule } from './template/template.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    MenuComponent,
-    DashboardComponent,
     EquipmentsComponent,
-    FooterComponent,
     ResidueComponent,
     ContractComponent,
     CustomerComponent,
@@ -94,6 +92,7 @@ import { RouterModule } from '@angular/router';
     MatTooltipModule,
     RouterModule,
     UtilModule,
+    TemplateModule
   ],
   providers: [{provide: MAT_DATE_LOCALE, useValue: 'pt-BR'}],
   bootstrap: [AppComponent]

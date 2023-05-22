@@ -3,7 +3,7 @@ import { ResiduesService } from 'src/app/services/residues.service';
 import { CrudBaseService } from 'src/app/services/crudbase.service';
 
 import { Component, OnInit } from '@angular/core';
-import { Residue } from 'src/app/model/Residue';
+import { Residue } from 'src/app/util/entities/Residue';
 import { CrudBaseComponent } from '../crud-base.component';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';

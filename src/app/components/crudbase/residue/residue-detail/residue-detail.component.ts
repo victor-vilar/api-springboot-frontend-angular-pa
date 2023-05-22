@@ -1,9 +1,9 @@
 import { ResiduesService } from 'src/app/services/residues.service';
 import { AfterViewInit, Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { FormDetail } from 'src/app/model/FormDetail';
+import { FormDetail } from 'src/app/util/entities/FormDetail';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Residue } from 'src/app/model/Residue';
+import { Residue } from 'src/app/util/entities/Residue';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DialogServiceService } from 'src/app/services/dialog-service.service';
 import { ProgressComponent } from 'src/app/util/progress/progress.component';

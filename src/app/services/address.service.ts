@@ -2,9 +2,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Address } from '../model/Address';
+import { Address } from '../util/entities/Address';
 import { CrudBaseService } from './crudbase.service';
-import { Mapper } from '../mapper.mapper';
+import { Mapper } from '../util/interfaces/mapper.mapper';
 
 
 @Injectable({

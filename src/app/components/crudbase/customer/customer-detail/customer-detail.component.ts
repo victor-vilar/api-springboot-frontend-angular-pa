@@ -2,9 +2,9 @@ import { DialogServiceService } from 'src/app/services/dialog-service.service';
 import { CustomerService } from 'src/app/services/customer.service';
 import { Component, Inject, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { FormDetail } from 'src/app/model/FormDetail';
+import { FormDetail } from 'src/app/util/entities/FormDetail';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Customer } from 'src/app/model/Customer';
+import { Customer } from 'src/app/util/entities/Customer';
 import { ResidueDetailComponent } from '../../residue/residue-detail/residue-detail.component';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 

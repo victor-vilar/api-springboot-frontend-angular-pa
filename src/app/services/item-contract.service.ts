@@ -1,4 +1,4 @@
-import { ItemContract } from './../model/ItemContract';
+import { ItemContract } from '../util/entities/ItemContract';
 import { Injectable } from '@angular/core';
 import { CrudBaseService } from './crudbase.service';
 import { HttpClient } from '@angular/common/http';

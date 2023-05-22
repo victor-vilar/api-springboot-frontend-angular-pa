@@ -1,7 +1,7 @@
 import { CustomerSupervisorsComponent } from './components/crudbase/customer/customer-supervisors/customer-supervisors.component';
 import { CustomerAddressesComponent } from './components/crudbase/customer/customer-addresses/customer-addresses.component';
 
-import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { DashboardComponent } from './template/dashboard/dashboard.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { EquipmentsComponent } from './components/crudbase/equipaments/equipaments.component';

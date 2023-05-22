@@ -3,8 +3,8 @@ import { SupervisorService } from 'src/app/services/supervisor.service';
 import { Component, OnInit, ViewChild, Inject, AfterViewInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormDetail } from 'src/app/model/FormDetail';
-import { Supervisor } from 'src/app/model/Supervisor';
+import { FormDetail } from 'src/app/util/entities/FormDetail';
+import { Supervisor } from 'src/app/util/entities/Supervisor';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({

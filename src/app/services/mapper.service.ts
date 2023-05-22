@@ -1,7 +1,7 @@
-import { Contract } from './../model/Contract';
+import { Contract } from '../util/entities/Contract';
 import { Injectable } from '@angular/core';
-import { Address } from '../model/Address';
-import { Supervisor } from '../model/Supervisor';
+import { Address } from '../util/entities/Address';
+import { Supervisor } from '../util/entities/Supervisor';
 import { Observable, of } from 'rxjs';
 
 @Injectable({

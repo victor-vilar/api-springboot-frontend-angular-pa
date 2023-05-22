@@ -1,10 +1,10 @@
-import { ItemContract } from './../model/ItemContract';
+import { ItemContract } from '../util/entities/ItemContract';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Contract } from '../model/Contract';
+import { Contract } from '../util/entities/Contract';
 import { CrudBaseService } from './crudbase.service';
-import { Mapper } from '../mapper.mapper';
+import { Mapper } from '../util/interfaces/mapper.mapper';
 
 @Injectable({
   providedIn: 'root'

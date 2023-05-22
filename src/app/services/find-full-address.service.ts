@@ -1,4 +1,4 @@
-import { Address } from './../model/Address';
+import { Address } from '../util/entities/Address';
 import { Injectable } from '@angular/core';
 
 @Injectable({

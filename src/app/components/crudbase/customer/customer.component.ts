@@ -1,5 +1,5 @@
 import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
-import { Customer } from 'src/app/model/Customer';
+import { Customer } from 'src/app/util/entities/Customer';
 import { CustomerService } from 'src/app/services/customer.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';

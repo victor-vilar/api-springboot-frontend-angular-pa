@@ -1,12 +1,12 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { AddressService } from 'src/app/services/address.service';
-import { FormDetail } from 'src/app/model/FormDetail';
+import { FormDetail } from 'src/app/util/entities/FormDetail';
 import { Component, OnInit, ViewChild, Inject, AfterViewInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { FullAddressFinderService } from 'src/app/services/find-full-address.service';
-import { Address } from 'src/app/model/Address';
+import { Address } from 'src/app/util/entities/Address';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Customer } from 'src/app/model/Customer';
+import { Customer } from 'src/app/util/entities/Customer';
 import { DialogServiceService } from 'src/app/services/dialog-service.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 

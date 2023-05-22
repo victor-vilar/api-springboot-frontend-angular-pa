@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AddressService } from 'src/app/services/address.service';
 import { Component, OnInit } from '@angular/core';
 import { CustomerService } from 'src/app/services/customer.service';
-import { Customer } from 'src/app/model/Customer';
+import { Customer } from 'src/app/util/entities/Customer';
 import { ContractsService } from 'src/app/services/contracts.service';
 import { CustomerAddressesDetailComponent } from './customer-addresses-detail/customer-addresses-detail.component';
 

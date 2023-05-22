@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Contract } from 'src/app/model/Contract';
+import { Contract } from 'src/app/util/entities/Contract';
 
 
 @Component({

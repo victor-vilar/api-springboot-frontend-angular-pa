@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Customer } from '../model/Customer';
+import { Customer } from '../util/entities/Customer';
 import { CrudBaseService } from './crudbase.service';
 
 @Injectable({

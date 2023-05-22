@@ -3,7 +3,7 @@ import { DialogServiceService } from 'src/app/services/dialog-service.service';
 import { ActivatedRoute } from '@angular/router';
 import { EquipmentsService } from 'src/app/services/equipments.service';
 import { Component, DoCheck, OnChanges, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
-import { Equipment } from 'src/app/model/Equipment';
+import { Equipment } from 'src/app/util/entities/Equipment';
 import { CrudBaseComponent } from '../crud-base.component';
 import { HttpClient } from '@angular/common/http';
 
