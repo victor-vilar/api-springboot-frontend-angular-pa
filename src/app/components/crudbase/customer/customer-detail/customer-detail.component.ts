@@ -1,5 +1,5 @@
-import { DialogServiceService } from './../../../../../services/dialog-service.service';
-import { CustomerService } from './../../../../../services/customer.service';
+import { DialogServiceService } from 'src/app/services/dialog-service.service';
+import { CustomerService } from 'src/app/services/customer.service';
 import { Component, Inject, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { FormDetail } from 'src/app/model/FormDetail';

@@ -1,10 +1,10 @@
 import { DialogServiceService } from 'src/app/services/dialog-service.service';
 import { Router, ActivatedRoute, UrlTree, RouterStateSnapshot } from '@angular/router';
-import { Contract } from './../../../../../../model/Contract';
-import { ItemContract } from './../../../../../../model/ItemContract';
-import { EquipmentsService } from '../../../../../../services/equipments.service';
-import { Equipment } from '../../../../../../model/Equipment';
-import { ResiduesService } from './../../../../../../services/residues.service';
+import { Contract } from 'src/app/model/Contract';
+import { ItemContract } from 'src/app/model/ItemContract';
+import { EquipmentsService } from 'src/app/services/equipments.service';
+import { Equipment } from 'src/app/model/Equipment';
+import { ResiduesService } from 'src/app/services/residues.service';
 import { Component, Inject, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { Residue } from 'src/app/model/Residue';
 import { FormControl, NgForm } from '@angular/forms';

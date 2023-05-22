@@ -1,10 +1,10 @@
-import { DialogServiceService } from './../../../../services/dialog-service.service';
-import { ResiduesService } from './../../../../services/residues.service';
+import { DialogServiceService } from 'src/app/services/dialog-service.service';
+import { ResiduesService } from 'src/app/services/residues.service';
 import { CrudBaseService } from 'src/app/services/crudbase.service';
 
 import { Component, OnInit } from '@angular/core';
 import { Residue } from 'src/app/model/Residue';
-import { CrudBaseComponent } from '../../crud-base.component';
+import { CrudBaseComponent } from '../crud-base.component';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';

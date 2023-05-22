@@ -1,4 +1,4 @@
-import { DialogServiceService } from './../../../../../services/dialog-service.service';
+import { DialogServiceService } from 'src/app/services/dialog-service.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Customer } from 'src/app/model/Customer';

@@ -3,38 +3,38 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 
+import { EquipmentsComponent } from './components/crudbase/equipaments/equipaments.component';
+import { EquipmentDetailComponent } from './components/crudbase/equipaments/equipment-detail/equipament-detail.component';
+import { ResidueComponent } from './components/crudbase/residue/residue.component';
+import { ResidueDetailComponent } from './components/crudbase/residue/residue-detail/residue-detail.component';
+import { ContractComponent } from './components/crudbase/contract/contract.component';
+import { CustomerComponent } from './components/crudbase/customer/customer.component';
+import { CustomerDetailComponent } from './components/crudbase/customer/customer-detail/customer-detail.component';
+import { CustomerContractsComponent } from './components/crudbase/customer/customer-contracts/customer-contracts.component';
+import { CustomerAddressesComponent } from './components/crudbase/customer/customer-addresses/customer-addresses.component';
+import { CustomerSupervisorsComponent } from './components/crudbase/customer/customer-supervisors/customer-supervisors.component';
+import { CustomerInfoComponent } from './components/crudbase/customer/customer-info/customer-info.component';
+import { CustomerContractsDetailComponent } from './components/crudbase/customer/customer-contracts/customer-contracts-detail/customer-contracts-detail.component';
+import { CustomerAddressesDetailComponent } from './components/crudbase/customer/customer-addresses/customer-addresses-detail/customer-addresses-detail.component';
+import { CustomerSupervisorsDetailComponent } from './components/crudbase/customer/customer-supervisors/customer-supervisors-detail/customer-supervisors-detail.component';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { EquipmentsComponent } from './components/crudbase/crud-components/equipaments/equipaments.component';
 import { FooterComponent } from './components/footer/footer.component';
 
-import { ResidueComponent } from './components/crudbase/crud-components/residue/residue.component';
-import { ContractComponent } from './components/crudbase/crud-components/contract/contract.component';
-import { CustomerComponent } from './components/crudbase/crud-components/customer/customer.component';
+
 import { FormsModule,ReactiveFormsModule  } from '@angular/forms';
-import { EquipmentDetailComponent } from './components/crudbase/crud-components/equipaments/equipment-detail/equipament-detail.component';
-import { ResidueDetailComponent } from './components/crudbase/crud-components/residue/residue-detail/residue-detail.component';
-import { CustomerDetailComponent } from './components/crudbase/crud-components/customer/customer-detail/customer-detail.component';
 
-import { CpfCnpjPipePipe } from './util/pipes/cpf-cnpj-pipe.pipe';
-import { CustomerContractsComponent } from './components/crudbase/crud-components/customer/customer-contracts/customer-contracts.component';
-import { CustomerAddressesComponent } from './components/crudbase/crud-components/customer/customer-addresses/customer-addresses.component';
-import { CustomerSupervisorsComponent } from './components/crudbase/crud-components/customer/customer-supervisors/customer-supervisors.component';
-import { CustomerInfoComponent } from './components/crudbase/crud-components/customer/customer-info/customer-info.component';
-import { CustomerContractsDetailComponent } from './components/crudbase/crud-components/customer/customer-contracts/customer-contracts-detail/customer-contracts-detail.component';
 
-import { CustomerAddressesDetailComponent } from './components/crudbase/crud-components/customer/customer-addresses/customer-addresses-detail/customer-addresses-detail.component';
-import { CustomerSupervisorsDetailComponent } from './components/crudbase/crud-components/customer/customer-supervisors/customer-supervisors-detail/customer-supervisors-detail.component';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ConfirmationDialogComponent } from './util/confirmation-dialog/confirmation-dialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 
-import { PhonePipe } from './util/pipes/phone.pipe';
-import { SuccessDialogComponent } from './util/success-dialog/success-dialog.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import {MatFormFieldModule} from '@angular/material/form-field';

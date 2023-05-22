@@ -85,16 +85,7 @@ export class ItensTableComponent implements OnInit, OnChanges{
       observable$.subscribe(response =>{
 
         this.tableData = this.service.mapItens(response);
-
-        console.log('table data')
-        console.log(this.tableData);
-
-
         this.filteredTableDataList = this.tableData.slice();
-        console.log('filtered data')
-        console.log(this.filteredTableDataList);
-
-
       });
 
     }else{

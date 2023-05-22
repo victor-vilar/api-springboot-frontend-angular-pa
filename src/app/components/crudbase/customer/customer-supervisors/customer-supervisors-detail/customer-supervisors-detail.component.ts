@@ -1,5 +1,5 @@
-import { DialogServiceService } from './../../../../../../services/dialog-service.service';
-import { SupervisorService } from './../../../../../../services/supervisor.service';
+import { DialogServiceService } from 'src/app/services/dialog-service.service';
+import { SupervisorService } from 'src/app/services/supervisor.service';
 import { Component, OnInit, ViewChild, Inject, AfterViewInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';

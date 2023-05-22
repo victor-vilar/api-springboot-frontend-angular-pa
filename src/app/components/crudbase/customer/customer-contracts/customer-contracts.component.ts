@@ -1,5 +1,5 @@
 import { CustomerContractsDetailComponent } from './customer-contracts-detail/customer-contracts-detail.component';
-import { CustomerService } from './../../../../../services/customer.service';
+import { CustomerService } from 'src/app/services/customer.service';
 import { Component, OnInit, SimpleChanges, OnChanges } from '@angular/core';
 import { ContractsService } from 'src/app/services/contracts.service';
 import { ActivationEnd, ActivatedRoute } from '@angular/router';
