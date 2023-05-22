@@ -1,7 +1,7 @@
-import { ProgressComponent } from './../components/util/progress/progress.component';
-import { SuccessDialogComponent } from './../components/util/success-dialog/success-dialog.component';
-import { ConfirmationDialogComponent } from './../components/util/confirmation-dialog/confirmation-dialog.component';
-import { ErrorDialogComponent } from './../components/util/error-dialog/error-dialog.component';
+import { ProgressComponent } from './../util/progress/progress.component';
+import { SuccessDialogComponent } from '../util/success-dialog/success-dialog.component';
+import { ConfirmationDialogComponent } from '../util/confirmation-dialog/confirmation-dialog.component';
+import { ErrorDialogComponent } from './../util/error-dialog/error-dialog.component';
 import { BlockScrollStrategy } from '@angular/cdk/overlay';
 import { Injectable } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
@@ -25,7 +25,7 @@ export class DialogServiceService {
   ){}
 
 
-  //Metodo utilizdo para abrir um dialog, passando o compoenente que deseja utilizar no dialog.
+  //Metodo utilizado para abrir um dialog, passando o componente que deseja utilizar no dialog.
   //@compoent = componente que será aberto no dialog.
   //@ObjectToEdit = objeto que sera passado (caso exista) para o formulário
   //@rota = local para onde será redirecionado após o dialog ser fechado.

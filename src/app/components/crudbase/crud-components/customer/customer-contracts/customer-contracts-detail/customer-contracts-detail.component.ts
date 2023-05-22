@@ -1,4 +1,3 @@
-import { ErrorDialogComponent } from './../../../../../util/error-dialog/error-dialog.component';
 import { DialogServiceService } from 'src/app/services/dialog-service.service';
 import { Router, ActivatedRoute, UrlTree, RouterStateSnapshot } from '@angular/router';
 import { Contract } from './../../../../../../model/Contract';

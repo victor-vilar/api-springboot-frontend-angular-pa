@@ -6,7 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Residue } from 'src/app/model/Residue';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DialogServiceService } from 'src/app/services/dialog-service.service';
-import { ProgressComponent } from 'src/app/components/util/progress/progress.component';
+import { ProgressComponent } from 'src/app/util/progress/progress.component';
 
 @Component({
   selector: 'app-residue-detail',

@@ -2,8 +2,6 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { CrudBaseService } from 'src/app/services/crudbase.service';
 
 
-
-
 /**
  * Component base for the crud components. It has the basic properties to do all the need operations of the project
  */
