@@ -1,11 +1,11 @@
-import { ItensTableItemContractComponent } from './itens-table-item-contract/itens-table-item-contract.component';
+import { ItensTableItemContractComponent } from '../components/crudbase/customer/customer-contracts/customer-contracts-detail/itens-table-item-contract/itens-table-item-contract.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { CrudMenuComponent } from './crud-menu/crud-menu.component';
 import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
 import { ItensTableComponent } from './itens-table/itens-table.component';
-import { ItensTableCustomerComponent } from './itens-table-customer/itens-table-customer.component';
+import { ItensTableCustomerComponent } from '../components/crudbase/customer/itens-table-customer/itens-table-customer.component';
 import { ProgressComponent } from './progress/progress.component';
 import { SuccessDialogComponent } from './success-dialog/success-dialog.component';
 import { FormsModule } from '@angular/forms';
@@ -35,8 +35,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CrudMenuComponent,
     ErrorDialogComponent,
     ItensTableComponent,
-    ItensTableCustomerComponent,
-    ItensTableItemContractComponent,
     ProgressComponent,
     SuccessDialogComponent,
     CpfCnpjPipePipe,
@@ -66,8 +64,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CrudMenuComponent,
     ErrorDialogComponent,
     ItensTableComponent,
-    ItensTableCustomerComponent,
-    ItensTableItemContractComponent,
     ProgressComponent,
     SuccessDialogComponent,
     PhonePipe,

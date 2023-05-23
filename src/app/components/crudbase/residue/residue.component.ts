@@ -4,7 +4,7 @@ import { CrudBaseService } from 'src/app/services/crudbase.service';
 
 import { Component, OnInit } from '@angular/core';
 import { Residue } from 'src/app/util/entities/Residue';
-import { CrudBaseComponent } from '../crud-base.component';
+import { CrudBaseComponent } from '../../../util/interfaces/crudbase.interface';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';

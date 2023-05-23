@@ -3,7 +3,7 @@ import { DialogServiceService } from 'src/app/services/dialog-service.service';
 import { Router } from '@angular/router';
 import { Component, Input, OnInit, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
+import { ConfirmationDialogComponent } from '../../../../util/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-itens-table-customer',

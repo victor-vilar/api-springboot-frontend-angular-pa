@@ -3,9 +3,8 @@ import { Customer } from 'src/app/util/entities/Customer';
 import { CustomerService } from 'src/app/services/customer.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CrudBaseComponent } from '../crud-base.component';
+import { CrudBaseComponent } from '../../../util/interfaces/crudbase.interface';
 import { DialogServiceService } from 'src/app/services/dialog-service.service';
-import { ResidueDetailComponent } from '../residue/residue-detail/residue-detail.component';
 import { ActivatedRoute } from '@angular/router';
 
 

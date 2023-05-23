@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { EquipmentsService } from 'src/app/services/equipments.service';
 import { Component, DoCheck, OnChanges, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
 import { Equipment } from 'src/app/util/entities/Equipment';
-import { CrudBaseComponent } from '../crud-base.component';
+import { CrudBaseComponent } from '../../../util/interfaces/crudbase.interface';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
