@@ -4,8 +4,7 @@ import { CustomerAddressesComponent } from './components/crudbase/customer/custo
 import { DashboardComponent } from './template/dashboard/dashboard.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { EquipmentsComponent } from './components/crudbase/equipaments/equipaments.component';
-import { ResidueComponent } from './components/crudbase/residue/residue.component';
+import { EquipmentsComponent } from './components/crudbase/equipaments/equipment-list/equipaments.component';
 import { CustomerComponent } from './components/crudbase/customer/customer.component';
 import { ContractComponent } from './components/crudbase/contract/contract.component';
 import { EquipmentDetailComponent } from './components/crudbase/equipaments/equipment-detail/equipament-detail.component';
@@ -15,6 +14,7 @@ import { CustomerContractsComponent } from './components/crudbase/customer/custo
 import { CustomerContractsDetailComponent } from './components/crudbase/customer/customer-contracts/customer-contracts-detail/customer-contracts-detail.component';
 import { CustomerAddressesDetailComponent } from './components/crudbase/customer/customer-addresses/customer-addresses-detail/customer-addresses-detail.component';
 import { CustomerSupervisorsDetailComponent } from './components/crudbase/customer/customer-supervisors/customer-supervisors-detail/customer-supervisors-detail.component';
+import { ResidueComponent } from './components/crudbase/residue/residue-list/residue.component';
 
 
 const routes: Routes = [

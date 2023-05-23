@@ -1,10 +1,10 @@
-import { EquipmentDetailComponent } from './equipment-detail/equipament-detail.component';
+import { EquipmentDetailComponent } from '../equipment-detail/equipament-detail.component';
 import { DialogServiceService } from 'src/app/services/dialog-service.service';
 import { ActivatedRoute } from '@angular/router';
-import { EquipmentsService } from 'src/app/services/equipments.service';
+import { EquipmentsService } from 'src/app/components/crudbase/equipaments/services/equipments.service';
 import { Component, DoCheck, OnChanges, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
 import { Equipment } from 'src/app/util/entities/Equipment';
-import { CrudBaseComponent } from '../../../util/interfaces/crudbase.interface';
+import { CrudBaseComponent } from 'src/app/util/interfaces/crudbase.interface';
 import { HttpClient } from '@angular/common/http';
 
 @Component({

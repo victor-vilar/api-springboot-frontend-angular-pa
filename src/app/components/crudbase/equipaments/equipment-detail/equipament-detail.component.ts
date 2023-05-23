@@ -6,7 +6,7 @@ import { Equipment } from 'src/app/util/entities/Equipment';
 import { Component, OnInit, ViewChild, EventEmitter, Output, Inject, AfterViewInit } from '@angular/core';
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { EquipmentsService } from 'src/app/services/equipments.service';
+import { EquipmentsService } from 'src/app/components/crudbase/equipaments/services/equipments.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ErrorStateMatcher } from '@angular/material/core';
 

@@ -1,5 +1,5 @@
-import { ResiduesService } from '../../services/residues.service';
-import { EquipmentsService } from '../../services/equipments.service';
+import { ResiduesService } from '../../components/crudbase/residue/services/residues.service';
+import { EquipmentsService } from '../../components/crudbase/equipaments/services/equipments.service';
 import { ContractsService } from '../../services/contracts.service';
 import { CustomerService } from '../../services/customer.service';
 

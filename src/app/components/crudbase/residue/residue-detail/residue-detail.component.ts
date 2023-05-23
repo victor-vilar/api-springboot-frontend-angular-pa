@@ -1,4 +1,4 @@
-import { ResiduesService } from 'src/app/services/residues.service';
+import { ResiduesService } from 'src/app/components/crudbase/residue/services/residues.service';
 import { AfterViewInit, Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { FormDetail } from 'src/app/util/entities/FormDetail';

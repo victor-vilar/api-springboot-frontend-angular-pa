@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { CrudBaseService } from './crudbase.service';
+import { CrudBaseService } from '../../../../services/crudbase.service';
 import { Injectable } from '@angular/core';
-import { Equipment } from '../util/entities/Equipment';
+import { Equipment } from '../../../../util/entities/Equipment';
 import { Observable } from 'rxjs';
 
 @Injectable({
