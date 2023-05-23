@@ -1,10 +1,10 @@
-import { ResiduesService } from '../../components/crudbase/residue/services/residues.service';
-import { EquipmentsService } from '../../components/crudbase/equipaments/services/equipments.service';
-import { ContractsService } from '../../services/contracts.service';
-import { CustomerService } from '../../services/customer.service';
+import { ResiduesService } from '../../residue/services/residues.service';
+import { EquipmentsService } from '../../equipaments/services/equipments.service';
+import { ContractsService } from '../../customer/services/contracts.service';
+import { CustomerService } from '../../customer/services/customer.service';
 
 import { Component, OnInit } from '@angular/core';
-import { Address } from 'src/app/util/entities/Address';
+
 
 @Component({
   selector: 'app-dashboard',
