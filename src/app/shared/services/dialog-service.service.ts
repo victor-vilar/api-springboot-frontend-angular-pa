@@ -80,10 +80,10 @@ export class DialogServiceService {
       error: message,
     }});
 
-    this.afterCloseDialog(dialogRef,'');
+    // this.afterCloseDialog(dialogRef,'');
   }
 
-  //returns the dialog agter close observable to execute some action
+  //returns the dialog after close observable to execute some action
   openConfirmationDialog():Observable<boolean>{
     const dialogRef = this.dialog.open(ConfirmationDialogComponent)
     return dialogRef.afterClosed();
@@ -102,6 +102,10 @@ export class DialogServiceService {
   openSucessDialog(message:string,rota:string):void {
     const dialogRef = this.dialog.open(SuccessDialogComponent,{data:{message:message}});
     this.afterCloseDialog(dialogRef,rota);
+  }
+
+  openSuccessDialogWithoutRedirect(message:string):void{
+    const dialogRef = this.dialog.open(SuccessDialogComponent,{data:{message:message}});
   }
 
   //Metodo para fechar e limpar a referencia do progress spinner

@@ -27,12 +27,13 @@ import { EquipamentsModule } from './equipaments/equipaments.module';
 import { CustomerModule } from './customer/customer.module';
 import { SharedModule } from './shared/shared.module';
 import { LoginComponent } from './login/login.component';
+import { LoginModule } from './login/login.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -44,7 +45,8 @@ import { LoginComponent } from './login/login.component';
     TemplateModule,
     ResidueModule,
     EquipamentsModule,
-    CustomerModule
+    CustomerModule,
+    LoginModule
   ],
   providers: [{provide: MAT_DATE_LOCALE, useValue: 'pt-BR'}],
   bootstrap: [AppComponent]

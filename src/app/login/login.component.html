@@ -1,12 +1,17 @@
 <div class="login-body">
   <div class="login-container">
-    <form action="">
+    <form (ngSubmit)="logar()" #meuForm="ngForm">
       <label>Usuario:</label>
-      <input type="text" name="username" id="username">
+      <input type="text" name="username" ngModel>
       <label>Senha:</label>
-      <input type="password" name="password" id="password">
+      <input type="password" name="password"  ngModel>
       <button type="submit">Logar</button>
     </form>
+  </div>
+
+  <div class="info" *ngIf="usuarioLogado != null">
+    Usuario: {{usuarioLogado.username}}
+    Roles: {{usuarioLogado.roles}}
   </div>
 </div>
 
