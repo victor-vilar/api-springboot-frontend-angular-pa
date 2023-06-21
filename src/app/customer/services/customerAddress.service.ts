@@ -10,7 +10,7 @@ import { Mapper } from '../../shared/interfaces/mapper.mapper';
 @Injectable({
   providedIn: 'root'
 })
-export class AddressService extends CrudBaseService<Address> implements Mapper  {
+export class CustomerAddressService extends CrudBaseService<Address> implements Mapper  {
 
   constructor(http:HttpClient) {
     super(http);

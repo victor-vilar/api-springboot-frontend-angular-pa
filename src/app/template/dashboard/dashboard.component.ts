@@ -1,6 +1,6 @@
 import { ResiduesService } from '../../residue/services/residues.service';
 import { EquipmentsService } from '../../equipaments/services/equipments.service';
-import { ContractsService } from '../../customer/services/contracts.service';
+import { CustomerContractsService } from '../../customer/services/customerContracts.service';
 import { CustomerService } from '../../customer/services/customer.service';
 
 import { Component, OnInit } from '@angular/core';
@@ -22,7 +22,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private customerService:CustomerService,
-    private contractService:ContractsService,
+    private contractService:CustomerContractsService,
     private equipmentService:EquipmentsService,
     private residueService:ResiduesService) { }
 

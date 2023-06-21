@@ -14,6 +14,7 @@ import { CustomerContractsDetailComponent } from './customer/customer-contracts/
 import { CustomerAddressesDetailComponent } from './customer/customer-addresses/customer-addresses-detail/customer-addresses-detail.component';
 import { CustomerSupervisorsDetailComponent } from './customer/customer-supervisors/customer-supervisors-detail/customer-supervisors-detail.component';
 import { ResidueComponent } from './residue/residue-list/residue.component';
+import { LoginComponent } from './login/login.component';
 
 
 const routes: Routes = [
@@ -44,6 +45,7 @@ const routes: Routes = [
     {path:'equipamento/novo',component:EquipmentDetailComponent},
 
   ]},
+  {path:'login',component:LoginComponent},
 ];
 
 @NgModule({

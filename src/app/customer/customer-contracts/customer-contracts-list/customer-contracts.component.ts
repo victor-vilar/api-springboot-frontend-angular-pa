@@ -1,7 +1,7 @@
 import { CustomerContractsDetailComponent } from '../customer-contracts-detail/customer-contracts-detail.component';
 import { CustomerService } from 'src/app/customer/services/customer.service';
 import { Component, OnInit, SimpleChanges, OnChanges } from '@angular/core';
-import { ContractsService } from 'src/app/customer/services/contracts.service';
+import { CustomerContractsService } from 'src/app/customer/services/customerContracts.service';
 import { ActivationEnd, ActivatedRoute } from '@angular/router';
 import { Customer } from 'src/app/shared/entities/Customer';
 import { DialogServiceService } from 'src/app/shared/services/dialog-service.service';
@@ -15,7 +15,7 @@ export class CustomerContractsComponent implements OnInit, OnChanges {
 
   constructor(
     customerService:CustomerService,
-    contractService:ContractsService,
+    contractService:CustomerContractsService,
     private route:ActivatedRoute,
     private dialogService:DialogServiceService) {
       this.contractService = contractService;
@@ -28,7 +28,7 @@ export class CustomerContractsComponent implements OnInit, OnChanges {
   headerForTables:any;
   pathToOperations = [{name:"Cadastrar novo Contrato", path: this.pathPrefix + '/novo', title:"Novo " + this.pathPrefix}];
   customerService:CustomerService;
-  contractService:ContractsService;
+  contractService:CustomerContractsService;
   objectToEdit;
 
 

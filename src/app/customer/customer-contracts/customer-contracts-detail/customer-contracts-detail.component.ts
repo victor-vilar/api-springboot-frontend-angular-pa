@@ -8,7 +8,7 @@ import { ResiduesService } from 'src/app/residue/services/residues.service';
 import { Component, Inject, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { Residue } from 'src/app/shared/entities/Residue';
 import { FormControl, NgForm } from '@angular/forms';
-import { ContractsService } from 'src/app/customer/services/contracts.service';
+import { CustomerContractsService } from 'src/app/customer/services/customerContracts.service';
 import { FormDetail } from 'src/app/shared/entities/FormDetail';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -29,7 +29,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
   //services
   residuesService:ResiduesService;
   equipmentsService:EquipmentsService;
-  contractService:ContractsService;
+  contractService:CustomerContractsService;
   //---
 
   //lists
@@ -60,7 +60,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
 
   constructor(residuesService:ResiduesService,
               equipmentsService:EquipmentsService,
-              contractService:ContractsService,
+              contractService:CustomerContractsService,
               private activatedRoute:ActivatedRoute,
               private dialogService:DialogServiceService,
               private router:Router,

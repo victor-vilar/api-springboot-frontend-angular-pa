@@ -1,0 +1,38 @@
+.login-body{
+  background-color: var(--cinza-escuro);
+  width: 100%;
+  height: 100%;
+}
+
+.login-container {
+  width: 200px;
+  border-radius: 5px;
+  border: 1px solid;
+  margin: auto;
+}
+
+
+.login-container form{
+  max-width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap:5px;
+  background-color: white;
+
+}
+
+
+form button {
+  margin-top: 20px;
+  width: 100%;
+  height: 40px;
+  border:none;
+  font-weight: bolder;
+  background-color: var(--cinza-escuro);
+  color:white;
+  border-radius: 5px;
+}
+
+

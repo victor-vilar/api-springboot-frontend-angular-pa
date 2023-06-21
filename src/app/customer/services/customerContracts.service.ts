@@ -2,14 +2,14 @@ import { ItemContract } from '../../shared/entities/ItemContract';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Contract } from '../..//shared/entities/Contract';
+import { Contract } from '../../shared/entities/Contract';
 import { CrudBaseService } from 'src/app/shared/services/crudbase.service';
 import { Mapper } from '../../shared/interfaces/mapper.mapper';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ContractsService extends CrudBaseService<Contract> implements Mapper  {
+export class CustomerContractsService extends CrudBaseService<Contract> implements Mapper  {
 
   constructor(http:HttpClient) {
     super(http);

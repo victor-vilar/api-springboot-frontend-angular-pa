@@ -1,6 +1,6 @@
 import { DialogServiceService } from 'src/app/shared/services/dialog-service.service';
 import { ActivatedRoute } from '@angular/router';
-import { AddressService } from 'src/app/customer/services/address.service';
+import { CustomerAddressService } from 'src/app/customer/services/customerAddress.service';
 import { Component, OnInit } from '@angular/core';
 import { CustomerService } from 'src/app/customer/services/customer.service';
 import { Customer } from 'src/app/shared/entities/Customer';
@@ -15,7 +15,7 @@ export class CustomerAddressesComponent implements OnInit {
 
   constructor(
     customerService:CustomerService,
-    addressService:AddressService,
+    addressService:CustomerAddressService,
     private route:ActivatedRoute,
     private dialogService:DialogServiceService) {
       this.addressService = addressService;
@@ -28,7 +28,7 @@ export class CustomerAddressesComponent implements OnInit {
   headerForTables:any;
   pathToOperations = [{name:"Cadastrar novo Endereço", path: this.pathPrefix + '/novo', title:"Novo " + this.pathPrefix}];
   customerService:CustomerService;
-  addressService:AddressService;
+  addressService:CustomerAddressService;
   objectToEdit;
 
   ngOnInit(): void {

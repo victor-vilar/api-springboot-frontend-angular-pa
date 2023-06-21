@@ -1,5 +1,5 @@
 import { DialogServiceService } from 'src/app/shared/services/dialog-service.service';
-import { SupervisorService } from 'src/app/customer/services/supervisor.service';
+import { CustomerSupervisorService } from 'src/app/customer/services/customerSupervisor.service';
 import { Component, OnInit, ViewChild, Inject, AfterViewInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -17,7 +17,7 @@ export class CustomerSupervisorsDetailComponent implements OnInit,AfterViewInit,
   constructor(
     private activatedRoute:ActivatedRoute,
     private router:Router,
-    private supervisorService:SupervisorService,
+    private supervisorService:CustomerSupervisorService,
     public dialogRef: MatDialogRef<CustomerSupervisorsDetailComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogService:DialogServiceService) { }

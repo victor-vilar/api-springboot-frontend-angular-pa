@@ -26,11 +26,13 @@ import { ResidueModule } from './residue/residue.module';
 import { EquipamentsModule } from './equipaments/equipaments.module';
 import { CustomerModule } from './customer/customer.module';
 import { SharedModule } from './shared/shared.module';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,5 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { AddressService } from 'src/app/customer/services/address.service';
+import { CustomerAddressService } from 'src/app/customer/services/customerAddress.service';
 import { FormDetail } from 'src/app/shared/entities/FormDetail';
 import { Component, OnInit, ViewChild, Inject, AfterViewInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
@@ -26,7 +26,7 @@ export class CustomerAddressesDetailComponent implements OnInit,AfterViewInit, F
   searchedZipCode="";
 
   constructor(private findFullAddress:FullAddressFinderService,
-    private addressService:AddressService,
+    private addressService:CustomerAddressService,
     private activatedRoute:ActivatedRoute,
     private router:Router,
     public dialogRef: MatDialogRef<CustomerAddressesDetailComponent>,

@@ -2,9 +2,8 @@ import { DialogServiceService } from 'src/app/shared/services/dialog-service.ser
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Customer } from 'src/app/shared/entities/Customer';
-import { AddressService } from 'src/app/customer/services/address.service';
 import { CustomerService } from 'src/app/customer/services/customer.service';
-import { SupervisorService } from 'src/app/customer/services/supervisor.service';
+import { CustomerSupervisorService } from 'src/app/customer/services/customerSupervisor.service';
 import { CustomerSupervisorsDetailComponent } from '../customer-supervisors-detail/customer-supervisors-detail.component';
 
 @Component({
@@ -16,7 +15,7 @@ export class CustomerSupervisorsComponent implements OnInit {
 
   constructor(
     customerService:CustomerService,
-    supervisorService:SupervisorService,
+    supervisorService:CustomerSupervisorService,
     private route:ActivatedRoute,
     private dialogService:DialogServiceService) {
       this.supervisorService = supervisorService;
@@ -29,7 +28,7 @@ export class CustomerSupervisorsComponent implements OnInit {
   headerForTables:any;
   pathToOperations = [{name:"Cadastrar novo fiscal", path: this.pathPrefix + '/novo', title:"Novo " + this.pathPrefix}];
   customerService:CustomerService;
-  supervisorService:SupervisorService;
+  supervisorService:CustomerSupervisorService;
   objectToEdit;
 
   ngOnInit(): void {
