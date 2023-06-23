@@ -1,7 +1,7 @@
 {
   "name": "empresa",
   "version": "1.0.0",
-  "author":"Victor Vilar",
+  "author": "Victor Vilar",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -28,6 +28,7 @@
     "jquery": "^3.6.3",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
+    "typescript-cookie": "^1.0.6",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {

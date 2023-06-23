@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 import { ApplicationUser } from './../../shared/entities/ApplicationUser';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +12,9 @@ export class LoginService {
 
   private BASE_URL = "http://localhost:8080/login-page"
 
-  login(applicationUser: ApplicationUser):Observable<ApplicationUser>{
+  login(applicationUser: ApplicationUser):Observable<HttpResponse<ApplicationUser>>{
     let headers = this.createHeaders(applicationUser);
-    return this.http.get<ApplicationUser>(this.BASE_URL,{headers:headers});
+    return this.http.get<ApplicationUser>(this.BASE_URL,{headers:headers, observe:'response', withCredentials:true});
   }
 
 

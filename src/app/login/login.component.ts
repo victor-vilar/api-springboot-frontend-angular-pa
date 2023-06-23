@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { LoginService } from './services/login.service';
 import { ApplicationUser } from '../shared/entities/ApplicationUser';
+import { getCookie } from 'typescript-cookie';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit {
   usuarioLogado;
 
   ngOnInit(): void {
-    console.log(this.formulario);
+        console.log(getCookie('XSRF-TOKEN'));
+        window.sessionStorage.setItem('cookieDoBack',getCookie('XSRF-TOKEN'))
   }
 
   logar(){
@@ -40,7 +42,8 @@ export class LoginComponent implements OnInit {
   createLoginObserver(){
     return {
       next:(response) =>{
-        this.usuarioLogado = response;
+
+        this.usuarioLogado = response.body;
         this.dialogService.openSucessDialog("sucesso","/dashboard");
         this.dialogService.closeProgressSpinnerDialog();
       },

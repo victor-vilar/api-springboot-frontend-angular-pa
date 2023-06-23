@@ -31,6 +31,7 @@ export class DashboardComponent implements OnInit {
   this.customerService.refreshAllData().subscribe(response =>{this.customerRegisteredLength = response.length});
 
   this.contractService.refreshAllData().subscribe(response =>{
+
     this.contractRegisteredLength = response.length
     //return a list of lists of itens
     let listOfItens = response.map(e => e.itens);
