@@ -15,12 +15,13 @@
 
 :root
 {
-  --cinza:#515F78;
+  --cinza:rgb(48, 57, 62);
   --cinza-escuro:rgb(38, 41, 39);
   --azul:#0341AB;
   --azul-claro:#1BC9DE;
   --rosa:#E6866C;
-  --vermelho:#AB0F03;
+  --vermelho:#ab0f03;
+  --verde:#17ad90;
 }
 
 html, body { height: 100%; }
