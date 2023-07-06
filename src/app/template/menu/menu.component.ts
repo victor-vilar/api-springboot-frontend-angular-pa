@@ -1,3 +1,4 @@
+import { DialogServiceService } from 'src/app/shared/services/dialog-service.service';
 import { LoginService } from './../../login/services/login.service';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
@@ -15,7 +16,7 @@ export class MenuComponent implements OnInit {
   userRole:string;
   userPhoto:string;
 
-  constructor(private loginService:LoginService) { }
+  constructor(private loginService:LoginService,private dialogService:DialogServiceService) { }
   ngOnInit(): void {
   }
 
@@ -27,8 +28,16 @@ export class MenuComponent implements OnInit {
   }
 
   logout(){
-    this.loginService.logout()
-    //this.closeMenuFromFather()
+
+    this.dialogService.openConfirmCloseDialog("Deseja sair da aplicação ?")
+    .subscribe(response =>{
+      if(response){
+        this.loginService.logout();
+      }
+    })
+
+
+
   }
 
 }
