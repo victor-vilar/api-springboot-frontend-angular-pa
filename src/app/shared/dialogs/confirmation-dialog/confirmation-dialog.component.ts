@@ -19,7 +19,7 @@ export class ConfirmationDialogComponent implements OnInit {
 
 
   ngOnInit(){
-    console.log(this.data);
+
     if(this.data !== null && this.data !== undefined){
       this.message = this.data.text;
     }else{
