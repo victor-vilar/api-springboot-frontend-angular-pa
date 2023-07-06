@@ -1,8 +1,8 @@
 <div class="container">
   <div class="logged-user">
-    <img [src]="userPhoto">
-    <h3>{{userName}}</h3>
-    <h5>{{userRole}}</h5>
+    <img [src]="this.applicationUser.profilePhotoUrl">
+    <h3>{{this.applicationUser.username}}</h3>
+    <h5>{{this.applicationUser.roles}}</h5>
     <div class="logout-button"><button (click)="logout()">Logout</button></div>
   </div>
 

@@ -1,6 +1,7 @@
 import { DialogServiceService } from 'src/app/shared/services/dialog-service.service';
 import { LoginService } from './../../login/services/login.service';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ApplicationUser } from 'src/app/shared/entities/ApplicationUser';
 
 @Component({
   selector: 'app-menu',
@@ -11,13 +12,16 @@ export class MenuComponent implements OnInit {
 
 
 
-
-  userName:string;
-  userRole:string;
-  userPhoto:string;
+  applicationUser:ApplicationUser;
+  username:string;
+  role:string[];
+  photo:string;
 
   constructor(private loginService:LoginService,private dialogService:DialogServiceService) { }
+
   ngOnInit(): void {
+    console.log("iniciei")
+    this.applicationUser = this.loginService.applicationUser;
   }
 
   @Output()

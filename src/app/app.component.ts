@@ -18,7 +18,6 @@ export class AppComponent implements OnInit {
   loggedUser:boolean = false;
 
   ngOnInit(): void {
-
     this.loginService.subscribeToLoginUser()
     .subscribe(loggedUser =>{
       this.loggedUser = loggedUser
