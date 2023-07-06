@@ -1,30 +1,37 @@
+<ng-container *ngIf="this.loggedUser === false" class="full-screem-page">
+  <app-login></app-login>
+</ng-container>
 
-<div class="container-fuild">
 
-  <div class="row g-0">
+<div  class="container-fuild">
 
-    <!-- menu-button -->
-    <div class="menu-button-container col">
-      <div>
-        <h3>Empresa</h3>
-        <button class="btn toggle-button" (click)="toggling()">
-          <i class="fas fa-bars"></i>
-        </button>
+
+  <div class="row g-0" *ngIf="this.loggedUser">
+      <!-- menu-button -->
+      <div class="menu-button-container col">
+        <div>
+          <h3>Empresa</h3>
+          <button class="btn toggle-button" (click)="toggling()">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
       </div>
+
+      <!-- menu left -->
+      <div class= "menu-small col-12 col-sm-4 col-md-3 col-xl-2 " #menu>
+          <app-menu (closeMenuFromFatherEmitter) ="closeFromMenu($event)"
+          ></app-menu>
+      </div>
+
+      <!-- main -->
+      <div class="main col-12 col-sm-7 col-md-9 " [ngStyle]="{display:menuSmall ? 'none':'block'}">
+        <router-outlet></router-outlet>
+      </div>
+  </div>
+
+    <div class="footer" [ngStyle]="{display:menuSmall ? 'none':'block'} ">
+      <app-footer></app-footer>
     </div>
 
-    <!-- menu left -->
-    <div class= "menu-small col-12 col-sm-4 col-md-3 col-xl-2 " #menu>
-        <app-menu (closeMenuFromFatherEmitter) ="closeFromMenu($event)"></app-menu>
-    </div>
-
-    <!-- main -->
-    <div class="main col-12 col-sm-7 col-md-9 " [ngStyle]="{display:menuSmall ? 'none':'block'}">
-      <router-outlet></router-outlet>
-    </div>
-  </div>
-  <div class="footer" [ngStyle]="{display:menuSmall ? 'none':'block'} ">
-    <app-footer></app-footer>
-  </div>
 </div>
 

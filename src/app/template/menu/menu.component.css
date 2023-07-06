@@ -33,6 +33,17 @@
 }
 /* ================================= */
 
+/* LOGGED USER */
+.logout-button button{
+  background:none;
+  border: none;
+  color: white;
+  font-weight: bolder;
+  
+}
+/* ================================= */
+
+
 /* NAVEGATION MENU */
 .navegation{
   padding-left: 0;

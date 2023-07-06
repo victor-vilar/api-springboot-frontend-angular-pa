@@ -1,9 +1,11 @@
 <div class="container">
   <div class="logged-user">
-    <img src="assets/img-teste.jpg">
+    <img [src]="userPhoto">
     <h3>{{userName}}</h3>
     <h5>{{userRole}}</h5>
+    <div class="logout-button"><button (click)="logout()">Logout</button></div>
   </div>
+
   <div class="division"></div>
   <div class="navegation">
       <div>

@@ -1,4 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { LoginService } from './../../login/services/login.service';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-menu',
@@ -7,10 +8,14 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  userName="Madruga";
-  userRole="Agente especializado em compra e venda de artigos para o lar";
 
-  constructor() { }
+
+
+  userName:string;
+  userRole:string;
+  userPhoto:string;
+
+  constructor(private loginService:LoginService) { }
   ngOnInit(): void {
   }
 
@@ -19,6 +24,11 @@ export class MenuComponent implements OnInit {
 
   closeMenuFromFather(){
     this.closeMenuFromFatherEmitter.emit(true);
+  }
+
+  logout(){
+    this.loginService.logout()
+    //this.closeMenuFromFather()
   }
 
 }

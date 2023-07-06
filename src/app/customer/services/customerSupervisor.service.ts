@@ -19,7 +19,7 @@ export class CustomerSupervisorService extends CrudBaseService<Supervisor> imple
 
   getAllByCustomerId(customerId:string | number):Observable<Supervisor[]>{
     this.route = CrudBaseService.BASE_URL + this.rota + '/by-customer/' + customerId;
-    return this.http.get<Supervisor[]>(this.route);
+    return this.http.get<Supervisor[]>(this.route,{withCredentials:true});
   }
 
   mapItens(list:any[]):any[]{

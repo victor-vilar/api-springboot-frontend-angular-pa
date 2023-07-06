@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { LoginService } from './services/login.service';
 import { ApplicationUser } from '../shared/entities/ApplicationUser';
 import { getCookie } from 'typescript-cookie';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,20 +16,17 @@ export class LoginComponent implements OnInit {
   @ViewChild('meuForm') formulario:NgForm;
 
 
-  constructor(private loginService:LoginService, private dialogService: DialogServiceService) { }
+  constructor(private loginService:LoginService, private router:Router) { }
 
-  usuarioLogado;
 
   ngOnInit(): void {
-        console.log(getCookie('XSRF-TOKEN'));
-        window.sessionStorage.setItem('cookieDoBack',getCookie('XSRF-TOKEN'))
+    if(window.sessionStorage.getItem("loggedUser")){
+      this.router.navigate(["/dashboard"]);
+    }
   }
 
   logar(){
-    this.dialogService.openProgressDialog();
-    let applicationUser = this.createsApplicationUser();
-    this.loginService.login(applicationUser).subscribe(this.createLoginObserver());
-
+    this.loginService.login(this.createsApplicationUser());
   }
 
   createsApplicationUser():ApplicationUser{
@@ -39,19 +37,8 @@ export class LoginComponent implements OnInit {
   }
 
 
-  createLoginObserver(){
-    return {
-      next:(response) =>{
 
-        this.usuarioLogado = response.body;
-        this.dialogService.openSucessDialog("sucesso","/dashboard");
-        this.dialogService.closeProgressSpinnerDialog();
-      },
-      error:(response) => {
-        this.dialogService.openErrorDialog(response.message);
-        this.dialogService.closeProgressSpinnerDialog();
-      },
-    }
-  }
+
+
 
 }

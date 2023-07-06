@@ -1,17 +1,32 @@
-import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+import { ApplicationUser } from './shared/entities/ApplicationUser';
+import { LoginService } from './login/services/login.service';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
-  constructor(private renderer:Renderer2){};
+  constructor(private renderer:Renderer2, private loginService:LoginService, private router:Router){};
 
   @ViewChild('menu') menuContainer?:ElementRef;
   @ViewChild('main') mainContainer?:ElementRef;
   menuSmall = false;
+  loggedUser:boolean = false;
+
+  ngOnInit(): void {
+
+    this.loginService.subscribeToLoginUser()
+    .subscribe(loggedUser =>{
+      this.loggedUser = loggedUser
+      this.menuSmall = true;
+      this.toggling();
+    });
+
+}
 
 
   //template functions
@@ -33,5 +48,6 @@ export class AppComponent {
     this.menuSmall = option;
     this.toggling();
   }
+
 
 }
