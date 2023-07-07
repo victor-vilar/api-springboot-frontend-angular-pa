@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -28,6 +28,7 @@ import { CustomerModule } from './customer/customer.module';
 import { SharedModule } from './shared/shared.module';
 import { LoginComponent } from './login/login.component';
 import { LoginModule } from './login/login.module';
+import { jwtTokenInterceptorFilter } from './security/jwtTokenInterceptorFilter';
 
 
 @NgModule({
@@ -48,7 +49,10 @@ import { LoginModule } from './login/login.module';
     CustomerModule,
     LoginModule
   ],
-  providers: [{provide: MAT_DATE_LOCALE, useValue: 'pt-BR'}],
+  providers: [
+    {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'},
+    {provide: HTTP_INTERCEPTORS, useClass:jwtTokenInterceptorFilter, multi:true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
