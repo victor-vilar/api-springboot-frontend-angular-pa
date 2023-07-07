@@ -50,6 +50,10 @@ export class LoginService {
     })
   };
 
+  public getJwtToken():string{
+    return window.sessionStorage.getItem("token");
+  }
+
 
   //TODO GET JWT TOKEN FROM BACKEND
   private createLoginObserver(){
