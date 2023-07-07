@@ -58,6 +58,7 @@ export class LoginService {
         this.dialogService.closeProgressSpinnerDialog();
         this.applicationUser = response.body;
         window.sessionStorage.setItem('loggedUser',JSON.stringify(response.body))
+        window.sessionStorage.setItem('token',response.headers.get('Authorization'))
         this.logginObserver.next(true);
         this.router.navigate(['/dashboard'])
       },
