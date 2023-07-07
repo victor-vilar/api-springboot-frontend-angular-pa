@@ -3,7 +3,7 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/c
 import { Observable } from 'rxjs';
 
 @Injectable()
-export class myAngularApplicationHttpFilter implements HttpInterceptor {
+export class jwtTokenInterceptorFilter implements HttpInterceptor {
 
 
   intercept(req: HttpRequest<any>, next: HttpHandler):Observable<HttpEvent<any>> {
