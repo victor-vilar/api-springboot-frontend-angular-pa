@@ -51,7 +51,11 @@ export class LoginService {
   };
 
   public getJwtToken():string{
-    return window.sessionStorage.getItem("token");
+    return window.sessionStorage.getItem("jwtToken");
+  }
+
+  public getCsrfToken():string{
+    return window.sessionStorage.getItem("XSRF");
   }
 
 
@@ -62,7 +66,8 @@ export class LoginService {
         this.dialogService.closeProgressSpinnerDialog();
         this.applicationUser = response.body;
         window.sessionStorage.setItem('loggedUser',JSON.stringify(response.body))
-        window.sessionStorage.setItem('token',response.headers.get('Authorization'))
+        window.sessionStorage.setItem('jwtToken',response.headers.get('Authorization'))
+        window.sessionStorage.setItem('XSRF', response.headers.get('XSRF'))
         this.logginObserver.next(true);
         this.router.navigate(['/dashboard'])
       },

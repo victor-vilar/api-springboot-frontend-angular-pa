@@ -29,6 +29,7 @@ import { SharedModule } from './shared/shared.module';
 import { LoginComponent } from './login/login.component';
 import { LoginModule } from './login/login.module';
 import { jwtTokenInterceptorFilter } from './security/jwtTokenInterceptorFilter';
+import { csrfTokenInterceptorFilter } from './security/csrfTokenInterceptorFilter';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { jwtTokenInterceptorFilter } from './security/jwtTokenInterceptorFilter'
   ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'},
-    {provide: HTTP_INTERCEPTORS, useClass:jwtTokenInterceptorFilter, multi:true}
+    {provide: HTTP_INTERCEPTORS, useClass:jwtTokenInterceptorFilter, multi:true},
+    {provide: HTTP_INTERCEPTORS, useClass:csrfTokenInterceptorFilter, multi:true}
   ],
   bootstrap: [AppComponent]
 })
