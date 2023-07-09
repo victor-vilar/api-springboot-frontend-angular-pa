@@ -4,6 +4,8 @@
   padding:10px 0px;
   color: #FFF;
   height: 100%;
+  overflow: hidden;
+  overflow-y: scroll;
 }
 
 .division{
@@ -39,7 +41,7 @@
   border: none;
   color: white;
   font-weight: bolder;
-  
+
 }
 /* ================================= */
 
