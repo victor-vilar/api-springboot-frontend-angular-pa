@@ -10,7 +10,7 @@
 }
 
 .activated{
-  background-color: #515F78;
+  background-color: var(--secundaria);
 }
 
 :root
