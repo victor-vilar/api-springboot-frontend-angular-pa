@@ -29,10 +29,15 @@ export class LoginService {
 
 
   login(applicationUser: ApplicationUser){
-    this.dialogService.openProgressDialog();
-    let headers = this.createHeaders(applicationUser);
-    this.http.get<ApplicationUser>(this.BASE_URL,{headers:headers, observe:'response',withCredentials:true})
-    .subscribe(this.createLoginObserver());
+
+    this.makeFakeLogin();
+
+
+
+    // this.dialogService.openProgressDialog();
+    // let headers = this.createHeaders(applicationUser);
+    // this.http.get<ApplicationUser>(this.BASE_URL,{headers:headers, observe:'response',withCredentials:true})
+    // .subscribe(this.createLoginObserver());
   }
 
 
@@ -59,6 +64,11 @@ export class LoginService {
     return window.sessionStorage.getItem("XSRF");
   }
 
+  private makeFakeLogin(){
+    this.applicationUser = {username:"fake",roles:['ADMIN'],profilePhotoUrl:''}
+    this.logginObserver.next(true);
+    this.router.navigate(['dashboard'])
+  }
 
 
   private createLoginObserver(){

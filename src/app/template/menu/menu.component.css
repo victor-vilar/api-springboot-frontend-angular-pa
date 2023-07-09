@@ -37,9 +37,10 @@
 
 /* LOGGED USER */
 .logout-button button{
-  background:none;
+  background-color:var(--secundaria);
   border: none;
   color: white;
+  padding:5px;
   font-weight: bolder;
 
 }

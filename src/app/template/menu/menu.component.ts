@@ -20,7 +20,6 @@ export class MenuComponent implements OnInit {
   constructor(private loginService:LoginService,private dialogService:DialogServiceService) { }
 
   ngOnInit(): void {
-    console.log("iniciei")
     this.applicationUser = this.loginService.applicationUser;
   }
 
