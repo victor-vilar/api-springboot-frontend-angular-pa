@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { ApplicationUser } from './../../shared/entities/ApplicationUser';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { getCookie } from 'typescript-cookie';
 
 @Injectable({
   providedIn: 'root'
@@ -59,21 +60,31 @@ export class LoginService {
   }
 
 
-  //TODO GET JWT TOKEN FROM BACKEND
+
   private createLoginObserver(){
     return {
       next:(response) =>{
+        //closing progress spinner
         this.dialogService.closeProgressSpinnerDialog();
+        //getting application user from respose.body
         this.applicationUser = response.body;
+        //setting user info
         window.sessionStorage.setItem('loggedUser',JSON.stringify(response.body))
+        //setting jwt token
         window.sessionStorage.setItem('jwtToken',response.headers.get('Authorization'))
-        window.sessionStorage.setItem('XSRF', response.headers.get('XSRF'))
+        //setting csrf token
+        let xsrf = getCookie('XSRF-TOKEN')
+        window.sessionStorage.setItem('XSRF', xsrf )
+        //send observable signal
         this.logginObserver.next(true);
-        this.router.navigate(['/dashboard'])
+        //navigating to dashboard
+        this.router.navigate(['dashboard'])
       },
       error:(error) => {
+        //closing progress sprinner
         this.dialogService.closeProgressSpinnerDialog();
-        this.dialogService.openErrorDialog(error.message);
+        //show dialog with error message and error code
+        this.dialogService.openErrorDialog(error.code + " : " +error.message);
         throw Error(error.message);
 
       }

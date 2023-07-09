@@ -14,7 +14,7 @@ export class csrfTokenInterceptorFilter implements HttpInterceptor {
     const token = this.loginService.getCsrfToken();
 
     if(token !== null){
-      let reqClone = req.clone({setHeaders:{'X-XSRF': token}})
+      let reqClone = req.clone({setHeaders:{'X-XSRF-TOKEN': token}})
       return next.handle(reqClone);
     }
 
