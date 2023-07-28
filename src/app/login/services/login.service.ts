@@ -30,14 +30,16 @@ export class LoginService {
 
   login(applicationUser: ApplicationUser){
 
-    this.makeFakeLogin();
+
+    //method to fake a login,
+    //this.makeFakeLogin();
 
 
 
-    // this.dialogService.openProgressDialog();
-    // let headers = this.createHeaders(applicationUser);
-    // this.http.get<ApplicationUser>(this.BASE_URL,{headers:headers, observe:'response',withCredentials:true})
-    // .subscribe(this.createLoginObserver());
+     this.dialogService.openProgressDialog();
+     let headers = this.createHeaders(applicationUser);
+     this.http.get<ApplicationUser>(this.BASE_URL,{headers:headers, observe:'response',withCredentials:true})
+     .subscribe(this.createLoginObserver());
   }
 
 
@@ -70,7 +72,10 @@ export class LoginService {
     this.router.navigate(['dashboard'])
   }
 
-
+/**
+ * method to return a observer that going to be used at subscribe of http.get
+ * @returns a observer
+ */
   private createLoginObserver(){
     return {
       next:(response) =>{

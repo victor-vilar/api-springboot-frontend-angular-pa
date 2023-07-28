@@ -273,7 +273,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
       contract.customerId = this.objectToEdit.customerId;
 
       //put on api
-      observervable$ = this.contractService.update(contract.id,contract);
+      observervable$ = this.contractService.update(contract);
     }
 
     //executing observable
@@ -376,7 +376,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
   }
 
 
-  //needed to compare the itens. If the item comes from databse, it return with your id number,
+  //needed to compare the itens. If the item comes from databse, it return with its id number,
   //and if try to save a new item it will be without id. i need to compare itens with and without id
   itemContractCompare(item1:ItemContract,item2:ItemContract){
 

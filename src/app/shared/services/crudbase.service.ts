@@ -47,8 +47,8 @@ export abstract class CrudBaseService<T>{
     return this.http.get<T>(CrudBaseService.BASE_URL + this.rota + '/' + id,{withCredentials:true});
   };
 
-  update(id:number | string, type:T):Observable<T>{
-    return this.http.put<T>(CrudBaseService.BASE_URL + this.rota  + '/' + id, type,{withCredentials:true});
+  update(type:T):Observable<T>{
+    return this.http.put<T>(CrudBaseService.BASE_URL + this.rota, type,{withCredentials:true});
   };
 
   delete(id:number | string):Observable<T>{

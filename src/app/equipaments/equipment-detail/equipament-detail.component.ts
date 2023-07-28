@@ -123,7 +123,7 @@ export class EquipmentDetailComponent implements OnInit, AfterViewInit, FormDeta
     if(object.id === undefined){
       observable$ = this.service.save(object);
     }else{
-      observable$ = this.service.update(object.id,object);
+      observable$ = this.service.update(object);
     }
 
     observable$.subscribe(this.saveObjectObserver());

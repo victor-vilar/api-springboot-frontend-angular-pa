@@ -85,7 +85,7 @@ export class ResidueDetailComponent implements OnInit,AfterViewInit, FormDetail 
     if(residue.id === undefined){
         observable$ = this.service.save(residue);
     }else{
-        observable$ = this.service.update(residue.id,residue);
+        observable$ = this.service.update(residue);
     }
       observable$.subscribe(this.saveObjectObserver());
 

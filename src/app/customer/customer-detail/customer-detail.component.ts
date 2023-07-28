@@ -84,7 +84,7 @@ export class CustomerDetailComponent implements OnInit, AfterViewInit, FormDetai
     if(this.idOfEditedItem === undefined){
       obervable$ =this.service.save(customer);
     }else{
-      obervable$ =this.service.update(customer.cpfCnpj,customer)
+      obervable$ =this.service.update(customer)
     }
 
     obervable$.subscribe(this.customerObserver());

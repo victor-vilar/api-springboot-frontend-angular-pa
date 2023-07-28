@@ -34,7 +34,7 @@ export class DialogServiceService {
     this.afterCloseDialog(dialogRef,rota);
   }
 
-  //Metodo utilizdo para abrir um dialog, passando o compoenente que deseja utilizar no dialog passando tambem
+  //Metodo utilizado para abrir um dialog, passando o componente que deseja utilizar no dialog passando tambem
   //o id do customer, necessário nos formularios de cadastro de contratos, endereços e fiscais.
   //@compoent = componente que será aberto no dialog.
   //@ObjectToEdit = objeto que sera passado (caso exista) para o formulário
@@ -49,7 +49,14 @@ export class DialogServiceService {
     this.afterCloseDialog(dialogRef,rota);
   }
 
-  openDialogPassingCustomerIdAndReturnCloseObservable(component:any,objectToEdit:any,customerId:string,rota:string):Observable<boolean>{
+  /**
+   *Metodo para abrir um formulário que precisa do id do cliente em forma de dialogo
+   * @param component componente que será aberto no dialog.
+   * @param objectToEdit objeto que o componente irá manipular, se for um componente de contrato ira manipular um contrato passado
+   * @param customerId id do cliente que
+   * @returns observable do que ira fazer após fechar o dialog
+   */
+  openDialogPassingCustomerIdAndReturnCloseObservable(component:any,objectToEdit:any,customerId:string):Observable<boolean>{
     const dialogRef = this.dialog.open(component,{disableClose: true,data:{
       objectToEdit: objectToEdit,
       clientCpfCnpj:customerId,
@@ -57,7 +64,12 @@ export class DialogServiceService {
     return dialogRef.afterClosed();
   }
 
-  //Metodo que será executado após os dialogs serem fechados, redirecionando para alguma rota especifica.
+
+  /**
+   *Metodo que será executado após os dialogs serem fechados, redirecionando para alguma rota especifica.
+   * @param dialogRef
+   * @param rota
+   */
   private afterCloseDialog(dialogRef:MatDialogRef<any>, rota:string){
     dialogRef.afterClosed().subscribe(result => {
       this.router.navigate([rota], { queryParams: {  }});
@@ -96,14 +108,16 @@ export class DialogServiceService {
   }
 
 
-  //Método para abrir o dialogo de erro.
-  //@message = menssagem de erro que será exibida dentro do dialog.
+  //Método para abrir o dialogo de sucesso.
+  //@message = menssagem  que será exibida dentro do dialog.
   //@rota = local para onde será redirecionado apos o fechamento do dialog
   openSucessDialog(message:string,rota:string):void {
     const dialogRef = this.dialog.open(SuccessDialogComponent,{data:{message:message}});
     this.afterCloseDialog(dialogRef,rota);
   }
 
+  //Método para abrir o dialogo de sucesso sem necessidade de ser redirecionado.
+  //@message =menssagem quer será exibida no dialog
   openSuccessDialogWithoutRedirect(message:string):void{
     const dialogRef = this.dialog.open(SuccessDialogComponent,{data:{message:message}});
   }

@@ -62,7 +62,7 @@ export class CustomerSupervisorsDetailComponent implements OnInit,AfterViewInit,
       observable$ = this.supervisorService.save(supervisor);
     }else{
       supervisor.id = this.objectToEdit.id;
-      observable$ = this.supervisorService.update(supervisor.id,supervisor);
+      observable$ = this.supervisorService.update(supervisor);
     }
 
     observable$.subscribe(this.saveSupervisorObserver());

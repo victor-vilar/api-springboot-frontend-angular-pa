@@ -82,7 +82,7 @@ export class CustomerAddressesDetailComponent implements OnInit,AfterViewInit, F
     }else{
       address.id = this.objectToEdit.id;
       console.log(address);
-      observable$ = this.addressService.update(address.id,address);
+      observable$ = this.addressService.update(address);
     }
 
     observable$.subscribe(this.saveAddressObserver());
