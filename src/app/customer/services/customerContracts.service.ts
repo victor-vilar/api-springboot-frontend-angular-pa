@@ -39,7 +39,7 @@ export class CustomerContractsService extends CrudBaseService<Contract> implemen
     return list.map(e => {
 
       let total = 0;
-      e.itens.forEach(item=>total += item.itemValue * item.qtdOfResidue);
+      e.itens.forEach(item=>total += item.value * item.qtdOfResidue);
 
       return {
         id:e.id,
