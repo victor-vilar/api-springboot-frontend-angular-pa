@@ -24,11 +24,7 @@ const routes: Routes = [
     {path:'residuo/:id',component:ResidueDetailComponent},
     {path:'residuo/novo',component:ResidueDetailComponent},
   ]},
-  {path:'equipamentos',component:EquipmentsComponent, children:[
-    {path:'equipamento/:id',component:EquipmentDetailComponent},
-    {path:'equipamento/novo',component:EquipmentDetailComponent},
 
-  ]},
   {path:'login',component:LoginComponent},
 ];
 

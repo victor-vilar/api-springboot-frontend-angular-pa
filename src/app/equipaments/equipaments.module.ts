@@ -22,6 +22,7 @@ import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { SharedModule } from '../shared/shared.module';
+import { EquipmentRoutingModule } from './equipment-routing.module';
 
 
 
@@ -32,6 +33,7 @@ import { SharedModule } from '../shared/shared.module';
   ],
   imports: [
     CommonModule,
+    EquipmentRoutingModule,
     BrowserModule,
     AppRoutingModule,
     NgbModule,
