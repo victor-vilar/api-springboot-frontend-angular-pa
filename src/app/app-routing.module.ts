@@ -20,12 +20,7 @@ import { LoginComponent } from './login/login.component';
 const routes: Routes = [
   {path:'',redirectTo:'dashboard', pathMatch:'full'},
   {path:'dashboard',component:DashboardComponent},
-  {path:'residuos',component:ResidueComponent, children:[
-    {path:'residuo/:id',component:ResidueDetailComponent},
-    {path:'residuo/novo',component:ResidueDetailComponent},
-  ]},
 
-  {path:'login',component:LoginComponent},
 ];
 
 @NgModule({

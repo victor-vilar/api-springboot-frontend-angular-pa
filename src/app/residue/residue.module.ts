@@ -23,6 +23,7 @@ import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { TemplateModule } from 'src/app/template/template.module';
+import { ResidueRoutingModule } from './residue-routing.module';
 
 
 
@@ -33,6 +34,7 @@ import { TemplateModule } from 'src/app/template/template.module';
   ],
   imports: [
     CommonModule,
+    ResidueRoutingModule,
     BrowserModule,
     AppRoutingModule,
     NgbModule,
