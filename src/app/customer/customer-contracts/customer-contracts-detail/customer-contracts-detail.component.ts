@@ -324,6 +324,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
     }
   }
 
+  //check if the item contract item value and quantity are number
   checkIfItemContractInputsAreNumbers(){
     if(isNaN(this.form.value.quantity) || isNaN(this.form.value.itemValue) || this.form.value.quantity <= 0 || this.form.value.itemValue <=0){
       let errorMessage = 'Os campos de quantidade e valor, dos campos do cadastro de resíduos, devem ser do tipo número e serem maiores do que zero'
@@ -363,6 +364,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
   deleteItemsFromApi(){
     if(this.deletedItensFromContractList.length > 0){
 
+      //get each item deleted and deletes from backend api
       this.deletedItensFromContractList.forEach(e => {
         if(e.id !== null && e.id !== undefined){
           let observable$ = this.contractService.deleteItemFromContract(e);
@@ -439,13 +441,18 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
   createsContractObserver():any{
     return{
       next:(response) =>{
+        //colse progress dialog
         this.dialogService.closeProgressSpinnerDialog();
+        //show success message
         this.dialogService.openSucessDialog('Contrato salvo com sucesso !','/clientes');
+        //update all contract from api
         this.contractService.getAll();
 
       },
       error:(error)=>{
+        //close progress dialog
         this.dialogService.closeProgressSpinnerDialog();
+        //show error message
         this.dialogService.openErrorDialog(error.message);
       }
     }
@@ -454,11 +461,15 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
   deletesContractObserver():any{
     return{
       next:(response) =>{
+        //close progress dialog
         this.dialogService.closeProgressSpinnerDialog();
+        //show success message
         this.dialogService.openSucessDialog('Contrato deletado com sucesso !','/clientes');
       },
       error:(error)=>{
+        //close progress dialog
         this.dialogService.closeProgressSpinnerDialog();
+        //show error message
         this.dialogService.openErrorDialog(error.message);
       }
     }
@@ -494,9 +505,11 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
 
   //override
   canDeactivate(){
-
+    //if contract form it is dirty and the form button was not pressed to save the alteration
+    //display message asking the user wants to save
     if(this.form.dirty){
         this.dialogService.openConfirmCloseDialog("Deseja sair sem salvar ?").subscribe(response =>{
+          //if the user doesn't want to save, destroy component
           if(response){
             this.destroy();
           }
