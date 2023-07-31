@@ -32,6 +32,7 @@ import { SharedModule } from '../shared/shared.module';
 import { CustomerInfoComponent } from './customer-util/customer-info/customer-info.component';
 import { ItensTableCustomerComponent } from './customer-util/itens-table-customer/itens-table-customer.component';
 import { ItensTableItemContractComponent } from './customer-util/itens-table-item-contract/itens-table-item-contract.component';
+import { CustomerRoutingModule } from './customer-routing.module';
 
 @NgModule({
   declarations: [
@@ -46,9 +47,9 @@ import { ItensTableItemContractComponent } from './customer-util/itens-table-ite
     CustomerInfoComponent,
     ItensTableCustomerComponent,
     ItensTableItemContractComponent,
-    ItensTableItemContractComponent,
   ],
   imports: [
+    CustomerRoutingModule,
     CommonModule,
     BrowserModule,
     AppRoutingModule,

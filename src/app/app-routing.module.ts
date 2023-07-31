@@ -20,22 +20,6 @@ import { LoginComponent } from './login/login.component';
 const routes: Routes = [
   {path:'',redirectTo:'dashboard', pathMatch:'full'},
   {path:'dashboard',component:DashboardComponent},
-  {path:'clientes',component:CustomerComponent, children:[
-    {path:'cliente/:id',component:CustomerDetailComponent},
-    {path:'cliente/novo',component:CustomerDetailComponent},
-  ]},
-  {path:'cliente/:cpfCnpj/contratos',component:CustomerContractsComponent, children:[
-    {path:'contrato/:id',component:CustomerContractsDetailComponent},
-    {path:'contrato/novo',component:CustomerContractsDetailComponent},
-  ]},
-  {path:'cliente/:cpfCnpj/enderecos',component:CustomerAddressesComponent, children:[
-    {path:'endereco/:id',component:CustomerAddressesDetailComponent},
-    {path:'endereco/novo',component:CustomerAddressesDetailComponent},
-  ]},
-  {path:'cliente/:cpfCnpj/fiscais',component:CustomerSupervisorsComponent, children:[
-    {path:'fiscal/:id',component:CustomerSupervisorsDetailComponent},
-    {path:'fiscal/novo',component:CustomerSupervisorsDetailComponent},
-  ]},
   {path:'residuos',component:ResidueComponent, children:[
     {path:'residuo/:id',component:ResidueDetailComponent},
     {path:'residuo/novo',component:ResidueDetailComponent},
