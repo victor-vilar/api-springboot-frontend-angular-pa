@@ -6,7 +6,7 @@ export interface Contract{
   number:string;
   beginDate:Date;
   endDate:Date;
-  itens?:ItemContract[] | any[];
+  itens?:ItemContract[];
   customer?:Customer;
   customerId:string;
 }

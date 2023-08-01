@@ -16,12 +16,16 @@ mat-form-field{
 
 .login-container {
   width: 300px;
-  border-radius: 15px;
+  border-radius: 3px;
   border: 1px solid;
   background-color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
+}
+
+.login-header h3{
+  font-weight: bolder;
+  padding: 5px;
+  padding-left: 10px;
 }
 
 .login-container form{
@@ -37,6 +41,13 @@ mat-form-field{
   max-height: 60px;
   margin-bottom: 10px;
   width: 280px;
+}
+
+.form-bottom{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+
 }
 
 button {
@@ -56,5 +67,6 @@ button:hover {
   background-color: var(--verde);
   color:var(--cinza-escuro);
 }
+
 
 
