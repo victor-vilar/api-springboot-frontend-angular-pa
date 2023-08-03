@@ -42,6 +42,7 @@
   color: white;
   padding:5px;
   font-weight: bolder;
+  border-radius: 3px;
 
 }
 /* ================================= */
@@ -61,7 +62,7 @@
   transition:  color 0.2s ease-in-out;
   display: flex;
   align-items: center;
-  border-radius:5px;
+  gap:15px;
 }
 
 .navegation div a:hover {

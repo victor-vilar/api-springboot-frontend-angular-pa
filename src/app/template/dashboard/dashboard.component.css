@@ -11,7 +11,7 @@
 
 .dashboard-cards-item{
   background-color: var(--cinza-escuro);
-  border-radius: 5px ;
+  border-radius: 3px ;
   color: white;
   padding:15px;
   text-align: center;

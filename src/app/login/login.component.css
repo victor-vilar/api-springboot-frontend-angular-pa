@@ -41,6 +41,7 @@ mat-form-field{
   max-height: 60px;
   margin-bottom: 10px;
   width: 280px;
+
 }
 
 .form-bottom{
@@ -58,9 +59,10 @@ button {
   font-weight: bolder;
   background-color: var(--cinza-escuro);
   color:white;
-  border-radius: 5px;
+  border-radius: 3px;
   margin-bottom: 10px;
-  transition: all 0.5s;
+  transition: all 0.2s;
+  box-shadow: 5px 7px 20px -9px rgba(0,0,0,0.8);
 }
 
 button:hover {

@@ -3,10 +3,10 @@
 </ng-container>
 
 
-<div  class="container-fuild">
+<div  class="container-fuild" *ngIf="this.loggedUser">
 
 
-  <div class="row g-0" *ngIf="this.loggedUser">
+  <div class="row g-0" >
       <!-- menu-button -->
       <div class="menu-button-container col">
         <div>
