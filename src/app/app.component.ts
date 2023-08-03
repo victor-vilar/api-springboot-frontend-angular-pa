@@ -18,14 +18,24 @@ export class AppComponent implements OnInit {
   loggedUser:boolean = false;
 
   ngOnInit(): void {
+
+    //if the brownser already have an user in window session
+    if(this.loginService.getUserFromBrownser() != undefined && this.loginService.getUserFromBrownser() != null){
+      this.loggedUser = true
+      this.afterLoginIn();
+    }
+
     this.loginService.subscribeToLoginUser()
     .subscribe(loggedUser =>{
       this.loggedUser = loggedUser
-      this.menuSmall = true;
-      this.toggling();
+      this.afterLoginIn();
     });
-
 }
+
+  private afterLoginIn(){
+    this.menuSmall = true;
+    this.toggling();
+  }
 
 
   //template functions

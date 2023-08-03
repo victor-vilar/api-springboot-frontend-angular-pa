@@ -27,7 +27,10 @@ export class LoginService {
      }
 
 
-
+/**
+ *make login
+ * @param applicationUser
+ */
   login(applicationUser: ApplicationUser){
 
 
@@ -42,15 +45,22 @@ export class LoginService {
      .subscribe(this.createLoginObserver());
   }
 
-
+/**
+ * do logout and
+ * clear the window storaged
+ */
   logout(){
     window.sessionStorage.clear();
     this.applicationUser = null;
     this.logginObserver.next(false);
-    this.router.navigate(['/login'])
+    this.router.navigate(['/login']);
   }
 
-
+/**
+ *  creates a header with a basic authentication
+ * @param applicationUser object
+ * @returns httpHeader with an basic authentication
+ */
   private createHeaders(applicationUser:ApplicationUser): HttpHeaders{
     return new HttpHeaders({
       'Content-Type':  'application/json',
@@ -58,18 +68,41 @@ export class LoginService {
     })
   };
 
+  /**
+   * get jwt token stored inside session storage
+   * @returns jwt token or undefined
+   */
+
   public getJwtToken():string{
     return window.sessionStorage.getItem("jwtToken");
   }
 
+  /**
+   * get the csrf token stored inside session storage
+   * @returns csrf token or undefined
+   */
   public getCsrfToken():string{
     return window.sessionStorage.getItem("XSRF");
   }
 
+
+  /**
+   * make a fake login to test frontend and make alterations without the needed of login
+   */
   private makeFakeLogin(){
     this.applicationUser = {username:"fake",roles:['ADMIN'],profilePhotoUrl:''}
     this.logginObserver.next(true);
     this.router.navigate(['dashboard'])
+  }
+
+  /**
+   * get application user from brows session storage
+   * @returns this applicationUser instance or undefined ;
+   */
+  public getUserFromBrownser():ApplicationUser{
+    this.applicationUser = window.sessionStorage.getItem('loggedUser');
+    console.log(this.applicationUser);
+    return this.applicationUser;
   }
 
 /**
