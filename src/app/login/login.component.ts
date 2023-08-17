@@ -16,7 +16,9 @@ export class LoginComponent implements OnInit {
   @ViewChild('meuForm') formulario:NgForm;
 
 
-  constructor(private loginService:LoginService, private router:Router) { }
+  constructor(private loginService:LoginService,
+     private router:Router,
+     private dialogService:DialogServiceService) { }
 
 
   ngOnInit(): void {
@@ -30,10 +32,18 @@ export class LoginComponent implements OnInit {
   }
 
   createsApplicationUser():ApplicationUser{
+
+
+    if(this.formulario.value.username === "" || this.formulario.value.password === ""){
+      this.dialogService.openErrorDialog('Os campos de usuario e senha não podem estar vazios !');
+      throw Error("username and password fields can't be null")
+    }
+
     return {
       username: this.formulario.value.username,
       password: this.formulario.value.password
     }
+
   }
 
 

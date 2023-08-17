@@ -15,6 +15,8 @@ export class LoginService {
 
   applicationUser = null;
   private BASE_URL = "http://localhost:8080/v1/login";
+  private BASE_LOGOUT = "http://localhost:8080/logout";
+  private APPLICATION_USER_NOT_FOUND_ERROR = "Application User not found !";
 
   constructor(private http:HttpClient,
      private router:Router,
@@ -53,6 +55,7 @@ export class LoginService {
     window.sessionStorage.clear();
     this.applicationUser = null;
     this.logginObserver.next(false);
+    this.http.get<any>(this.BASE_LOGOUT).subscribe(response => console.log(response));
     this.router.navigate(['/login']);
   }
 
@@ -131,8 +134,18 @@ export class LoginService {
       error:(error) => {
         //closing progress sprinner
         this.dialogService.closeProgressSpinnerDialog();
+
+
+        //if the username or password its wrong will.
+        if(error.error.message === this.APPLICATION_USER_NOT_FOUND_ERROR){
+          this.dialogService.openErrorDialog("Usuário ou senha incorretos, por favor tente novamente !");
+        //http failure response
+        }else if(error.status===200){
+          this.dialogService.openErrorDialog("Não foi possível estabelecer um conexão com o servidor !");
+        }
+
+
         //show dialog with error message and error code
-        this.dialogService.openErrorDialog(error.code + " : " +error.message);
         throw Error(error.message);
 
       }
