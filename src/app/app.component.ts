@@ -40,17 +40,21 @@ export class AppComponent implements OnInit {
 
   //template functions
   toggling(){
+
     if(this.menuSmall){
-      this.menuContainer?.nativeElement.classList.remove('menu');
       this.menuContainer?.nativeElement.classList.add('menu-small');
-      //this.renderer.setStyle(this.mainContainer,'display','hidden');
+      this.menuContainer?.nativeElement.classList.remove('menu');
+
     }else{
       this.menuContainer?.nativeElement.classList.add('menu');
       this.menuContainer?.nativeElement.classList.remove('menu-small');
-      //this.renderer.removeStyle(this.mainContainer,'display');
     }
 
-    this.menuSmall = !this.menuSmall;
+    setTimeout(() => {
+      this.menuSmall = !this.menuSmall;
+    },200);
+
+
   }
 
   closeFromMenu(option:boolean){

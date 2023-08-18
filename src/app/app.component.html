@@ -8,14 +8,17 @@
 
   <div class="row g-0" >
       <!-- menu-button -->
-      <div class="menu-button-container col">
-        <div>
-          <h3>Empresa</h3>
-          <button class="btn toggle-button" (click)="toggling()">
-            <i class="fas fa-bars"></i>
-          </button>
-        </div>
+      <div class="menu-button-container col position-fixed">
+        <nav class="navbar bg-body-tertiary">
+          <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1 font-weight-bold">Empresa</span>
+            <button class="btn toggle-button" (click)="toggling()">
+              <i class="fas fa-bars"></i>
+            </button>
+          </div>
+        </nav>
       </div>
+
 
       <!-- menu left -->
       <div class= "menu-small col-12 col-sm-4 col-md-3 col-xl-2 " #menu>

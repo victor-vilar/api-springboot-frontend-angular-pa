@@ -11,42 +11,49 @@
 }
 
 .menu-button-container{
-  position:fixed;
   background-color: var(--cinza-escuro);
-  height: 50px;
-  color: white;
+  height: 60px;
+
   top:0;
   z-index:1000;
+  border-bottom: 1px solid white;
 }
-.menu-button-container div {
+.menu-button-container nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 5px;
 
+
+
 }
+
+.menu-button-container nav span{
+  color: white;
+}
+
 .toggle-button{
   background: none;
-  color:var(--azul-claro);
+  color:var(--verde);
   font-weight: bolder;
   font-size: 1.33em;
 }
 .menu{
   max-height: 1800px;
   background-color: var(--cinza-escuro);
-  -webkit-transition: all 0.2s ease-in;
-  -moz-transition: all 0.2s ease-in;
-  -o-transition: all 0.2s ease-in;
-  transition: all 0.2s ease-in;
+  -webkit-transition: all 0.1s ease-in;
+  -moz-transition: all 0.1s ease-in;
+  -o-transition: all 0.1s ease-in;
+  transition: all 0.5s ease-in;
   margin-top: 50px;
 }
 .menu-small{
-  height: 0;
+  max-height: 0;
   background-color: var(--cinza-escuro);
-  -webkit-transition: all 0.2s ease-in;
-  -moz-transition: all 0.2s ease-in;
-  -o-transition: all 0.2s ease-in;
-  transition: all 0.2s ease-in;
+  -webkit-transition: all 0.1s ease-in;
+  -moz-transition: all 0.1s ease-in;
+  -o-transition: all 0.1s ease-in;
+  transition: all 0.5s ease-in;
   overflow:hidden;
   margin-top: 50px;
 }
@@ -69,7 +76,7 @@ padding-bottom: 100px;
     display:none;
   }
   .menu-small{
-    height: 100vh;
+    min-height: 100vh;
     position: fixed;
   }
   .menu, .menu-small{
