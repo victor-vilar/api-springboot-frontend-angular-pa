@@ -1,20 +1,35 @@
 <div class="itens-table-container">
 
-  <div class="empty-records" *ngIf="tableData.length === 0">
-    <h1>Ainda não há {{model.toLowerCase()}} cadastrados</h1>
-  </div>
-
-
   <ng-container >
-      <!-- <div class="header-wrapper">
-        <h4>{{model}} Adicionados</h4>
-        <div class="search-wrapper">
-          <label for="">Pesquisar:</label>
-          <input type="text" [(ngModel)] ="searchedValue">
-        </div>
-      </div> -->
+    <div class="table-responsive shadow-lg p-3 mb-5 bg-white rounded">
+      <table class="table table-hover table-sm">
+        <thead>
+          <tr>
+            <th scope="col" class="table-header ">Resíduo</th>
+            <th scope="col" class="table-header ">Equipamento</th>
+            <th scope="col" class="table-header ">Quantidade</th>
+            <th scope="col" class="table-header ">Valor R$</th>
+            <th scope="col" class="table-header ">Opções</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let object of filteredTableDataList; let i = index">
+            <td>{{object.residue.type}}</td>
+            <td>{{object.equipment.equipmentName}}</td>
+            <td>{{object.qtdOfResidue}}</td>
+            <td>{{object.itemValue}}</td>
+            <td>
+              <div class="options-buttons">
+                <button mat-stroked-button type="button" matTooltip="Deletar Item" name="delete" id="delete" class="bt bt-delete " (click)="openDialog(object)"><i class="fas fa-times"></i></button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-      <div class="itens-table-container-wrapper">
+
+      <!-- <div class="itens-table-container-wrapper">
         <div class="itens-table-container-item" *ngFor="let object of filteredTableDataList; let i = index">
           <div class="object-key-values">
                 <label class="key-header"><b>Resíduo</b></label>
@@ -42,7 +57,7 @@
               </div>
           </div>
         </div>
-      </div>
+      </div> -->
   </ng-container>
 </div>
 

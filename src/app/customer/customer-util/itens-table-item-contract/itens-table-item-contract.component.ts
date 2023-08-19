@@ -90,4 +90,9 @@ export class ItensTableItemContractComponent implements OnInit, DoCheck {
 
   }
 
+
+  returnZero(){
+    return 0;
+  }
+
 }
