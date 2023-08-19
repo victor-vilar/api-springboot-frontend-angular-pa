@@ -9,6 +9,7 @@
   font-weight: bold;
   color:var(--cinza-escuro);
 }
+
 .search-wrapper input{
   width: 100%;
 }
@@ -24,48 +25,12 @@
   border: 1px solid var(--cinza);
 }
 
-.object-key-values, .object-options{
-  display: grid;
-  grid-template-columns: repeat(2,1fr);
-
-
-}
-
-.key-header, .key-value {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding:5px;
-  border-bottom: 1px solid var(--cinza);
-  text-align: center;
-  min-height: 50px;
-  border-collapse: collapse;
-
-
-}
-
-
-.key-header {
-  background-color: var(--cinza-escuro);
-  color: white;
-
-}
-
 .options-buttons{
   display:flex;
   flex-direction: row;
-  /* gap:5px; */
-  align-items: center;
-  justify-content: center;
+
 }
 
-.options-buttons .bt{
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
 .options-buttons .bt-edit:hover{
   background-color: #ffdd00;
@@ -79,30 +44,6 @@
 
 
 @media screen and (min-width:976px){
-  :root {
-    --column-count: 4;
-  }
-  .itens-table-container-item{
-
-    border: none;
-    display: grid;
-    /* DESCOBRIR COMO COLOCAR O TAMANHO VARIAVEL  */
-    grid-template-columns: repeat(var(--column-count),1fr);
-    border-bottom: 1px solid black;
-  }
-  .itens-table-container-item:not(:first-child) .object-key-values .key-header {
-    display: none;
-  }
-
-  .itens-table-container-item:not(:first-child) .object-options .key-header{
-    display: none;
-  }
-
-  .object-key-values, .object-options{
-    display: block;
-
-  }
-
 
   .search-wrapper{
     display: flex;
@@ -110,7 +51,7 @@
 
   }
   .search-wrapper input{
-    /* width: 50%; */
+    width: 50%;
   }
 
 }

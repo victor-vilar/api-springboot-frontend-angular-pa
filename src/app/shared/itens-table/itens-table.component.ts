@@ -46,7 +46,6 @@ export class ItensTableComponent implements OnInit, OnChanges{
     let observable$ = this.service.refreshAllData();
     observable$.subscribe(this.onInitObserver());
 
-    console.log(this.tableHeaders);
   }
 
   ngOnChanges(changes: SimpleChanges): void {

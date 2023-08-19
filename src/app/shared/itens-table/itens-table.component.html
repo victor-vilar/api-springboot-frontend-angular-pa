@@ -26,31 +26,17 @@
           <tbody>
             <tr *ngFor="let object of filteredTableDataList">
               <td *ngFor="let item of object | keyvalue: returnZero">{{item.value}}</td>
-              <td class="options-buttons">
-                <button mat-stroked-button type="button" matTooltip ="Editar Item" name="edit" id="edit" class="bt bt-edit " (click)="sendObjectToEdit(object)" [routerLink]="['./'+fatherPathPrefix, object.id]" [queryParams]="{edit:true, dialog:true}"><i class="fas fa-edit"></i></button>
-                <button mat-stroked-button type="button" matTooltip ="Deletar Item" name="delete" id="delete" class="bt bt-delete " (click)="openDialog(object)"><i class="fas fa-times"></i></button>
+              <td>
+                <div class="options-buttons">
+                  <button mat-stroked-button type="button" matTooltip ="Editar Item" name="edit" id="edit" class="bt bt-edit " (click)="sendObjectToEdit(object)" [routerLink]="['./'+fatherPathPrefix, object.id]" [queryParams]="{edit:true, dialog:true}"><i class="fas fa-edit"></i></button>
+                  <button mat-stroked-button type="button" matTooltip ="Deletar Item" name="delete" id="delete" class="bt bt-delete " (click)="openDialog(object)"><i class="fas fa-times"></i></button>
+                </div>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
 
-
-      <!-- <div class="itens-table-container-wrapper">
-        <div class="itens-table-container-item" *ngFor="let object of filteredTableDataList" [ngStyle]="{'--column-count': columnCount}">
-            <div class="object-key-values" *ngFor="let item of object | keyvalue: returnZero ">
-                <label class="key-header"><b>{{findAliasInHeaderForTableArray(item.key)}}</b></label>
-                <b class="key-value">{{item.value}}</b>
-            </div>
-            <div class="object-options">
-              <label class="key-header"><b>Opções</b></label>
-              <div class="options-buttons">
-                <button mat-stroked-button type="button" matTooltip ="Editar Item" name="edit" id="edit" class="bt bt-edit " (click)="sendObjectToEdit(object)" [routerLink]="['./'+fatherPathPrefix, object.id]" [queryParams]="{edit:true, dialog:true}"><i class="fas fa-edit"></i></button>
-                <button mat-stroked-button type="button" matTooltip ="Deletar Item" name="delete" id="delete" class="bt bt-delete " (click)="openDialog(object)"><i class="fas fa-times"></i></button>
-              </div>
-          </div>
-        </div>
-      </div> -->
 
 
 
