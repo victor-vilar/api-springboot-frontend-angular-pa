@@ -31,6 +31,10 @@
 
 }
 
+.bordered-table{
+  border: 1px solid #fefefe;
+}
+
 
 .options-buttons .bt-edit:hover{
   background-color: #ffdd00;
