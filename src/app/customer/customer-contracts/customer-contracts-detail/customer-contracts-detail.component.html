@@ -43,25 +43,6 @@
 
     <h5>Resíduos</h5>
     <div class="residues-field">
-      <mat-expansion-panel>
-        <mat-expansion-panel-header class="expansion">
-          <mat-panel-title>
-            <div class="contract-partial-information">
-              <label>Adicionados: {{itemContractList.length}}</label><br>
-            </div>
-          </mat-panel-title>
-          <mat-panel-description>
-            <label>{{totalValueOfContract | currency :'BRL'}}</label>
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-        <app-itens-table-item-contract
-          [tableHeaders]="headerForTables"
-          [tableData]="itemContractList"
-          [model]="'itens'"
-          (deleteItemEmitter)= "deleteItemFromList($event)">
-        </app-itens-table-item-contract>
-      </mat-expansion-panel>
-
       <div class="residue-item-options">
         <div class="residue-item-options-item-body">
             <div class="residue-item-options-item">
@@ -95,6 +76,25 @@
           </div>
           <input type="button" value="Adicionar residuo" (click)="addItemToContract()"><br><br>
       </div>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header class="expansion">
+          <mat-panel-title>
+            <div class="contract-partial-information">
+              <label>Adicionados: {{itemContractList.length}}</label><br>
+            </div>
+          </mat-panel-title>
+          <mat-panel-description>
+            <label>{{totalValueOfContract | currency :'BRL'}}</label>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <app-itens-table-item-contract
+          [tableHeaders]="headerForTables"
+          [tableData]="itemContractList"
+          [model]="'itens'"
+          (deleteItemEmitter)= "deleteItemFromList($event)">
+        </app-itens-table-item-contract>
+      </mat-expansion-panel>
     </div>
   </form>
 
