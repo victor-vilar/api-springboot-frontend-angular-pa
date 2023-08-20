@@ -54,7 +54,8 @@
 
       </div>
 
-      <input type="submit" value="Salvar">
+      <input type="submit" value="Salvar" *ngIf="isSubform==false">
+      <input type="button" value="Adicionar" *ngIf="isSubform">
     </div>
   </form>
 </mat-dialog-content>

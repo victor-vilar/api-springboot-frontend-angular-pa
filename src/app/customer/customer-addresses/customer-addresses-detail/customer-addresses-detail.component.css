@@ -47,7 +47,7 @@ mat-error{
   padding: 5px;
 }
 
-.zipcode-field input[type=button], form input[type=submit]{
+.zipcode-field input[type=button], form input[type=submit], form input[type=button]{
   background-color: var(--cinza-escuro);
   color: white;
   font-weight: bold;
@@ -60,12 +60,6 @@ mat-error{
   font-weight: bolder;
 }
 
-.zipcode-field input, .full-address-info input{
-  /* padding:10px;
-  width: 100%;
-  height: 50px;
-  margin-bottom: 5px; */
-}
 
 .full-address-info input[type=checkbox]{
   width: 30px;
@@ -73,7 +67,7 @@ mat-error{
   padding:0px;
 }
 
-form input[type=submit]{
+form input[type=submit], form input[type=button]{
   padding:10px;
   width: 100%;
   height: 50px;

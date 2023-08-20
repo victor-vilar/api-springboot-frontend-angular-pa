@@ -54,6 +54,10 @@ mat-error{
 
 }
 
+.form-item{
+  gap: 5px;
+}
+
 .detail-form  button {
   padding:10px;
   width: 100%;
@@ -71,13 +75,8 @@ mat-error{
 
 @media screen and (min-width:768px){
 
-  .customer-info {
-    margin-bottom: 150px;
-  }
   .detail-form{
     width:100%;
-    display: grid;
-    grid-template-columns: repeat(2,1fr);
     gap:5px;
   }
   .detail-form input, .alert {

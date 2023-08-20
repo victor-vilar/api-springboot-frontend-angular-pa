@@ -23,7 +23,8 @@
       </mat-form-field>
 
       <input type="button" value="limpar" (click)="cleanForm()">
-      <input type="submit" value="Salvar">
+      <input type="submit" value="Salvar" *ngIf=" isSubform==false">
+      <input type="button" value="Adicionar" *ngIf="isSubform">
     </form>
 
   </div>

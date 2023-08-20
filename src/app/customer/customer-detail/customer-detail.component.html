@@ -8,7 +8,7 @@
   <mat-dialog-content>
       <form (ngSubmit)="save()" #singInForm = "ngForm" class="detail-form" >
 
-        <div class="customer-info">
+        <div class="customer-info form-item">
             <mat-form-field appearance="outline">
               <mat-label>CPF/CNPJ</mat-label>
               <input matInput type="text" required name="cpfCnpj" ngModel CpfCnpjPipePipe>
@@ -21,7 +21,7 @@
             </mat-form-field>
         </div>
 
-        <div class="customer-address-subform-info">
+        <div class="customer-address-subform-info form-item">
           <mat-expansion-panel>
             <mat-expansion-panel-header class="expansion">
               <mat-panel-title>
@@ -37,7 +37,7 @@
           </mat-expansion-panel>
         </div>
 
-        <div class="customer-supervisor-subform-info">
+        <div class="customer-supervisor-subform-info form-item">
           <mat-expansion-panel>
             <mat-expansion-panel-header class="expansion">
               <mat-panel-title>
