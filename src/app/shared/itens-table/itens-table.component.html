@@ -19,12 +19,14 @@
         <table class="table table-hover table-sm">
           <thead>
             <tr>
+              <th scope="col" class="table-header ">Nº</th>
               <th scope="col" class="table-header " *ngFor="let header of tableHeaders | keyvalue: returnZero ">{{header.value}}</th>
               <th scope="col" class="table-header ">Opções</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let object of filteredTableDataList">
+            <tr *ngFor="let object of filteredTableDataList; let i = index ">
+              <td>{{i + 1 }}</td>
               <td *ngFor="let item of object | keyvalue: returnZero">{{item.value}}</td>
               <td>
                 <div class="options-buttons">
