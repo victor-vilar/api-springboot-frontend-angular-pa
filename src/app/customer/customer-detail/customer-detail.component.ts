@@ -7,6 +7,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Customer } from 'src/app/shared/entities/Customer';
 import { ResidueDetailComponent } from '../../residue/residue-detail/residue-detail.component';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { CustomerAddressService } from '../services/customerAddress.service';
+import { CustomerSupervisorService } from '../services/customerSupervisor.service';
+import { Supervisor } from 'src/app/shared/entities/Supervisor';
+import { Address } from 'src/app/shared/entities/Address';
 
 
 
@@ -19,7 +23,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class CustomerDetailComponent implements OnInit, AfterViewInit, FormDetail {
 
   constructor(private service:CustomerService,
-     private activeroute:ActivatedRoute,
+      private addressService:CustomerAddressService,
+      private supervisorService:CustomerSupervisorService,
+      private activeroute:ActivatedRoute,
       private router:Router,
       public dialogRef: MatDialogRef<ResidueDetailComponent>,
       @Inject(MAT_DIALOG_DATA) public data: any,
@@ -36,6 +42,10 @@ export class CustomerDetailComponent implements OnInit, AfterViewInit, FormDetai
   invalidCpfCnpjMessage:string;
   invalidCustomerName = false;
   invalidCustomerNameMessage:string;
+
+  //list of address and supervisor to save to customer
+  addressList:Address[] = [];
+  supervisorList:Supervisor[] = [];
 
   ngOnInit(): void {
     this.onLoad();
