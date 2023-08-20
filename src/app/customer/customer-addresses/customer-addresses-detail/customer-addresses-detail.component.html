@@ -1,5 +1,5 @@
 <div class="wrapper">
-  <div class="detail-component-header">
+  <div class="detail-component-header" *ngIf="isSubform==false">
     <h4 class="detail-title">{{crudOperation}} de Endereços</h4>
     <a (click)="destroy()" class="close-button">X</a>
   </div>

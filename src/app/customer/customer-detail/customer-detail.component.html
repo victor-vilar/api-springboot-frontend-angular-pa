@@ -5,18 +5,32 @@
     <h4 class="detail-title">{{crudOperation}} de Clientes</h4>
     <a (click)="destroy()" class="close-button">X</a>
   </div>
-  <form (ngSubmit)="save()" #singInForm = "ngForm" class="detail-form" >
-    <mat-form-field appearance="outline">
-      <mat-label>CPF/CNPJ</mat-label>
-      <input matInput type="text" required name="cpfCnpj" ngModel CpfCnpjPipePipe>
-      <mat-error *ngIf="invalidCpfCnpj" class="alert">{{invalidCpfCnpjMessage}}</mat-error>
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label>Nome/Razão Social</mat-label>
-      <input matInput type="text" required  name="razaoSocial" ngModel>
-      <mat-error *ngIf="invalidCustomerName" class="alert">{{invalidCustomerNameMessage}}</mat-error>
-    </mat-form-field>
-    <button type="submit">Salvar</button>
-    <button type="button" (click)="cleanForm()">Limpar Campos</button>
-  </form>
+  <mat-dialog-content>
+      <form (ngSubmit)="save()" #singInForm = "ngForm" class="detail-form" >
+
+        <div class="customer-info">
+            <mat-form-field appearance="outline">
+              <mat-label>CPF/CNPJ</mat-label>
+              <input matInput type="text" required name="cpfCnpj" ngModel CpfCnpjPipePipe>
+              <mat-error *ngIf="invalidCpfCnpj" class="alert">{{invalidCpfCnpjMessage}}</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Nome/Razão Social</mat-label>
+              <input matInput type="text" required  name="razaoSocial" ngModel>
+              <mat-error *ngIf="invalidCustomerName" class="alert">{{invalidCustomerNameMessage}}</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="customer-address-subform-info">
+            <app-customer-addresses-detail [isSubform]="true"></app-customer-addresses-detail>
+        </div>
+
+        <div class="customer-supervisor-subform-info">
+          <app-customer-supervisors-detail [isSubform]="true"></app-customer-supervisors-detail>
+        </div>
+
+        <button type="submit">Salvar</button>
+        <button type="button" (click)="cleanForm()">Limpar Campos</button>
+      </form>
+  </mat-dialog-content>
 </div>

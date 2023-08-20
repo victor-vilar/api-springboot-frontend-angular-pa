@@ -1,6 +1,6 @@
 import { DialogServiceService } from 'src/app/shared/services/dialog-service.service';
 import { CustomerSupervisorService } from 'src/app/customer/services/customerSupervisor.service';
-import { Component, OnInit, ViewChild, Inject, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject, AfterViewInit, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormDetail } from 'src/app/shared/entities/FormDetail';
@@ -28,6 +28,8 @@ export class CustomerSupervisorsDetailComponent implements OnInit,AfterViewInit,
   crudOperation: string = 'Cadastro';
   objectToEdit:Supervisor;
   clientCpfCnpj:string;
+
+  @Input() isSubform:boolean=false;
 
   ngOnInit(): void {
     this.onLoad();
