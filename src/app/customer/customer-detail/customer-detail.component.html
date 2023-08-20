@@ -11,12 +11,12 @@
         <div class="customer-info form-item">
             <mat-form-field appearance="outline">
               <mat-label>CPF/CNPJ</mat-label>
-              <input matInput type="text" required name="cpfCnpj" ngModel CpfCnpjPipePipe>
+              <input matInput type="text" required name="cpfCnpj" ngModel cpfCnpj >
               <mat-error *ngIf="invalidCpfCnpj" class="alert">{{invalidCpfCnpjMessage}}</mat-error>
             </mat-form-field>
             <mat-form-field appearance="outline">
               <mat-label>Nome/Razão Social</mat-label>
-              <input matInput type="text" required  name="razaoSocial" ngModel>
+              <input matInput type="text" required  name="razaoSocial" ngModel >
               <mat-error *ngIf="invalidCustomerName" class="alert">{{invalidCustomerNameMessage}}</mat-error>
             </mat-form-field>
         </div>
