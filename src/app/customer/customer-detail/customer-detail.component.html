@@ -22,11 +22,35 @@
         </div>
 
         <div class="customer-address-subform-info">
+          <mat-expansion-panel>
+            <mat-expansion-panel-header class="expansion">
+              <mat-panel-title>
+                <div class="contract-partial-information">
+                  <label>Adicionar Endereços </label><br>
+                </div>
+              </mat-panel-title>
+              <mat-panel-description>
+                <label>adicionados: </label>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
             <app-customer-addresses-detail [isSubform]="true"></app-customer-addresses-detail>
+          </mat-expansion-panel>
         </div>
 
         <div class="customer-supervisor-subform-info">
+          <mat-expansion-panel>
+            <mat-expansion-panel-header class="expansion">
+              <mat-panel-title>
+                <div class="contract-partial-information">
+                  <label>Adicionar Fiscais </label><br>
+                </div>
+              </mat-panel-title>
+              <mat-panel-description>
+                <label>adicionados:</label>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
           <app-customer-supervisors-detail [isSubform]="true"></app-customer-supervisors-detail>
+        </mat-expansion-panel>
         </div>
 
         <button type="submit">Salvar</button>
