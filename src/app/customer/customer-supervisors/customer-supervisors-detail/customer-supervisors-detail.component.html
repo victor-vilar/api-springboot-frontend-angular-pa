@@ -6,7 +6,7 @@
       <a (click)="destroy()" class="close-button">X</a>
     </div>
 
-    <form #form="ngForm" (ngSubmit)="save('teste')">
+    <form #form="ngForm" (ngSubmit)="save()">
       <mat-form-field appearance="outline">
         <mat-label>Nome</mat-label>
         <input matInput type="text" ngModel name="supervisorName" id="supervisorName" >

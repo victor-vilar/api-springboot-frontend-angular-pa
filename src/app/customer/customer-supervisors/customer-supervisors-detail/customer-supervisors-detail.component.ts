@@ -52,7 +52,7 @@ export class CustomerSupervisorsDetailComponent implements OnInit,AfterViewInit,
     }
   }
 
-  save(object: any): void {
+  save(): void {
     this.dialogService.openProgressDialog();
     let observable$;
     let supervisor = this.createObject();
