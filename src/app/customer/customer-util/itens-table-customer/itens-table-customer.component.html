@@ -16,6 +16,7 @@
         <table class="table table-hover table-sm">
           <thead>
             <tr>
+              <th scope="col" class="table-header ">Nº</th>
               <th scope="col" class="table-header ">CPF/CNPJ</th>
               <th scope="col" class="table-header ">Nome/Razão Social</th>
               <th scope="col" class="table-header ">Total de Contratos</th>
@@ -25,8 +26,9 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let object of filteredTableDataList">
-              <td>{{object.cpfCnpj}}</td>
+            <tr *ngFor="let object of filteredTableDataList; let i = index ">
+              <td>{{i + 1 }}</td>
+              <td>{{object.cpfCnpj | cpfCnpj}}</td>
               <td>{{object.nameCompanyName}}</td>
               <td>{{object.contracts.length}}</td>
               <td>{{object.addresses.length}}</td>
