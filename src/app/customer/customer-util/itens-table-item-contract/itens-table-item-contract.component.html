@@ -5,6 +5,7 @@
       <table class="table table-hover table-sm">
         <thead>
           <tr>
+            <th scope="col" class="table-header ">Nº</th>
             <th scope="col" class="table-header ">Resíduo</th>
             <th scope="col" class="table-header ">Equipamento</th>
             <th scope="col" class="table-header ">Quantidade</th>
@@ -14,6 +15,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let object of filteredTableDataList; let i = index">
+            <td>{{i}}</td>
             <td>{{object.residue.type}}</td>
             <td>{{object.equipment.equipmentName}}</td>
             <td>{{object.qtdOfResidue}}</td>
