@@ -5,9 +5,9 @@
   <ng-container *ngIf="tableData.length !== 0">
     <div class="header-wrapper">
       <h4>{{model}} Cadastrados</h4>
-      <div class="search-wrapper">
-        <label for="">Pesquisar:</label>
-        <input type="text" [(ngModel)] ="searchedValue" (keyup)="filteredTableData()">
+      <div class="mb-3 search-wrapper">
+        <label for="searchFormControl" class="form-label">Pesquisar:</label>
+        <input type="text" class="form-control form-control-sm" id="searchFormControl" [(ngModel)] ="searchedValue" (keyup)="filteredTableData()">
       </div>
     </div>
 
