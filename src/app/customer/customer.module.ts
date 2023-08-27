@@ -7,20 +7,10 @@ import { CustomerContractsDetailComponent } from './customer-contracts/customer-
 import { CustomerSupervisorsComponent } from './customer-supervisors/customer-supervisors-list/customer-supervisors.component';
 import { CustomerSupervisorsDetailComponent } from './customer-supervisors/customer-supervisors-detail/customer-supervisors-detail.component';
 
-import { ScrollingModule } from '@angular/cdk/scrolling';
+
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
-import { MatNativeDateModule } from '@angular/material/core';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatExpansionModule } from '@angular/material/expansion';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatSelectModule } from '@angular/material/select';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatTooltipModule } from '@angular/material/tooltip';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
@@ -33,6 +23,7 @@ import { CustomerInfoComponent } from './customer-util/customer-info/customer-in
 import { ItensTableCustomerComponent } from './customer-util/itens-table-customer/itens-table-customer.component';
 import { ItensTableItemContractComponent } from './customer-util/itens-table-item-contract/itens-table-item-contract.component';
 import { CustomerRoutingModule } from './customer-routing.module';
+import { MaterialModuleModule } from '../shared/material-module.module';
 
 @NgModule({
   declarations: [
@@ -58,18 +49,7 @@ import { CustomerRoutingModule } from './customer-routing.module';
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatDialogModule,
-    ScrollingModule,
-    MatProgressSpinnerModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatExpansionModule,
-    MatSnackBarModule,
-    MatButtonModule,
-    MatTooltipModule,
+    MaterialModuleModule,
     RouterModule,
     SharedModule,
   ]

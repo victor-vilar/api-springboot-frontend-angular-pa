@@ -12,20 +12,8 @@ import { AppRoutingModule } from '../app-routing.module';
 import { CpfCnpjPipePipe } from './pipes/cpf-cnpj-pipe.pipe';
 import { PhonePipe } from './pipes/phone.pipe';
 import { BrowserModule } from '@angular/platform-browser';
-import { MatDialogModule } from '@angular/material/dialog';
-import { ScrollingModule } from '@angular/cdk/scrolling';
-import { MatButtonModule } from '@angular/material/button';
-import { MatNativeDateModule } from '@angular/material/core';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatExpansionModule } from '@angular/material/expansion';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatSelectModule } from '@angular/material/select';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatTableModule} from '@angular/material/table';
+import { MaterialModuleModule } from './material-module.module';
 
 
 
@@ -46,19 +34,8 @@ import {MatTableModule} from '@angular/material/table';
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatDialogModule,
-    ScrollingModule,
-    MatProgressSpinnerModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatExpansionModule,
-    MatSnackBarModule,
-    MatButtonModule,
-    MatTooltipModule,
-    MatTableModule,
+    MaterialModuleModule
+
 
   ],
   exports:[
