@@ -1,6 +1,7 @@
 import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { BehaviorSubject, Observable, of, Subject, switchMap } from "rxjs";
+import { environment } from 'src/environments/environment';
 
 @Injectable(
   {providedIn: 'root',}
@@ -9,7 +10,7 @@ export abstract class CrudBaseService<T>{
 
 
   private refreshRequired = new Subject<any>();
-  static BASE_URL:string = "http://localhost:8080/";
+  static BASE_URL:string = environment.LOCAL_API_URL;
   list:T[] = [];
   rota:string;
   constructor(protected http:HttpClient){ }
