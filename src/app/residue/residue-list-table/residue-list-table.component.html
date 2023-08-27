@@ -1,0 +1,51 @@
+<div class="itens-table-container">
+
+  <div class="empty-records" *ngIf="tableData.length === 0">
+    <h1>Ainda não há {{model.toLowerCase()}} cadastrados</h1>
+  </div>
+
+  <ng-container *ngIf="tableData.length !== 0">
+      <div class="header-wrapper">
+        <h4>{{model}} Cadastrados</h4>
+
+        <div class="mb-3 search-wrapper">
+          <label for="searchFormControl" class="form-label">Pesquisar</label>
+          <input type="text" class="form-control form-control-sm" id="searchFormControl" [(ngModel)] ="searchedValue" (keyup)="filteredTableData()" >
+        </div>
+
+
+        <table mat-table [dataSource]="tableData" class="mat-elevation-z8">
+
+          <ng-container matColumnDef="Id">
+            <th mat-header-cell *matHeaderCellDef> Id </th>
+            <td mat-cell *matCellDef="let residue"> {{residue.id}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="Resíduo">
+            <th mat-header-cell *matHeaderCellDef> Resíduo </th>
+            <td mat-cell *matCellDef="let residue"> {{residue.type}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="Classe">
+            <th mat-header-cell *matHeaderCellDef> Classe </th>
+            <td mat-cell *matCellDef="let residue"> {{residue.description}} </td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="Opções">
+            <th mat-header-cell *matHeaderCellDef>Opções</th>
+            <td mat-cell *matCellDef="let residue">
+              <button mat-stroked-button type="button" matTooltip ="Editar Item" name="edit" id="edit" class="bt bt-edit " (click)="sendObjectToEdit(residue)" [routerLink]="['./'+fatherPathPrefix, residue.id]" [queryParams]="{edit:true, dialog:true}"><i class="fas fa-edit"></i></button>
+              <button mat-stroked-button type="button" matTooltip ="Deletar Item" name="delete" id="delete" class="bt bt-delete " (click)="openDialog(residue)"><i class="fas fa-times"></i></button>
+            </td>
+          </ng-container>
+
+
+            <tr mat-header-row *matHeaderRowDef="tableHeaders"></tr>
+            <tr mat-row *matRowDef="let myRowData; columns: tableHeaders"></tr>
+
+        </table>
+
+      </div>
+    </ng-container>
+</div>

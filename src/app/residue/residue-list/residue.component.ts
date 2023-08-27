@@ -39,11 +39,8 @@ export class ResidueComponent implements OnInit, CrudBaseComponent{
       }
     });
 
-    this.headerForTables ={
-      id:'Id',
-      type:'Resíduo',
-      description:'Classe'
-     };
+    this.headerForTables =['Id','Resíduo','Classe','Opções']
+
 
 
     this.title='Resíduos';

@@ -6,7 +6,7 @@
     <app-crud-menu [linksListForOperations] ="pathToOperations"></app-crud-menu>
     <!--  -->
     <router-outlet class="roulet"></router-outlet>
-    <app-itens-table
+    <app-residue-list-table
       [model]="title"
       [tableHeaders]="headerForTables"
       [fatherPathPrefix]="pathPrefix"
@@ -14,7 +14,7 @@
       [columnCount]="4"
       (editObjectEmitter)="editObject($event)"
       >
-    </app-itens-table>
+    </app-residue-list-table>
 
 
   </div>

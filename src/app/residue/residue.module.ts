@@ -13,13 +13,15 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
 import { TemplateModule } from 'src/app/template/template.module';
 import { ResidueRoutingModule } from './residue-routing.module';
 import { MaterialModuleModule } from '../shared/material-module.module';
+import { ResidueListTableComponent } from './residue-list-table/residue-list-table.component';
 
 
 
 @NgModule({
   declarations: [
     ResidueComponent,
-    ResidueDetailComponent
+    ResidueDetailComponent,
+    ResidueListTableComponent
   ],
   imports: [
     CommonModule,
