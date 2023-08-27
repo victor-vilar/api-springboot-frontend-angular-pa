@@ -1,0 +1,23 @@
+table{
+  width: 100%;
+}
+
+th{
+  font-weight: bolder;
+  text-align: center;
+}
+
+.options-table-buttons{
+  display: flex;
+  gap: 5px;
+}
+
+
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td, th {
+  width: 25%;
+}

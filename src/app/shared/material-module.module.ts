@@ -15,6 +15,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTableModule} from '@angular/material/table';
+import { MatPaginatorModule} from '@angular/material/paginator';
+
 
 
 @NgModule({
@@ -34,6 +36,9 @@ import {MatTableModule} from '@angular/material/table';
     MatButtonModule,
     MatTooltipModule,
     MatTableModule,
+    MatPaginatorModule,
+    BrowserAnimationsModule
+
   ],
   exports:[
     MatDialogModule,
@@ -49,7 +54,8 @@ import {MatTableModule} from '@angular/material/table';
     MatButtonModule,
     MatTooltipModule,
     MatTableModule,
-
+    MatPaginatorModule,
+    BrowserAnimationsModule
   ]
 })
 export class MaterialModuleModule { }

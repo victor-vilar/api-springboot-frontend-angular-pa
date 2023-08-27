@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { Router } from '@angular/router';
 import { ItensTableComponent } from 'src/app/shared/itens-table/itens-table.component';
 import { DialogServiceService } from 'src/app/shared/services/dialog-service.service';
@@ -18,6 +20,9 @@ export class ResidueListTableComponent extends ItensTableComponent{
     ){
       super(router,mapper,dialogService)
     }
+
+    @ViewChild(MatPaginator) paginator: MatPaginator;
+    @ViewChild(MatSort) sort: MatSort;
 
 
 
