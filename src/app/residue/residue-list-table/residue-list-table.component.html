@@ -8,10 +8,10 @@
       <div class="header-wrapper">
         <h4>{{model}} Cadastrados</h4>
 
-        <div class="mb-3 search-wrapper">
-          <label for="searchFormControl" class="form-label">Pesquisar</label>
-          <input type="text" class="form-control form-control-sm " id="searchFormControl" [(ngModel)] ="searchedValue" (keyup)="filteredTableData()" >
-        </div>
+        <mat-form-field>
+          <mat-label>Pesquisar</mat-label>
+          <input matInput (keyup)="filteredTableData($event)" #input>
+        </mat-form-field>
 
         <div class="mat-elevation-z8">
           <table mat-table [dataSource]="dataSource" matSort>

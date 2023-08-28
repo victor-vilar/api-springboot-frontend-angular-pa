@@ -15,25 +15,13 @@ import { MapperService } from 'src/app/shared/services/mapper.service';
 })
 export class ResidueListTableComponent extends ItensTableComponent implements OnInit{
 
-
-
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
-
   constructor(router:Router,mapper:MapperService,dialogService:DialogServiceService){
       super(router,mapper,dialogService)
   }
 
-
-
   ngOnInit(): void {
-
     let observable$ = this.service.refreshAllData();
     observable$.subscribe(this.onInitObserver())
-
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator=this.paginator;
-
     this.getAll();
 
 

@@ -1,19 +1,23 @@
 
-import { Component, EventEmitter, Input, OnInit, Output, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { MapperService } from 'src/app/shared/services/mapper.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogServiceService } from 'src/app/shared/services/dialog-service.service';
 import { Observable } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-itens-table',
   templateUrl: './itens-table.component.html',
   styleUrls: ['./itens-table.component.css']
 })
-export  class ItensTableComponent implements OnChanges{
+export class ItensTableComponent implements OnChanges{
 
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
   searchedValue:string ='';
   dataSource = new MatTableDataSource<any>();
 
@@ -24,7 +28,7 @@ export  class ItensTableComponent implements OnChanges{
   // data that will fill the table
   @Input()
   tableData:any = [];
-  filteredTableDataList:any;
+
   //model to fill the header tag
   @Input()
   model:string='';
@@ -72,15 +76,13 @@ export  class ItensTableComponent implements OnChanges{
     if(this.customerId !== undefined){
 
       this.tableData = [];
-      this.filteredTableDataList = [];
 
       let observable$;
       observable$ = this.service.getAllByCustomerId(this.customerId);
       observable$.subscribe(response =>{
 
         this.tableData = this.service.mapItens(response);
-        this.filteredTableDataList = this.tableData.slice();
-        this.dataSource = new MatTableDataSource(this.tableData)
+        this.updateDataSource();
       });
 
     }else{
@@ -94,12 +96,15 @@ export  class ItensTableComponent implements OnChanges{
     return 0;
   }
 
-  filteredTableData(){
-    this.filteredTableDataList = this.tableData.filter(element => {
-      if(Object.values(element).toString().toLowerCase().includes(this.searchedValue.toLocaleLowerCase())){
-        return element;
-      }
-    });
+  filteredTableData(event:Event){
+
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+
   }
 
   //obersver used on onInit method
@@ -107,8 +112,7 @@ export  class ItensTableComponent implements OnChanges{
     return {
       next:(response) =>{
           this.tableData = response;
-          this.filteredTableDataList = this.tableData.slice();
-          this.dataSource = new MatTableDataSource(this.tableData)
+          this.updateDataSource();
       },
       error:(error) =>{
         console.log(error);
@@ -133,6 +137,12 @@ export  class ItensTableComponent implements OnChanges{
   editObjectEmitter = new EventEmitter<any>()
   sendObjectToEdit(object:any){
     this.editObjectEmitter.emit(object);
+  }
+
+  updateDataSource(){
+    this.dataSource = new MatTableDataSource(this.tableData);
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator=this.paginator;
   }
 
 
