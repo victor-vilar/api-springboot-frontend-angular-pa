@@ -139,6 +139,9 @@ export class ItensTableComponent implements OnChanges{
     this.editObjectEmitter.emit(object);
   }
 
+
+
+  //update datasource from subclasses table view
   updateDataSource(){
     this.dataSource = new MatTableDataSource(this.tableData);
     this.dataSource.sort = this.sort;
