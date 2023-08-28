@@ -4,15 +4,18 @@ import { Router } from '@angular/router';
 import { MapperService } from 'src/app/shared/services/mapper.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogServiceService } from 'src/app/shared/services/dialog-service.service';
+import { Observable } from 'rxjs';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-itens-table',
   templateUrl: './itens-table.component.html',
   styleUrls: ['./itens-table.component.css']
 })
-export class ItensTableComponent implements OnInit, OnChanges{
+export  class ItensTableComponent implements OnChanges{
 
   searchedValue:string ='';
+  dataSource = new MatTableDataSource<any>();
 
   //header of the data sended by component
   @Input()
@@ -42,17 +45,11 @@ export class ItensTableComponent implements OnInit, OnChanges{
     private mapper:MapperService,
     private dialogService:DialogServiceService,) { }
 
-  ngOnInit(): void {
-    let observable$ = this.service.refreshAllData();
-    observable$.subscribe(this.onInitObserver());
 
-  }
+    ngOnChanges(){
+      this.getAll();
+    }
 
-  ngOnChanges(changes: SimpleChanges): void {
-
-    this.getAll();
-
-  }
 
   findAliasInHeaderForTableArray(key:any){
     return this.tableHeaders[key];
@@ -83,6 +80,7 @@ export class ItensTableComponent implements OnInit, OnChanges{
 
         this.tableData = this.service.mapItens(response);
         this.filteredTableDataList = this.tableData.slice();
+        this.dataSource = new MatTableDataSource(this.tableData)
       });
 
     }else{
@@ -110,6 +108,7 @@ export class ItensTableComponent implements OnInit, OnChanges{
       next:(response) =>{
           this.tableData = response;
           this.filteredTableDataList = this.tableData.slice();
+          this.dataSource = new MatTableDataSource(this.tableData)
       },
       error:(error) =>{
         console.log(error);

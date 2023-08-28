@@ -4,17 +4,7 @@ import { CustomerAddressesComponent } from './customer/customer-addresses/custom
 import { DashboardComponent } from './template/dashboard/dashboard.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { EquipmentsComponent } from './equipaments/equipment-list/equipaments.component';
-import { CustomerComponent } from './customer/customer-list/customer.component';
-import { EquipmentDetailComponent } from './equipaments/equipment-detail/equipament-detail.component';
-import { ResidueDetailComponent } from './residue/residue-detail/residue-detail.component';
-import { CustomerDetailComponent } from './customer/customer-detail/customer-detail.component';
-import { CustomerContractsComponent } from './customer/customer-contracts/customer-contracts-list/customer-contracts.component';
-import { CustomerContractsDetailComponent } from './customer/customer-contracts/customer-contracts-detail/customer-contracts-detail.component';
-import { CustomerAddressesDetailComponent } from './customer/customer-addresses/customer-addresses-detail/customer-addresses-detail.component';
-import { CustomerSupervisorsDetailComponent } from './customer/customer-supervisors/customer-supervisors-detail/customer-supervisors-detail.component';
-import { ResidueComponent } from './residue/residue-list/residue.component';
-import { LoginComponent } from './login/login.component';
+
 
 
 const routes: Routes = [

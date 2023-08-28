@@ -14,7 +14,7 @@
         </div>
 
         <div class="mat-elevation-z8">
-          <table mat-table [dataSource]="filteredTableDataList" >
+          <table mat-table [dataSource]="dataSource" matSort>
 
             <ng-container matColumnDef="Id">
               <th mat-header-cell *matHeaderCellDef> Id </th>
@@ -45,11 +45,7 @@
               <tr mat-row *matRowDef="let myRowData; columns: tableHeaders"></tr>
 
           </table>
-
-          <mat-paginator [pageSizeOptions]="[5, 10, 20]"
-            showFirstLastButtons
-            aria-label="Select page of periodic elements">
-          </mat-paginator>
+          <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
         </div>
 
       </div>

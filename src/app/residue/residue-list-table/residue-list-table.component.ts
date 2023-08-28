@@ -1,7 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild, OnChanges, SimpleChanges } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { Residue } from 'src/app/shared/entities/Residue';
 import { ItensTableComponent } from 'src/app/shared/itens-table/itens-table.component';
 import { DialogServiceService } from 'src/app/shared/services/dialog-service.service';
 import { MapperService } from 'src/app/shared/services/mapper.service';
@@ -11,18 +13,33 @@ import { MapperService } from 'src/app/shared/services/mapper.service';
   templateUrl: './residue-list-table.component.html',
   styleUrls: ['./residue-list-table.component.css']
 })
-export class ResidueListTableComponent extends ItensTableComponent{
+export class ResidueListTableComponent extends ItensTableComponent implements OnInit{
 
-  constructor(
-    router:Router,
-    mapper:MapperService,
-    dialogService:DialogServiceService
-    ){
+
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+
+  constructor(router:Router,mapper:MapperService,dialogService:DialogServiceService){
       super(router,mapper,dialogService)
-    }
+  }
 
-    @ViewChild(MatPaginator) paginator: MatPaginator;
-    @ViewChild(MatSort) sort: MatSort;
+
+
+  ngOnInit(): void {
+
+    let observable$ = this.service.refreshAllData();
+    observable$.subscribe(this.onInitObserver())
+
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator=this.paginator;
+
+    this.getAll();
+
+
+  }
+
+
 
 
 
