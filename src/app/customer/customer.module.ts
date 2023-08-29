@@ -24,6 +24,9 @@ import { ItensTableCustomerComponent } from './customer-util/itens-table-custome
 import { ItensTableItemContractComponent } from './customer-util/itens-table-item-contract/itens-table-item-contract.component';
 import { CustomerRoutingModule } from './customer-routing.module';
 import { MaterialModuleModule } from '../shared/material-module.module';
+import { CustomerAddressesListTableComponent } from './customer-addresses/customer-addresses-list-table/customer-addresses-list-table.component';
+import { CustomerContractsListTableComponent } from './customer-contracts/customer-contracts-list-table/customer-contracts-list-table.component';
+import { CustomerSupervisorsListTableComponent } from './customer-supervisors/customer-supervisors-list-table/customer-supervisors-list-table.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +41,9 @@ import { MaterialModuleModule } from '../shared/material-module.module';
     CustomerInfoComponent,
     ItensTableCustomerComponent,
     ItensTableItemContractComponent,
+    CustomerAddressesListTableComponent,
+    CustomerContractsListTableComponent,
+    CustomerSupervisorsListTableComponent,
   ],
   imports: [
     CustomerRoutingModule,
