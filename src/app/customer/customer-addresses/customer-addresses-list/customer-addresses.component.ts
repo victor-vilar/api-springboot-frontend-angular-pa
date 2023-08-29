@@ -40,16 +40,7 @@ export class CustomerAddressesComponent implements OnInit {
     });
 
 
-    this.headerForTables ={
-      id:'Id',
-      addressName:'Logradouro',
-      addressNumber:'Número',
-      complement:'Complemento',
-      zipCode:'CEP',
-      city:'Cidade',
-      state:'Estado',
-      requiresCollection:'Existe Coleta'
-     };
+    this.headerForTables =['Id','Logradouro','Número','Complemento','CEP','Cidade','Estato','Existe Coleta']
 
     this.route.paramMap.subscribe(param =>{
       this.selectedCustomer = this.customerService.list.find(obj => obj.cpfCnpj === param.get('cpfCnpj'));
