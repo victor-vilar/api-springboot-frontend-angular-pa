@@ -10,7 +10,7 @@
   <app-crud-menu [linksListForOperations]="pathToOperations"></app-crud-menu>
   <router-outlet></router-outlet>
 
-  <app-itens-table
+  <app-customer-addresses-list-table
   [model]="title"
   [tableHeaders]="headerForTables"
   [fatherPathPrefix]="pathPrefix"
@@ -18,7 +18,7 @@
   [customerId]="selectedCustomer.cpfCnpj"
   [columnCount]="9"
   (editObjectEmitter)="editObject($event)"
-  ></app-itens-table>
+  ></app-customer-addresses-list-table>
 
 </div>
 

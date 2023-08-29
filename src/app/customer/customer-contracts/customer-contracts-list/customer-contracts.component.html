@@ -11,7 +11,7 @@
 
   <router-outlet></router-outlet>
 
-  <app-itens-table
+  <app-customer-contracts-list-table
   [model]="title"
   [tableHeaders]="headerForTables"
   [fatherPathPrefix]="pathPrefix"
@@ -19,7 +19,7 @@
   [customerId]="selectedCustomer.cpfCnpj"
   [columnCount]="7"
   (editObjectEmitter)="editObject($event)"
-  ></app-itens-table>
+  ></app-customer-contracts-list-table>
 
 </div>
 
