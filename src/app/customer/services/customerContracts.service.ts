@@ -33,7 +33,7 @@ export class CustomerContractsService extends CrudBaseService<Contract> implemen
     return this.http.get<Contract[]>(this.route,{withCredentials:true});
   }
 
-  override
+
   mapItens(list:any[]):any[]{
 
     return list.map(e => {

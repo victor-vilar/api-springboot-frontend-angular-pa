@@ -41,7 +41,7 @@ export class CustomerContractsComponent implements OnInit, OnChanges {
       }
     });
 
-    this.headerForTables = ['Id','Número','Data Início', 'Data Fim', 'Total de Itens', 'Total em R$'];
+    this.headerForTables = ['Id','Numero','Data-Inicio', 'Data-Fim', 'Total-de-Itens', 'Total-em-R$','Opções'];
 
     this.route.paramMap.subscribe(param =>{
       this.selectedCustomer = this.customerService.list.find(obj =>obj.cpfCnpj === param.get('cpfCnpj'))

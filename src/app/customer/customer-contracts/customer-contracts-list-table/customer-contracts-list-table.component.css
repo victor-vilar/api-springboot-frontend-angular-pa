@@ -21,3 +21,15 @@ th{
 td, th {
   width: 25%;
 }
+
+.mat-column-Id, .mat-column-Total-de-Itens{
+  width:4%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+.mat-column-Data-Fim, .mat-column-Data-Inicio {
+  width:10%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
