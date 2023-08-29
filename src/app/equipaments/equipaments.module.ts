@@ -12,13 +12,15 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { EquipmentRoutingModule } from './equipment-routing.module';
 import { MaterialModuleModule } from '../shared/material-module.module';
+import { EquipmentListTableComponent } from './equipment-list-table/equipment-list-table.component';
 
 
 
 @NgModule({
   declarations: [
     EquipmentsComponent,
-    EquipmentDetailComponent
+    EquipmentDetailComponent,
+    EquipmentListTableComponent
   ],
   imports: [
     CommonModule,
