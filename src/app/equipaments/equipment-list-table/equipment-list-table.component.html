@@ -1,0 +1,59 @@
+<div class="itens-table-container">
+
+  <div class="empty-records" *ngIf="tableData.length === 0">
+    <h1>Ainda não há {{model.toLowerCase()}} cadastrados</h1>
+  </div>
+
+  <ng-container *ngIf="tableData.length !== 0">
+      <div class="header-wrapper">
+        <h4>{{model}} Cadastrados</h4>
+
+        <mat-form-field>
+          <mat-label>Pesquisar</mat-label>
+          <input matInput (keyup)="filteredTableData($event)" #input>
+        </mat-form-field>
+
+        <div class="mat-elevation-z8">
+          <table mat-table [dataSource]="dataSource" matSort>
+
+            <ng-container matColumnDef="Id">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
+              <td mat-cell *matCellDef="let equipment"> {{equipment.id}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Equipamento">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Equipamento </th>
+              <td mat-cell *matCellDef="let equipment"> {{equipment.equipmentName}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Volume em M³">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Volume em M³ </th>
+              <td mat-cell *matCellDef="let equipment"> {{equipment.sizeInMeterCubic}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="Opções">
+              <th mat-header-cell *matHeaderCellDef>Opções</th>
+              <td mat-cell *matCellDef="let equipment" >
+                <button mat-stroked-button type="button" matTooltip ="Editar Item" name="edit" id="edit" class="bt bt-edit " (click)="sendObjectToEdit(equipment)" [routerLink]="['./'+fatherPathPrefix, equipment.id]" [queryParams]="{edit:true, dialog:true}"><i class="fas fa-edit"></i></button>
+                <button mat-stroked-button type="button" matTooltip ="Deletar Item" name="delete" id="delete" class="bt bt-delete " (click)="openDialog(equipment)"><i class="fas fa-times"></i></button>
+              </td>
+            </ng-container>
+
+
+              <tr mat-header-row *matHeaderRowDef="tableHeaders"></tr>
+              <tr mat-row *matRowDef="let myRowData; columns: tableHeaders"></tr>
+
+                  <!-- Row shown when there is no matching data. -->
+              <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="4">Não foram econtrados itens com:"{{input.value}}"</td>
+              </tr>
+
+          </table>
+          <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        </div>
+
+      </div>
+    </ng-container>
+
+</div>
