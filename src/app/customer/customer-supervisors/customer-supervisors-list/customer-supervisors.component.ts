@@ -41,7 +41,7 @@ export class CustomerSupervisorsComponent implements OnInit {
 
 
 
-    this.headerForTables =['Id','Nome','Telefone','Email'];
+    this.headerForTables =['Id','Nome','Telefone','Email','Opções'];
 
     this.route.paramMap.subscribe(param =>{
       this.selectedCustomer = this.customerService.list.find(obj => obj.cpfCnpj === param.get('cpfCnpj'));

@@ -21,3 +21,8 @@ th{
 td, th {
   width: 25%;
 }
+.mat-column-Id{
+  width:4%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
