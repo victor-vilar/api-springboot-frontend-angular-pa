@@ -6,14 +6,14 @@
     <app-crud-menu [linksListForOperations] ="pathToOperations"></app-crud-menu>
     <!--  -->
     <router-outlet class="roulet"></router-outlet>
-    <app-itens-table-customer
+    <app-customer-list-table
       [model]="title"
       [tableHeaders]="headerForTables"
       [fatherPathPrefix]="pathPrefix"
       [service]="service"
       (editObjectEmitter)="editObject($event)"
       >
-    </app-itens-table-customer>
+    </app-customer-list-table>
 
 
   </div>

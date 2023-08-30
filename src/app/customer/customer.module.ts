@@ -20,7 +20,7 @@ import { CustomerComponent } from './customer-list/customer.component';
 import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
 import { SharedModule } from '../shared/shared.module';
 import { CustomerInfoComponent } from './customer-util/customer-info/customer-info.component';
-import { ItensTableCustomerComponent } from './customer-util/itens-table-customer/itens-table-customer.component';
+import { CustomerListTableComponent } from './customer-util/customer-list-table/customer-list-table.component';
 import { ItensTableItemContractComponent } from './customer-util/itens-table-item-contract/itens-table-item-contract.component';
 import { CustomerRoutingModule } from './customer-routing.module';
 import { MaterialModuleModule } from '../shared/material-module.module';
@@ -39,7 +39,7 @@ import { CustomerSupervisorsListTableComponent } from './customer-supervisors/cu
     CustomerSupervisorsComponent,
     CustomerSupervisorsDetailComponent,
     CustomerInfoComponent,
-    ItensTableCustomerComponent,
+    CustomerListTableComponent,
     ItensTableItemContractComponent,
     CustomerAddressesListTableComponent,
     CustomerContractsListTableComponent,

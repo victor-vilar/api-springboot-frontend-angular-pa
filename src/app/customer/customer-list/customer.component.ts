@@ -36,13 +36,7 @@ export class CustomerComponent implements OnInit, CrudBaseComponent {
       }
     });
 
-    this.headerForTables ={
-      cpfCnpj:'CPF/CNPJ',
-      nameCompanyName:'Nome/Razão Social',
-      contractsSize:'Total de Contratos',
-      supervisorsSize:'Total de Fiscais',
-      adressesSize:'Total de Endereços',
-     };
+    this.headerForTables =['CPF-CNPJ','Nome/Razão Social','Contratos','Enderecos','Fiscais','Opções']
 
     this.title='Clientes';
     this.pathPrefix='cliente';
