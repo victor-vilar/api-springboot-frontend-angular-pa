@@ -21,7 +21,7 @@ import { CustomerDetailComponent } from './customer-detail/customer-detail.compo
 import { SharedModule } from '../shared/shared.module';
 import { CustomerInfoComponent } from './customer-util/customer-info/customer-info.component';
 import { CustomerListTableComponent } from './customer-util/customer-list-table/customer-list-table.component';
-import { ItensTableItemContractComponent } from './customer-util/itens-table-item-contract/itens-table-item-contract.component';
+import { ItemContractListTableComponent } from './customer-util/itemContract-list-table/itemContract-list-table.component';
 import { CustomerRoutingModule } from './customer-routing.module';
 import { MaterialModuleModule } from '../shared/material-module.module';
 import { CustomerAddressesListTableComponent } from './customer-addresses/customer-addresses-list-table/customer-addresses-list-table.component';
@@ -40,7 +40,7 @@ import { CustomerSupervisorsListTableComponent } from './customer-supervisors/cu
     CustomerSupervisorsDetailComponent,
     CustomerInfoComponent,
     CustomerListTableComponent,
-    ItensTableItemContractComponent,
+    ItemContractListTableComponent,
     CustomerAddressesListTableComponent,
     CustomerContractsListTableComponent,
     CustomerSupervisorsListTableComponent,

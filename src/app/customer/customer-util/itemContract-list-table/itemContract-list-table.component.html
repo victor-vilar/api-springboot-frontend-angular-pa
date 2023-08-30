@@ -1,0 +1,62 @@
+<div class="itens-table-container">
+
+  <div class="empty-records" *ngIf="tableData.length === 0">
+    <h1>Ainda não há resíduos cadastrados</h1>
+  </div>
+
+  <ng-container *ngIf="tableData.length !== 0">
+      <div class="header-wrapper">
+
+        <div class="mat-elevation-z8">
+          <table mat-table [dataSource]="dataSource" matSort>
+
+            <ng-container matColumnDef="No">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> No.</th>
+              <td mat-cell *matCellDef="let i = index;"> {{i+1}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Residuo">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Residuo </th>
+              <td mat-cell *matCellDef="let item"> {{item.residue.type}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Equipamento">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Equipamento </th>
+              <td mat-cell *matCellDef="let item"> {{item.equipment.equipmentName }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Quantidade">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Quantidade </th>
+              <td mat-cell *matCellDef="let item"> {{item.qtdOfResidue}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Valor">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Valor </th>
+              <td mat-cell *matCellDef="let item"> {{item.itemValue | currency:'BRL'}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Opções">
+              <th mat-header-cell *matHeaderCellDef>Opções</th>
+              <td mat-cell *matCellDef="let item">
+                  <div class="flex-display">
+                    <button mat-stroked-button type="button" matTooltip="Deletar Cliente" name="delete" id="delete" class="bt bt-delete " (click)="deleteItemFromList(item)"><i class="fas fa-times"></i></button>
+                  </div>
+
+                </td>
+            </ng-container>
+
+
+              <tr mat-header-row *matHeaderRowDef="tableHeaders"></tr>
+              <tr mat-row *matRowDef="let myRowData; columns: tableHeaders"></tr>
+
+
+          </table>
+          <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        </div>
+
+      </div>
+    </ng-container>
+
+</div>
+
+

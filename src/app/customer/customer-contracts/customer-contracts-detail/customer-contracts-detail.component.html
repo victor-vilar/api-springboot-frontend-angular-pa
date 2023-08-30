@@ -88,12 +88,11 @@
             <label>{{totalValueOfContract | currency :'BRL'}}</label>
           </mat-panel-description>
         </mat-expansion-panel-header>
-        <app-itens-table-item-contract
+        <app-itemContract-list-table
           [tableHeaders]="headerForTables"
           [tableData]="itemContractList"
-          [model]="'itens'"
-          (deleteItemEmitter)= "deleteItemFromList($event)">
-        </app-itens-table-item-contract>
+          (deleteResidueFromList)= "deleteItemFromList($event)">
+        </app-itemContract-list-table>
       </mat-expansion-panel>
     </div>
   </form>

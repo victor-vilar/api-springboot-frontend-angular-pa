@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ItensTableItemContractComponent } from './itens-table-item-contract.component';
+import { ItensTableItemContractComponent } from './itemContract-list-table.component';
 
 describe('ItensTableItemContractComponent', () => {
   let component: ItensTableItemContractComponent;

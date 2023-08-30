@@ -89,12 +89,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
     })
 
     //initialize headers from child compoente- itens table
-    this.headerForTables= {
-      residue:"Residuo",
-      equipment:"Equipamento",
-      qtdOfResidue:"Quantidade",
-      itemValue:"Valor",
-    }
+    this.headerForTables=['No','Residuo','Equipamento','Quantidade','Valor','Opções']
 
     //get all services
     this.getAll();
@@ -227,6 +222,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
   }
 
   //transform list of itens get from api to itemContract of front
+
   itemContractListFromApiMapper(list:any):ItemContract[]{
     return list.map(e =>{
 
@@ -293,6 +289,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
 
   }
   //check if begin date is small or equals to end date
+  //end date must be bigger than begin date
   checkContractDates(){
     let beginDate = new Date(this.form.value.beginDate);
     let endDate = new Date(this.form.value.endDate);
@@ -324,7 +321,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
     }
   }
 
-  //check if the item contract item value and quantity are number
+  //check if the item contract item value and quantity are numbers
   checkIfItemContractInputsAreNumbers(){
     if(isNaN(this.form.value.quantity) || isNaN(this.form.value.itemValue) || this.form.value.quantity <= 0 || this.form.value.itemValue <=0){
       let errorMessage = 'Os campos de quantidade e valor, dos campos do cadastro de resíduos, devem ser do tipo número e serem maiores do que zero'
@@ -333,6 +330,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
     }
   }
   //check if the form imputs are filled
+  //cant create itens with some data empty
   checkIfItemContractFromInputsAreFilled(){
     Object.values(this.form.controls).forEach(e =>{
       if(e.value === '' || e.value === null){
@@ -347,11 +345,11 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
  //delete item from contract and recalulate the total value
   deleteItemFromList(item:ItemContract){
 
-    //deletes a item from item contract
+    //deletes a item from item contract list
     this.itemContractList = this.itemContractList.filter(e =>!this.itemContractCompare(e, item));
 
 
-    //save deleted itens from list to delete from api later
+    //save deleted itens from itemContractlist to delete from api later
     this.deletedItensFromContractList.push(item);
 
     //refresh total value
@@ -359,7 +357,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
     this.sumTotalOfContract();
   }
 
-
+  //TODO -> NEED TO MAKE AN ENDPOIT TO DELETE A LIST OF ITENS RATHER THAN MAKE A REQUEST TO EACH ITEM TO DELETE.
   //delete a item from contract in api
   deleteItemsFromApi(){
     if(this.deletedItensFromContractList.length > 0){
