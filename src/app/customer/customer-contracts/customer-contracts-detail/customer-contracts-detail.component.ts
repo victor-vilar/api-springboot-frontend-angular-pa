@@ -515,7 +515,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
   //override
   canDeactivate(){
     //if contract form it is dirty and the form button was not pressed to save the alteration
-    //display message asking the user wants to save
+    //display message asking the if the user wants to save
     if(this.form.dirty){
         this.dialogService.openConfirmCloseDialog("Deseja sair sem salvar ?").subscribe(response =>{
           //if the user doesn't want to save, destroy component
