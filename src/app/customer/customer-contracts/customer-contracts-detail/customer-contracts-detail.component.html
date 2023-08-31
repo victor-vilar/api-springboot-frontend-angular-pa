@@ -1,4 +1,5 @@
 <div class="wrapper">
+  <button (click)="mockingFormFiller()">mockar</button>
   <mat-dialog-content>
   <div class="detail-component-header">
     <h4 class="detail-title">{{crudOperation}} de Contratos</h4>
@@ -77,7 +78,7 @@
           <div class="">
             <mat-form-field appearance="outline">
               <mat-label for="">Descrição:</mat-label>
-              <textarea matInput></textarea>
+              <textarea matInput ngModel name="description"></textarea>
             </mat-form-field>
           </div>
           <input type="button" value="Adicionar residuo" (click)="addItemToContract()"><br><br>

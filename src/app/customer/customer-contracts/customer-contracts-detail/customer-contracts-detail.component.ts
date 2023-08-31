@@ -89,7 +89,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
     })
 
     //initialize headers from child compoente- itens table
-    this.headerForTables=['No','Residuo','Equipamento','Quantidade','Valor','Opções']
+    this.headerForTables=['No','descricao','Residuo','Equipamento','Quantidade','Valor','Opções']
 
     //get all services
     this.getAll();
@@ -124,6 +124,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
           equipment:"",
           quantity:"",
           itemValue:"",
+          description:""
         })
       }
     },200);
@@ -147,7 +148,8 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
       residue:this.residuesService.list.find(e => e.id === Number(this.form.value.residue)),
       equipment:this.equipmentsService.list.find(e => e.id === Number(this.form.value.equipment)),
       qtdOfResidue:Number(this.form.value.quantity),
-      itemValue:Number(this.form.value.itemValue)
+      itemValue:Number(this.form.value.itemValue),
+      description:this.form.value.description
     }
   }
 
@@ -171,6 +173,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
 
     let itemContract = this.createItemContractObject();
 
+
     //check if a item with the sames keys values exist, if is true, return a error
     let itemAlreadyExist = this.itemContractList.some(e => this.itemContractCompare(e, itemContract));
 
@@ -179,6 +182,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
     }
     //push item to list
     this.itemContractList.push(itemContract);
+    console.log(this.itemContractList.length);
 
     //sum total
     this.sumTotalOfContract();
@@ -196,7 +200,8 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
       residue:'',
       equipment:'',
       quantity:'',
-      itemValue:''
+      itemValue:'',
+      description:''
     })
   }
 
@@ -216,13 +221,13 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
         residue:e.residue.id,
         equipment:e.equipment.id,
         qtdOfResidue:e.qtdOfResidue,
-        itemValue:e.itemValue
+        itemValue:e.itemValue,
+        description:e.description
       }
     })
   }
 
   //transform list of itens get from api to itemContract of front
-
   itemContractListFromApiMapper(list:any):ItemContract[]{
     return list.map(e =>{
 
@@ -400,6 +405,10 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
       return false;
     }
 
+    if(item1.description !== item2.description){
+      return false;
+    }
+
     return true
   }
 
@@ -418,8 +427,9 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
       endDate:'2022-02-28',
       residue:'1',
       equipment:'1',
-      quantity:100,
-      itemValue:100
+      quantity:Math.floor(Math.random() * 100),
+      itemValue:Math.floor(Math.random() * 100),
+      description:"teste",
     })
   }
 

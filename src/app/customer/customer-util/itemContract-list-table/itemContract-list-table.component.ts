@@ -13,7 +13,7 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./itemContract-list-table.component.css']
 })
 
-export class ItemContractListTableComponent implements OnInit, OnChanges {
+export class ItemContractListTableComponent implements OnInit, DoCheck {
 
 
   dataSource:MatTableDataSource<any>;
@@ -22,6 +22,7 @@ export class ItemContractListTableComponent implements OnInit, OnChanges {
   @Input()
   tableHeaders = []
 
+  savedListLength:number = 0;
 
 
 
@@ -34,8 +35,12 @@ export class ItemContractListTableComponent implements OnInit, OnChanges {
     this.dataSource = new MatTableDataSource(this.tableData);
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    this.dataSource = new MatTableDataSource(this.tableData);
+
+  ngDoCheck() {
+    if(this.tableData.length != this.savedListLength){
+      this.savedListLength = this.tableData.length;
+      this.dataSource = new MatTableDataSource(this.tableData);
+    }
   }
 
 
