@@ -8,5 +8,6 @@ export interface ItemContract{
   equipment:Equipment;
   qtdOfResidue:number;
   itemValue:number;
+  description?:string;
   contract?:Contract;
 }
