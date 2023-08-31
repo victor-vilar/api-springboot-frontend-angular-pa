@@ -239,7 +239,8 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
         residue:residue,
         equipment:equipment,
         qtdOfResidue:e.qtdOfResidue,
-        itemValue:e.itemValue
+        itemValue:e.itemValue,
+        description:e.description
       }
     })
   }
