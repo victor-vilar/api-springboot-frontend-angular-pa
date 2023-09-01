@@ -2,48 +2,50 @@
   <button (click)="mockingFormFiller()">mockar</button>
   <mat-dialog-content>
   <div class="detail-component-header">
-    <h4 class="detail-title">{{crudOperation}} de Contratos</h4>
     <a (click)="canDeactivate()" class="close-button">X</a>
   </div>
 
   <form (ngSubmit)="save()" #form="ngForm">
-    <h5>Dados do Contrato</h5>
-    <div class="basic-contract-info shadow-sm p-3 mb-5 bg-white rounded">
-      <div class="contract-field">
-        <mat-form-field appearance="outline">
-          <mat-label>Número</mat-label>
-          <input matInput type="text"  placeholder="Número" id="contractNumber" name="contractNumber" ngModel required>
-          <mat-error *ngIf="this.form.controls['contractNumber'].value === '' && (this.form.controls['contractNumber'].dirty || this.form.controls['contractNumber'].touched)"
-          class="alert">O contrato deve possuir um número</mat-error>
-        </mat-form-field>
-      </div>
-      <div class="contract-field">
-        <mat-form-field appearance="outline">
-          <mat-label>Data de Início</mat-label>
-          <input matInput [matDatepicker]="beginDatePicker" name="beginDate" ngModel required>
-          <mat-datepicker-toggle matSuffix [for]="beginDatePicker"></mat-datepicker-toggle>
-          <mat-datepicker #beginDatePicker></mat-datepicker>
-          <mat-error *ngIf="this.form.controls['beginDate'].value === '' && (this.form.controls['beginDate'].dirty || this.form.controls['beginDate'].touched)"
-          class="alert">O contrato deve possuir uma data de início</mat-error>
-        </mat-form-field>
-      </div>
 
-      <div class="contract-field">
-        <mat-form-field appearance="outline">
-          <mat-label>Data de Encerramento</mat-label>
-          <input matInput [matDatepicker]="endDatePicker" name="endDate" ngModel required [matDatepickerFilter]="endDateFilter">
-          <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
-          <mat-datepicker #endDatePicker></mat-datepicker>
-          <mat-error *ngIf="this.form.controls['endDate'].value === '' && (this.form.controls['endDate'].dirty || this.form.controls['endDate'].touched)"
-          class="alert">O contrato deve possuir uma data de encerramento</mat-error>
-          <mat-error *ngIf="isInvalidContractDates"
-          class="alert">A data de encerramento não pode ser igual ou anterior a data de início</mat-error>
-        </mat-form-field>
+    <div class="basic-contract-info mat-elevation-z8 p-3 mb-5 bg-white ">
+      <p>Informações do Contrato</p>
+      <div class="contract-field-wrapper">
+        <div class="contract-field">
+          <mat-form-field appearance="outline">
+            <mat-label>Número</mat-label>
+            <input matInput type="text"  placeholder="Número" id="contractNumber" name="contractNumber" ngModel required>
+            <mat-error *ngIf="this.form.controls['contractNumber'].value === '' && (this.form.controls['contractNumber'].dirty || this.form.controls['contractNumber'].touched)"
+            class="alert">O contrato deve possuir um número</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="contract-field">
+          <mat-form-field appearance="outline">
+            <mat-label>Data de Início</mat-label>
+            <input matInput [matDatepicker]="beginDatePicker" name="beginDate" ngModel required>
+            <mat-datepicker-toggle matSuffix [for]="beginDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #beginDatePicker></mat-datepicker>
+            <mat-error *ngIf="this.form.controls['beginDate'].value === '' && (this.form.controls['beginDate'].dirty || this.form.controls['beginDate'].touched)"
+            class="alert">O contrato deve possuir uma data de início</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="contract-field">
+          <mat-form-field appearance="outline">
+            <mat-label>Data de Encerramento</mat-label>
+            <input matInput [matDatepicker]="endDatePicker" name="endDate" ngModel required [matDatepickerFilter]="endDateFilter">
+            <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #endDatePicker></mat-datepicker>
+            <mat-error *ngIf="this.form.controls['endDate'].value === '' && (this.form.controls['endDate'].dirty || this.form.controls['endDate'].touched)"
+            class="alert">O contrato deve possuir uma data de encerramento</mat-error>
+            <mat-error *ngIf="isInvalidContractDates"
+            class="alert">A data de encerramento não pode ser igual ou anterior a data de início</mat-error>
+          </mat-form-field>
+        </div>
       </div>
     </div>
 
-    <h5>Resíduos</h5>
-    <div class="residues-field shadow-sm p-3 mb-5 bg-white rounded">
+    <div class="residues-field mat-elevation-z8  mb-5 bg-white ">
+      <p>Adicionar resíduos</p>
       <div class="residue-item-options">
         <div class="residue-item-options-item-body">
             <div class="residue-item-options-item">

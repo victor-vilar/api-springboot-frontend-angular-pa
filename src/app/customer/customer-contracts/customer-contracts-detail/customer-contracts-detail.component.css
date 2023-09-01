@@ -2,6 +2,7 @@
 
 .wrapper{
   padding:5px;
+  position: relative;
   /* border: 1px solid black; */
 }
 
@@ -18,9 +19,7 @@ mat-expansion-panel{
   margin-bottom: 20px;
 }
 
-.expansion{
 
-}
 
 
 .close-button{
@@ -29,6 +28,9 @@ mat-expansion-panel{
   padding:5px;
   text-decoration: none;
   color:black;
+  position:absolute;
+  right: 0;
+  top:0;
 }
 
 .close-button:hover{
@@ -60,12 +62,8 @@ mat-expansion-panel{
 .residue-item-options-item label, .contract-field label {
   font-weight: bolder;
 }
-.basic-contract-info input,.alert, .basic-contract-info select, .residue-item-options-item input,.residue-item-options-item select  {
-  /* padding:10px;
-  width: 100%;
-  height: 50px;
-  margin-bottom: 5px; */
-}
+
+
 
 .alert {
   font-size: .8rem;
@@ -89,23 +87,22 @@ mat-expansion-panel{
 
 @media screen and (min-width:1200px){
 
-  .basic-contract-info, .residue-item-options-item-body{
+  .contract-field-wrapper, .residue-item-options-item-body{
     display: flex;
     flex-direction: row;
     gap:5px;
   }
-  .basic-contract-info{
-    margin-bottom: 10px;
+  .contract-field-wrapper{
+    /* margin-bottom: 10px; */
     justify-content: space-around;
   }
 
-  .residues-field, .basic-contract-info{
+  .residues-field, .contract-field-wrapper{
     padding:15px;
-    border: 1px solid #c7c7c7;
-    border-radius: 5px ;
+    border-radius: 3px ;
   }
 
-  .basic-contract-info input, .residue-item-options input[type=text], .residue-item-options select, .alert{
+  .contract-field-wrapper input, .residue-item-options input[type=text], .residue-item-options select, .alert{
     width:200px ;
   }
 
