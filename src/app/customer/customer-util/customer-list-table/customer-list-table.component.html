@@ -45,6 +45,7 @@
               <th mat-header-cell *matHeaderCellDef>Opções</th>
               <td mat-cell *matCellDef="let customer"  >
                   <div class="flex-display">
+                    <button mat-stroked-button type="button" matTooltip="Exibir informações" name="contratos" id="contratos" class="bt bt-op " [routerLink]="['/cliente',customer.cpfCnpj,'informacoes']"><i class="fas fa-search"></i></button>
                     <button mat-stroked-button type="button" matTooltip="Exibir Contratos" name="contratos" id="contratos" class="bt bt-op " [routerLink]="['/cliente',customer.cpfCnpj,'contratos']"><i class="fas fa-file-signature"></i></button>
                     <button mat-stroked-button type="button" matTooltip="Exibir Enderecos" name="enderecos" id="enderecos" class="bt bt-op " [routerLink]="['/cliente',customer.cpfCnpj,'enderecos']" ><i class="fas fa-map-marker-alt"></i></button>
                     <button mat-stroked-button type="button" matTooltip="Exibir Fiscais" name="fiscais" id="fiscais" class="bt bt-op " [routerLink]="['/cliente',customer.cpfCnpj,'fiscais']"><i class="fas fa-user"></i></button>
