@@ -118,8 +118,8 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
       if(this.objectToEdit  != null){
         this.form.setValue({
           contractNumber:this.objectToEdit.number,
-          beginDate:this.objectToEdit.beginDate,
-          endDate:this.objectToEdit.endDate,
+          beginDate:new Date(this.objectToEdit.beginDate),
+          endDate:new Date(this.objectToEdit.endDate),
           residue:"",
           equipment:"",
           quantity:"",
@@ -195,8 +195,8 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
   clearAddItensInputFieldsAfterAdd(){
     this.form.setValue({
       contractNumber:this.form.value.contractNumber,
-      beginDate:this.form.value.beginDate,
-      endDate:this.form.value.endDate,
+      beginDate:new Date(this.form.value.beginDate),
+      endDate:new Date(this.form.value.endDate),
       residue:'',
       equipment:'',
       quantity:'',
@@ -424,8 +424,8 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
   mockingFormFiller(){
     this.form.setValue({
       contractNumber:'1000',
-      beginDate:'2022-02-01',
-      endDate:'2022-02-28',
+      beginDate:new Date('2022-02-01'),
+      endDate:new Date('2022-02-28'),
       residue:'1',
       equipment:'1',
       quantity:Math.floor(Math.random() * 100),
