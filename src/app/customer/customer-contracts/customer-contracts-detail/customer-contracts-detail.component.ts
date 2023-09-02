@@ -38,7 +38,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
   //list of itens of a contract
   itemContractList:ItemContract[] = [];
   //saves temporaly deleted itens from contract list to delete later
-  deletedItensFromContractList:ItemContract[] =[]
+  deletedSavedItensIdList:number[] =[]
   //---
 
   //CpfCnpj of selected client
@@ -205,7 +205,9 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
     })
   }
 
-  //display the total contract price
+  /**
+   * display the total contract price
+   */
   sumTotalOfContract(){
     this.totalValueOfContract = 0;
     this.itemContractList.forEach(e =>{
@@ -355,29 +357,32 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
     this.itemContractList = this.itemContractList.filter(e =>!this.itemContractCompare(e, item));
 
 
-    //save deleted itens from itemContractlist to delete from api later
-    this.deletedItensFromContractList.push(item);
+    //if the item has an id, it was saved before, and need to be deleted from api.
+    //this is necessary because sometimes an item it is added to the contractList and it is excluded before
+    //the contract is saved in backend, so the item won't have and id.
+    if(item.id !== null && item.id !== undefined){
+
+      //saving item in a list to delete from backend.
+      this.deletedSavedItensIdList.push(item.id);
+
+    }
 
     //refresh total value
-    this.totalValueOfContract = 0;
     this.sumTotalOfContract();
   }
 
-  //TODO -> NEED TO MAKE AN ENDPOIT TO DELETE A LIST OF ITENS RATHER THAN MAKE A REQUEST TO EACH ITEM TO DELETE.
-  //delete a item from contract in api
+
+  /**
+   * if some itens are deleted from the contract frontend list, it will be deleted from backend list
+   */
   deleteItemsFromApi(){
-    if(this.deletedItensFromContractList.length > 0){
 
-      //get each item deleted and deletes from backend api
-      this.deletedItensFromContractList.forEach(e => {
-        if(e.id !== null && e.id !== undefined){
-          let observable$ = this.contractService.deleteItemFromContract(e);
-          let observer = this.deleteItemFromContractObserver();
-          observable$.subscribe(observer);
-        }
-      })
-
+    //if the list has itens, so the will be deleted from backend.
+    if(this.deletedSavedItensIdList.length > 0){
+      this.contractService.deleteItensFromContract(this.deletedSavedItensIdList)
+      .subscribe(this.deleteItemFromContractObserver());
     }
+
 
   }
 
@@ -501,6 +506,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
     return{
       next:(response) =>{
         //close progress spinner dialog
+        console.log(response);
         this.dialogService.closeProgressSpinnerDialog();
 
       },

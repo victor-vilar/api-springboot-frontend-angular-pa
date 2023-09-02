@@ -7,103 +7,148 @@
 
   <form (ngSubmit)="save()" #form="ngForm">
 
-    <div class="basic-contract-info mat-elevation-z8 p-3 mb-5 bg-white ">
+    <div class="contract-info mat-elevation-z8  ">
+
+
       <p>Informações do Contrato</p>
+
+      <!-- basic contract info wrapper -->
       <div class="contract-field-wrapper">
-        <div class="contract-field">
-          <mat-form-field appearance="outline">
-            <mat-label>Número</mat-label>
-            <input matInput type="text"  placeholder="Número" id="contractNumber" name="contractNumber" ngModel required>
-            <mat-error *ngIf="this.form.controls['contractNumber'].value === '' && (this.form.controls['contractNumber'].dirty || this.form.controls['contractNumber'].touched)"
-            class="alert">O contrato deve possuir um número</mat-error>
-          </mat-form-field>
-        </div>
-        <div class="contract-field">
-          <mat-form-field appearance="outline">
-            <mat-label>Data de Início</mat-label>
-            <input matInput [matDatepicker]="beginDatePicker" name="beginDate" ngModel required>
-            <mat-datepicker-toggle matSuffix [for]="beginDatePicker"></mat-datepicker-toggle>
-            <mat-datepicker #beginDatePicker></mat-datepicker>
-            <mat-error *ngIf="this.form.controls['beginDate'].value === '' && (this.form.controls['beginDate'].dirty || this.form.controls['beginDate'].touched)"
-            class="alert">O contrato deve possuir uma data de início</mat-error>
-          </mat-form-field>
-        </div>
 
-        <div class="contract-field">
-          <mat-form-field appearance="outline">
-            <mat-label>Data de Encerramento</mat-label>
-            <input matInput [matDatepicker]="endDatePicker" name="endDate" ngModel required [matDatepickerFilter]="endDateFilter">
-            <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
-            <mat-datepicker #endDatePicker></mat-datepicker>
-            <mat-error *ngIf="this.form.controls['endDate'].value === '' && (this.form.controls['endDate'].dirty || this.form.controls['endDate'].touched)"
-            class="alert">O contrato deve possuir uma data de encerramento</mat-error>
-            <mat-error *ngIf="isInvalidContractDates"
-            class="alert">A data de encerramento não pode ser igual ou anterior a data de início</mat-error>
-          </mat-form-field>
-        </div>
+          <!-- number field -->
+          <div class="contract-field">
+            <mat-form-field appearance="outline">
+              <mat-label>Número</mat-label>
+              <input matInput type="text"  placeholder="Número" id="contractNumber" name="contractNumber" ngModel required>
+              <mat-error *ngIf="this.form.controls['contractNumber'].value === '' && (this.form.controls['contractNumber'].dirty || this.form.controls['contractNumber'].touched)"
+              class="alert">O contrato deve possuir um número</mat-error>
+            </mat-form-field>
+          </div>
+
+          <!-- begin date field -->
+          <div class="contract-field">
+            <mat-form-field appearance="outline">
+              <mat-label>Data de Início</mat-label>
+              <input matInput [matDatepicker]="beginDatePicker" name="beginDate" ngModel required>
+              <mat-datepicker-toggle matSuffix [for]="beginDatePicker"></mat-datepicker-toggle>
+              <mat-datepicker #beginDatePicker></mat-datepicker>
+              <mat-error *ngIf="this.form.controls['beginDate'].value === '' && (this.form.controls['beginDate'].dirty || this.form.controls['beginDate'].touched)"
+              class="alert">O contrato deve possuir uma data de início</mat-error>
+            </mat-form-field>
+          </div>
+
+          <!-- end date field -->
+          <div class="contract-field">
+            <mat-form-field appearance="outline">
+              <mat-label>Data de Encerramento</mat-label>
+              <input matInput [matDatepicker]="endDatePicker" name="endDate" ngModel required [matDatepickerFilter]="endDateFilter">
+              <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+              <mat-datepicker #endDatePicker></mat-datepicker>
+              <mat-error *ngIf="this.form.controls['endDate'].value === '' && (this.form.controls['endDate'].dirty || this.form.controls['endDate'].touched)"
+              class="alert">O contrato deve possuir uma data de encerramento</mat-error>
+              <mat-error *ngIf="isInvalidContractDates"
+              class="alert">A data de encerramento não pode ser igual ou anterior a data de início</mat-error>
+            </mat-form-field>
+          </div>
+
       </div>
-    </div>
 
-    <div class="residues-field mat-elevation-z8  mb-5 bg-white ">
-      <p>Adicionar resíduos</p>
-      <div class="residue-item-options">
+
+
+      <!-- residue fields wrapper -->
+      <div class="residues-fields-wrapper ">
+
+            <!-- residue fields header -->
+            <p>Adicionar resíduos</p>
+
+        <!-- residue field wrapper display flex -->
         <div class="residue-item-options-item-body">
-            <div class="residue-item-options-item">
+
+          <!-- residue name field -->
+          <div class="residue-item-options-item">
               <mat-form-field appearance="outline">
                 <mat-label for="residue">Resíduo:</mat-label>
                 <mat-select name="residue" id="residue" ngModel >
                   <mat-option value="{{residue.id}}" *ngFor="let residue of residuesList">{{residue.type}}</mat-option>
                 </mat-select>
               </mat-form-field>
-            </div>
-            <div class="residue-item-options-item">
+          </div>
+
+
+          <!-- equipment name field -->
+          <div class="residue-item-options-item">
               <mat-form-field appearance="outline">
                 <mat-label for="equipment">Equipamento:</mat-label>
                   <mat-select name="equipment" id="equipment"  ngModel >
                     <mat-option value="{{equipment.id}}" *ngFor="let equipment of equipmentsList">{{equipment.equipmentName}}</mat-option>
                   </mat-select>
                 </mat-form-field>
-            </div>
-            <div class="residue-item-options-item">
+          </div>
+
+
+          <!-- quantity field -->
+          <div class="residue-item-options-item">
               <mat-form-field appearance="outline">
                 <mat-label>Quantidade em M³:</mat-label>
                 <input matInput type="text" name="quantity" ngModel >
               </mat-form-field>
-            </div>
-            <div class="residue-item-options-item">
+          </div>
+
+
+          <!-- item value field -->
+          <div class="residue-item-options-item">
               <mat-form-field appearance="outline">
                 <mat-label>Valor em Reais:</mat-label>
                 <input matInput type="currency" name="itemValue" ngModel >
               </mat-form-field>
-            </div>
           </div>
-          <div class="">
+
+
+        </div>
+
+        <!-- item description field outside wrapper -->
+        <div>
             <mat-form-field appearance="outline">
               <mat-label for="">Descrição:</mat-label>
               <textarea matInput ngModel name="description"></textarea>
             </mat-form-field>
-          </div>
-          <input type="button" value="Adicionar residuo" (click)="addItemToContract()"><br><br>
-      </div>
+        </div>
 
-      <mat-expansion-panel>
-        <mat-expansion-panel-header class="expansion">
-          <mat-panel-title>
-            <div class="contract-partial-information">
-              <label>Adicionados: {{itemContractList.length}}</label><br>
-            </div>
-          </mat-panel-title>
-          <mat-panel-description>
-            <label>{{totalValueOfContract | currency :'BRL'}}</label>
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-        <app-itemContract-list-table
-          [tableHeaders]="headerForTables"
-          [tableData]="itemContractList"
-          (deleteResidueFromList)= "deleteItemFromList($event)">
-        </app-itemContract-list-table>
-      </mat-expansion-panel>
-    </div>
+        <!-- add new item to contract button -->
+        <input type="button" value="Adicionar residuo" (click)="addItemToContract()"><br><br>
+
+        <!-- added itens list expansion panel -->
+        <mat-expansion-panel>
+
+          <!-- expansion panel header -->
+          <mat-expansion-panel-header class="expansion">
+
+            <mat-panel-title>
+              <div class="contract-partial-information">
+                <label>Adicionados: {{itemContractList.length}}</label><br>
+              </div>
+            </mat-panel-title>
+
+            <mat-panel-description>
+              <label>{{totalValueOfContract | currency :'BRL'}}</label>
+            </mat-panel-description>
+
+          </mat-expansion-panel-header>
+
+          <!-- itens contract list table in the expasion panel -->
+          <app-itemContract-list-table
+            [tableHeaders]="headerForTables"
+            [tableData]="itemContractList"
+            (deleteResidueFromList)= "deleteItemFromList($event)">
+          </app-itemContract-list-table>
+
+
+        </mat-expansion-panel>
+
+     </div>
+
+  </div>
+
   </form>
 
 

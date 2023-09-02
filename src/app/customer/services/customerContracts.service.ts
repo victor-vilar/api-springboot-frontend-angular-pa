@@ -20,10 +20,14 @@ export class CustomerContractsService extends CrudBaseService<Contract> implemen
 
 
 
-  //delete a item from contract
-  deleteItemFromContract(item:ItemContract):Observable<Contract>{
-    this.route = CrudBaseService.BASE_URL + this.rota +'/deleteitem/'+item.id;
-    return this.http.delete<Contract>(this.route,{withCredentials:true});
+  /**
+   *  delete a list of itens from api
+   * @param itens an list of itens that will be deleted
+   * @returns the updated contract
+   */
+  deleteItensFromContract(itens:number[]):Observable<Contract>{
+    this.route = CrudBaseService.BASE_URL + this.rota +'/deleteitens';
+    return this.http.delete<Contract>(this.route,{withCredentials:true,body:itens});
   }
 
 
