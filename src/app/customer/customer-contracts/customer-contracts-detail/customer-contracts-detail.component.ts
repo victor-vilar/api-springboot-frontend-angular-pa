@@ -100,14 +100,23 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
 
   }
 
-  //onload method to know if form going to be on edit mode or new mode
+  //onload method to know if form going to be on 'edit' mode or 'new' mode
   onLoad(): void {
 
+    //getting cpf/cnpj(id) from customer
     this.clientCpfCnpj = this.data.clientCpfCnpj;
+    //if the object (contract) is not null
     if(this.data.objectToEdit !== undefined && this.data.objectToEdit !== null){
+
       this.crudOperation="Atualização";
+
+      //getting contract data
       this.objectToEdit = this.contractService.list.find(c =>c.id === this.data.objectToEdit.id);
+
+      //maping itens from contract
       this.itemContractList = this.itemContractListFromApiMapper(this.objectToEdit.itens);
+
+      //updating view
       this.sumTotalOfContract();
     }
 
@@ -136,7 +145,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
 
   }
 
-  //execute services methods to get all info from api
+  //getting all equipments and residues, needed to insert new itens
   getAll(){
     this.equipmentsService.getAll();
     this.residuesService.getAll();
@@ -168,9 +177,10 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
     //check if all fields of add item its filled.
     this.checkIfItemContractFromInputsAreFilled();
 
-    //check if the values from qtd and value are numbers()
+    //check if the fields from qtd and value are numbers()
     this.checkIfItemContractInputsAreNumbers();
 
+    //creating new item contract object
     let itemContract = this.createItemContractObject();
 
 
@@ -180,14 +190,17 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
     if(itemAlreadyExist){
       throw Error('Já existe um item com os mesmos dados');
     }
+
     //push item to list
     this.itemContractList.push(itemContract);
-    console.log(this.itemContractList.length);
 
-    //sum total
+    //updating view of total value
     this.sumTotalOfContract();
+
+    //clearing fields to add new itens
     this.clearAddItensInputFieldsAfterAdd();
 
+    //angular material snack bar message
     this.openSnackBar("Resíduo inserido com sucesso","Cadastro");
   }
 
@@ -259,22 +272,30 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
     //create a contract object
     let contract = this.createObject();
     contract.customerId = this.clientCpfCnpj;
+
     //insert itens to contract
     contract.itens = this.itemContractListMapper();
-    console.log(contract);
+
     //creates a contractObserver
-    let contractObserver = this.createsContractObserver();
+    let contractObserver;
+
     //observervable$
     let observervable$;
-    //if the idOfEditedItem === undefined means its a new contract not a edited one
 
+    //if the idOfEditedItem === undefined means its a new contract not a edited one
     if(this.objectToEdit === null || this.objectToEdit === undefined){
+
+      contractObserver = this.contractCreateObserver();
       observervable$ = this.contractService.save(contract);
-    //if it's undefined it's just updating some item or value
+
+      //if it's undefined it's just updating
     }else{
+
       //fill empty contract fields to make the update
       contract.id = this.objectToEdit.id;
       contract.customerId = this.objectToEdit.customerId;
+
+      contractObserver = this.contractUpdateObserver();
 
       //put on api
       observervable$ = this.contractService.update(contract);
@@ -282,7 +303,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
 
     //executing observable
     observervable$.subscribe(contractObserver);
-    this.deleteItemsFromApi();
+
     this.destroy();
   }
 
@@ -452,14 +473,14 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
 
   //observer to manipulate observable subscription
   //creates contract
-  createsContractObserver():any{
+  contractCreateObserver():any{
     return{
       next:(response) =>{
         //colse progress dialog
         this.dialogService.closeProgressSpinnerDialog();
         //show success message
         this.dialogService.openSucessDialog('Contrato salvo com sucesso !','/clientes');
-        //update all contract from api
+        //update contract list
         this.contractService.getAll();
 
       },
@@ -471,6 +492,28 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
       }
     }
   }
+
+  contractUpdateObserver():any{
+    return{
+      next:(response) =>{
+        //close progress dialog
+        this.dialogService.closeProgressSpinnerDialog();
+
+        this.deleteItemsFromApi();
+        //update contract list
+        this.contractService.getAll();
+
+      },
+      error:(error)=>{
+        //close progress dialog
+        this.dialogService.closeProgressSpinnerDialog();
+        //show error message
+        this.dialogService.openErrorDialog(error.message);
+      }
+    }
+  }
+
+
   //deletes contract
   deletesContractObserver():any{
     return{
@@ -501,18 +544,21 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
       }
     }
   }
-  //observer to do after eliminates a itemCOntract from databse;
+  //observer to do after eliminates a itemContract from databse;
   deleteItemFromContractObserver():any{
     return{
       next:(response) =>{
         //close progress spinner dialog
         console.log(response);
+        //show success message
+        this.dialogService.openSucessDialog('Contrato salvo com sucesso !','/clientes');
         this.dialogService.closeProgressSpinnerDialog();
 
       },
       error:(error)=>{
         this.dialogService.closeProgressSpinnerDialog();
-        this.dialogService.openErrorDialog(error.message);
+        console.log(error);
+        this.dialogService.openErrorDialog(error);
       }
     }
   }
