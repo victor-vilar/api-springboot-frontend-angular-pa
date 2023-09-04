@@ -27,7 +27,7 @@ export class CustomerContractsService extends CrudBaseService<Contract> implemen
    */
   deleteItensFromContract(itens:number[]):Observable<Contract>{
     this.route = CrudBaseService.BASE_URL + this.rota +'/deleteitens';
-    return this.http.delete<Contract>(this.route,{withCredentials:true,body:itens});
+    return this.http.delete<any>(this.route,{withCredentials:true,body:itens});
   }
 
 
