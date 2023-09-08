@@ -7,3 +7,7 @@ export enum Schedule{
   SOB_SOLICITACAO=5
 
 }
+
+export function getScheduleValues(){
+  return Object.values(Schedule).filter(value => isNaN(Number(value)));
+}

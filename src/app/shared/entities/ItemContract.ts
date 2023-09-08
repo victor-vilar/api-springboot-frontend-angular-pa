@@ -7,10 +7,10 @@ export interface ItemContract{
   id?:number;
   residue:Residue;
   equipment:Equipment;
-  equipmentQuantity:number;
+  equipmentQuantity?:number;
   qtdOfResidue:number;
   itemValue:number;
   description?:string;
   contract?:Contract;
-  collectionFrequency:CollectionFrequency;
+  collectionFrequency?:CollectionFrequency;
 }

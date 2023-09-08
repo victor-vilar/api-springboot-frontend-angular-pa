@@ -7,7 +7,7 @@ export interface Contract{
   number:string;
   beginDate:Date;
   endDate:Date;
-  status:ContractStatus;
+  contractStatus:ContractStatus;
   itens?:ItemContract[];
   customer?:Customer;
   customerId:string;

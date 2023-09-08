@@ -6,3 +6,6 @@ export enum ContractStatus{
 
 }
 
+export function getContractStatusValues(){
+  return Object.values(ContractStatus).filter(value => isNaN(Number(value)));
+}

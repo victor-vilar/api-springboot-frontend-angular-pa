@@ -51,6 +51,16 @@
             </mat-form-field>
           </div>
 
+          <!-- contract status field -->
+          <div class="contract-field">
+            <mat-form-field appearance="outline">
+              <mat-label>Status</mat-label>
+              <mat-select name="contractStatus" id="contractStatus" ngModel >
+                <mat-option value="{{status}}" *ngFor="let status of contractStatusEnumValues">{{status}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
       </div>
 
 
@@ -85,6 +95,14 @@
                 </mat-form-field>
           </div>
 
+          <!-- equipment quantity field -->
+          <div class="residue-item-options-item" matTooltip="Quantidade de equipamentos que serão disponibilizados para o serviço">
+              <mat-form-field appearance="outline">
+                <mat-label for="equipmentQuantity">Quantidade de Equipamentos:</mat-label>
+                  <input matInput type="text" name="equipmentQuantity" ngModel >
+                </mat-form-field>
+          </div>
+
 
           <!-- quantity field -->
           <div class="residue-item-options-item">
@@ -102,6 +120,31 @@
                 <input matInput type="currency" name="itemValue" ngModel >
               </mat-form-field>
           </div>
+
+
+          <!-- field that has information of how the service is going to be undertaken -->
+          <div class="collection-service-executation-field" matTooltip="Frequência em que o serviço será executado">
+            <!-- schedule field  what is the frequency-->
+            <div class="residue-item-options-item">
+                <mat-form-field appearance="outline">
+                  <mat-label for="schedule">Frequência:</mat-label>
+                    <mat-select name="schedule" id="schedule"  ngModel >
+                      <mat-option value="{{schedule}}" *ngFor="let schedule of scheduleEnumValues">{{schedule}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+            </div>
+
+            <!-- days field - what are the days that the service is going to be undertaken-->
+            <div class="residue-item-options-item " matTooltip="Selecione o dia e clique em adicionar">
+                <mat-form-field appearance="outline">
+                  <mat-label for="days">Dias:</mat-label>
+                    <mat-select name="days" id="days"  ngModel >
+                      <mat-option value="{{weekday}}" *ngFor="let weekday of weekDaysEnumValues">{{weekday}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+            </div>
+          </div>
+
 
 
         </div>

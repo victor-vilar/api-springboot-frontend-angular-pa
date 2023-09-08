@@ -1,3 +1,5 @@
+import { ContractStatus } from './../../../shared/entities/ContractStatus';
+import { CollectionFrequency } from './../../../shared/entities/CollectionFrequency';
 import { DialogServiceService } from 'src/app/shared/services/dialog-service.service';
 import { Router, ActivatedRoute, UrlTree, RouterStateSnapshot } from '@angular/router';
 import { Contract } from 'src/app/shared/entities/Contract';
@@ -13,6 +15,9 @@ import { FormDetail } from 'src/app/shared/entities/FormDetail';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
+import { Schedule, getScheduleValues } from 'src/app/shared/entities/Schedule';
+import { Weekday, getWeekdayValues } from 'src/app/shared/entities/Weekday';
+import { getContractStatusValues } from 'src/app/shared/entities/ContractStatus';
 
 
 @Component({
@@ -54,9 +59,17 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
   headerForTables;
   //sum of itens of contract
   totalValueOfContract:number = 0;
+
+  //errors
   isInvalidContractDates:boolean = false;
   allFieldsMustBeFilledError:boolean = false;
   //---
+
+  //enum values to fill the select components
+  scheduleEnumValues = getScheduleValues();
+  weekDaysEnumValues = getWeekdayValues();
+  contractStatusEnumValues = getContractStatusValues();
+
 
   constructor(residuesService:ResiduesService,
               equipmentsService:EquipmentsService,
@@ -89,11 +102,15 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
     })
 
     //initialize headers from child compoente- itens table
-    this.headerForTables=['No','descricao','Residuo','Equipamento','Quantidade','Valor','Opções']
+    this.headerForTables=['No','descricao','Residuo','Equipamento','Quantidade Equipamento','Quantidade','Valor','Opções']
 
     //get all services
     this.getAll();
     this.onLoad();
+
+
+    //begin adding new contract, has an active status
+    this.form.value.contractStatus = Object.keys(ContractStatus.ATIVO);
 
 
 
@@ -129,11 +146,15 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
           contractNumber:this.objectToEdit.number,
           beginDate:new Date(this.objectToEdit.beginDate),
           endDate:new Date(this.objectToEdit.endDate),
+          contractStatus:this.objectToEdit.contractStatus,
           residue:"",
           equipment:"",
           quantity:"",
           itemValue:"",
-          description:""
+          description:"",
+          schedule:"",
+          days:""
+
         })
       }
     },200);
@@ -153,9 +174,12 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
 
   //creates an itemContract from form fields
   createItemContractObject():ItemContract{
+    let collectionFrequency:CollectionFrequency;
+    collectionFrequency.schedule = this.form.value.schedule
     return {
       residue:this.residuesService.list.find(e => e.id === Number(this.form.value.residue)),
       equipment:this.equipmentsService.list.find(e => e.id === Number(this.form.value.equipment)),
+      equipmentQuantity:Number(this.form.value.equipmentQuantity),
       qtdOfResidue:Number(this.form.value.quantity),
       itemValue:Number(this.form.value.itemValue),
       description:this.form.value.description
@@ -168,6 +192,7 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
       number:this.form.value.contractNumber,
       beginDate:this.form.value.beginDate,
       endDate:this.form.value.endDate,
+      contractStatus:this.form.value.contractStatus
     }
   }
 
@@ -214,7 +239,9 @@ export class CustomerContractsDetailComponent implements OnInit, FormDetail {
       equipment:'',
       quantity:'',
       itemValue:'',
-      description:''
+      description:'',
+      schedule:"",
+      days:""
     })
   }
 
