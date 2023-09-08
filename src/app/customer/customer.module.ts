@@ -28,6 +28,7 @@ import { CustomerAddressesListTableComponent } from './customer-addresses/custom
 import { CustomerContractsListTableComponent } from './customer-contracts/customer-contracts-list-table/customer-contracts-list-table.component';
 import { CustomerSupervisorsListTableComponent } from './customer-supervisors/customer-supervisors-list-table/customer-supervisors-list-table.component';
 import { CustomerDetailInfoComponent } from './customer-detail-info/customer-detail-info.component';
+import { CustomerContractsDetailItensComponent } from './customer-contracts/customer-contracts-detail-itens/customer-contracts-detail-itens.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { CustomerDetailInfoComponent } from './customer-detail-info/customer-det
     CustomerContractsListTableComponent,
     CustomerSupervisorsListTableComponent,
     CustomerDetailInfoComponent,
+    CustomerContractsDetailItensComponent,
 
   ],
   imports: [
