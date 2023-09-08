@@ -46,6 +46,7 @@ import { CustomerDetailInfoComponent } from './customer-detail-info/customer-det
     CustomerContractsListTableComponent,
     CustomerSupervisorsListTableComponent,
     CustomerDetailInfoComponent,
+
   ],
   imports: [
     CustomerRoutingModule,

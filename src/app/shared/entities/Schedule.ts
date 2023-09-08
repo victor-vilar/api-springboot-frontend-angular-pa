@@ -4,5 +4,6 @@ export enum Schedule{
   SEMANAL=2,
   QUINZENAL=3,
   MENSAL=4,
+  SOB_SOLICITACAO=5
 
 }

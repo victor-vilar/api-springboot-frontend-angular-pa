@@ -5,3 +5,4 @@ export enum ContractStatus{
   ENCERRADO=4
 
 }
+

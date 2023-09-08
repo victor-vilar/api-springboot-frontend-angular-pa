@@ -72,6 +72,7 @@
 
 .navegation div a i {
   margin-left: 5px;
+  max-width: 5%;
 }
 
 .navegation div a span{
