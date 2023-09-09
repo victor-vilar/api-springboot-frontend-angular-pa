@@ -1,3 +1,4 @@
+import { ContractStatus } from './../../shared/entities/ContractStatus';
 import { ItemContract } from '../../shared/entities/ItemContract';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -5,6 +6,7 @@ import { Observable, of } from 'rxjs';
 import { Contract } from '../../shared/entities/Contract';
 import { CrudBaseService } from 'src/app/shared/services/crudbase.service';
 import { Mapper } from '../../shared/interfaces/mapper.mapper';
+import { Schedule } from 'src/app/shared/entities/Schedule';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +24,7 @@ export class CustomerContractsService extends CrudBaseService<Contract> implemen
 
   /**
    *  delete a list of itens from api
-   * @param itens an list of itens that will be deleted
+   * @param itens an list of itens id that will be deleted
    * @returns the updated contract
    */
   deleteItensFromContract(itens:number[]):Observable<Contract>{
@@ -36,6 +38,32 @@ export class CustomerContractsService extends CrudBaseService<Contract> implemen
     this.route = CrudBaseService.BASE_URL + this.rota +'/all/'+clientCpfCnpj;
     return this.http.get<Contract[]>(this.route,{withCredentials:true});
   }
+
+
+  // get all contracts that have a contractStatus equals to given param
+  //**NEED TO TEST */
+  getAllContractsThatHaveContractStatusType(contractStatus:ContractStatus):Contract[]{
+    return this.list.filter(contract => contract.contractStatus === contractStatus);
+  }
+
+  //return from service list, contracts that have itens that have collection frequency equals to given param
+  //**NEED TO TEST */
+  getAllItemContractThatHasScheduleType(schedule:Schedule):ItemContract[]{
+      let listOfItens:ItemContract[] = [];
+
+      this.list.forEach(contract => {
+          contract.itens.filter(item => item.collectionFrequency.schedule === schedule)
+          .forEach(item => listOfItens.push(item))
+
+
+      })
+
+      return listOfItens;
+  }
+
+
+
+
 
 
   mapItens(list:any[]):any[]{
