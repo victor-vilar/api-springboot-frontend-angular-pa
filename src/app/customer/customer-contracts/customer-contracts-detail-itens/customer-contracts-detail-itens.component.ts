@@ -112,40 +112,40 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges 
 
 
 
-    //add an item to contract
-    addItemToContract(){
+  //add an item to contract
+  addItemToContract(){
 
-      //check if all fields of add item its filled.
-      this.checkIfItemContractFromInputsAreFilled();
+    //check if all fields of add item its filled.
+    this.checkIfItemContractFromInputsAreFilled();
 
-      //check if the fields from qtd and value are numbers()
-      this.checkIfItemContractInputsAreNumbers();
+    //check if the fields from qtd and value are numbers()
+    this.checkIfItemContractInputsAreNumbers();
 
-      //creating new item contract object
-      let itemContract = this.createItemContractObject();
+    //creating new item contract object
+    let itemContract = this.createItemContractObject();
 
 
-      //check if a item with the sames keys values exist, if is true, return a error
-      let itemAlreadyExist = this.itemContractList.some(e => this.itemContractCompare(e, itemContract));
+    //check if a item with the sames keys values exist, if is true, return a error
+    let itemAlreadyExist = this.itemContractList.some(e => this.itemContractCompare(e, itemContract));
 
-      if(itemAlreadyExist){
-        throw Error('Já existe um item com os mesmos dados');
-      }
-
-      //push item to list
-      this.itemContractList.push(itemContract);
-
-      //updating view of total value
-      this.sumTotalOfContract();
-
-      //clearing fields to add new itens
-      this.clearAddItensInputFieldsAfterAdd();
-
-      //angular material snack bar message
-      this.openSnackBar("Resíduo inserido com sucesso","Cadastro");
+    if(itemAlreadyExist){
+      throw Error('Já existe um item com os mesmos dados');
     }
 
-      //clear add itens to contract fields
+    //push item to list
+    this.itemContractList.push(itemContract);
+
+    //updating view of total value
+    this.sumTotalOfContract();
+
+    //clearing fields to add new itens
+    this.clearAddItensInputFieldsAfterAdd();
+
+    //angular material snack bar message
+    this.openSnackBar("Resíduo inserido com sucesso","Cadastro");
+  }
+
+  //clear add itens to contract fields
   clearAddItensInputFieldsAfterAdd(){
     this.form.setValue({
       residue:'',

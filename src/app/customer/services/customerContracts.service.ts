@@ -41,13 +41,11 @@ export class CustomerContractsService extends CrudBaseService<Contract> implemen
 
 
   // get all contracts that have a contractStatus equals to given param
-  //**NEED TO TEST */
   getAllContractsThatHaveContractStatusType(contractStatus:ContractStatus):Contract[]{
     return this.list.filter(contract => contract.contractStatus === contractStatus);
   }
 
   //return from service list, contracts that have itens that have collection frequency equals to given param
-  //**NEED TO TEST */
   getAllItemContractThatHasScheduleType(schedule:Schedule):ItemContract[]{
       let listOfItens:ItemContract[] = [];
 

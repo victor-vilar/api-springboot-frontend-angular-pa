@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ItensTableItemContractComponent } from './itemContract-list-table.component';
+import { ItemContractListTableComponent } from './itemContract-list-table.component';
 
 describe('ItensTableItemContractComponent', () => {
-  let component: ItensTableItemContractComponent;
-  let fixture: ComponentFixture<ItensTableItemContractComponent>;
+  let component: ItemContractListTableComponent;
+  let fixture: ComponentFixture<ItemContractListTableComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ItensTableItemContractComponent ]
+      declarations: [ ItemContractListTableComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ItensTableItemContractComponent);
+    fixture = TestBed.createComponent(ItemContractListTableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

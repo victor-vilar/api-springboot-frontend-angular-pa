@@ -66,7 +66,7 @@ export let itemContractListForTests:ItemContract[] = [
     qtdOfResidue:100,
     itemValue:200,
     description:'outro item 4',
-    collectionFrequency:{days:[Weekday.SEGUNDA,Weekday.QUARTA,Weekday.SEXTA],schedule:Schedule.SOB_SOLICITACAO},
+    collectionFrequency:{days:[Weekday.SEGUNDA,Weekday.QUARTA,Weekday.SEXTA],schedule:Schedule.MENSAL},
   },
 
 
