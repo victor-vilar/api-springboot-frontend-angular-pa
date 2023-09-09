@@ -1,4 +1,4 @@
-import { ItemContract } from "./ItemContract";
+import { ItemContract, itemContractListForTests } from "./ItemContract";
 import { Customer } from "./Customer";
 import { ContractStatus } from "./ContractStatus";
 
@@ -12,3 +12,16 @@ export interface Contract{
   customer?:Customer;
   customerId:string;
 }
+
+
+let ContactList:Contract[] = [
+  {
+    id:1,
+    number:'1000',
+    beginDate:new Date("2023/09/01"),
+    endDate:new Date("2023/09/30"),
+    contractStatus:ContractStatus.ATIVO,
+    itens:itemContractListForTests,
+    customerId:'08080808'
+  }
+]

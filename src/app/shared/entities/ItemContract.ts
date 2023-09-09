@@ -17,7 +17,6 @@ export interface ItemContract{
   collectionFrequency?:CollectionFrequency;
 }
 
-
 let equipment1:Equipment= {id:1,equipmentName:'Container 1,2m',sizeInMeterCubic:1.2};
 let equipment2:Equipment = {id:2,equipmentName:'Container 240L',sizeInMeterCubic:0.24};
 
@@ -51,7 +50,7 @@ export let itemContractListForTests:ItemContract[] = [
   {
     id:3,
     residue:residue3,
-    equipment:equipment1,
+    equipment:equipment2,
     equipmentQuantity:100,
     qtdOfResidue:100,
     itemValue:200,
@@ -60,9 +59,9 @@ export let itemContractListForTests:ItemContract[] = [
   },
 
   {
-    id:3,
+    id:4,
     residue:residue3,
-    equipment:equipment1,
+    equipment:equipment2,
     equipmentQuantity:100,
     qtdOfResidue:100,
     itemValue:200,
