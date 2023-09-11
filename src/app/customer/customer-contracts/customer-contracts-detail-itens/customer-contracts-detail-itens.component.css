@@ -1,0 +1,54 @@
+
+form{
+  padding: 10px;
+}
+
+.bt{
+
+  width:204px;
+  height:59px;
+  border:none;
+  background-color:var(--cinza-escuro);
+  color:white;
+  text-align: center;
+  line-height: 59px;
+  font-weight: bold;
+  border-radius: 3px;
+  box-shadow: 1px 1px 3px black;
+  width: 98%;
+}
+
+.bt:disabled{
+  background-color:#838181;
+  cursor:not-allowed;
+}
+
+.bt:enabled:hover{
+  cursor: pointer;
+  background-color:var(--cinza);
+}
+
+.bt:hover:disabled{
+  cursor: not-allowed;
+}
+
+
+.residue-item-data-grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.residue-item-data-grid-item mat-form-field {
+  width: 98%;
+}
+
+.residue-item-data-grid-item mat-form-field textarea {
+  height: 100px;
+  width: 100%;
+}
+
+.description-grid-item{
+  grid-column: 1 / 4; ;
+
+}
+

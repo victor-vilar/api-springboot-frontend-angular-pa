@@ -1,94 +1,97 @@
-      <!-- residue fields wrapper -->
-      <div class="residues-fields-wrapper ">
 
-        <!-- residue fields header -->
-        <p>Adicionar resíduos</p>
+
       <form (ngSubmit)="addItemToContract()" #form="ngForm">
+        <p>Adicionar resíduos</p>
       <!-- residue field wrapper display flex -->
-      <div class="residue-item-options-item-body">
+      <div class="residue-item-data-grid">
 
-        <!-- residue name field -->
-        <div class="residue-item-options-item">
-            <mat-form-field appearance="outline">
-              <mat-label for="residue">Resíduo:</mat-label>
-              <mat-select name="residue" id="residue" ngModel >
-                <mat-option value="{{residue.id}}" *ngFor="let residue of residuesList">{{residue.type}}</mat-option>
-              </mat-select>
-            </mat-form-field>
-        </div>
+        <div class="residue-item-data-grid-item">
+            <!-- residue name field -->
+            <div class="residue-data">
+                <mat-form-field appearance="outline">
+                  <mat-label for="residue">Resíduo:</mat-label>
+                  <mat-select name="residue" id="residue" ngModel  >
+                    <mat-option value="{{residue.id}}" *ngFor="let residue of residuesList">{{residue.type}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+            </div>
 
+            <!-- residue quantity field -->
+            <div class="residue-data">
+                <mat-form-field appearance="outline">
+                  <mat-label>Quantidade em M³:</mat-label>
+                  <input matInput type="text" name="quantity" ngModel >
+                </mat-form-field>
+            </div>
 
-        <!-- equipment name field -->
-        <div class="residue-item-options-item">
-            <mat-form-field appearance="outline">
-              <mat-label for="equipment">Equipamento:</mat-label>
-                <mat-select name="equipment" id="equipment"  ngModel >
-                  <mat-option value="{{equipment.id}}" *ngFor="let equipment of equipmentsList">{{equipment.equipmentName}}</mat-option>
-                </mat-select>
-              </mat-form-field>
-        </div>
-
-        <!-- equipment quantity field -->
-        <div class="residue-item-options-item" matTooltip="Quantidade de equipamentos que serão disponibilizados para o">
-            <mat-form-field appearance="outline">
-              <mat-label for="equipmentQuantity">Quantidade de Equipamentos:</mat-label>
-              <input matInput type="text" name="equipmentQuantity" ngModel >
-              </mat-form-field>
-        </div>
-
-
-        <!-- quantity field -->
-        <div class="residue-item-options-item">
-            <mat-form-field appearance="outline">
-              <mat-label>Quantidade em M³:</mat-label>
-              <input matInput type="text" name="quantity" ngModel >
-            </mat-form-field>
-        </div>
+            <!-- item value field -->
+            <div class="residue-data">
+                <mat-form-field appearance="outline">
+                    <mat-label>R$:</mat-label>
+                    <input matInput type="currency" name="itemValue" ngModel >
+                </mat-form-field>
+            </div>
+      </div>
 
 
-        <!-- item value field -->
-        <div class="residue-item-options-item">
-            <mat-form-field appearance="outline">
-              <mat-label>Valor em Reais:</mat-label>
-              <input matInput type="currency" name="itemValue" ngModel >
-            </mat-form-field>
-        </div>
+      <div class="residue-item-data-grid-item">
+          <!-- equipment name field -->
+            <div class="residue-data">
+                <mat-form-field appearance="outline">
+                  <mat-label for="equipment">Equipamento:</mat-label>
+                    <mat-select name="equipment" id="equipment"  ngModel >
+                      <mat-option value="{{equipment.id}}" *ngFor="let equipment of equipmentsList">{{equipment.equipmentName}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+            </div>
 
+            <!-- equipment quantity field -->
+            <div class="residue-data" >
+                <mat-form-field appearance="outline">
+                  <mat-label for="equipmentQuantity">Quantidade de Equipamentos:</mat-label>
+                  <input matInput type="text" name="equipmentQuantity" ngModel matTooltip="Quantidade de equipamentos que serão disponibilizados para o serviço" >
+                  </mat-form-field>
+            </div>
+      </div>
 
-        <!-- field that has information of how the service is going to be undertaken -->
-        <div class="collection-service-executation-field" matTooltip="Frequência em que o serviço será executado">
+        <!-- field that has information of when the service is going to be undertaken -->
+        <div class="residue-item-data-grid-item" >
           <!-- schedule field  what is the frequency-->
-          <div class="residue-item-options-item">
+          <div class="residue-data">
               <mat-form-field appearance="outline">
                 <mat-label for="schedule">Frequência:</mat-label>
-                  <mat-select name="schedule" id="schedule"  ngModel >
+                  <mat-select name="schedule" id="schedule"  ngModel matTooltip="Frequência em que o serviço será executado" >
                     <mat-option value="{{schedule}}" *ngFor="let schedule of scheduleEnumValues">{{schedule}}</mat-option>
                   </mat-select>
                 </mat-form-field>
           </div>
 
           <!-- days field - what are the days that the service is going to be undertaken-->
-          <div class="residue-item-options-item " matTooltip="Selecione o dia e clique em adicionar">
+          <div class="residue-data">
               <mat-form-field appearance="outline">
                 <mat-label for="days">Dias:</mat-label>
-                  <mat-select name="days" id="days"  ngModel >
+                  <mat-select name="days" id="days" ngModel #daysInput (selectionChange)="disableButton()" matTooltip="Dias em que o serviço será executado, selecione o dia e clique em adicionar">
                     <mat-option value="{{weekday}}" *ngFor="let weekday of weekDaysEnumValues">{{weekday}}</mat-option>
                   </mat-select>
                 </mat-form-field>
           </div>
+          <button type="button" class="bt" (click)="addNewWeekday()" [disabled]="weekdayButtonDisabled" >Adicionar Dia</button>
         </div>
 
 
+        <div class="residue-item-data-grid-item description-grid-item" >
+          <!-- item description field outside wrapper -->
+          <div class="residue-data-description">
+            <mat-form-field appearance="outline">
+              <mat-label for="">Descrição:</mat-label>
+              <textarea matInput ngModel name="description" required></textarea>
+            </mat-form-field>
+        </div>
+      </div>
 
       </div>
 
-      <!-- item description field outside wrapper -->
-      <div>
-          <mat-form-field appearance="outline">
-            <mat-label for="">Descrição:</mat-label>
-            <textarea matInput ngModel name="description"></textarea>
-          </mat-form-field>
-      </div>
+
 
       <!-- add new item to contract button -->
       <input type="submit" value="Adicionar residuo"><br><br>
@@ -120,4 +123,4 @@
       </mat-expansion-panel>
 
       </form>
- </div>
+

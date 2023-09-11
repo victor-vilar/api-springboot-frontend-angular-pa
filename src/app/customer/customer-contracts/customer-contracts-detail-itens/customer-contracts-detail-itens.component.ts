@@ -1,3 +1,4 @@
+import { WeekDay } from '@angular/common';
 import { DialogServiceService } from './../../../shared/services/dialog-service.service';
 import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
@@ -9,7 +10,7 @@ import { Equipment } from 'src/app/shared/entities/Equipment';
 import { ItemContract } from 'src/app/shared/entities/ItemContract';
 import { Residue } from 'src/app/shared/entities/Residue';
 import { getScheduleValues } from 'src/app/shared/entities/Schedule';
-import { getWeekdayValues } from 'src/app/shared/entities/Weekday';
+import { Weekday, getWeekdayValues } from 'src/app/shared/entities/Weekday';
 
 @Component({
   selector: 'app-customer-contracts-detail-itens',
@@ -20,9 +21,12 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges 
 
     //form
     @ViewChild('form') form:NgForm;
+    @ViewChild('daysInput') daysInput:HTMLSelectElement
+
+    weekdayButtonDisabled:boolean = true;
 
 
-    @Input()dialogService:DialogServiceService;
+
     @Input()itemContractList:ItemContract[];
 
 
@@ -31,6 +35,9 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges 
     residuesList:Residue[];
     equipmentsList:Equipment[];
     headerForTables:string[];
+
+
+    weekdaysListToAddToItemContract:Weekday[] = [];
 
 
     //sum of itens of contract
@@ -43,7 +50,8 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges 
 
   constructor(residuesService:ResiduesService,
     equipmentsService:EquipmentsService,
-    private _snackBar: MatSnackBar) {
+    private _snackBar: MatSnackBar,
+    private dialogService:DialogServiceService) {
       this.residuesService = residuesService;
       this.equipmentsService = equipmentsService;
      }
@@ -80,15 +88,22 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges 
 
     //creates an itemContract from form fields
     createItemContractObject():ItemContract{
-      //let collectionFrequency:CollectionFrequency;
-      //collectionFrequency.schedule = this.form.value.schedule
       return {
         residue:this.residuesService.list.find(e => e.id === Number(this.form.value.residue)),
         equipment:this.equipmentsService.list.find(e => e.id === Number(this.form.value.equipment)),
         equipmentQuantity:Number(this.form.value.equipmentQuantity),
         qtdOfResidue:Number(this.form.value.quantity),
         itemValue:Number(this.form.value.itemValue),
-        description:this.form.value.description
+        description:this.form.value.description,
+        collectionFrequency:this.createCollectionFrequency()
+      }
+    }
+
+      //create collection frequency
+    createCollectionFrequency():CollectionFrequency{
+      return {
+        days:this.weekdaysListToAddToItemContract,
+        schedule:this.form.value.schedule
       }
     }
 
@@ -97,7 +112,8 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges 
   //cant create itens with some data empty
   checkIfItemContractFromInputsAreFilled(){
     Object.values(this.form.controls).forEach(e =>{
-      if(e.value === '' || e.value === null){
+      if((e.value === '' || e.value === null) && (e !== this.form.controls['days'])){
+          console.log(e === this.form.controls['days']);
           let errorMessage = 'É necessario prencher todos os campos para adicionar um resíduo !!!'
           this.dialogService.openErrorDialog(errorMessage);
           throw Error(errorMessage);
@@ -105,6 +121,10 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges 
     })
   }
 
+
+  /**
+   * update the list of the services
+   */
   getAll(){
     this.equipmentsService.getAll();
     this.residuesService.getAll();
@@ -140,6 +160,7 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges 
 
     //clearing fields to add new itens
     this.clearAddItensInputFieldsAfterAdd();
+    this.clearWeekdayList();
 
     //angular material snack bar message
     this.openSnackBar("Resíduo inserido com sucesso","Cadastro");
@@ -150,6 +171,7 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges 
     this.form.setValue({
       residue:'',
       equipment:'',
+      equipmentQuantity:'',
       quantity:'',
       itemValue:'',
       description:'',
@@ -275,5 +297,39 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges 
 
     //refresh total value
     this.sumTotalOfContract();
+  }
+
+  /**
+   * add new weekday to itemContract weekday list
+   */
+  addNewWeekday(){
+
+    if(!this.weekdaysListToAddToItemContract.find(e => e === this.form.value.days) && this.form.value.days !== ""){
+
+      this.weekdaysListToAddToItemContract.push(this.form.value.days);
+      this.openSnackBar("Dia inserido com sucesso a lista","Dia inserido");
+    }
+
+    this.daysInput.value = "";
+    this.disableButton();
+
+
+  }
+
+  clearWeekdayList(){
+    this.weekdaysListToAddToItemContract =[];
+  }
+
+  /**
+   * if the days field is empty or the day is already in the list the button will be disabled
+   */
+  disableButton(){
+    if(this.form.value.days === "" || this.weekdaysListToAddToItemContract.some(e => e === this.form.value.days)){
+      this.weekdayButtonDisabled = true;
+
+    }else{
+      this.weekdayButtonDisabled = false;
+
+    }
   }
 }

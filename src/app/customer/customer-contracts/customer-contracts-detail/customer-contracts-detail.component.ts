@@ -3,7 +3,7 @@ import { CollectionFrequency } from './../../../shared/entities/CollectionFreque
 import { DialogServiceService } from 'src/app/shared/services/dialog-service.service';
 import { Router, ActivatedRoute, UrlTree, RouterStateSnapshot } from '@angular/router';
 import { Contract } from 'src/app/shared/entities/Contract';
-import { ItemContract } from 'src/app/shared/entities/ItemContract';
+import { ItemContract, itemContractListForTests } from 'src/app/shared/entities/ItemContract';
 import { EquipmentsService } from 'src/app/equipaments/services/equipments.service';
 import { Equipment } from 'src/app/shared/entities/Equipment';
 import { ResiduesService } from 'src/app/residue/services/residues.service';
@@ -34,7 +34,6 @@ export class CustomerContractsDetailComponent implements OnInit {
   //services
 
   contractService:CustomerContractsService;
-  dialogService:DialogServiceService;
 
 
 
@@ -70,7 +69,7 @@ export class CustomerContractsDetailComponent implements OnInit {
   constructor(
               contractService:CustomerContractsService,
               private activatedRoute:ActivatedRoute,
-              dialogService:DialogServiceService,
+              private dialogService:DialogServiceService,
               private router:Router,
               public dialogRef: MatDialogRef<CustomerContractsDetailComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
@@ -82,7 +81,6 @@ export class CustomerContractsDetailComponent implements OnInit {
 
 
   ngOnInit(): void {
-    console.log('fui chamado');
     this.onLoad();
     this.contractStatusEnumValues = getContractStatusValues();
 
@@ -142,8 +140,10 @@ export class CustomerContractsDetailComponent implements OnInit {
       contractNumber:'1000',
       beginDate:new Date('2022-02-01'),
       endDate:new Date('2022-02-28'),
-      contractStatus:Object.values(ContractStatus.ATIVO.valueOf())
+      contractStatus:ContractStatus.ATIVO
     })
+
+    this.itemContractList = itemContractListForTests;
 
 
   }

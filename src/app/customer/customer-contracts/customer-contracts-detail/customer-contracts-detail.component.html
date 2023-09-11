@@ -1,13 +1,14 @@
-<div class="wrapper">
+<div class="wrapper mat-elevation-z8 ">
   <button (click)="mockingFormFiller()">mockar</button>
   <mat-dialog-content>
-  <div class="detail-component-header">
+
+    <div class="detail-component-header">
     <a (click)="canDeactivate()" class="close-button">X</a>
   </div>
-  <button (click)="exibirLista()">Exibir Lista</button>
+
   <form (ngSubmit)="save()" #form="ngForm">
 
-    <div class="contract-info mat-elevation-z8  ">
+    <div class="contract-info  ">
 
       <p>Informações do Contrato</p>
 
@@ -63,8 +64,7 @@
   </div>
 
   <app-customer-contracts-detail-itens
-  [dialogService]="dialogService"
-  [itemContractList]="itemContractList"
+    [itemContractList]="itemContractList"
   ></app-customer-contracts-detail-itens>
 
   </form>

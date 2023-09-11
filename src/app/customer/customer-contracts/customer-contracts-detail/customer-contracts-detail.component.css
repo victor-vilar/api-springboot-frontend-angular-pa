@@ -87,13 +87,11 @@ mat-expansion-panel{
 
 @media screen and (min-width:1200px){
 
-  .contract-field-wrapper, .residue-item-options-item-body{
+  .contract-field-wrapper{
     display: flex;
     flex-direction: row;
-    gap:5px;
-  }
-  .contract-field-wrapper{
     justify-content: space-around;
+    gap:5px;
   }
 
   .residues-fields-wrapper, .contract-field-wrapper{
