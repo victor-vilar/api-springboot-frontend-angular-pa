@@ -32,7 +32,7 @@ export let itemContractListForTests:ItemContract[] = [
     equipmentQuantity:100,
     qtdOfResidue:100,
     itemValue:200,
-    description:'item 1',
+    description:'Coleta transporte e destinação final de resíduos extraordinarios, em caminhões compactadores',
     collectionFrequency:{days:[Weekday.SEGUNDA,Weekday.QUARTA,Weekday.SEXTA],schedule:Schedule.SEMANAL},
   },
 
@@ -43,7 +43,7 @@ export let itemContractListForTests:ItemContract[] = [
     equipmentQuantity:100,
     qtdOfResidue:100,
     itemValue:200,
-    description:'outro item 2',
+    description:'Coleta transporte e destinação final de resíduos extraordinarios, em caminhões poliguindaste',
     collectionFrequency:{days:[Weekday.TERCA,Weekday.QUINTA,Weekday.SABADO],schedule:Schedule.SEMANAL},
   },
 
@@ -54,7 +54,7 @@ export let itemContractListForTests:ItemContract[] = [
     equipmentQuantity:100,
     qtdOfResidue:100,
     itemValue:200,
-    description:'outro item 3',
+    description:'Coleta transporte e destinação final de resíduos extraordinarios, em caminhões Baú',
     collectionFrequency:{days:[Weekday.SABADO],schedule:Schedule.SOB_SOLICITACAO},
   },
 
