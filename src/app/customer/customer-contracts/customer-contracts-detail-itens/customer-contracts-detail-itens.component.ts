@@ -28,6 +28,7 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges 
 
 
     @Input()itemContractList:ItemContract[];
+    @Input()deletedSavedItensIdList:number[];
 
 
     residuesService:ResiduesService;
@@ -291,7 +292,7 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges 
     if(item.id !== null && item.id !== undefined){
 
       //saving item in a list to delete from backend.
-      //this.deletedSavedItensIdList.push(item.id);
+      this.deletedSavedItensIdList.push(item.id);
 
     }
 
