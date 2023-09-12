@@ -132,7 +132,6 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges 
   }
 
 
-
   //add an item to contract
   addItemToContract(){
 
@@ -191,15 +190,10 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges 
     })
   }
 
-
   //transform the item contract list in a form that api could save the itens
+  //Is send only the id of equipment and residue
   itemContractListMapper(){
     return this.itemContractList.map(e =>{
-
-      // let collectionFrequency:CollectionFrequency;
-      // collectionFrequency.days = e.collectionFrequency.days;
-      // collectionFrequency.schedule = e.collectionFrequency.schedule;
-
       return {
         id:e.id,
         residue:e.residue.id,
@@ -211,10 +205,11 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges 
         collectionFrequency: e.collectionFrequency
       }
     })
+
   }
 
-    //transform list of itens from api to itemContract of front
-    itemContractListFromApiMapper(){
+  //transform list of itens from api to itemContract of front
+  itemContractListFromApiMapper(){
 
       return this.itemContractList.map(e =>{
 
@@ -234,7 +229,7 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges 
       })
 
 
-    }
+  }
 
 
 
@@ -247,7 +242,7 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges 
       }
   }
 
-      //open snackbar angular material
+  //open snackbar angular material after added a new item
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action,{
       horizontalPosition: 'center',
@@ -329,6 +324,16 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges 
 
   }
 
+  /**
+   * TODO - remove a weekday from list/ Need to create a view to show the added itens e the option to remove than
+   */
+  removeWeekday(){
+
+  }
+
+  /**
+   * clear all the list of weekday, used after the itens it is crated and added into the itens list
+   */
   clearWeekdayList(){
     this.weekdaysListToAddToItemContract =[];
   }
