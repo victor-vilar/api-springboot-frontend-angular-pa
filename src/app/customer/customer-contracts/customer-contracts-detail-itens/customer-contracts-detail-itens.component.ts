@@ -1,3 +1,4 @@
+import { CollectionFrequency } from './../../../shared/entities/CollectionFrequency';
 import { WeekDay } from '@angular/common';
 import { DialogServiceService } from './../../../shared/services/dialog-service.service';
 import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
@@ -5,7 +6,6 @@ import { NgForm } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { EquipmentsService } from 'src/app/equipaments/services/equipments.service';
 import { ResiduesService } from 'src/app/residue/services/residues.service';
-import { CollectionFrequency } from 'src/app/shared/entities/CollectionFrequency';
 import { Equipment } from 'src/app/shared/entities/Equipment';
 import { ItemContract } from 'src/app/shared/entities/ItemContract';
 import { Residue } from 'src/app/shared/entities/Residue';
@@ -27,7 +27,7 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges 
 
 
 
-    @Input()itemContractList:ItemContract[];
+    @Input()itemContractList:any[];
     @Input()deletedSavedItensIdList:number[];
 
 
@@ -71,19 +71,19 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges 
 
         //initialize headers from child compoente- itens table
       this.headerForTables=['No','descricao','Residuo','Equipamento','Quantidade Equipamento','Quantidade','Valor','Opções']
-
-
-      //maping itens from contract
-      this.itemContractList = this.itemContractListFromApiMapper('teste');
-
-      //updating view
-      this.sumTotalOfContract();
+      console.log('on init component de itens')
 
   }
 
     //execute services methods to get all info from api
     ngOnChanges(changes: SimpleChanges): void {
       this.getAll();
+      //maping itens from contract
+      if(this.itemContractList.length > 0){
+        this.itemContractList = this.itemContractListFromApiMapper();
+        //updating view
+        this.sumTotalOfContract();
+      }
 
     }
 
@@ -195,20 +195,28 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges 
   //transform the item contract list in a form that api could save the itens
   itemContractListMapper(){
     return this.itemContractList.map(e =>{
+
+      // let collectionFrequency:CollectionFrequency;
+      // collectionFrequency.days = e.collectionFrequency.days;
+      // collectionFrequency.schedule = e.collectionFrequency.schedule;
+
       return {
         id:e.id,
         residue:e.residue.id,
         equipment:e.equipment.id,
+        equipmentQuantity:e.equipmentQuantity,
         qtdOfResidue:e.qtdOfResidue,
         itemValue:e.itemValue,
-        description:e.description
+        description:e.description,
+        collectionFrequency: e.collectionFrequency
       }
     })
   }
 
-    //transform list of itens get from api to itemContract of front
-    itemContractListFromApiMapper(list:any):ItemContract[]{
-      return list.map(e =>{
+    //transform list of itens from api to itemContract of front
+    itemContractListFromApiMapper(){
+
+      return this.itemContractList.map(e =>{
 
         let residue = this.residuesService.list.find(r => r.type === e.residue);
         let equipment = this.equipmentsService.list.find(eq => eq.equipmentName === e.equipment);
@@ -217,23 +225,27 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges 
           id:e.id,
           residue:residue,
           equipment:equipment,
+          equipmentQuantity:e.equipmentQuantity,
           qtdOfResidue:e.qtdOfResidue,
           itemValue:e.itemValue,
-          description:e.description
+          description:e.description,
+          collectionFrequency: e.collectionFrequency
         }
       })
+
+
     }
 
 
 
-    //check if the item contract item value and quantity are numbers
-    checkIfItemContractInputsAreNumbers(){
-      if(isNaN(this.form.value.quantity) || isNaN(this.form.value.itemValue) || this.form.value.quantity <= 0 || this.form.value.itemValue <=0){
+  //check if the item contract item value and quantity are numbers
+  checkIfItemContractInputsAreNumbers(){
+      if(isNaN(this.form.value.equipmentQuantity) || isNaN(this.form.value.quantity) || isNaN(this.form.value.itemValue) || this.form.value.quantity <= 0 || this.form.value.itemValue <=0){
         let errorMessage = 'Os campos de quantidade e valor, dos campos do cadastro de resíduos, devem ser do tipo número e serem maiores do que zero'
         this.dialogService.openErrorDialog(errorMessage);
         throw Error(errorMessage);
       }
-    }
+  }
 
       //open snackbar angular material
   openSnackBar(message: string, action: string) {
@@ -246,7 +258,7 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges 
 
 
 
-}
+  }
  //needed to compare the itens. If the item comes from databse, it return with its id number,
   //and if try to save a new item it will be without id. i need to compare itens with and without id
   itemContractCompare(item1:ItemContract,item2:ItemContract){

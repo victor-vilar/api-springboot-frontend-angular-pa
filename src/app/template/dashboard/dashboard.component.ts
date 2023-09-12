@@ -28,6 +28,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
 
+
   this.customerService.refreshAllData().subscribe(response =>{this.customerRegisteredLength = response.length});
 
   this.contractService.refreshAllData().subscribe(response =>{

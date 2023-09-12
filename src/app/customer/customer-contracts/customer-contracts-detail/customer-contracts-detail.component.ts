@@ -1,22 +1,13 @@
 import { ContractStatus } from './../../../shared/entities/ContractStatus';
-import { CollectionFrequency } from './../../../shared/entities/CollectionFrequency';
+
 import { DialogServiceService } from 'src/app/shared/services/dialog-service.service';
 import { Router, ActivatedRoute, UrlTree, RouterStateSnapshot } from '@angular/router';
 import { Contract } from 'src/app/shared/entities/Contract';
 import { ItemContract, itemContractListForTests } from 'src/app/shared/entities/ItemContract';
-import { EquipmentsService } from 'src/app/equipaments/services/equipments.service';
-import { Equipment } from 'src/app/shared/entities/Equipment';
-import { ResiduesService } from 'src/app/residue/services/residues.service';
-import { Component, Inject, OnInit, SimpleChanges, ViewChild } from '@angular/core';
-import { Residue } from 'src/app/shared/entities/Residue';
-import { FormControl, NgForm } from '@angular/forms';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { CustomerContractsService } from 'src/app/customer/services/customerContracts.service';
-import { FormDetail } from 'src/app/shared/entities/FormDetail';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { Observable } from 'rxjs';
-import { Schedule, getScheduleValues } from 'src/app/shared/entities/Schedule';
-import { Weekday, getWeekdayValues } from 'src/app/shared/entities/Weekday';
 import { getContractStatusValues } from 'src/app/shared/entities/ContractStatus';
 
 
@@ -81,6 +72,7 @@ export class CustomerContractsDetailComponent implements OnInit {
 
 
   ngOnInit(): void {
+    console.log('on init component de contrato')
     this.onLoad();
     this.contractStatusEnumValues = getContractStatusValues();
 
@@ -95,22 +87,16 @@ export class CustomerContractsDetailComponent implements OnInit {
     //if the object (contract) is not null
     if(this.data.objectToEdit !== undefined && this.data.objectToEdit !== null){
 
-      this.crudOperation="Atualização";
-
       //getting contract data
       this.objectToEdit = this.contractService.list.find(c =>c.id === this.data.objectToEdit.id);
-
 
     }
 
   }
 
-  exibirLista(){
-    console.log(this.itemContractList);
-  }
 
   ngAfterViewInit(): void {
-
+    
     setTimeout(() =>{
       if(this.objectToEdit  != null){
         this.form.setValue({
@@ -119,6 +105,8 @@ export class CustomerContractsDetailComponent implements OnInit {
           endDate:new Date(this.objectToEdit.endDate),
           contractStatus:this.objectToEdit.contractStatus,
         })
+        this.itemContractList = this.objectToEdit.itens;
+        console.log('coloquei os itens na lista aqui')
       }
     },200);
   }
@@ -164,8 +152,13 @@ export class CustomerContractsDetailComponent implements OnInit {
 
     //create a contract object
     let contract = this.createObject();
+
+
+    //adding list of itens to contract;
+    contract.itens = this.itemContractList;
     contract.customerId = this.clientCpfCnpj;
 
+    console.log(contract);
 
 
     //creates a contractObserver
