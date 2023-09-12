@@ -9,6 +9,7 @@ import { NgForm } from '@angular/forms';
 import { CustomerContractsService } from 'src/app/customer/services/customerContracts.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { getContractStatusValues } from 'src/app/shared/entities/ContractStatus';
+import { CustomerContractsDetailItensComponent } from '../customer-contracts-detail-itens/customer-contracts-detail-itens.component';
 
 
 @Component({
@@ -20,6 +21,7 @@ export class CustomerContractsDetailComponent implements OnInit {
 
   //form
   @ViewChild('form') form:NgForm;
+  @ViewChild('itensChild') child:CustomerContractsDetailItensComponent;
 
 
   //services
@@ -96,7 +98,7 @@ export class CustomerContractsDetailComponent implements OnInit {
 
 
   ngAfterViewInit(): void {
-    
+
     setTimeout(() =>{
       if(this.objectToEdit  != null){
         this.form.setValue({
@@ -153,9 +155,8 @@ export class CustomerContractsDetailComponent implements OnInit {
     //create a contract object
     let contract = this.createObject();
 
-
-    //adding list of itens to contract;
-    contract.itens = this.itemContractList;
+    //adding list of itens to contract, that have been transformed;
+    contract.itens = this.child.itemContractListMapper();
     contract.customerId = this.clientCpfCnpj;
 
     console.log(contract);
@@ -290,6 +291,7 @@ export class CustomerContractsDetailComponent implements OnInit {
         this.dialogService.closeProgressSpinnerDialog();
         //show error message
         this.dialogService.openErrorDialog(error.message);
+        console.log(error);
       }
     }
   }
@@ -340,7 +342,7 @@ export class CustomerContractsDetailComponent implements OnInit {
         //close progress spinner dialog
         console.log(response);
         //show success message
-        this.dialogService.openSucessDialog('Contrato salvo com sucesso !','/clientes');
+        this.dialogService.openSucessDialog('Contrato atualizado com sucesso !','/clientes');
         this.dialogService.closeProgressSpinnerDialog();
 
       },
