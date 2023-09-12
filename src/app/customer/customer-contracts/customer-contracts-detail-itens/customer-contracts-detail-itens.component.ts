@@ -71,7 +71,7 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges 
 
         //initialize headers from child compoente- itens table
       this.headerForTables=['No','descricao','Residuo','Equipamento','Quantidade Equipamento','Quantidade','Valor','Opções']
-      console.log('on init component de itens')
+      
 
   }
 

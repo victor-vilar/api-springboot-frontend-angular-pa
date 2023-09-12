@@ -4,6 +4,7 @@ import { CustomerContractsService } from '../../customer/services/customerContra
 import { CustomerService } from '../../customer/services/customer.service';
 
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -24,10 +25,14 @@ export class DashboardComponent implements OnInit {
     private customerService:CustomerService,
     private contractService:CustomerContractsService,
     private equipmentService:EquipmentsService,
-    private residueService:ResiduesService) { }
+    private residueService:ResiduesService,
+    private router:Router) { }
 
   ngOnInit(): void {
 
+    if(!window.sessionStorage.getItem("loggedUser")){
+        this.router.navigate(['/login'])
+    }
 
   this.customerService.refreshAllData().subscribe(response =>{this.customerRegisteredLength = response.length});
 
