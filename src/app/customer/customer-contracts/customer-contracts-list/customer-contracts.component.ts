@@ -63,7 +63,7 @@ export class CustomerContractsComponent implements OnInit, OnChanges {
     this.dialogService.openDialogPassingCustomerId(CustomerContractsDetailComponent,
       this.objectToEdit,
       this.selectedCustomer.cpfCnpj,
-      '/dashboard');
+      '/dashboard',"1800px","800px");
     this.objectToEdit = null;
   }
 

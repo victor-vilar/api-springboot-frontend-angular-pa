@@ -40,11 +40,16 @@ export class DialogServiceService {
   //@ObjectToEdit = objeto que sera passado (caso exista) para o formulário
   //@customerId= id do cliente que possui os dados que serão editados
   //@rota = local para onde será redirecionado após o dialog ser fechado.
-  openDialogPassingCustomerId(component:any,objectToEdit:any,customerId:string,rota:string):void{
-    const dialogRef = this.dialog.open(component,{disableClose: true,data:{
-      objectToEdit: objectToEdit,
-      clientCpfCnpj:customerId,
-    }});
+  openDialogPassingCustomerId(component:any,objectToEdit:any,customerId:string,rota:string,width?:string,height?:string):void{
+    const dialogRef = this.dialog.open(component,{
+      disableClose: true,
+      data:{
+            objectToEdit: objectToEdit,
+            clientCpfCnpj:customerId
+      },
+      width:width,
+      height:height,
+    });
 
     this.afterCloseDialog(dialogRef,rota);
   }
@@ -56,11 +61,16 @@ export class DialogServiceService {
    * @param customerId id do cliente que
    * @returns observable do que ira fazer após fechar o dialog
    */
-  openDialogPassingCustomerIdAndReturnCloseObservable(component:any,objectToEdit:any,customerId:string):Observable<boolean>{
-    const dialogRef = this.dialog.open(component,{disableClose: true,data:{
-      objectToEdit: objectToEdit,
-      clientCpfCnpj:customerId,
-    }});
+  openDialogPassingCustomerIdAndReturnCloseObservable(component:any,objectToEdit:any,customerId:string,width?:string,height?:string):Observable<boolean>{
+    const dialogRef = this.dialog.open(component,{
+      disableClose: true,
+      data:{
+          objectToEdit: objectToEdit,
+          clientCpfCnpj:customerId,
+      },
+      width:width,
+      height:height
+    });
     return dialogRef.afterClosed();
   }
 
