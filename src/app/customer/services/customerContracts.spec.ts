@@ -4,11 +4,11 @@ import { ContactListForTests, Contract } from './../../shared/entities/Contract'
 import { TestBed } from "@angular/core/testing";
 import { CustomerContractsService } from "./customerContracts.service";
 
-import { Schedule } from 'src/app/shared/entities/Schedule';
+import { Schedule } from 'src/app/shared/enums/Schedule';
 import { HttpClient } from '@angular/common/http';
 
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { ContractStatus } from 'src/app/shared/entities/ContractStatus';
+import { ContractStatus } from 'src/app/shared/enums/ContractStatus';
 
 
 describe('Customer Contract Service', () => {

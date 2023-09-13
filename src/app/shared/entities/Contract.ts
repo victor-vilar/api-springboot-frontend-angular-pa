@@ -1,6 +1,6 @@
 import { ItemContract, itemContractListForTests } from "./ItemContract";
 import { Customer } from "./Customer";
-import { ContractStatus } from "./ContractStatus";
+import { ContractStatus } from "../enums/ContractStatus";
 
 export interface Contract{
   id?:number;

@@ -1,4 +1,4 @@
-import { ContractStatus } from './../../../shared/entities/ContractStatus';
+import { ContractStatus } from '../../../shared/enums/ContractStatus';
 
 import { DialogServiceService } from 'src/app/shared/services/dialog-service.service';
 import { Router, ActivatedRoute, UrlTree, RouterStateSnapshot } from '@angular/router';
@@ -8,7 +8,7 @@ import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { CustomerContractsService } from 'src/app/customer/services/customerContracts.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { getContractStatusValues } from 'src/app/shared/entities/ContractStatus';
+import { getContractStatusValues } from 'src/app/shared/enums/ContractStatus';
 import { CustomerContractsDetailItensComponent } from '../customer-contracts-detail-itens/customer-contracts-detail-itens.component';
 
 

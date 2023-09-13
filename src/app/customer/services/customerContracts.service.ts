@@ -1,4 +1,4 @@
-import { ContractStatus } from './../../shared/entities/ContractStatus';
+import { ContractStatus } from '../../shared/enums/ContractStatus';
 import { ItemContract } from '../../shared/entities/ItemContract';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -6,7 +6,7 @@ import { Observable, of } from 'rxjs';
 import { Contract } from '../../shared/entities/Contract';
 import { CrudBaseService } from 'src/app/shared/services/crudbase.service';
 import { Mapper } from '../../shared/interfaces/mapper.mapper';
-import { Schedule } from 'src/app/shared/entities/Schedule';
+import { Schedule } from 'src/app/shared/enums/Schedule';
 
 @Injectable({
   providedIn: 'root'

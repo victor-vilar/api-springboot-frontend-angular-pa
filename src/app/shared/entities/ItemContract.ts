@@ -2,9 +2,9 @@ import { Residue } from "./Residue";
 import { Equipment } from "./Equipment";
 import { Contract } from "./Contract";
 import { CollectionFrequency} from "./CollectionFrequency"
-import { Weekday } from "./Weekday";
-import { Schedule } from "./Schedule";
-import { MeasurementUnit } from "./MeasurementUnit";
+import { Weekday } from "../enums/Weekday";
+import { Schedule } from "../enums/Schedule";
+import { MeasurementUnit } from "../enums/MeasurementUnit";
 
 export interface ItemContract{
   id?:number;

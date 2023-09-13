@@ -9,8 +9,8 @@ import { ResiduesService } from 'src/app/residue/services/residues.service';
 import { Equipment } from 'src/app/shared/entities/Equipment';
 import { ItemContract } from 'src/app/shared/entities/ItemContract';
 import { Residue } from 'src/app/shared/entities/Residue';
-import { getScheduleValues } from 'src/app/shared/entities/Schedule';
-import { Weekday, getWeekdayValues } from 'src/app/shared/entities/Weekday';
+import { getScheduleValues } from 'src/app/shared/enums/Schedule';
+import { Weekday, getWeekdayValues } from 'src/app/shared/enums/Weekday';
 
 @Component({
   selector: 'app-customer-contracts-detail-itens',
@@ -71,7 +71,7 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges 
 
         //initialize headers from child compoente- itens table
       this.headerForTables=['No','descricao','Residuo','Equipamento','Quantidade Equipamento','Quantidade','Valor','Opções']
-      
+
 
   }
 

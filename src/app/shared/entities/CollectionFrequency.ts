@@ -1,5 +1,5 @@
-import { Schedule } from './Schedule';
-import { Weekday } from "./Weekday";
+import { Schedule } from '../enums/Schedule';
+import { Weekday } from "../enums/Weekday";
 
 export interface CollectionFrequency {
 
