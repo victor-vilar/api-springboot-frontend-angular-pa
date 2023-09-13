@@ -108,9 +108,13 @@ export class CustomerContractsDetailComponent implements OnInit {
           contractStatus:this.objectToEdit.contractStatus,
         })
         this.itemContractList = this.objectToEdit.itens;
-        console.log('coloquei os itens na lista aqui')
+
       }
     },200);
+
+
+
+
   }
 
   //creates a contract from form fields
@@ -267,7 +271,6 @@ export class CustomerContractsDetailComponent implements OnInit {
   //navigates to another page
   destroy(): void {
     this.dialogRef.close();
-    console.log(this.activatedRoute.snapshot.toString);
 
   }
 

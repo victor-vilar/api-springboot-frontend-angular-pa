@@ -6,6 +6,6 @@ export enum MeasurementUnit {
 }
 
 
-export function getContractStatusValues(){
+export function getMeasurementUnitValues(){
   return Object.values(MeasurementUnit).filter(value => isNaN(Number(value)));
 }

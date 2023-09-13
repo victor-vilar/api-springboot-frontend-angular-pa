@@ -19,18 +19,23 @@
             <!-- residue quantity field -->
             <div class="residue-data">
                 <mat-form-field appearance="outline">
-                  <mat-label>Quantidade em M³:</mat-label>
+                  <mat-label>Quantidade Contratada:</mat-label>
                   <input matInput type="text" name="quantity" ngModel >
                 </mat-form-field>
             </div>
 
-            <!-- item value field -->
+
+            <!-- measurement unit field -->
             <div class="residue-data">
-                <mat-form-field appearance="outline">
-                    <mat-label>R$:</mat-label>
-                    <input matInput type="currency" name="itemValue" ngModel >
-                </mat-form-field>
-            </div>
+              <mat-form-field appearance="outline">
+                  <mat-label for="measurementUnit">Unidade de Medida</mat-label>
+                  <mat-select name="measurementUnit" id="measurementUnit" ngModel >
+                    <mat-option value="{{measurementUnit}}" *ngFor="let measurementUnit of measurementUnitList">{{measurementUnit}}</mat-option>
+                  </mat-select>
+              </mat-form-field>
+          </div>
+
+
       </div>
 
 
@@ -52,6 +57,15 @@
                   <input matInput type="text" name="equipmentQuantity" ngModel matTooltip="Quantidade de equipamentos que serão disponibilizados para o serviço" >
                   </mat-form-field>
             </div>
+
+            <!-- item value field -->
+            <div class="residue-data">
+              <mat-form-field appearance="outline">
+                  <mat-label>R$:</mat-label>
+                  <input matInput type="currency" name="itemValue" ngModel >
+              </mat-form-field>
+          </div>
+
       </div>
 
         <!-- field that has information of when the service is going to be undertaken -->
@@ -76,6 +90,23 @@
                 </mat-form-field>
           </div>
           <button type="button" class="bt" (click)="addNewWeekday()" [disabled]="weekdayButtonDisabled" >Adicionar Dia</button>
+        </div>
+
+        <div class="residue-item-data-grid-item add-days" >
+          <div class="residue-data ">
+            <mat-list>
+              <p *ngIf="weekdaysListToAddToItemContract.length > 0">Dias adicionados:</p>
+              <ng-container *ngFor="let day of weekdaysListToAddToItemContract">
+                <mat-list-item>
+                  <mat-icon>wb_sunny</mat-icon>
+                  <span>{{day}}</span>
+                  <button type="button" matTooltip="Remover dia" class="mat-list-button"  mat-button color="warn" (click)="removeWeekday(day)">X</button>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+              </ng-container>
+            </mat-list>
+
+          </div>
         </div>
 
 

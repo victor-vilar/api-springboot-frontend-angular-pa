@@ -1,11 +1,12 @@
+
 <div class="wrapper mat-elevation-z8 ">
   <button (click)="mockingFormFiller()">mockar</button>
-  <mat-dialog-content>
+
 
     <div class="detail-component-header">
-    <a (click)="canDeactivate()" class="close-button">X</a>
-  </div>
-
+        <a (click)="canDeactivate()" class="close-button">X</a>
+    </div>
+  <mat-dialog-content>
   <form (ngSubmit)="save()" #form="ngForm">
 
     <div class="contract-info  ">
@@ -73,4 +74,5 @@
   <input class="save-contract" type="submit" (click)="save()" value="Salvar Contrato">
 </mat-dialog-content>
 </div>
+
 

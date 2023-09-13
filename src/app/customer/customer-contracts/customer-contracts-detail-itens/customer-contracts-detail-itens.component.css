@@ -6,7 +6,7 @@ form{
 .bt{
 
   width:204px;
-  height:59px;
+  /* height:59px; */
   border:none;
   background-color:var(--cinza-escuro);
   color:white;
@@ -35,11 +35,12 @@ form{
 
 .residue-item-data-grid{
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
+  gap:5px;
 }
 
 .residue-item-data-grid-item mat-form-field {
-  width: 98%;
+  width: 100%;
 }
 
 .residue-item-data-grid-item mat-form-field textarea {
@@ -47,8 +48,14 @@ form{
   width: 100%;
 }
 
+.add-days{
+  border: 1px solid #dedddd;
+  border-radius: 3px;
+}
+
+
 .description-grid-item{
-  grid-column: 1 / 4; ;
+  grid-column: 1 / 5;
 
 }
 

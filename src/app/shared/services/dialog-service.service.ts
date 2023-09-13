@@ -40,6 +40,8 @@ export class DialogServiceService {
   //@ObjectToEdit = objeto que sera passado (caso exista) para o formulário
   //@customerId= id do cliente que possui os dados que serão editados
   //@rota = local para onde será redirecionado após o dialog ser fechado.
+  //@width = optinal -> width of the dialog
+  //@height = optional -> height of the dialog
   openDialogPassingCustomerId(component:any,objectToEdit:any,customerId:string,rota:string,width?:string,height?:string):void{
     const dialogRef = this.dialog.open(component,{
       disableClose: true,
@@ -59,6 +61,8 @@ export class DialogServiceService {
    * @param component componente que será aberto no dialog.
    * @param objectToEdit objeto que o componente irá manipular, se for um componente de contrato ira manipular um contrato passado
    * @param customerId id do cliente que
+   * @param width = optinal -> width of the dialog
+     @param height = optional -> height of the dialog
    * @returns observable do que ira fazer após fechar o dialog
    */
   openDialogPassingCustomerIdAndReturnCloseObservable(component:any,objectToEdit:any,customerId:string,width?:string,height?:string):Observable<boolean>{
