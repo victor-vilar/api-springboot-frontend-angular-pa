@@ -4,6 +4,7 @@ import { Contract } from "./Contract";
 import { CollectionFrequency} from "./CollectionFrequency"
 import { Weekday } from "./Weekday";
 import { Schedule } from "./Schedule";
+import { MeasurementUnit } from "./MeasurementUnit";
 
 export interface ItemContract{
   id?:number;
@@ -15,6 +16,7 @@ export interface ItemContract{
   description?:string;
   contract?:Contract;
   collectionFrequency?:CollectionFrequency;
+  measurementUnit:MeasurementUnit;
 }
 
 let equipment1:Equipment= {id:1,equipmentName:'Container 1,2m',sizeInMeterCubic:1.2};
@@ -34,6 +36,7 @@ export let itemContractListForTests:ItemContract[] = [
     itemValue:200,
     description:'Coleta transporte e destinação final de resíduos extraordinarios, em caminhões compactadores',
     collectionFrequency:{days:[Weekday.SEGUNDA,Weekday.QUARTA,Weekday.SEXTA],schedule:Schedule.SEMANAL},
+    measurementUnit:MeasurementUnit.METRO_CUBICO
   },
 
   {
@@ -45,6 +48,7 @@ export let itemContractListForTests:ItemContract[] = [
     itemValue:200,
     description:'Coleta transporte e destinação final de resíduos extraordinarios, em caminhões poliguindaste',
     collectionFrequency:{days:[Weekday.TERCA,Weekday.QUINTA,Weekday.SABADO],schedule:Schedule.SEMANAL},
+    measurementUnit:MeasurementUnit.LITROS
   },
 
   {
@@ -56,6 +60,7 @@ export let itemContractListForTests:ItemContract[] = [
     itemValue:200,
     description:'Coleta transporte e destinação final de resíduos extraordinarios, em caminhões Baú',
     collectionFrequency:{days:[Weekday.SABADO],schedule:Schedule.SOB_SOLICITACAO},
+    measurementUnit:MeasurementUnit.LITROS
   },
 
   {
@@ -67,6 +72,7 @@ export let itemContractListForTests:ItemContract[] = [
     itemValue:200,
     description:'outro item 4',
     collectionFrequency:{days:[Weekday.SEGUNDA,Weekday.QUARTA,Weekday.SEXTA],schedule:Schedule.MENSAL},
+    measurementUnit:MeasurementUnit.QUILOS
   },
 
 
