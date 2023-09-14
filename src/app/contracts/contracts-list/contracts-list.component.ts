@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { CustomerService } from '../../services/customer.service';
-import { CustomerContractsService } from '../../services/customerContracts.service';
+import { CustomerService } from '../../customer/services/customer.service';
+import { CustomerContractsService } from '../../customer/services/customerContracts.service';
 import { DialogServiceService } from 'src/app/shared/services/dialog-service.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-customer-contracts-list',
-  templateUrl: './customer-contracts-list.component.html',
-  styleUrls: ['./customer-contracts-list.component.css']
+  templateUrl: './contracts-list.component.html',
+  styleUrls: ['./contracts-list.component.css']
 })
 export class CustomerContractsListComponent implements OnInit {
 

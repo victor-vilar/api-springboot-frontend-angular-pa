@@ -11,7 +11,7 @@ import { CustomerAddressesDetailComponent } from '../customer-addresses-detail/c
   templateUrl: './customer-addresses.component.html',
   styleUrls: ['./customer-addresses.component.css']
 })
-export class CustomerAddressesComponent implements OnInit {
+export class CustomerAddressesListComponent implements OnInit {
 
   constructor(
     customerService:CustomerService,

@@ -1,5 +1,4 @@
-import { CustomerSupervisorsComponent } from './customer/customer-supervisors/customer-supervisors-list/customer-supervisors.component';
-import { CustomerAddressesComponent } from './customer/customer-addresses/customer-addresses-list/customer-addresses.component';
+
 
 import { DashboardComponent } from './template/dashboard/dashboard.component';
 import { NgModule } from '@angular/core';

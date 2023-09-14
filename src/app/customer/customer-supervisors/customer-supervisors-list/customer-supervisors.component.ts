@@ -11,7 +11,7 @@ import { CustomerSupervisorsDetailComponent } from '../customer-supervisors-deta
   templateUrl: './customer-supervisors.component.html',
   styleUrls: ['./customer-supervisors.component.css']
 })
-export class CustomerSupervisorsComponent implements OnInit {
+export class CustomerSupervisorsListComponent implements OnInit {
 
   constructor(
     customerService:CustomerService,

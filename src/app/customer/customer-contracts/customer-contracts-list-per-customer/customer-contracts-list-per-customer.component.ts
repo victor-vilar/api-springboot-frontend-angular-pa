@@ -7,7 +7,7 @@ import { Customer } from 'src/app/shared/entities/Customer';
 import { DialogServiceService } from 'src/app/shared/services/dialog-service.service';
 
 @Component({
-  selector: 'app-customer-contracts',
+  selector: 'app-customer-contracts-list-per-customer-table',
   templateUrl: './customer-contracts-list-per-customer.component.html',
   styleUrls: ['./customer-contracts-list-per-customer.component.css']
 })

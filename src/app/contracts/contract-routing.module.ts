@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { CustomerContractsListComponent } from './customer-contracts/customer-contracts-list/customer-contracts-list.component';
+import { CustomerContractsListComponent } from './contracts-list/contracts-list.component';
 
 
 

@@ -13,7 +13,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './customer.component.html',
   styleUrls: ['./customer.component.css']
 })
-export class CustomerComponent implements OnInit, CrudBaseComponent {
+export class CustomerListComponent implements OnInit, CrudBaseComponent {
 
 
   title: string;

@@ -1,5 +1,5 @@
 
-import { ContactListForTests, Contract } from './../../shared/entities/Contract';
+import { ContactListForTests } from './../../shared/entities/Contract';
 
 import { TestBed } from "@angular/core/testing";
 import { CustomerContractsService } from "./customerContracts.service";
