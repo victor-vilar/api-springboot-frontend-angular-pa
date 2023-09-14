@@ -11,7 +11,9 @@ import { MapperService } from 'src/app/shared/services/mapper.service';
 })
 export class CustomerContractsListTableComponent extends ItensTableComponent implements OnInit {
 
-  constructor(router:Router,mapper:MapperService,dialogService:DialogServiceService){
+  constructor(router:Router,
+    mapper:MapperService,
+    dialogService:DialogServiceService){
     super(router,mapper,dialogService)
 }
 

@@ -10,3 +10,14 @@
   flex-direction: column;
 
 }
+
+.return-button{
+  display:inline-block;
+  max-width: 30px;
+}
+
+.return-button:hover{
+  color: var(--verde);
+  cursor: pointer;
+}
+
