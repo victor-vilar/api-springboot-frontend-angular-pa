@@ -8,10 +8,10 @@ import { DialogServiceService } from 'src/app/shared/services/dialog-service.ser
 
 @Component({
   selector: 'app-customer-contracts',
-  templateUrl: './customer-contracts.component.html',
-  styleUrls: ['./customer-contracts.component.css']
+  templateUrl: './customer-contracts-list-per-customer.component.html',
+  styleUrls: ['./customer-contracts-list-per-customer.component.css']
 })
-export class CustomerContractsComponent implements OnInit, OnChanges {
+export class CustomerContractsComponentListPerCustomer implements OnInit, OnChanges {
 
   constructor(
     customerService:CustomerService,
@@ -53,7 +53,7 @@ export class CustomerContractsComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes)
+
   }
 
 

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CustomerAddressesComponent } from './customer-addresses/customer-addresses-list/customer-addresses.component';
 import { CustomerAddressesDetailComponent } from './customer-addresses/customer-addresses-detail/customer-addresses-detail.component';
-import { CustomerContractsComponent } from './customer-contracts/customer-contracts-list/customer-contracts.component';
+import { CustomerContractsComponent } from './customer-contracts/customer-contracts-list-per-customer/customer-contracts-list-per-customer.component';
 import { CustomerContractsDetailComponent } from './customer-contracts/customer-contracts-detail/customer-contracts-detail.component';
 import { CustomerSupervisorsComponent } from './customer-supervisors/customer-supervisors-list/customer-supervisors.component';
 import { CustomerSupervisorsDetailComponent } from './customer-supervisors/customer-supervisors-detail/customer-supervisors-detail.component';
