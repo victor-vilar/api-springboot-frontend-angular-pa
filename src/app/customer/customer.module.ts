@@ -19,38 +19,48 @@ import { CustomerComponent } from './customer-list/customer.component';
 import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
 import { SharedModule } from '../shared/shared.module';
 import { CustomerInfoComponent } from './customer-util/customer-info/customer-info.component';
-import { CustomerListTableComponent } from './customer-util/customer-list-table/customer-list-table.component';
+import { CustomerListTableComponent } from './customer-list/customer-list-table/customer-list-table.component';
 import { ItemContractListTableComponent } from './customer-util/itemContract-list-table/itemContract-list-table.component';
 import { CustomerRoutingModule } from './customer-routing.module';
 import { MaterialModuleModule } from '../shared/material-module.module';
-import { CustomerAddressesListTableComponent } from './customer-addresses/customer-addresses-list-table/customer-addresses-list-table.component';
-import { CustomerContractsListTableComponent } from './customer-contracts/customer-contracts-list-table/customer-contracts-list-table.component';
-import { CustomerSupervisorsListTableComponent } from './customer-supervisors/customer-supervisors-list-table/customer-supervisors-list-table.component';
-import { CustomerDetailInfoComponent } from './customer-detail-info/customer-detail-info.component';
-import { CustomerContractsDetailItensComponent } from './customer-contracts/customer-contracts-detail-itens/customer-contracts-detail-itens.component';
-import { CustomerContractsListComponent } from './customer-contracts/customer-contracts-list/customer-contracts-list.component';
-import { CustomerContractsComponentListPerCustomer } from './customer-contracts/customer-contracts-list-per-customer/customer-contracts-list-per-customer.component';
+import { CustomerAddressesListTableComponent } from './customer-addresses/customer-addresses-list/customer-addresses-list-table/customer-addresses-list-table.component';
+import { CustomerContractsListPerCustomerTableComponent } from './customer-contracts/customer-contracts-list-per-customer/customer-contracts-list-per-customer-table/customer-contracts-list-per-customer-table.component';
+import { CustomerSupervisorsListTableComponent } from './customer-supervisors/customer-supervisors-list/customer-supervisors-list-table/customer-supervisors-list-table.component';
+import { CustomerDetailInfoComponent } from './customer-detail/customer-detail-info/customer-detail-info.component';
+import { CustomerContractsDetailItensComponent } from './customer-contracts/customer-contracts-detail/customer-contracts-detail-itens/customer-contracts-detail-itens.component';
+import { CustomerContractsListPerCustomerComponent } from './customer-contracts/customer-contracts-list-per-customer/customer-contracts-list-per-customer.component';
 import { ContractRoutingModule } from './contract-routing.module';
 
 @NgModule({
   declarations: [
+
+    //customer
     CustomerComponent,
+    CustomerListTableComponent,
     CustomerDetailComponent,
+    CustomerDetailInfoComponent,
+    CustomerInfoComponent,
+
+    //address
     CustomerAddressesComponent,
+    CustomerAddressesListTableComponent,
     CustomerAddressesDetailComponent,
-    CustomerContractsDetailComponent,
+
+    //supervisor
     CustomerSupervisorsComponent,
     CustomerSupervisorsDetailComponent,
-    CustomerInfoComponent,
-    CustomerListTableComponent,
-    ItemContractListTableComponent,
-    CustomerAddressesListTableComponent,
-    CustomerContractsListTableComponent,
     CustomerSupervisorsListTableComponent,
-    CustomerDetailInfoComponent,
+    ItemContractListTableComponent,
+
+    //customer contracts detail form
+    CustomerContractsDetailComponent,
     CustomerContractsDetailItensComponent,
-    CustomerContractsListComponent,
-    CustomerContractsComponentListPerCustomer
+    CustomerContractsDetailComponent,
+
+    //customer contracts
+    CustomerContractsListPerCustomerComponent,
+    CustomerContractsListPerCustomerTableComponent,
+
 
   ],
   imports: [

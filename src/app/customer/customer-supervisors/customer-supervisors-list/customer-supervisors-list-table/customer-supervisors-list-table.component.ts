@@ -5,22 +5,19 @@ import { DialogServiceService } from 'src/app/shared/services/dialog-service.ser
 import { MapperService } from 'src/app/shared/services/mapper.service';
 
 @Component({
-  selector: 'app-customer-contracts-list-table',
-  templateUrl: './customer-contracts-list-table.component.html',
-  styleUrls: ['./customer-contracts-list-table.component.css']
+  selector: 'app-customer-supervisors-list-table',
+  templateUrl: './customer-supervisors-list-table.component.html',
+  styleUrls: ['./customer-supervisors-list-table.component.css']
 })
-export class CustomerContractsListTableComponent extends ItensTableComponent implements OnInit {
+export class CustomerSupervisorsListTableComponent extends ItensTableComponent implements OnInit {
 
-  constructor(router:Router,
-    mapper:MapperService,
-    dialogService:DialogServiceService){
+  constructor(router:Router,mapper:MapperService,dialogService:DialogServiceService){
     super(router,mapper,dialogService)
 }
 
 ngOnInit(): void {
   let observable$ = this.service.refreshAllData();
   observable$.subscribe(this.onInitObserver())
-  this.getAll();
+  
 }
-
 }

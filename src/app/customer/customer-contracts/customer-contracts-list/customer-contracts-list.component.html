@@ -1,11 +1,9 @@
 <div class="cont">
 
-
-  <app-customer-contracts-list-table
+  <app-customer-contracts-list-per-customer-table
   [model]="title"
   [tableHeaders]="headerForTables"
   [service]="contractService"
   (editObjectEmitter)="editObject($event)"
-  ></app-customer-contracts-list-table>
-
+  ></app-customer-contracts-list-per-customer-table>
 </div>

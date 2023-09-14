@@ -11,7 +11,7 @@ import { DialogServiceService } from 'src/app/shared/services/dialog-service.ser
   templateUrl: './customer-contracts-list-per-customer.component.html',
   styleUrls: ['./customer-contracts-list-per-customer.component.css']
 })
-export class CustomerContractsComponentListPerCustomer implements OnInit, OnChanges {
+export class CustomerContractsListPerCustomerComponent implements OnInit {
 
   constructor(
     customerService:CustomerService,
@@ -35,6 +35,9 @@ export class CustomerContractsComponentListPerCustomer implements OnInit, OnChan
 
   ngOnInit(): void {
 
+
+    console.log(this.contractService);
+
     this.route.queryParams.subscribe(params => {
       if (params['dialog']) {
         this.openDialog();
@@ -47,16 +50,11 @@ export class CustomerContractsComponentListPerCustomer implements OnInit, OnChan
       this.selectedCustomer = this.customerService.list.find(obj =>obj.cpfCnpj === param.get('cpfCnpj'))
     })
 
-    this.contractService.getAll();
+
+
 
 
   }
-
-  ngOnChanges(changes: SimpleChanges): void {
-
-  }
-
-
 
   openDialog(){
 

@@ -1,7 +1,7 @@
-import { MeasurementUnit } from './../../../shared/enums/MeasurementUnit';
-import { CollectionFrequency } from './../../../shared/entities/CollectionFrequency';
+import { MeasurementUnit } from '../../../../shared/enums/MeasurementUnit';
+import { CollectionFrequency } from '../../../../shared/entities/CollectionFrequency';
 import { WeekDay } from '@angular/common';
-import { DialogServiceService } from './../../../shared/services/dialog-service.service';
+import { DialogServiceService } from '../../../../shared/services/dialog-service.service';
 import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';

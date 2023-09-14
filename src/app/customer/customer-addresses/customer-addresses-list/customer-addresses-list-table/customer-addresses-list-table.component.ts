@@ -18,6 +18,6 @@ export class CustomerAddressesListTableComponent extends ItensTableComponent imp
 ngOnInit(): void {
   let observable$ = this.service.refreshAllData();
   observable$.subscribe(this.onInitObserver())
-  this.getAll();
+  
 }
 }

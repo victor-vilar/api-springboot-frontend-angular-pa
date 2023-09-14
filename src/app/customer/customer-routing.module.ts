@@ -10,7 +10,7 @@ import { CustomerDetailComponent } from './customer-detail/customer-detail.compo
 import { CustomerComponent } from './customer-list/customer.component';
 import { CustomerSupervisorsDetailComponent } from './customer-supervisors/customer-supervisors-detail/customer-supervisors-detail.component';
 import { CustomerSupervisorsComponent } from './customer-supervisors/customer-supervisors-list/customer-supervisors.component';
-import { CustomerDetailInfoComponent } from './customer-detail-info/customer-detail-info.component';
+import { CustomerDetailInfoComponent } from './customer-detail/customer-detail-info/customer-detail-info.component';
 
 
 const routes: Routes = [

@@ -9,7 +9,7 @@ import { NgForm } from '@angular/forms';
 import { CustomerContractsService } from 'src/app/customer/services/customerContracts.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { getContractStatusValues } from 'src/app/shared/enums/ContractStatus';
-import { CustomerContractsDetailItensComponent } from '../customer-contracts-detail-itens/customer-contracts-detail-itens.component';
+import { CustomerContractsDetailItensComponent } from './customer-contracts-detail-itens/customer-contracts-detail-itens.component';
 
 
 @Component({

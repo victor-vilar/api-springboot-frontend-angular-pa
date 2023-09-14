@@ -55,9 +55,6 @@ export class ItensTableComponent implements OnChanges{
     }
 
 
-  findAliasInHeaderForTableArray(key:any){
-    return this.tableHeaders[key];
-  }
 
   //get the selected row to do the operations of delete, update etc.
   deleteItem(event:any){
@@ -75,14 +72,15 @@ export class ItensTableComponent implements OnChanges{
 
     if(this.customerId !== undefined){
 
+      //cleaning the list to not have duplicated data
       this.tableData = [];
-
-      let observable$;
-      observable$ = this.service.getAllByCustomerId(this.customerId);
-      observable$.subscribe(response =>{
-
-        this.tableData = this.service.mapItens(response);
-        this.updateDataSource();
+      //subscribing to the service
+      this.service.getAllByCustomerId(this.customerId)
+      .subscribe(response =>{
+          //map the itens to the table
+          this.tableData = this.service.mapItens(response);
+          //pass the data to data source component
+          this.updateDataSource();
       });
 
     }else{
