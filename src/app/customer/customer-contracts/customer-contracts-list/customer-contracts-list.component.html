@@ -1,0 +1,11 @@
+<div class="cont">
+
+
+  <app-customer-contracts-list-table
+  [model]="title"
+  [tableHeaders]="headerForTables"
+  [service]="contractService"
+  (editObjectEmitter)="editObject($event)"
+  ></app-customer-contracts-list-table>
+
+</div>

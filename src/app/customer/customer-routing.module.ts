@@ -5,7 +5,7 @@ import { DashboardComponent } from '../template/dashboard/dashboard.component';
 import { CustomerAddressesDetailComponent } from './customer-addresses/customer-addresses-detail/customer-addresses-detail.component';
 import { CustomerAddressesComponent } from './customer-addresses/customer-addresses-list/customer-addresses.component';
 import { CustomerContractsDetailComponent } from './customer-contracts/customer-contracts-detail/customer-contracts-detail.component';
-import { CustomerContractsComponent } from './customer-contracts/customer-contracts-list-per-customer/customer-contracts-list-per-customer.component';
+import { CustomerContractsComponentListPerCustomer } from './customer-contracts/customer-contracts-list-per-customer/customer-contracts-list-per-customer.component';
 import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
 import { CustomerComponent } from './customer-list/customer.component';
 import { CustomerSupervisorsDetailComponent } from './customer-supervisors/customer-supervisors-detail/customer-supervisors-detail.component';
@@ -18,7 +18,7 @@ const routes: Routes = [
     {path:'cliente/:id',component:CustomerDetailComponent},
     {path:'cliente/novo',component:CustomerDetailComponent},
   ]},
-  {path:'cliente/:cpfCnpj/contratos',component:CustomerContractsComponent, children:[
+  {path:'cliente/:cpfCnpj/contratos',component:CustomerContractsComponentListPerCustomer, children:[
     {path:'contrato/:id',component:CustomerContractsDetailComponent},
     {path:'contrato/novo',component:CustomerContractsDetailComponent},
   ]},
