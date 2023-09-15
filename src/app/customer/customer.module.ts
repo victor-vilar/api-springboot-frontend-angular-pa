@@ -24,12 +24,14 @@ import { ItemContractListTableComponent } from './customer-util/itemContract-lis
 import { CustomerRoutingModule } from './customer-routing.module';
 import { MaterialModuleModule } from '../shared/material-module.module';
 import { CustomerAddressesListTableComponent } from './customer-addresses/customer-addresses-list/customer-addresses-list-table/customer-addresses-list-table.component';
-import { CustomerContractsListPerCustomerTableComponent } from './customer-contracts/customer-contracts-list-per-customer/customer-contracts-list-per-customer-table/customer-contracts-list-per-customer-table.component';
+
 import { CustomerSupervisorsListTableComponent } from './customer-supervisors/customer-supervisors-list/customer-supervisors-list-table/customer-supervisors-list-table.component';
 import { CustomerDetailInfoComponent } from './customer-detail/customer-detail-info/customer-detail-info.component';
 import { CustomerContractsDetailItensComponent } from './customer-contracts/customer-contracts-detail/customer-contracts-detail-itens/customer-contracts-detail-itens.component';
-import { CustomerContractsListPerCustomerComponent } from './customer-contracts/customer-contracts-list-per-customer/customer-contracts-list-per-customer.component';
+
 import { ContractRoutingModule } from '../contracts/contract-routing.module';
+import { CustomerContractsByCustomerListComponent } from './customer-contracts/customer-contracts-by-customer-list/customer-contracts-by-customer-list.component';
+import { CustomerContractsByCustomerListTableComponent } from './customer-contracts/customer-contracts-by-customer-list/customer-contracts-list-per-customer-table/customer-contracts-list-per-customer-table.component';
 
 @NgModule({
   declarations: [
@@ -58,8 +60,8 @@ import { ContractRoutingModule } from '../contracts/contract-routing.module';
     ItemContractListTableComponent,
 
     //customer contracts
-    CustomerContractsListPerCustomerComponent,
-    CustomerContractsListPerCustomerTableComponent,
+    CustomerContractsByCustomerListComponent,
+    CustomerContractsByCustomerListTableComponent,
 
   ],
   imports: [

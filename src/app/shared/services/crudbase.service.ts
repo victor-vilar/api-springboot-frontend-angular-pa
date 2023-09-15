@@ -39,7 +39,7 @@ export abstract class CrudBaseService<T>{
     this.http.get<T[]>(CrudBaseService.BASE_URL + this.rota,{withCredentials:true})
     .subscribe(value => {
       this.list = value;
-      this.send(value)
+      this.send(this.list)
     });
   };
 

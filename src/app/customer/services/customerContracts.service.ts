@@ -40,6 +40,8 @@ export class CustomerContractsService extends CrudBaseService<Contract> implemen
   }
 
 
+
+
   // get all contracts that have a contractStatus equals to given param
   getAllContractsThatHaveContractStatusType(contractStatus:ContractStatus):Contract[]{
     return this.list.filter(contract => contract.contractStatus === contractStatus);

@@ -7,11 +7,11 @@ import { Customer } from 'src/app/shared/entities/Customer';
 import { DialogServiceService } from 'src/app/shared/services/dialog-service.service';
 
 @Component({
-  selector: 'app-customer-contracts-list-per-customer-table',
-  templateUrl: './customer-contracts-list-per-customer.component.html',
-  styleUrls: ['./customer-contracts-list-per-customer.component.css']
+  selector: 'app-customer-contracts-by-customer-list',
+  templateUrl: './customer-contracts-by-customer-list.component.html',
+  styleUrls: ['./customer-contracts-by-customer-list.component.css']
 })
-export class CustomerContractsListPerCustomerComponent implements OnInit {
+export class CustomerContractsByCustomerListComponent implements OnInit {
 
   constructor(
     customerService:CustomerService,

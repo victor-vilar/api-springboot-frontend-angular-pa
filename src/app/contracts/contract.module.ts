@@ -11,14 +11,14 @@ import { CustomerRoutingModule } from "../customer/customer-routing.module";
 import { MaterialModuleModule } from "../shared/material-module.module";
 import { SharedModule } from "../shared/shared.module";
 import { ContractRoutingModule } from "./contract-routing.module";
-import { CustomerContractsListTableComponent } from "./contracts-list/contracts-list-table/contracts-list-table.component";
-import { CustomerContractsListComponent } from "./contracts-list/contracts-list.component";
+import { ContractsListTableComponent } from "./contracts-list/contracts-list-table/contracts-list-table.component";
+import { ContractsListComponent } from "./contracts-list/contracts-list.component";
 import { CustomerModule } from "../customer/customer.module";
 
 @NgModule({
   declarations: [
-    CustomerContractsListComponent,
-    CustomerContractsListTableComponent,
+    ContractsListComponent,
+    ContractsListTableComponent,
   ],
   imports: [
     ContractRoutingModule,

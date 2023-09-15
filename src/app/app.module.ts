@@ -30,6 +30,7 @@ import { LoginComponent } from './login/login.component';
 import { LoginModule } from './login/login.module';
 import { jwtTokenInterceptorFilter } from './security/jwtTokenInterceptorFilter';
 import { csrfTokenInterceptorFilter } from './security/csrfTokenInterceptorFilter';
+import { ContractModule } from './contracts/contract.module';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { csrfTokenInterceptorFilter } from './security/csrfTokenInterceptorFilte
     ResidueModule,
     EquipamentsModule,
     CustomerModule,
-    LoginModule
+    LoginModule,
+    ContractModule
   ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'},

@@ -1,3 +1,4 @@
+import { Customer } from 'src/app/shared/entities/Customer';
 
 import { Component, EventEmitter, Input, OnInit, Output, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
@@ -11,10 +12,10 @@ import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-itens-table',
-  templateUrl: './itens-table.component.html',
-  styleUrls: ['./itens-table.component.css']
+  templateUrl: 'itens-table.component.html',
+
 })
-export class ItensTableComponent implements OnChanges{
+export class ItensTableComponent{
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -50,18 +51,31 @@ export class ItensTableComponent implements OnChanges{
     private dialogService:DialogServiceService,) { }
 
 
-    ngOnChanges(){
-      this.getAll();
+
+  //delete item
+  deleteItem(event:any){
+
+
+
+    //creating dialog progress bar
+    this.dialogService.openProgressDialog();
+
+    //creating observable variable
+    let observable$;
+
+    //if the event object cpfCnpj is undefined it means it is not a 'Customer' object
+    //the customer object cpfCnpj it is its id;
+    if (event.cpfCnpj !== undefined){
+      observable$ = this.service.delete(event.cpfCnpj);
+    }else{
+      observable$ = this.service.delete(event.id)
     }
 
+    observable$.subscribe(value =>{
 
 
-  //get the selected row to do the operations of delete, update etc.
-  deleteItem(event:any){
-    this.dialogService.openProgressDialog();
-    this.service.delete(event.id)
-    .subscribe(value =>{
-      this.getAll();
+
+
       this.dialogService.closeProgressSpinnerDialog();
     })
   }
@@ -74,25 +88,23 @@ export class ItensTableComponent implements OnChanges{
 
       //cleaning the list to not have duplicated data
       this.tableData = [];
+
       //subscribing to the service
       this.service.getAllByCustomerId(this.customerId)
       .subscribe(response =>{
+
           //map the itens to the table
           this.tableData = this.service.mapItens(response);
+
           //pass the data to data source component
           this.updateDataSource();
+
       });
 
     }else{
       this.service.getAll();
     }
   };
-
-
-  //used to inform the keyvalue pipe to not sort the object properties
-  returnZero() {
-    return 0;
-  }
 
   filteredTableData(event:Event){
 

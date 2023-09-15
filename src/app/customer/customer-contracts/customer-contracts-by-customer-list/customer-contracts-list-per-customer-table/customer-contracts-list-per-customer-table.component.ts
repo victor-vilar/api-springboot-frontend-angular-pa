@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { ItensTableComponent } from 'src/app/shared/itens-table/itens-table.component';
 import { DialogServiceService } from 'src/app/shared/services/dialog-service.service';
@@ -9,7 +10,7 @@ import { MapperService } from 'src/app/shared/services/mapper.service';
   templateUrl: './customer-contracts-list-per-customer-table.component.html',
   styleUrls: ['./customer-contracts-list-per-customer-table.component.css']
 })
-export class CustomerContractsListPerCustomerTableComponent extends ItensTableComponent implements OnInit {
+export class CustomerContractsByCustomerListTableComponent extends ItensTableComponent implements OnInit {
 
   constructor(router:Router,
     mapper:MapperService,
@@ -21,5 +22,6 @@ ngOnInit(): void {
   let observable$ = this.service.refreshAllData();
   observable$.subscribe(this.onInitObserver())
 }
+
 
 }

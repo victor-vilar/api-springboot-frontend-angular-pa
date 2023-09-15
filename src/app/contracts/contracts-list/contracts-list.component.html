@@ -1,8 +1,7 @@
 <div class="cont">
 
-  <app-contracts-list-table
-  [tableHeaders]="headerForTables"
+<app-contracts-list-table
   [service]="contractService"
-  (editObjectEmitter)="editObject($event)"
-  ></app-contracts-list-table>
+  [tableHeaders]="headerForTables"
+></app-contracts-list-table>
 </div>

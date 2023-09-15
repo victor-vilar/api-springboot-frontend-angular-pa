@@ -5,11 +5,11 @@ import { DialogServiceService } from 'src/app/shared/services/dialog-service.ser
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-customer-contracts-list',
+  selector: 'app-contracts-list',
   templateUrl: './contracts-list.component.html',
   styleUrls: ['./contracts-list.component.css']
 })
-export class CustomerContractsListComponent implements OnInit {
+export class ContractsListComponent implements OnInit {
 
   headerForTables:string[] = [];
   contractService:CustomerContractsService;
@@ -24,8 +24,7 @@ export class CustomerContractsListComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    this.headerForTables = ['Id','Cliente','Numero','Data-Inicio', 'Data-Fim', 'Total-de-Itens', 'Total-em-R$','Opções'];
-    console.log(this.contractService);
+    this.headerForTables = ['Id','Cliente','Numero','Data-Inicio', 'Data-Fim', 'Total-em-R$','Opções'];
   }
 
   editObject(object:any){

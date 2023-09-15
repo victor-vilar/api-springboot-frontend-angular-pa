@@ -5,12 +5,12 @@ import { DashboardComponent } from '../template/dashboard/dashboard.component';
 import { CustomerAddressesDetailComponent } from './customer-addresses/customer-addresses-detail/customer-addresses-detail.component';
 import { CustomerAddressesListComponent } from './customer-addresses/customer-addresses-list/customer-addresses.component';
 import { CustomerContractsDetailComponent } from './customer-contracts/customer-contracts-detail/customer-contracts-detail.component';
-import { CustomerContractsListPerCustomerComponent } from './customer-contracts/customer-contracts-list-per-customer/customer-contracts-list-per-customer.component';
 import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
 import { CustomerListComponent } from './customer-list/customer.component';
 import { CustomerSupervisorsDetailComponent } from './customer-supervisors/customer-supervisors-detail/customer-supervisors-detail.component';
 import { CustomerSupervisorsListComponent } from './customer-supervisors/customer-supervisors-list/customer-supervisors.component';
 import { CustomerDetailInfoComponent } from './customer-detail/customer-detail-info/customer-detail-info.component';
+import { CustomerContractsByCustomerListComponent } from './customer-contracts/customer-contracts-by-customer-list/customer-contracts-by-customer-list.component';
 
 
 const routes: Routes = [
@@ -18,7 +18,7 @@ const routes: Routes = [
     {path:'cliente/:id',component:CustomerDetailComponent},
     {path:'cliente/novo',component:CustomerDetailComponent},
   ]},
-  {path:'cliente/:cpfCnpj/contratos',component:CustomerContractsListPerCustomerComponent, children:[
+  {path:'cliente/:cpfCnpj/contratos',component:CustomerContractsByCustomerListComponent, children:[
     {path:'contrato/:id',component:CustomerContractsDetailComponent},
     {path:'contrato/novo',component:CustomerContractsDetailComponent},
   ]},
