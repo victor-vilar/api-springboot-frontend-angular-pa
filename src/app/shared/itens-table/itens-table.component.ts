@@ -1,11 +1,11 @@
 import { Customer } from 'src/app/shared/entities/Customer';
 
-import { Component, EventEmitter, Input, OnInit, Output, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, OnChanges, SimpleChanges, ViewChild, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { MapperService } from 'src/app/shared/services/mapper.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogServiceService } from 'src/app/shared/services/dialog-service.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -16,7 +16,7 @@ import { Mapper } from '../interfaces/mapper.mapper';
   templateUrl: 'itens-table.component.html',
 
 })
-export class ItensTableComponent implements OnInit{
+export class ItensTableComponent implements OnInit, OnDestroy{
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -50,15 +50,33 @@ export class ItensTableComponent implements OnInit{
   @Input()
   mapper:Mapper;
 
+  private subscription$:Subscription;
+  private refreshUnsubscribe:Subscription;
+
   constructor(private router:Router,
     private dialogService:DialogServiceService,) { }
 
+  ngOnDestroy(): void {
 
-    ngOnInit(): void {
-      let observable$ = this.service.refreshAllData();
-      observable$.subscribe(this.onInitObserver())
-      this.getAll();
+    //unsubscribe to
+    if(this.subscription$ !== undefined){
+      this.subscription$.unsubscribe();
     }
+
+    if(this.refreshUnsubscribe !== undefined){
+      this.refreshUnsubscribe.unsubscribe();
+    }
+
+  }
+
+
+  ngOnInit(): void {
+
+    let observable$ = this.service.refreshAllData();
+    this.refreshUnsubscribe = observable$.subscribe(this.onInitObserver())
+
+    this.getAll();
+  }
 
 
 
@@ -96,7 +114,7 @@ export class ItensTableComponent implements OnInit{
       this.tableData = [];
 
       //subscribing to the service
-      this.service.getAllByCustomerId(this.customerId)
+      this.subscription$ = this.service.getAllByCustomerId(this.customerId)
       .subscribe(response =>{
 
           //map the itens to the table
