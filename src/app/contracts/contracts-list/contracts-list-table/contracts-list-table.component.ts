@@ -37,7 +37,7 @@ export class ContractsListTableComponent extends ItensTableComponent {
   statusStyle(contract:Contract){
     let object:any;
     if(contract.contractStatus.toString() === "ATIVO"){
-      object = {backgroundColor:'#D5F5E3',color:'green',textAlign:'center'};
+      object = {backgroundColor:'#D5F5E3',color:'#28dcb8',textAlign:'center'};
     }
 
 

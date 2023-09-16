@@ -6,3 +6,14 @@ th{
   font-weight: bolder;
 
 }
+
+.mat-column-Id, .mat-column-Numero, .mat-column-Data-Inicio{
+  width:4%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+.mat-column-Cliente{
+  width: 39%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}

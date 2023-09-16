@@ -43,7 +43,7 @@
 
             <ng-container matColumnDef="Cliente">
               <th mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{textAlign:'center'}">Cliente </th>
-              <td mat-cell *matCellDef="let contract" [ngStyle]="{textAlign:'center'}"> {{contract.customer.nameCompanyName}} </td>
+              <td mat-cell *matCellDef="let contract"> {{contract.customer.nameCompanyName}} </td>
             </ng-container>
 
             <ng-container matColumnDef="Status">
