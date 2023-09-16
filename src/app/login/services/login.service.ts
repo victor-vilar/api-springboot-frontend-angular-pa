@@ -104,7 +104,6 @@ export class LoginService {
    */
   public getUserFromBrownser():ApplicationUser{
     this.applicationUser = window.sessionStorage.getItem('loggedUser');
-    console.log(this.applicationUser);
     return this.applicationUser;
   }
 

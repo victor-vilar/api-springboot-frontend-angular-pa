@@ -6,6 +6,7 @@ import { CustomerService } from '../../customer/services/customer.service';
 
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoginService } from 'src/app/login/services/login.service';
 
 
 @Component({
@@ -28,7 +29,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
     private contractService:CustomerContractsService,
     private equipmentService:EquipmentsService,
     private residueService:ResiduesService,
-    private router:Router) { }
+    private router:Router,
+    private loginService:LoginService) { }
 
 
     ngOnDestroy(): void {
@@ -38,7 +40,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
 
 
-  if(!window.sessionStorage.getItem("loggedUser")){
+  if(this.loginService.applicationUser === undefined){
         this.router.navigate(['/login'])
   }
 
