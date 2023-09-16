@@ -11,7 +11,7 @@ import { MapperService } from 'src/app/shared/services/mapper.service';
   templateUrl: './contracts-list-table.component.html',
   styleUrls: ['./contracts-list-table.component.css']
 })
-export class ContractsListTableComponent extends ItensTableComponent implements OnInit {
+export class ContractsListTableComponent extends ItensTableComponent {
 
   constructor(router:Router,
     mapper:MapperService,
@@ -19,13 +19,6 @@ export class ContractsListTableComponent extends ItensTableComponent implements 
     private customerService:CustomerService){
       super(router,dialogService);
     }
-
-
-  ngOnInit(): void {
-    let observable$ = this.service.refreshAllData();
-    observable$.subscribe(this.onInitObserver())
-    this.getAll();
-  }
 
   override updateDataSource(){
     console.log(this.tableData);

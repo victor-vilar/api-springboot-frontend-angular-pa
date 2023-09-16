@@ -12,16 +12,12 @@ import { MapperService } from 'src/app/shared/services/mapper.service';
   templateUrl: './customer-list-table.component.html',
   styleUrls: ['./customer-list-table.component.css']
 })
-export class CustomerListTableComponent extends ItensTableComponent implements OnInit {
+export class CustomerListTableComponent extends ItensTableComponent {
 
   constructor(router:Router,mapper:MapperService,dialogService:DialogServiceService){
     super(router,dialogService)
   }
 
-  ngOnInit(): void {
-    let observable$ = this.service.refreshAllData();
-    observable$.subscribe(this.onInitObserver())
-    this.getAll();
-  }
+
 
 }

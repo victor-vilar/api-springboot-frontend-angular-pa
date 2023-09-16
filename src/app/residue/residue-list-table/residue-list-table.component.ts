@@ -13,19 +13,13 @@ import { MapperService } from 'src/app/shared/services/mapper.service';
   templateUrl: './residue-list-table.component.html',
   styleUrls: ['./residue-list-table.component.css']
 })
-export class ResidueListTableComponent extends ItensTableComponent implements OnInit{
+export class ResidueListTableComponent extends ItensTableComponent{
 
   constructor(router:Router,mapper:MapperService,dialogService:DialogServiceService){
       super(router,dialogService)
   }
 
-  ngOnInit(): void {
-    let observable$ = this.service.refreshAllData();
-    observable$.subscribe(this.onInitObserver())
-    this.getAll();
 
-
-  }
 
 
 

@@ -16,7 +16,7 @@ import { Mapper } from '../interfaces/mapper.mapper';
   templateUrl: 'itens-table.component.html',
 
 })
-export class ItensTableComponent{
+export class ItensTableComponent implements OnInit{
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -52,6 +52,13 @@ export class ItensTableComponent{
 
   constructor(private router:Router,
     private dialogService:DialogServiceService,) { }
+
+
+    ngOnInit(): void {
+      let observable$ = this.service.refreshAllData();
+      observable$.subscribe(this.onInitObserver())
+      this.getAll();
+    }
 
 
 
