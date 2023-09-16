@@ -5,6 +5,7 @@ import { CustomerContractsService } from 'src/app/customer/services/customerCont
 import { ActivationEnd, ActivatedRoute } from '@angular/router';
 import { Customer } from 'src/app/shared/entities/Customer';
 import { DialogServiceService } from 'src/app/shared/services/dialog-service.service';
+import { CustomerContractsByCustomerTableMapperService } from './customer-contracts-by-customer-table-mapper.service';
 
 @Component({
   selector: 'app-customer-contracts-by-customer-list',
@@ -16,10 +17,12 @@ export class CustomerContractsByCustomerListComponent implements OnInit {
   constructor(
     customerService:CustomerService,
     contractService:CustomerContractsService,
+    mapper:CustomerContractsByCustomerTableMapperService,
     private route:ActivatedRoute,
     private dialogService:DialogServiceService) {
       this.contractService = contractService;
       this.customerService = customerService;
+      this.mapper = mapper;
      }
 
   selectedCustomer:Customer;
@@ -30,13 +33,14 @@ export class CustomerContractsByCustomerListComponent implements OnInit {
   customerService:CustomerService;
   contractService:CustomerContractsService;
   objectToEdit;
+  mapper:CustomerContractsByCustomerTableMapperService;
 
 
 
   ngOnInit(): void {
 
 
-    console.log(this.contractService);
+
 
     this.route.queryParams.subscribe(params => {
       if (params['dialog']) {

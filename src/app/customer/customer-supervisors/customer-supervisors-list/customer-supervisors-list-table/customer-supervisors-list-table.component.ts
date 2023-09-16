@@ -12,12 +12,12 @@ import { MapperService } from 'src/app/shared/services/mapper.service';
 export class CustomerSupervisorsListTableComponent extends ItensTableComponent implements OnInit {
 
   constructor(router:Router,mapper:MapperService,dialogService:DialogServiceService){
-    super(router,mapper,dialogService)
+    super(router,dialogService)
 }
 
 ngOnInit(): void {
   let observable$ = this.service.refreshAllData();
   observable$.subscribe(this.onInitObserver())
-  
+  this.getAll();
 }
 }

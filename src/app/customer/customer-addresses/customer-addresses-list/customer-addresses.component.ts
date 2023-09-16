@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { CustomerService } from 'src/app/customer/services/customer.service';
 import { Customer } from 'src/app/shared/entities/Customer';
 import { CustomerAddressesDetailComponent } from '../customer-addresses-detail/customer-addresses-detail.component';
+import { CustomerAddressListTableComponentMapperService } from './customer-address-list-table-component-mapper-service.service';
 
 @Component({
   selector: 'app-customer-addresses',
@@ -12,15 +13,6 @@ import { CustomerAddressesDetailComponent } from '../customer-addresses-detail/c
   styleUrls: ['./customer-addresses.component.css']
 })
 export class CustomerAddressesListComponent implements OnInit {
-
-  constructor(
-    customerService:CustomerService,
-    addressService:CustomerAddressService,
-    private route:ActivatedRoute,
-    private dialogService:DialogServiceService) {
-      this.addressService = addressService;
-      this.customerService = customerService;
-     }
 
   selectedCustomer:Customer;
   title='Enderecos'
@@ -30,6 +22,23 @@ export class CustomerAddressesListComponent implements OnInit {
   customerService:CustomerService;
   addressService:CustomerAddressService;
   objectToEdit;
+  mapper:CustomerAddressListTableComponentMapperService;
+
+
+
+  constructor(
+    customerService:CustomerService,
+    addressService:CustomerAddressService,
+    private route:ActivatedRoute,
+    private dialogService:DialogServiceService,
+    mapper:CustomerAddressListTableComponentMapperService)
+    {
+      this.addressService = addressService;
+      this.customerService = customerService;
+      this.mapper = mapper;
+    }
+
+
 
   ngOnInit(): void {
 
@@ -46,7 +55,7 @@ export class CustomerAddressesListComponent implements OnInit {
       this.selectedCustomer = this.customerService.list.find(obj => obj.cpfCnpj === param.get('cpfCnpj'));
     })
 
-    this.addressService.getAll();
+
   }
 
   openDialog(){

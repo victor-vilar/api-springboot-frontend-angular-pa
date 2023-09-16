@@ -15,7 +15,7 @@ import { MapperService } from 'src/app/shared/services/mapper.service';
 export class CustomerListTableComponent extends ItensTableComponent implements OnInit {
 
   constructor(router:Router,mapper:MapperService,dialogService:DialogServiceService){
-    super(router,mapper,dialogService)
+    super(router,dialogService)
   }
 
   ngOnInit(): void {

@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { Mapper } from '../interfaces/mapper.mapper';
 
 @Component({
   selector: 'app-itens-table',
@@ -46,8 +47,10 @@ export class ItensTableComponent{
   @Input()
   service:any;
 
+  @Input()
+  mapper:Mapper;
+
   constructor(private router:Router,
-    private mapper:MapperService,
     private dialogService:DialogServiceService,) { }
 
 
@@ -72,10 +75,6 @@ export class ItensTableComponent{
     }
 
     observable$.subscribe(value =>{
-
-
-
-
       this.dialogService.closeProgressSpinnerDialog();
     })
   }
@@ -94,7 +93,7 @@ export class ItensTableComponent{
       .subscribe(response =>{
 
           //map the itens to the table
-          this.tableData = this.service.mapItens(response);
+          this.tableData = this.mapper.mapItens(response);
 
           //pass the data to data source component
           this.updateDataSource();

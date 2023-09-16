@@ -5,6 +5,7 @@ import { Customer } from 'src/app/shared/entities/Customer';
 import { CustomerService } from 'src/app/customer/services/customer.service';
 import { CustomerSupervisorService } from 'src/app/customer/services/customerSupervisor.service';
 import { CustomerSupervisorsDetailComponent } from '../customer-supervisors-detail/customer-supervisors-detail.component';
+import { CustomerSupervisorsListTableComponentMapperService } from './customer-supervisors-list-table-component-mapper.service';
 
 @Component({
   selector: 'app-customer-supervisors',
@@ -13,14 +14,7 @@ import { CustomerSupervisorsDetailComponent } from '../customer-supervisors-deta
 })
 export class CustomerSupervisorsListComponent implements OnInit {
 
-  constructor(
-    customerService:CustomerService,
-    supervisorService:CustomerSupervisorService,
-    private route:ActivatedRoute,
-    private dialogService:DialogServiceService) {
-      this.supervisorService = supervisorService;
-      this.customerService = customerService;
-     }
+
 
   selectedCustomer:Customer;
   title='Fiscais'
@@ -30,6 +24,19 @@ export class CustomerSupervisorsListComponent implements OnInit {
   customerService:CustomerService;
   supervisorService:CustomerSupervisorService;
   objectToEdit;
+  mapper:CustomerSupervisorsListTableComponentMapperService;
+
+
+  constructor(
+    customerService:CustomerService,
+    supervisorService:CustomerSupervisorService,
+    mapper:CustomerSupervisorsListTableComponentMapperService,
+    private route:ActivatedRoute,
+    private dialogService:DialogServiceService) {
+      this.supervisorService = supervisorService;
+      this.customerService = customerService;
+      this.mapper = mapper
+     }
 
   ngOnInit(): void {
 
@@ -47,7 +54,6 @@ export class CustomerSupervisorsListComponent implements OnInit {
       this.selectedCustomer = this.customerService.list.find(obj => obj.cpfCnpj === param.get('cpfCnpj'));
     })
 
-    this.supervisorService.getAll();
 
   }
 

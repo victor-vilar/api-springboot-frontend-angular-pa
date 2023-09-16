@@ -17,14 +17,14 @@ export class ContractsListTableComponent extends ItensTableComponent implements 
     mapper:MapperService,
     dialogService:DialogServiceService,
     private customerService:CustomerService){
-      super(router,mapper,dialogService);
-      console.log('comecei em...')
+      super(router,dialogService);
     }
 
 
   ngOnInit(): void {
     let observable$ = this.service.refreshAllData();
     observable$.subscribe(this.onInitObserver())
+    this.getAll();
   }
 
   override updateDataSource(){
