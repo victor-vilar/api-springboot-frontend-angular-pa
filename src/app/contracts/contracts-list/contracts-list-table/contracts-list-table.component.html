@@ -17,39 +17,44 @@
           <table mat-table [dataSource]="dataSource" matSort>
 
             <ng-container matColumnDef="Id">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
-              <td mat-cell *matCellDef="let contract"> {{contract.id}} </td>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{textAlign:'center'}"> Id </th>
+              <td mat-cell *matCellDef="let contract" [ngStyle]="{textAlign:'center'}"> {{contract.id}} </td>
             </ng-container>
 
             <ng-container matColumnDef="Numero">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Número </th>
-              <td mat-cell *matCellDef="let contract"> {{contract.number}} </td>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{textAlign:'center'}"> Número </th>
+              <td mat-cell *matCellDef="let contract" [ngStyle]="{textAlign:'center'}"> {{contract.number}} </td>
             </ng-container>
 
             <ng-container matColumnDef="Data-Inicio">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Início </th>
-              <td mat-cell *matCellDef="let contract"> {{contract.beginDate | date: 'dd/MM/yyyy'}} </td>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{textAlign:'center'}"> Início </th>
+              <td mat-cell *matCellDef="let contract" [ngStyle]="{textAlign:'center'}"> {{contract.beginDate | date: 'dd/MM/yyyy'}} </td>
             </ng-container>
 
             <ng-container matColumnDef="Data-Fim">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Fim </th>
-              <td mat-cell *matCellDef="let contract"> {{contract.endDate | date: 'dd/MM/yyyy'}} </td>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{textAlign:'center'}"> Fim </th>
+              <td mat-cell *matCellDef="let contract" [ngStyle]="{textAlign:'center'}"> {{contract.endDate | date: 'dd/MM/yyyy'}} </td>
             </ng-container>
 
             <ng-container matColumnDef="Total-em-R$">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Total em R$ </th>
-              <td mat-cell *matCellDef="let contract"> {{contract.totalEmRs | currency:"BRL"}} </td>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{textAlign:'center'}"> Total em R$ </th>
+              <td mat-cell *matCellDef="let contract" [ngStyle]="{textAlign:'center'}"> {{contract.totalEmRs | currency:"BRL"}} </td>
             </ng-container>
 
             <ng-container matColumnDef="Cliente">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header>Cliente </th>
-              <td mat-cell *matCellDef="let contract"> {{contract.customer.nameCompanyName}} </td>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{textAlign:'center'}">Cliente </th>
+              <td mat-cell *matCellDef="let contract" [ngStyle]="{textAlign:'center'}"> {{contract.customer.nameCompanyName}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Status">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{textAlign:'center'}">Status</th>
+              <td mat-cell *matCellDef="let contract" [ngStyle]="statusStyle(contract)"> {{contract.contractStatus}} </td>
             </ng-container>
 
 
             <ng-container matColumnDef="Opções">
-              <th mat-header-cell *matHeaderCellDef>Opções</th>
-              <td mat-cell *matCellDef="let contract" >
+              <th mat-header-cell *matHeaderCellDef [ngStyle]="{textAlign:'center'}">Opções</th>
+              <td mat-cell *matCellDef="let contract" [ngStyle]="{textAlign:'center'}" >
                 <button mat-stroked-button type="button" matTooltip ="Editar Item" name="edit" id="edit" class="bt bt-edit " (click)="sendObjectToEdit(contract)" [routerLink]="['./'+fatherPathPrefix, contract.id]" [queryParams]="{edit:true, dialog:true}"><i class="fas fa-edit"></i></button>
                 <button mat-stroked-button type="button" matTooltip ="Deletar Item" name="delete" id="delete" class="bt bt-delete " (click)="openDialog(contract)"><i class="fas fa-times"></i></button>
               </td>

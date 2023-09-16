@@ -54,7 +54,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   .push(
     this.contractService.refreshAllData().subscribe(response =>{
         this.contractRegisteredLength = response.length
-        console.log('ó a merda')
+
         //return a list of lists of itens
         let listOfItens = response.map(e => e.itens);
         listOfItens.forEach(e =>

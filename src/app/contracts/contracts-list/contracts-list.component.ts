@@ -24,7 +24,7 @@ export class ContractsListComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    this.headerForTables = ['Id','Cliente','Numero','Data-Inicio', 'Data-Fim', 'Total-em-R$','Opções'];
+    this.headerForTables = ['Id','Cliente','Numero','Data-Inicio', 'Data-Fim', 'Total-em-R$','Status','Opções'];
   }
 
   editObject(object:any){
