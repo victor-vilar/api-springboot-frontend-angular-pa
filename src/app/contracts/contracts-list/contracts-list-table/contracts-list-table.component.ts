@@ -22,23 +22,18 @@ export class ContractsListTableComponent extends ItensTableComponent {
       super(router,dialogService);
     }
 
-  override updateDataSource(){
-    console.log(this.tableData);
-    let list = this.tableData.map(e => {
-     e.customer = this.customerService.findCustomersByIdInList(e.customerId);
-     return e;
-    })
-    console.log(list);
-    this.dataSource = new MatTableDataSource(list);
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator=this.paginator;
-  }
-
   statusStyle(contract:Contract){
     let object:any;
+    object.textAlign="center";
+
+    //if contract status it is 'ATIVO'
     if(contract.contractStatus.toString() === "ATIVO"){
-      object = {backgroundColor:'#D5F5E3',color:'#28dcb8',textAlign:'center'};
+      object = {backgroundColor:'#D5F5E3',color:'#28dcb8'};
     }
+
+    //if contract status is 'PENDENTE_RENOVAÇÃO'
+
+
 
 
 

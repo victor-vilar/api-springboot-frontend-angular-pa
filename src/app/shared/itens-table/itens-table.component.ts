@@ -72,8 +72,11 @@ export class ItensTableComponent implements OnInit, OnDestroy{
 
   ngOnInit(): void {
 
+    //subscribing to service list updating
     let observable$ = this.service.refreshAllData();
-    this.refreshUnsubscribe = observable$.subscribe(this.onInitObserver())
+
+    //add observable to a subscription object, and adding the overserver
+    this.refreshUnsubscribe = observable$.subscribe(this.afterReturnListObserver())
 
     this.getAll();
   }
@@ -82,8 +85,6 @@ export class ItensTableComponent implements OnInit, OnDestroy{
 
   //delete item
   deleteItem(event:any){
-
-
 
     //creating dialog progress bar
     this.dialogService.openProgressDialog();
@@ -108,28 +109,23 @@ export class ItensTableComponent implements OnInit, OnDestroy{
   //putting a option parameter to use on customer address, contracts and supervisors list
   getAll(){
 
+    //if the customerId is not undefined, i will use the getAllByCustomerId from the service
     if(this.customerId !== undefined){
 
       //cleaning the list to not have duplicated data
       this.tableData = [];
 
-      //subscribing to the service
+      //get all the T object from service by customer id
       this.subscription$ = this.service.getAllByCustomerId(this.customerId)
-      .subscribe(response =>{
+      .subscribe(this.afterReturnListObserver());
 
-          //map the itens to the table
-          this.tableData = this.mapper.mapItens(response);
-
-          //pass the data to data source component
-          this.updateDataSource();
-
-      });
-
+    //if the customerId is null, so it is searching by all T object
     }else{
       this.service.getAll();
     }
   };
 
+  //table filter
   filteredTableData(event:Event){
 
     const filterValue = (event.target as HTMLInputElement).value;
@@ -141,12 +137,25 @@ export class ItensTableComponent implements OnInit, OnDestroy{
 
   }
 
-  //obersver used on onInit method
-  onInitObserver():any {
+  //obersver when receive the data
+  afterReturnListObserver():any {
     return {
       next:(response) =>{
+
+        //if the list of iten has the need to be mapped, the father will pass the Map service
+        //and will use its method 'mapItens' to transform the list
+        if(this.mapper != undefined){
+          this.tableData = this.mapper.mapItens(response);
+
+        //if there is no need to transform it will only set the variable
+        }else{
           this.tableData = response;
-          this.updateDataSource();
+        }
+
+        //updating data source for the mat-table
+        this.updateDataSource();
+
+
       },
       error:(error) =>{
         console.log(error);

@@ -3,6 +3,7 @@ import { CustomerService } from '../../customer/services/customer.service';
 import { CustomerContractsService } from '../../customer/services/customerContracts.service';
 import { DialogServiceService } from 'src/app/shared/services/dialog-service.service';
 import { ActivatedRoute } from '@angular/router';
+import { ContractsListTableComponentMapperService } from './contracts-list-table-component-mapper.service';
 
 @Component({
   selector: 'app-contracts-list',
@@ -15,12 +16,15 @@ export class ContractsListComponent implements OnInit {
   contractService:CustomerContractsService;
   title = "Contratos"
   objectToEdit:any;
+  mapper:ContractsListTableComponentMapperService;
 
   constructor(customerService:CustomerService,
     contractService:CustomerContractsService,
     private route:ActivatedRoute,
-    private dialogService:DialogServiceService) {
+    private dialogService:DialogServiceService,
+    mapper:ContractsListTableComponentMapperService) {
       this.contractService = contractService
+      this.mapper = mapper;
     }
 
   ngOnInit(): void {
