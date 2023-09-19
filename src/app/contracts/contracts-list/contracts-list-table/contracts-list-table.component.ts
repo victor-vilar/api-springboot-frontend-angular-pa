@@ -4,7 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CustomerService } from 'src/app/customer/services/customer.service';
 import { Contract } from 'src/app/shared/entities/Contract';
-import { ContractStatus } from 'src/app/shared/enums/ContractStatus';
+import { ContractStatus, getContractStatusValues } from 'src/app/shared/enums/ContractStatus';
 import { ItensTableComponent } from 'src/app/shared/itens-table/itens-table.component';
 import { DialogServiceService } from 'src/app/shared/services/dialog-service.service';
 import { MapperService } from 'src/app/shared/services/mapper.service';
@@ -26,16 +26,20 @@ export class ContractsListTableComponent extends ItensTableComponent {
 
     }
 
+    contractStatusEnumValues = getContractStatusValues();
+
   statusStyle(contract:Contract){
     let object:any;
 
     //if contract status it is 'ATIVO'
     if(contract.contractStatus.toString() === "ATIVO"){
-      object = {backgroundColor:'#D5F5E3',color:'#28dcb8',textAlign:'center'};
+      object = {backgroundColor:'#D5F5E3',color:'#28dcb8',textAlign:'center',padding:'10px',borderRadius:'3px'};
     }
 
     //if contract status is 'PENDENTE_RENOVAÇÃO'
-
+    if(contract.contractStatus.toString() === "RENOVACAO_PENDENTE"){
+      object = {backgroundColor:'#ffff99',color:'#ff9900',textAlign:'center',padding:'10px',borderRadius:'3px'};
+    }
 
 
 
