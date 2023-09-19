@@ -50,11 +50,13 @@ export class ItensTableComponent implements OnInit, OnDestroy{
   @Input()
   mapper:Mapper;
 
+  router:Router
+
   private subscription$:Subscription;
   private refreshUnsubscribe:Subscription;
 
-  constructor(private router:Router,
-    private dialogService:DialogServiceService,) { }
+  constructor(router:Router,
+    private dialogService:DialogServiceService,) {this.router = router }
 
   ngOnDestroy(): void {
 
@@ -180,7 +182,9 @@ export class ItensTableComponent implements OnInit, OnDestroy{
   editObjectEmitter = new EventEmitter<any>()
   sendObjectToEdit(object:any){
     this.editObjectEmitter.emit(object);
+
   }
+
 
 
 
