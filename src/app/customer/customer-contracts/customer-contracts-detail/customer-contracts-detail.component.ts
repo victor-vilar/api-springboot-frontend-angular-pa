@@ -74,7 +74,6 @@ export class CustomerContractsDetailComponent implements OnInit {
 
 
   ngOnInit(): void {
-    console.log('on init component de contrato')
     this.onLoad();
     this.contractStatusEnumValues = getContractStatusValues();
 

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { MatDialogModule } from '@angular/material/dialog';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MatButtonModule } from '@angular/material/button';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -19,7 +18,7 @@ import { MatPaginatorModule} from '@angular/material/paginator';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatListModule} from '@angular/material/list';
 import {MatIconModule} from '@angular/material/icon';
-
+import { MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [],
@@ -42,7 +41,9 @@ import {MatIconModule} from '@angular/material/icon';
     BrowserAnimationsModule,
     MatDividerModule,
     MatListModule,
-    MatIconModule
+    MatIconModule,
+    MatDialogModule,
+
 
   ],
   exports:[
