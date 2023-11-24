@@ -13,8 +13,8 @@ import { Schedule } from 'src/app/shared/enums/Schedule';
 })
 export class CustomerContractsService extends CrudBaseService<Contract> implements Mapper  {
 
-  constructor(http:HttpClient) {
-    super(http);
+  constructor() {
+    super();
     this.rota = 'contracts'
    }
 

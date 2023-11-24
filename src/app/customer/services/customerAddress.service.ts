@@ -12,8 +12,8 @@ import { Mapper } from '../../shared/interfaces/mapper.mapper';
 })
 export class CustomerAddressService extends CrudBaseService<Address> implements Mapper  {
 
-  constructor(http:HttpClient) {
-    super(http);
+  constructor() {
+    super();
     this.rota='address'
    }
 

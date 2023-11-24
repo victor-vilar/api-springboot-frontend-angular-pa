@@ -10,8 +10,8 @@ import { Mapper } from '../../shared/interfaces/mapper.mapper';
 })
 export class CustomerSupervisorService extends CrudBaseService<Supervisor> implements Mapper   {
 
-  constructor(http:HttpClient) {
-    super(http);
+  constructor() {
+    super();
     this.rota='supervisor'
    }
 

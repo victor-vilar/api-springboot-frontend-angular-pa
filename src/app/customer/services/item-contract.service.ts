@@ -1,15 +1,14 @@
-import { ItemContract } from '../../../../util/entities/ItemContract';
+import { ItemContract } from '../../shared/entities/ItemContract';
 import { Injectable } from '@angular/core';
-import { CrudBaseService } from '../../../../services/crudbase.service';
-import { HttpClient } from '@angular/common/http';
+import { CrudBaseService } from '../../shared/services/crudbase.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ItemContractService extends CrudBaseService<ItemContract>  {
 
-  constructor(http:HttpClient) {
-    super(http);
+  constructor() {
+    super();
     this.rota='item-contract'
    }
 }
