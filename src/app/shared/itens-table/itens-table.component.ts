@@ -104,7 +104,10 @@ export class ItensTableComponent implements OnInit, OnDestroy{
 
     observable$.subscribe(value =>{
       this.dialogService.closeProgressSpinnerDialog();
+      this.getAll();
     })
+
+
   }
 
 

@@ -9,8 +9,8 @@ import { Observable } from 'rxjs';
 })
 export class EquipmentsService extends CrudBaseService<Equipment> {
 
-  constructor(http:HttpClient) {
-    super(http);
+  constructor() {
+    super();
     this.rota='equipment'
    }
 

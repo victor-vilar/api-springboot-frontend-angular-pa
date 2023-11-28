@@ -8,8 +8,8 @@ import { CrudBaseService } from 'src/app/shared/services/crudbase.service';
 })
 export class ResiduesService  extends CrudBaseService<Residue> {
 
-  constructor(http:HttpClient) {
-    super(http);
+  constructor() {
+    super();
     this.rota='residue'
    }
 }
